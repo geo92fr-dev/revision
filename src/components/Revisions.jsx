@@ -22,7 +22,7 @@ const Revisions = ({ onBack, onQuiz, onCours }) => {
               exemple: comp.description || "Exemple à venir...",
               hasQuiz: true,
               quizId: comp.nom.toLowerCase().replace(/\s+/g, '-'),
-              hasCours: !!comp.Video_YouTube, // Active le cours s'il y a une vidéo
+              hasCours: !!(comp.Video_YouTube || comp.Site), // Active le cours s'il y a une vidéo ou un site
               coursId: comp.nom.toLowerCase().replace(/\s+/g, '-')
             });
           });
@@ -45,7 +45,7 @@ const Revisions = ({ onBack, onQuiz, onCours }) => {
       exemple: comp.description || "Exemple à venir...",
       hasQuiz: true,
       quizId: comp.nom.toLowerCase().replace(/\s+/g, '-'),
-      hasCours: !!comp.Video_YouTube, // Active le cours s'il y a une vidéo
+      hasCours: !!(comp.Video_YouTube || comp.Site), // Active le cours s'il y a une vidéo ou un site
       coursId: comp.nom.toLowerCase().replace(/\s+/g, '-')
     }));
   };
