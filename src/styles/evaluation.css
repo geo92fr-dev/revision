@@ -1,9 +1,9 @@
 /* Styles pour pré-évaluation et tests */
 
 .pre-evaluation {
-    background: linear-gradient(135deg, #e6fffa 0%, #b2f5ea 100%);
-    border-left: 4px solid #38b2ac;
-    box-shadow: 0 4px 12px rgba(56, 178, 172, 0.2);
+    background: linear-gradient(135deg, var(--color-lesson-light) 0%, var(--color-lesson) 100%);
+    border-left: 4px solid var(--color-lesson-dark);
+    box-shadow: 0 4px 12px color-mix(in oklch, var(--color-lesson-dark) 20%, transparent);
 }
 
 .mini-test {
@@ -42,21 +42,21 @@
 }
 
 .test-option:hover {
-    border-color: #38b2ac;
-    background: #f0fdfa;
+    border-color: var(--color-lesson-dark);
+    background: var(--color-lesson-light);
     transform: translateY(-1px);
 }
 
 .test-option.correct {
-    background: linear-gradient(135deg, #c6f6d5 0%, #9ae6b4 100%);
-    border-color: #48bb78;
-    color: #22543d;
+    background: linear-gradient(135deg, var(--color-success-light) 0%, var(--color-success) 100%);
+    border-color: var(--color-success-dark);
+    color: oklch(0.25 0.15 140);
 }
 
 .test-option.wrong {
-    background: linear-gradient(135deg, #fed7d7 0%, #fbb6ce 100%);
-    border-color: #f56565;
-    color: #742a2a;
+    background: linear-gradient(135deg, var(--color-danger-light) 0%, var(--color-danger) 100%);
+    border-color: var(--color-danger-dark);
+    color: oklch(0.25 0.15 25);
 }
 
 .pre-test-result {
@@ -73,13 +73,13 @@
 }
 
 .recommendation.advanced {
-    background: linear-gradient(135deg, #c6f6d5 0%, #9ae6b4 100%);
-    color: #22543d;
-    border-left: 4px solid #48bb78;
+    background: linear-gradient(135deg, var(--color-lesson-light) 0%, var(--color-lesson) 100%);
+    color: oklch(0.25 0.08 220);
+    border-left: 4px solid var(--color-lesson-dark);
 }
 
 .recommendation.beginner {
-    background: linear-gradient(135deg, #bee3f8 0%, #90cdf4 100%);
-    color: #2c5282;
-    border-left: 4px solid #3182ce;
+    background: linear-gradient(135deg, var(--color-info-light) 0%, var(--color-info) 100%);
+    color: oklch(0.25 0.08 250);
+    border-left: 4px solid var(--color-info-dark);
 }
