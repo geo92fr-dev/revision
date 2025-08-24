@@ -1,6 +1,7 @@
 import React from 'react';
 import { coursData } from '../coursData';
 import './Cours.css';
+import './Cours.css';
 
 const CoursComponent = ({ coursId, subject, level, onBack, onQuiz }) => {
   // Chercher les données du cours
@@ -119,9 +120,37 @@ const CoursComponent = ({ coursId, subject, level, onBack, onQuiz }) => {
       </div>
       
       <div className="cours-content">
+        {/* Section informations du chapitre */}
+        <div className="chapitre-info">
+          {competenceData.chapitre && (
+            <div className="chapitre-numero">
+              <span className="chapitre-label">Chapitre</span>
+              <span className="chapitre-value">{competenceData.chapitre}</span>
+            </div>
+          )}
+          <h2 className="chapitre-titre">{competenceData.nom}</h2>
+        </div>
+
+        {/* Section description et exemples */}
+        <div className="contenu-pedagogique">
+          {competenceData.description && (
+            <div className="description-section">
+              <h3>📖 Contenu du chapitre</h3>
+              <p className="description-text">{competenceData.description}</p>
+            </div>
+          )}
+          
+          {competenceData.exemple && (
+            <div className="exemple-section">
+              <h3>💡 Exemples concrets</h3>
+              <p className="exemple-text">{competenceData.exemple}</p>
+            </div>
+          )}
+        </div>
+
         {embedUrl ? (
           <div className="video-section">
-            <h2>Vidéo du cours</h2>
+            <h2>🎥 Vidéo du cours</h2>
             <div className="video-container">
               <iframe
                 src={embedUrl}
@@ -134,7 +163,7 @@ const CoursComponent = ({ coursId, subject, level, onBack, onQuiz }) => {
           </div>
         ) : (
           <div className="no-video">
-            <h2>Cours : {competenceData.nom}</h2>
+            <h2>🎥 Vidéo du cours</h2>
             <p>Vidéo en cours de préparation...</p>
           </div>
         )}

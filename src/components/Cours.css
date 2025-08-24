@@ -587,3 +587,115 @@
     font-size: 0.9rem;
   }
 }
+
+/* Nouvelles sections pour le contenu enrichi */
+.chapitre-info {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  color: white;
+  padding: 25px;
+  border-radius: 15px;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.chapitre-numero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.chapitre-label {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 5px 12px;
+  border-radius: 15px;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.chapitre-value {
+  background: rgba(255, 255, 255, 0.3);
+  padding: 5px 12px;
+  border-radius: 15px;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.chapitre-titre {
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.contenu-pedagogique {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.description-section,
+.exemple-section {
+  background: #f8f9fa;
+  border-left: 4px solid #667eea;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.description-section h3,
+.exemple-section h3 {
+  color: #2c3e50;
+  margin: 0 0 15px 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.description-text,
+.exemple-text {
+  color: #34495e;
+  line-height: 1.6;
+  margin: 0;
+  font-size: 1rem;
+}
+
+.exemple-section {
+  border-left-color: #f39c12;
+  background: #fef9e7;
+}
+
+.exemple-text {
+  font-style: italic;
+  color: #d68910;
+  font-weight: 500;
+}
+
+/* Responsive pour les nouvelles sections */
+@media (max-width: 768px) {
+  .chapitre-info {
+    padding: 20px 15px;
+  }
+  
+  .chapitre-titre {
+    font-size: 1.5rem;
+  }
+  
+  .chapitre-numero {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .description-section,
+  .exemple-section {
+    padding: 15px;
+  }
+  
+  .description-section h3,
+  .exemple-section h3 {
+    font-size: 1.1rem;
+  }
+}
