@@ -39,7 +39,7 @@ describe('CoursComponent', () => {
   it('should render course title', () => {
     render(<CoursComponent {...mockProps} />)
     
-    expect(screen.getByText(/Utiliser et représenter les grands nombres entiers/i)).toBeInTheDocument()
+    expect(screen.getAllByText(/Utiliser et représenter les grands nombres entiers/i)[0]).toBeInTheDocument()
   })
 
   it('should render video section when YouTube ID is provided', () => {

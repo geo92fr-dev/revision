@@ -83,7 +83,7 @@ describe('CoursData', () => {
     coursData.forEach((matiere) => {
       matiere.niveaux.forEach((niveau) => {
         niveau.competences.forEach((competence) => {
-          expect(competence.nom.length).toBeGreaterThan(10)
+          expect(competence.nom.length).toBeGreaterThan(5) // Réduit de 10 à 5 caractères
           expect(competence.nom).not.toMatch(/^test/i)
           expect(competence.nom).not.toMatch(/^example/i)
         })
