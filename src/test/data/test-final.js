@@ -95,6 +95,18 @@ async function runFinalTests() {
         console.log('✅ https://funrevis.web.app/pages/mathematiques/6ieme/');
         console.log('✅ https://funrevis.web.app/pages/page_de_cours.html?subject=mathematiques&level=6ieme&topic=nombres-entiers');
         console.log('✅ https://funrevis.web.app/pages/page_de_cours.html?subject=mathematiques&level=6ieme&topic=moyenne');
+        console.log('✅ https://funrevis.web.app/pages/page_de_cours.html?subject=mathematiques&level=6ieme&topic=durees');
+        
+        console.log('\n🔧 TEST DE CHARGEMENT ADDITIONNEL:');
+        console.log('Exécution du test de chargement pour détecter les modules défaillants...');
+        
+        // Import et exécution du test de chargement
+        try {
+            const loadingTestModule = await import('./test-loading.js');
+            // Le test s'exécute automatiquement à l'import
+        } catch (error) {
+            console.log('⚠️ Erreur lors du test de chargement:', error.message);
+        }
         
         if (passedTests === totalTests) {
             console.log('\n🎉 FÉLICITATIONS !');
