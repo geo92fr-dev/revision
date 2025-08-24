@@ -1,5 +1,13 @@
 import '@testing-library/jest-dom'
 
+// Mock Firebase
+vi.mock('firebase/auth', () => ({
+  signInWithPopup: vi.fn(),
+  signOut: vi.fn(),
+  onAuthStateChanged: vi.fn(),
+  GoogleAuthProvider: vi.fn(),
+}))
+
 // Mock Firebase pour les tests
 vi.mock('../firebase', () => ({
   auth: {
@@ -13,7 +21,7 @@ vi.mock('../firebase', () => ({
 vi.mock('../authService', () => ({
   signInWithGoogle: vi.fn(() => Promise.resolve({ uid: 'test-user', email: 'test@example.com' })),
   logOut: vi.fn(() => Promise.resolve()),
-  onAuthChange: vi.fn(),
+  onAuthChange: vi.fn(() => vi.fn()), // Return unsubscribe function
 }))
 
 // Globals pour les tests

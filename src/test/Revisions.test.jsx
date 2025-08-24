@@ -62,8 +62,8 @@ describe('Revisions Component', () => {
     fireEvent.click(level6Button)
     
     // Vérifier qu'au moins une compétence est affichée
-    expect(screen.getByText(/Voir le cours/i)).toBeInTheDocument()
-    expect(screen.getByText(/Faire le quiz/i)).toBeInTheDocument()
+    expect(screen.getAllByText(/Voir le cours/i)).toHaveLength(7) // 7 compétences pour le niveau 6ème
+    expect(screen.getAllByText(/Faire le quiz/i)).toHaveLength(7)
   })
 
   it('should call onCours when "Voir le cours" is clicked', () => {

@@ -79,7 +79,7 @@ describe('CoursComponent', () => {
     
     render(<CoursComponent {...invalidProps} />)
     
-    expect(screen.getByText(/Cours non trouvé/i)).toBeInTheDocument()
+    expect(screen.getByText(/Matière non trouvée/i)).toBeInTheDocument()
   })
 
   it('should show error when subject is not found', () => {

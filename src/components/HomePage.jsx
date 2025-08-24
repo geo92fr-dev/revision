@@ -25,7 +25,7 @@ const HomePage = ({ user, onLogin, onLogout, onDashboard, onRevisions, onQuiz })
   const isAdmin = user && user.email === 'geo92fr@gmail.com';
 
   return (
-    <div className="home-container">
+    <div className="home-container" data-testid="homepage">
       <div className="home-content">
         <h1 className="home-title">Bienvenue sur FunRevis</h1>
         <p className="home-subtitle">Votre plateforme de révision interactive</p>
