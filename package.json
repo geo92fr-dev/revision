@@ -13,7 +13,11 @@
     "test:run": "vitest run",
     "test:coverage": "vitest run --coverage",
     "validate": "node scripts/validate-data.js",
-    "validate:file": "node scripts/validate-data.js"
+    "validate:file": "node scripts/validate-data.js",
+    "test:data": "node src/test/data/test-final.js",
+    "test:data:all": "node src/test/data/index.js",
+    "test:data:simple": "node src/test/data/test-simple.js",
+    "test:data:exports": "node src/test/data/test-exports.js"
   },
   "dependencies": {
     "firebase": "^12.1.0",
