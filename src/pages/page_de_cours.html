@@ -3059,7 +3059,9 @@
         window.startAdaptedPath = function(level = adaptedPath) {
             adaptedPath = level;
             markSectionCompleted('preEval');
-            toggleSection('preEval');
+            
+            // Ouvrir la section cours après le quiz
+            toggleSection('cours');
             
             // Messages personnalisés selon le niveau
             const messages = {
@@ -3229,8 +3231,7 @@
         window.addEventListener('load', function() {
             console.log('🔄 Page chargée, initialisation...');
             loadCourse().then(() => {
-                console.log('✅ Chargement terminé, affichage de la pré-évaluation');
-                toggleSection('preEval');
+                console.log('✅ Chargement terminé');
                 updateProgressDisplay();
             }).catch(error => {
                 console.error('❌ Erreur lors de l\'initialisation:', error);
