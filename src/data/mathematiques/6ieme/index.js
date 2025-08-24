@@ -17,6 +17,8 @@ import { unitesMasseCapacite6eme } from './unites-masse-capacite.js';
 import { durees6eme } from './durees.js';
 import { lectureTableaux6eme } from './lecture-tableaux.js';
 import { graphiques6eme } from './graphiques.js';
+import { algebre6eme } from './algebre.js';
+import { moyenne6eme } from './moyenne.js';
 
 // Export par défaut regroupant tout le niveau 6ème
 export default {
@@ -37,7 +39,9 @@ export default {
   'unites-masse-capacite': unitesMasseCapacite6eme,
   durees: durees6eme,
   'lecture-tableaux': lectureTableaux6eme,
-  graphiques: graphiques6eme
+  graphiques: graphiques6eme,
+  algebre: algebre6eme,
+  moyenne: moyenne6eme
 };
 
 // Exports nommés pour compatibilité
@@ -59,5 +63,7 @@ export {
   unitesMasseCapacite6eme,
   durees6eme,
   lectureTableaux6eme,
-  graphiques6eme
+  graphiques6eme,
+  algebre6eme,
+  moyenne6eme
 };
