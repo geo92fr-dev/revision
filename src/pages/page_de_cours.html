@@ -1225,16 +1225,27 @@
                 
                 // Gérer les deux types de structures de données
                 if (courseData) {
-                    if (courseData.competences && courseData.competences.length > 0) {
-                        // Structure type "compétences" (ancien format)
-                        renderCourse(courseData.competences[0]);
-                        console.log('✅ Cours rendu avec succès (format compétences)');
+                    console.log('📊 Structure des données reçues:', Object.keys(courseData));
+                    
+                    // Vérification du format "compétences" (ancien format)
+                    if (courseData.competences && Array.isArray(courseData.competences)) {
+                        if (courseData.competences.length > 0) {
+                            // Format compétences avec contenu
+                            renderCourse(courseData.competences[0]);
+                            console.log('✅ Cours rendu avec succès (format compétences)');
+                        } else {
+                            // Format compétences mais vide - créer une structure basique
+                            console.log('⚠️ Format compétences détecté mais vide, création d\'une structure basique');
+                            renderEmptyCourse(courseData);
+                        }
                     } else if (courseData.phase1 && courseData.phase2 && courseData.phase3 && courseData.phase4) {
                         // Structure type "phases" (nouveau format)
                         renderPhaseBasedCourse(courseData);
                         console.log('✅ Cours rendu avec succès (format phases)');
                     } else {
-                        throw new Error('Structure de données non reconnue - ni compétences ni phases');
+                        // Fallback pour structure non reconnue
+                        console.log('⚠️ Structure non reconnue, tentative de rendu basique');
+                        renderEmptyCourse(courseData);
                     }
                 } else {
                     throw new Error('Données de cours null ou undefined');
@@ -1303,13 +1314,70 @@
                     return mathsIndex.default[topic];
                 }
                 
-                console.log(`⚠️ Topic '${topic}' non trouvé. Topics disponibles:`, Object.keys(mathsIndex.default || {}));
-                return null;
+                console.log(`⚠️ Topic '${topic}' non trouvé dans l'index. Tentative de chargement direct...`);
+                
+                // Fallback: tentative de chargement direct du fichier
+                return await loadTopicDirectly(topic);
                 
             } catch (error) {
                 console.error(`❌ Erreur lors du chargement de l'index maths 6ème:`, error);
+                console.log(`🔄 Tentative de chargement direct pour '${topic}'...`);
+                
+                // Fallback en cas d'erreur d'index
+                return await loadTopicDirectly(topic);
+            }
+        }
+
+        // Fonction de fallback pour charger directement un topic
+        async function loadTopicDirectly(topic) {
+            console.log(`📁 Chargement direct du topic: ${topic}`);
+            
+            try {
+                // Convertir le nom en format de fichier
+                const fileName = topic.replace(/\s+/g, '-').toLowerCase();
+                const filePath = `../data/mathematiques/6ieme/${fileName}.js`;
+                
+                console.log(`📄 Tentative de chargement: ${filePath}`);
+                
+                const module = await import(filePath);
+                
+                // Essayer différentes conventions de nommage
+                const possibleNames = [
+                    `${toCamelCase(topic)}6eme`,
+                    `${toCamelCase(fileName)}6eme`,
+                    `${fileName.replace(/-/g, '')}6eme`,
+                    topic + '6eme'
+                ];
+                
+                console.log(`🔍 Recherche d'exports avec les noms:`, possibleNames);
+                
+                for (const name of possibleNames) {
+                    if (module[name]) {
+                        console.log(`✅ Export trouvé: ${name}`);
+                        return module[name];
+                    }
+                }
+                
+                // Fallback vers l'export par défaut
+                if (module.default) {
+                    console.log(`✅ Utilisation de l'export par défaut`);
+                    return module.default;
+                }
+                
+                console.warn(`⚠️ Aucun export trouvé pour ${topic}. Exports disponibles:`, Object.keys(module));
+                return null;
+                
+            } catch (error) {
+                console.error(`❌ Échec du chargement direct pour '${topic}':`, error);
                 return null;
             }
+        }
+
+        // Fonction utilitaire pour convertir en camelCase
+        function toCamelCase(str) {
+            return str.replace(/-([a-z])/g, (match, letter) => letter.toUpperCase())
+                      .replace(/\s+([a-z])/g, (match, letter) => letter.toUpperCase())
+                      .replace(/[^a-zA-Z0-9]/g, '');
         }
 
         // Fonction pour afficher une erreur
@@ -1440,6 +1508,75 @@
             }
 
             console.log('✅ Rendu temporaire des phases terminé');
+        }
+
+        // Fonction pour gérer les cours vides ou mal formatés
+        function renderEmptyCourse(data) {
+            console.log('🚧 Rendu d\'un cours en construction:', data);
+            
+            // Titre et informations générales
+            const titre = data.titre || data.chapitre || 'Cours en construction';
+            const niveau = data.niveau || '6ème';
+            
+            document.getElementById('pageTitle').textContent = `${titre} - ${niveau}`;
+            document.getElementById('mainTitle').textContent = `📚 ${titre}`;
+            
+            // Afficher les informations générales
+            document.getElementById('objectifText').textContent = 'Ce cours est en cours de développement.';
+            document.getElementById('utiliteText').textContent = 'Le contenu sera bientôt disponible.';
+            document.getElementById('funFactText').innerHTML = 'Patience ! Notre équipe travaille sur ce contenu 🚧✨';
+
+            // Afficher la section d'informations
+            const infoSection = document.getElementById('infoSection');
+            if (infoSection) {
+                infoSection.style.display = 'block';
+            }
+
+            // Masquer les autres sections
+            const sections = ['coursSection', 'exercicesSection', 'evaluationSection', 'metacognitionSection'];
+            sections.forEach(sectionId => {
+                const section = document.getElementById(sectionId);
+                if (section) section.style.display = 'none';
+            });
+
+            // Afficher un message d'information
+            const infoDiv = document.getElementById('infoSection');
+            if (infoDiv) {
+                infoDiv.innerHTML = `
+                    <div class="section">
+                        <h2>🚧 Cours en développement</h2>
+                        <p><strong>Sujet:</strong> ${titre}</p>
+                        <p><strong>Niveau:</strong> ${niveau}</p>
+                        <p><strong>Chapitre:</strong> ${data.chapitre || 'Non défini'}</p>
+                        <div class="development-info" style="
+                            background: linear-gradient(135deg, #fef5e7 0%, #fed7aa 100%);
+                            border: 2px solid #f59e0b;
+                            border-radius: 12px;
+                            padding: 1.5rem;
+                            margin: 1rem 0;
+                            text-align: center;
+                        ">
+                            <h3>📋 État du développement</h3>
+                            <p>Ce cours est actuellement en cours de création. Les contenus pédagogiques seront bientôt disponibles !</p>
+                            <p><em>Merci de votre patience 🙏</em></p>
+                        </div>
+                        <button onclick="window.history.back()" style="
+                            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                            color: white;
+                            border: none;
+                            padding: 0.75rem 1.5rem;
+                            border-radius: 8px;
+                            font-weight: 600;
+                            cursor: pointer;
+                            margin: 1rem 0;
+                        ">
+                            ← Retour à la liste des cours
+                        </button>
+                    </div>
+                `;
+            }
+
+            console.log('✅ Rendu du cours vide terminé');
         }
 
         // Fonction principale pour générer le HTML à partir des données
@@ -2123,7 +2260,18 @@
             }
 
             renderMiniQuiz() {
+                if (!this.competence.miniQuiz || !this.competence.miniQuiz[0]) {
+                    console.warn('⚠️ Mini quiz non défini ou vide');
+                    return '<p class="quiz-error">Mini quiz non disponible</p>';
+                }
+                
                 const quiz = this.competence.miniQuiz[0];
+                
+                if (!quiz.question || !quiz.choix) {
+                    console.warn('⚠️ Structure du quiz invalide:', quiz);
+                    return '<p class="quiz-error">Structure du quiz invalide</p>';
+                }
+                
                 return `
                     <div class="quiz-card">
                         <p class="quiz-question">${quiz.question}</p>
@@ -2161,6 +2309,17 @@
                                 <input type="number" id="input_${index}" placeholder="Votre réponse" class="exercise-input">
                                 <div class="calcul-hint">
                                     <small>💡 Méthode suggérée : ${exercice.methode}</small>
+                                </div>
+                            </div>
+                        `;
+                    case 'Exercices d\'entraînement':
+                    case 'exercices':
+                    case 'entrainement':
+                        return `
+                            <div class="exercise-interactive training-exercise">
+                                <div class="exercise-content">
+                                    <p class="exercise-description">${exercice.description || exercice.enonce || 'Exercice d\'entraînement'}</p>
+                                    <input type="text" id="input_${index}" placeholder="Votre réponse" class="exercise-input">
                                 </div>
                             </div>
                         `;
@@ -2423,6 +2582,17 @@
                                 'Excellent placement de 3/4 sur la droite !' :
                                 'Pas tout à fait. 3/4 se trouve aux 3/4 de la droite entre 0 et 1';
                         }
+                        break;
+                        
+                    case 'Exercices d\'entraînement':
+                    case 'exercices':
+                    case 'entrainement':
+                        const inputTraining = this.container.querySelector(`#input_${index}`);
+                        const userAnswerTraining = inputTraining ? inputTraining.value.trim() : '';
+                        isCorrect = userAnswerTraining.length > 0; // Accepter toute réponse non vide
+                        message = isCorrect ? 
+                            'Bien joué ! Exercice d\'entraînement complété !' :
+                            'N\'oublie pas de donner une réponse';
                         break;
                         
                     default:
@@ -3658,6 +3828,17 @@
                             <input type="number" id="calc-input" placeholder="Ta réponse" style="padding: 8px; margin: 8px; border: 2px solid #e2e8f0; border-radius: 8px;">
                             <button onclick="checkCalculation()" class="check-btn">Vérifier</button>
                             <div id="calc-feedback" class="exercise-feedback"></div>
+                        </div>
+                    `;
+                
+                case 'Exercices d\'entraînement':
+                case 'exercices':
+                case 'entrainement':
+                    return `
+                        <div class="exercice-interactif">
+                            <input type="text" id="training-input" placeholder="Ta réponse" style="padding: 8px; margin: 8px; border: 2px solid #e2e8f0; border-radius: 8px; width: 200px;">
+                            <button onclick="checkTraining()" class="check-btn">Vérifier</button>
+                            <div id="training-feedback" class="exercise-feedback"></div>
                         </div>
                     `;
                 

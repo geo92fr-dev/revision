@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Production - Diagnostic</title>
+</head>
+<body>
+    <h1>Diagnostic de Production</h1>
+    <div id="results"></div>
+
+    <script type="module">
+        const results = document.getElementById('results');
+        
+        function log(message) {
+            console.log(message);
+            results.innerHTML += `<p>${message}</p>`;
+        }
+        
+        log('🔍 Test de chargement des modules en production...');
+        
+        // Test 1: Chargement direct du fichier moyenne.js
+        try {
+            const response = await fetch('./moyenne.js');
+            const content = await response.text();
+            log(`✅ moyenne.js chargé, taille: ${content.length} caractères`);
+            
+            if (content.includes('moyennes6eme')) {
+                log('✅ moyennes6eme trouvé dans le contenu');
+            } else {
+                log('❌ moyennes6eme NOT trouvé dans le contenu');
+                log('Contenu début:');
+                log(content.substring(0, 500));
+            }
+        } catch (error) {
+            log(`❌ Erreur chargement moyenne.js: ${error.message}`);
+        }
+        
+        // Test 2: Import dynamique
+        try {
+            const module = await import('./moyenne.js');
+            log(`✅ Import réussi, exports disponibles: ${Object.keys(module).join(', ')}`);
+            
+            if (module.moyennes6eme) {
+                log('✅ moyennes6eme accessible via import');
+            } else {
+                log('❌ moyennes6eme NOT accessible via import');
+            }
+        } catch (error) {
+            log(`❌ Erreur import moyenne.js: ${error.message}`);
+        }
+        
+        // Test 3: Horodatage du fichier
+        try {
+            const response = await fetch('./moyenne.js');
+            const lastModified = response.headers.get('last-modified');
+            log(`📅 Dernière modification: ${lastModified}`);
+        } catch (error) {
+            log(`❌ Erreur récupération headers: ${error.message}`);
+        }
+    </script>
+</body>
+</html>

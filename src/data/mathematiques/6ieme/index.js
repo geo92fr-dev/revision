@@ -18,7 +18,7 @@ import { durees6eme } from './durees.js';
 import { lectureTableaux6eme } from './lecture-tableaux.js';
 import { graphiques6eme } from './graphiques.js';
 import { algebre6eme } from './algebre.js';
-import { moyenne6eme } from './moyenne.js';
+import { moyennes6eme } from './moyenne.js';
 
 // Export par défaut regroupant tout le niveau 6ème
 export default {
@@ -41,7 +41,7 @@ export default {
   'lecture-tableaux': lectureTableaux6eme,
   graphiques: graphiques6eme,
   algebre: algebre6eme,
-  moyenne: moyenne6eme
+  moyenne: moyennes6eme
 };
 
 // Exports nommés pour compatibilité
@@ -65,5 +65,5 @@ export {
   lectureTableaux6eme,
   graphiques6eme,
   algebre6eme,
-  moyenne6eme
+  moyennes6eme
 };
