@@ -1240,26 +1240,20 @@
             console.log(`🔧 Chargement de: ${subject}/${level}/${topic}`);
             
             try {
-                // Charger depuis l'index centralisé
-                const indexPath = `../data/${subject}/${level}/index.js`;
-                console.log(`📂 Tentative de chargement depuis l'index: ${indexPath}`);
-                
-                const indexModule = await import(indexPath);
-                
-                // Utiliser l'export par défaut qui contient toutes les données du niveau
-                if (indexModule.default && indexModule.default[topic]) {
-                    courseData = indexModule.default[topic];
-                    console.log(`✅ Données ${topic} chargées depuis l'index`, courseData);
-                    return;
+                // Pour mathématiques 6ème, utiliser le chargement spécialisé
+                if (subject === 'mathematiques' && level === '6ieme') {
+                    courseData = await loadMaths6eme(topic);
+                    if (courseData) {
+                        console.log(`✅ Données ${topic} chargées pour maths 6ème`, courseData);
+                        return;
+                    }
                 }
                 
-                // Si pas trouvé dans l'index, essayer l'ancienne méthode de chargement direct
-                console.log(`⚠️ Topic ${topic} non trouvé dans l'index, tentative de chargement direct...`);
-                
+                // Fallback vers l'ancienne méthode pour les autres sujets
                 const dataPath = `../data/${subject}/${level}/${topic}.js`;
                 console.log(`📂 Tentative de chargement direct depuis: ${dataPath}`);
                 
-                const module = await import(dataPath);
+                const module = await import(/* @vite-ignore */ dataPath);
                 
                 // Convertir le topic en camelCase pour correspondre aux exports
                 const topicCamelCase = topic.replace(/-([a-z])/g, (match, letter) => letter.toUpperCase());
@@ -1278,13 +1272,34 @@
                     return;
                 }
                 
-                // Lister les topics disponibles dans l'index pour le debug
-                const availableTopics = indexModule.default ? Object.keys(indexModule.default) : [];
-                throw new Error(`Topic "${topic}" non trouvé. Topics disponibles dans l'index: ${availableTopics.join(', ')}`);
+                throw new Error(`Structure de données non trouvée: ${dataKey}. Clés disponibles: ${Object.keys(module).join(', ')}`);
                 
             } catch (importError) {
                 console.error(`❌ Erreur d'import: ${importError.message}`);
                 throw new Error(`Impossible de charger les données pour ${subject}/${level}/${topic}. ${importError.message}`);
+            }
+        }
+
+        // Fonction spécialisée pour charger les données de mathématiques 6ème
+        async function loadMaths6eme(topic) {
+            console.log(`🔢 Chargement spécialisé maths 6ème pour: ${topic}`);
+            
+            try {
+                // Import statique de l'index pour mathématiques 6ème
+                const mathsIndex = await import('../data/mathematiques/6ieme/index.js');
+                console.log(`📦 Index maths 6ème chargé`, mathsIndex.default);
+                
+                if (mathsIndex.default && mathsIndex.default[topic]) {
+                    console.log(`✅ Topic '${topic}' trouvé dans l'index maths 6ème`);
+                    return mathsIndex.default[topic];
+                }
+                
+                console.log(`⚠️ Topic '${topic}' non trouvé. Topics disponibles:`, Object.keys(mathsIndex.default || {}));
+                return null;
+                
+            } catch (error) {
+                console.error(`❌ Erreur lors du chargement de l'index maths 6ème:`, error);
+                return null;
             }
         }
 
