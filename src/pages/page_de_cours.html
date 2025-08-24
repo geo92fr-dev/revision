@@ -968,7 +968,10 @@
                 console.log(`📂 Tentative de chargement depuis: ${dataPath}`);
                 
                 const module = await import(dataPath);
-                const dataKey = `${topic}${level.replace('ieme', '')}eme`;
+                
+                // Convertir le topic en camelCase pour correspondre aux exports
+                const topicCamelCase = topic.replace(/-([a-z])/g, (match, letter) => letter.toUpperCase());
+                const dataKey = `${topicCamelCase}${level.replace('ieme', '')}eme`;
                 
                 if (module[dataKey]) {
                     courseData = module[dataKey];
@@ -976,7 +979,14 @@
                     return;
                 }
                 
-                throw new Error(`Structure de données non trouvée: ${dataKey}`);
+                // Essayer aussi l'export par défaut
+                if (module.default) {
+                    courseData = module.default;
+                    console.log(`✅ Données ${topic} chargées depuis l'export par défaut`, courseData);
+                    return;
+                }
+                
+                throw new Error(`Structure de données non trouvée: ${dataKey}. Clés disponibles: ${Object.keys(module).join(', ')}`);
                 
             } catch (importError) {
                 console.error(`❌ Erreur d'import: ${importError.message}`);
