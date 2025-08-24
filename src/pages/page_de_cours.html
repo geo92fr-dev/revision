@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title id="pageTitle">Page de cours - FunRevis</title>
     <link rel="stylesheet" href="../styles/index.css">
+    <link rel="stylesheet" href="../styles/modern.css">
+    <link rel="stylesheet" href="../styles/educational.css">
     <style>
         /* Styles pour le composant ModuleLecon */
         .module-lesson {
@@ -790,8 +792,10 @@
     </style>
 </head>
 <body>
+    <!-- Skip link moderne pour l'accessibilité -->
+    <a href="#main-content" class="skip-link">Aller au contenu principal</a>
     
-    <div class="main-container">
+    <main id="main-content" class="course-container">
         <h1 id="mainTitle">📚 Chargement du cours...</h1>
         
         <!-- Section d'informations générales -->
@@ -815,17 +819,17 @@
         </div>
 
         <!-- Phase 1: Test de Pré-évaluation -->
-        <div class="collapsible-section">
-            <div class="collapsible-header" id="preEvalHeader" onclick="toggleSection('preEval')">
+        <section class="phase-section">
+            <button class="phase-header" id="preEvalHeader" onclick="toggleSection('preEval')" aria-expanded="true" aria-controls="preEvalContent">
                 <span>🔍 Phase 1: Test de Pré-évaluation</span>
-                <span class="collapsible-icon">🔽</span>
-            </div>
-            <div class="collapsible-content expanded" id="preEvalContent">
-                <div class="collapsible-inner">
+                <span class="phase-icon">🔽</span>
+            </button>
+            <div class="phase-content expanded" id="preEvalContent">
+                <div class="space-y-md">
                     <div class="section pre-evaluation" id="preEvaluation">
                         <p>Ce test permet de voir si tu es déjà à l'aise avec ce sujet.</p>
                         
-                        <div class="mini-test">
+                        <div class="lesson-card">
                             <h4>📋 Mini-test rapide</h4>
                             <div id="preTestQuestions">
                                 <!-- Questions générées dynamiquement par QuizPreEvaluation -->
@@ -834,29 +838,29 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
 
         <!-- Phase 2: Cours -->
-        <div class="collapsible-section">
-            <div class="collapsible-header" id="coursHeader" onclick="toggleSection('cours')">
+        <section class="phase-section">
+            <button class="phase-header" id="coursHeader" onclick="toggleSection('cours')" aria-expanded="false" aria-controls="coursContent">
                 <span>📖 Phase 2: Cours</span>
-                <span class="collapsible-icon">▶️</span>
-            </div>
-            <div class="collapsible-content" id="coursContent">
+                <span class="phase-icon">▶️</span>
+            </button>
+            <div class="phase-content" id="coursContent">
                 <!-- Le contenu sera généré par ModuleLecon -->
             </div>
-        </div>
+        </section>
 
         <!-- Phase 3: Exercices -->
-        <div class="collapsible-section">
-            <div class="collapsible-header" id="exercicesHeader" onclick="toggleSection('exercices')">
+        <section class="phase-section">
+            <button class="phase-header" id="exercicesHeader" onclick="toggleSection('exercices')" aria-expanded="false" aria-controls="exercicesContent">
                 <span>💪 Phase 3: Exercices</span>
-                <span class="collapsible-icon">▶️</span>
-            </div>
-            <div class="collapsible-content" id="exercicesContent">
-                <div class="collapsible-inner">
+                <span class="phase-icon">▶️</span>
+            </button>
+            <div class="phase-content" id="exercicesContent">
+                <div class="space-y-md">
                     <div class="section">
-                        <div id="astuceSection" class="astuce">
+                        <div id="astuceSection" class="alert alert-success">
                             <!-- Astuces générées dynamiquement -->
                         </div>
                         
@@ -865,12 +869,12 @@
                         </div>
                         
                         <h3>💪 Exercices d'entraînement</h3>
-                        <div id="exercicesContainer">
+                        <div id="exercicesContainer" class="space-y-md">
                             <!-- Exercices générés dynamiquement -->
                         </div>
                         
                         <h3>⚡ Mini Quiz</h3>
-                        <div id="miniQuizContainer">
+                        <div id="miniQuizContainer" class="space-y-md">
                             <!-- Quiz généré dynamiquement -->
                         </div>
                         
@@ -879,26 +883,26 @@
                             <!-- Défi généré dynamiquement -->
                         </div>
                         
-                        <button onclick="markSectionCompleted('exercices')" class="btn-primary">J'ai terminé les exercices !</button>
+                        <button onclick="markSectionCompleted('exercices')" class="btn btn-success">J'ai terminé les exercices !</button>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
 
         <!-- Phase 4: Métacognition -->
-        <div class="collapsible-section">
-            <div class="collapsible-header" id="metacognitionHeader" onclick="toggleSection('metacognition')">
+        <section class="phase-section">
+            <button class="phase-header" id="metacognitionHeader" onclick="toggleSection('metacognition')" aria-expanded="false" aria-controls="metacognitionContent">
                 <span>🤔 Phase 4: Réflexion sur mes apprentissages</span>
-                <span class="collapsible-icon">▶️</span>
-            </div>
-            <div class="collapsible-content" id="metacognitionContent">
-                <div class="collapsible-inner">
+                <span class="phase-icon">▶️</span>
+            </button>
+            <div class="phase-content" id="metacognitionContent">
+                <div class="space-y-md">
                     <div id="metacognitionContainer">
                         <!-- Contenu généré dynamiquement -->
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
     </div>
 
     <script type="module">
@@ -3021,20 +3025,26 @@
             }
         }
 
-        // Fonctions pour gérer les sections collapsibles
+        // Fonctions pour gérer les sections collapsibles avec accessibilité moderne
         window.toggleSection = function(sectionName) {
             const content = document.getElementById(sectionName + 'Content');
             const header = document.getElementById(sectionName + 'Header');
-            const icon = header.querySelector('.collapsible-icon');
+            const icon = header.querySelector('.phase-icon');
             
             if (content.classList.contains('expanded')) {
                 content.classList.remove('expanded');
                 header.classList.remove('expanded');
+                header.setAttribute('aria-expanded', 'false');
                 icon.textContent = '▶️';
+                content.style.display = 'none';
             } else {
                 content.classList.add('expanded');
                 header.classList.add('expanded');
+                header.setAttribute('aria-expanded', 'true');
                 icon.textContent = '🔽';
+                content.style.display = 'block';
+                // Animation d'entrée moderne
+                content.style.animation = 'fade-in 0.3s ease-out';
             }
         };
 
@@ -3234,5 +3244,6 @@
             });
         });
     </script>
+</main>
 </body>
 </html>
