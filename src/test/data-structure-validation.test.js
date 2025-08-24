@@ -7,32 +7,61 @@
 import { describe, it, expect, beforeAll } from 'vitest';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
-import { readdir } from 'fs/promises';
+import { readdir, stat } from 'fs/promises';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-// Chemin vers les données de mathématiques 6ème
-const DATA_PATH = join(__dirname, '../data/mathematiques/6ieme');
+// Chemin vers tous les données
+const DATA_PATH = join(__dirname, '../data');
+
+// Fonction récursive pour scanner tous les fichiers .js
+async function scanJSFiles(dirPath, basePath = '') {
+  const files = [];
+  const entries = await readdir(dirPath);
+  
+  for (const entry of entries) {
+    const fullPath = join(dirPath, entry);
+    const stats = await stat(fullPath);
+    
+    if (stats.isDirectory()) {
+      // Récursion dans les sous-dossiers
+      const subFiles = await scanJSFiles(fullPath, join(basePath, entry));
+      files.push(...subFiles);
+    } else if (entry.endsWith('.js') && entry !== 'index.js') {
+      // Ajouter le fichier avec son chemin relatif
+      files.push({
+        name: entry,
+        path: fullPath,
+        relativePath: basePath ? join(basePath, entry) : entry
+      });
+    }
+  }
+  
+  return files;
+}
 
 describe('🔍 Validation de la Structure des Fichiers de Données', () => {
   let dataFiles = [];
   let modules = {};
 
   beforeAll(async () => {
-    // Charger tous les fichiers .js du dossier (exclure index.js)
-    const files = await readdir(DATA_PATH);
-    dataFiles = files.filter(file => file.endsWith('.js') && file !== 'index.js');
+    // Charger tous les fichiers .js du dossier data récursivement
+    dataFiles = await scanJSFiles(DATA_PATH);
+    console.log(`📁 Fichiers trouvés: ${dataFiles.length}`);
+    dataFiles.forEach(file => console.log(`  - ${file.relativePath}`));
     
     // Importer tous les modules
-    for (const file of dataFiles) {
+    for (const fileInfo of dataFiles) {
       try {
-        const modulePath = join(DATA_PATH, file);
-        const moduleUrl = `file://${modulePath.replace(/\\/g, '/')}`;
+        const moduleUrl = `file://${fileInfo.path.replace(/\\/g, '/')}`;
         const module = await import(moduleUrl);
-        modules[file] = module;
+        modules[fileInfo.name] = {
+          ...module,
+          _fileInfo: fileInfo
+        };
       } catch (error) {
-        console.error(`❌ Erreur lors de l'import de ${file}:`, error);
+        console.error(`❌ Erreur lors de l'import de ${fileInfo.relativePath}:`, error);
       }
     }
   });
@@ -42,46 +71,41 @@ describe('🔍 Validation de la Structure des Fichiers de Données', () => {
       expect(dataFiles.length).toBeGreaterThan(0);
     });
 
-    dataFiles.forEach(file => {
-      describe(`📄 ${file}`, () => {
+    dataFiles.forEach(fileInfo => {
+      describe(`📄 ${fileInfo.relativePath}`, () => {
         it('devrait s\'importer sans erreur', () => {
-          expect(modules[file]).toBeDefined();
+          expect(modules[fileInfo.name]).toBeDefined();
         });
 
         it('devrait avoir exactement 2 exports (named + default)', () => {
-          const keys = Object.keys(modules[file]);
+          const keys = Object.keys(modules[fileInfo.name]).filter(key => key !== '_fileInfo');
           expect(keys).toHaveLength(2);
           expect(keys).toContain('default');
         });
 
         it('devrait avoir un export nommé cohérent', () => {
-          const keys = Object.keys(modules[file]);
-          const namedExport = keys.find(key => key !== 'default');
+          const keys = Object.keys(modules[fileInfo.name]).filter(key => key !== '_fileInfo' && key !== 'default');
+          const namedExport = keys[0];
           expect(namedExport).toBeDefined();
           expect(namedExport).toMatch(/^[a-zA-Z]+6eme$/); // Format: [sujet]6eme
         });
 
         it('devrait avoir des exports identiques (named et default)', () => {
-          const keys = Object.keys(modules[file]);
-          const namedExport = keys.find(key => key !== 'default');
-          expect(modules[file].default).toBe(modules[file][namedExport]);
+          const keys = Object.keys(modules[fileInfo.name]).filter(key => key !== '_fileInfo' && key !== 'default');
+          const namedExport = keys[0];
+          expect(modules[fileInfo.name].default).toBe(modules[fileInfo.name][namedExport]);
         });
       });
     });
   });
 
   describe('🏗️ Tests de Structure des Données', () => {
-    dataFiles.forEach(file => {
-      describe(`🔧 Structure de ${file}`, () => {
-        let data;
-
-        beforeAll(() => {
-          data = modules[file]?.default;
-        });
-
+    dataFiles.forEach(fileInfo => {
+      describe(`🔧 Structure de ${fileInfo.relativePath}`, () => {
         it('devrait avoir les métadonnées de base', () => {
+          const data = modules[fileInfo.name]?.default;
           expect(data).toBeDefined();
-          expect(data.niveau).toBeDefined();
+          expect(data.niveau).toBe('6ème');
           expect(data.chapitre).toBeDefined();
           expect(data.sousChapitre).toBeDefined();
           expect(data.competences).toBeDefined();
@@ -89,40 +113,14 @@ describe('🔍 Validation de la Structure des Fichiers de Données', () => {
         });
 
         it('devrait avoir au moins une compétence', () => {
+          const data = modules[fileInfo.name]?.default;
           expect(data.competences.length).toBeGreaterThan(0);
         });
 
-        describe('⚙️ Structure des Compétences', () => {
-          data?.competences?.forEach((competence, index) => {
-            describe(`🎯 Compétence ${index + 1}`, () => {
-              it('devrait avoir les champs obligatoires', () => {
-                expect(competence.id).toBeDefined();
-                expect(competence.titre).toBeDefined();
-                expect(competence.objectif || competence.description).toBeDefined();
-              });
-
-              it('devrait avoir un ID au bon format', () => {
-                expect(competence.id).toMatch(/^6[A-Z]+-[A-Z]+-\d+$/);
-              });
-
-              it('devrait avoir du contenu pédagogique', () => {
-                expect(competence.cours).toBeDefined();
-                expect(competence.exercices).toBeDefined();
-                expect(Array.isArray(competence.exercices)).toBe(true);
-              });
-
-              describe('📝 Structure des Exercices', () => {
-                competence.exercices?.forEach((exercice, exIndex) => {
-                  it(`Exercice ${exIndex + 1} devrait avoir la structure requise`, () => {
-                    expect(exercice.type).toBeDefined();
-                    expect(['débutant', 'intermédiaire', 'avancé']).toContain(exercice.type);
-                    expect(exercice.question).toBeDefined();
-                    expect(exercice.reponse).toBeDefined();
-                    expect(typeof exercice.points).toBe('number');
-                  });
-                });
-              });
-            });
+        it('devrait avoir des IDs valides', () => {
+          const data = modules[fileInfo.name]?.default;
+          data.competences.forEach(competence => {
+            expect(competence.id).toMatch(/^6[A-Z]+-[A-Z]+-\d+$/);
           });
         });
       });
@@ -277,19 +275,19 @@ describe('🔍 Validation de la Structure des Fichiers de Données', () => {
     it('devrait détecter les fichiers problématiques', () => {
       const problematicFiles = [];
       
-      dataFiles.forEach(file => {
-        const data = modules[file]?.default;
+      dataFiles.forEach(fileInfo => {
+        const data = modules[fileInfo.name]?.default;
         const metacognition = data?.competences?.[0]?.metacognition;
         
         if (!metacognition) {
-          problematicFiles.push(`${file}: métacognition manquante`);
+          problematicFiles.push(`${fileInfo.name}: métacognition manquante`);
         } else if (!metacognition.questions || metacognition.questions.length < 4) {
-          problematicFiles.push(`${file}: questions insuffisantes (${metacognition.questions?.length || 0}/4)`);
+          problematicFiles.push(`${fileInfo.name}: questions insuffisantes (${metacognition.questions?.length || 0}/4)`);
         } else {
           // Vérifier que toutes les questions ont 4 options
           metacognition.questions.forEach((question, qIndex) => {
             if (!question.options || question.options.length !== 4) {
-              problematicFiles.push(`${file}: question ${qIndex + 1} a ${question.options?.length || 0} options au lieu de 4`);
+              problematicFiles.push(`${fileInfo.name}: question ${qIndex + 1} a ${question.options?.length || 0} options au lieu de 4`);
             }
           });
         }

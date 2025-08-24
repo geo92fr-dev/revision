@@ -62,6 +62,52 @@ export const perimetre6eme = {
       
       utilite: "Calculer un périmètre sert à connaître la longueur de clôture nécessaire, de cadre pour un tableau, etc.",
 
+      // Phase 4 : Métacognition - Réflexion sur l'apprentissage
+      metacognition: {
+        questions: [
+          {
+            type: "compréhension",
+            question: "Qu'est-ce que le périmètre d'une figure ?",
+            options: [
+              "La somme de tous les côtés de la figure",
+              "L'aire de la figure",
+              "Le nombre de côtés de la figure",
+              "La hauteur de la figure"
+            ]
+          },
+          {
+            type: "application",
+            question: "Dans quelle situation réelle calculez-vous un périmètre ?",
+            options: [
+              "Pour acheter une clôture pour son jardin",
+              "Pour encadrer un tableau",
+              "Pour faire le tour d'un terrain de sport",
+              "Toutes ces réponses"
+            ]
+          },
+          {
+            type: "analyse",
+            question: "Quelle est la différence principale entre calculer le périmètre d'un carré et d'un rectangle ?",
+            options: [
+              "Pour le carré, on multiplie un côté par 4, pour le rectangle on utilise longueur et largeur",
+              "Il n'y a pas de différence",
+              "Le rectangle est plus compliqué à mesurer",
+              "Le carré n'a pas de périmètre"
+            ]
+          },
+          {
+            type: "synthèse",
+            question: "Comment vérifieriez-vous que votre calcul de périmètre est correct ?",
+            options: [
+              "En vérifiant que j'ai bien additionné tous les côtés",
+              "En refaisant le calcul une seconde fois",
+              "En vérifiant que l'unité est cohérente (cm, m, etc.)",
+              "Toutes ces méthodes"
+            ]
+          }
+        ]
+      },
+
       // Maintien de la compatibilité avec l'ancien format
       description: "Calculer le périmètre de polygones en additionnant les longueurs de tous les côtés.",
       ressources: [

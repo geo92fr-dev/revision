@@ -1,24 +1,7 @@
 import { describe, it, expect } from 'vitest'
 import { additionSoustraction6eme } from '../data/mathematiques/6ieme/addition-soustraction.js'
-import { multiplication6eme } from '../data/mathematiques/6ieme/mul        it('should have progressive difficulty in exercises', () => {
-          // Ne tester que la première compétence (détaillée) qui a des exercices
-          const competence = data.competences[0]
-          if (competence.exercices && competence.exercices.length > 0) {
-            const types = competence.exercices.map(ex => ex.type)
-            const typeOrder = ['débutant', 'intermédiaire', 'avancé']
-            
-            // Vérifier qu'on a au moins débutant
-            expect(types).toContain('débutant')
-            
-            // Si on a plusieurs niveaux, vérifier l'ordre des points
-            if (competence.exercices.length > 1) {
-              const points = competence.exercices.map(ex => ex.points)
-              for (let i = 1; i < points.length; i++) {
-                expect(points[i]).toBeGreaterThanOrEqual(points[i-1],
-                  'Exercise points should increase with difficulty')
-              }
-            }
-          }import { division6eme } from '../data/mathematiques/6ieme/division.js'
+import { multiplication6eme } from '../data/mathematiques/6ieme/multiplication.js'
+import { division6eme } from '../data/mathematiques/6ieme/division.js'
 import { figuresPlanes6eme } from '../data/mathematiques/6ieme/figures-planes.js'
 import { perimetre6eme } from '../data/mathematiques/6ieme/perimetre.js'
 import { fractions6eme } from '../data/mathematiques/6ieme/fractions.js'

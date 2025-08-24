@@ -62,6 +62,52 @@ export const figuresPlanes6eme = {
       
       utilite: "Les triangles sont partout : architecture, art, panneaux de signalisation, structures...",
 
+      // Phase 4 : Métacognition - Réflexion sur l'apprentissage
+      metacognition: {
+        questions: [
+          {
+            type: "compréhension",
+            question: "Quelles sont les différences principales entre un triangle isocèle et un triangle équilatéral ?",
+            options: [
+              "L'isocèle a 2 côtés égaux, l'équilatéral en a 3",
+              "L'isocèle a 3 angles égaux, l'équilatéral en a 2", 
+              "Il n'y a pas de différence",
+              "L'isocèle est plus grand que l'équilatéral"
+            ]
+          },
+          {
+            type: "application",
+            question: "Dans quelle situation réelle pourriez-vous utiliser vos connaissances sur les triangles ?",
+            options: [
+              "Pour construire une étagère triangulaire",
+              "Pour comprendre les panneaux de signalisation",
+              "Pour analyser l'architecture d'un bâtiment",
+              "Toutes ces réponses"
+            ]
+          },
+          {
+            type: "analyse",
+            question: "Quelle était la partie la plus difficile à comprendre dans cette leçon ?",
+            options: [
+              "La différence entre les types de triangles",
+              "La construction des triangles",
+              "Le vocabulaire spécialisé",
+              "Rien n'était difficile"
+            ]
+          },
+          {
+            type: "synthèse",
+            question: "Comment pourriez-vous expliquer ce qu'est un triangle rectangle à un ami ?",
+            options: [
+              "C'est un triangle avec un angle droit de 90°",
+              "C'est un triangle qui a la forme d'un carré",
+              "C'est un triangle avec 3 angles droits",
+              "C'est un triangle très grand"
+            ]
+          }
+        ]
+      },
+
       // Maintien de la compatibilité avec l'ancien format
       description: "Identifier et classer les triangles selon leurs propriétés (côtés et angles).",
       ressources: [

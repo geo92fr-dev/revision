@@ -142,7 +142,8 @@ export const division6eme = {
             options: [
               "💰 Pour partager l'argent de poche",
               "🔢 Pour calculer combien de bonbons chacun aura",
-              "⚽ Pour savoir combien d'équipes on peut former"
+              "⚽ Pour savoir combien d'équipes on peut former",
+              "🍰 Pour découper un gâteau en parts égales"
             ]
           }
         ]
