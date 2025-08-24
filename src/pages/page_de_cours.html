@@ -979,307 +979,87 @@
                 throw new Error(`Structure de données non trouvée: ${dataKey}`);
                 
             } catch (importError) {
-                console.warn(`⚠️ Erreur d'import: ${importError.message}`);
-                console.log(`🔄 Tentative de fallback vers les données intégrées...`);
-                
-                // Fallback vers les données intégrées pour fractions et algèbre
-                if (subject === 'mathematiques' && level === '6ieme' && topic === 'fractions') {
-                    courseData = {
-                        niveau: "6ème",
-                        chapitre: "Nombres & Calculs",
-                        sousChapitre: "Fractions (bases)",
-                        competences: [{
-                            id: "6NC-FR-1",
-                            titre: "Comprendre les fractions",
-                            objectif: "Savoir lire, écrire et représenter une fraction.",
-                            cours: "Une fraction représente une partie d'un tout. Exemple : 3/4 signifie 3 parts sur 4 au total.",
-                            etapes: [
-                                {
-                                    titre: "Identifier le numérateur et le dénominateur",
-                                    comment: "Dans une fraction a/b, le nombre du haut (a) est le numérateur (parts prises), le nombre du bas (b) est le dénominateur (total de parts).",
-                                    exemple: "dans 3/5, le numérateur est 3 et le dénominateur est 5."
-                                },
-                                {
-                                    titre: "Représenter une fraction sur un schéma", 
-                                    comment: "Dessine une figure (cercle, rectangle, barre) et divise-la en autant de parts égales que le dénominateur, puis colorie le nombre de parts indiqué par le numérateur.",
-                                    exemple: "pour 2/3, divise en 3 parts et colorie 2 parts."
-                                },
-                                {
-                                    titre: "Comparer et classer des fractions",
-                                    comment: "Si même dénominateur, compare les numérateurs. Sinon, convertis au même dénominateur ou utilise les décimaux.",
-                                    exemple: "2/5 < 3/5 car 2 < 3. Pour 1/2 vs 2/3, convertis : 3/6 vs 4/6, donc 1/2 < 2/3."
-                                }
-                            ],
-                            exemple: "Si tu manges 2 parts sur 8 d'un gâteau, tu as mangé 2/8, soit 1/4.",
-                            exercices: [
-                                { 
-                                    type: "débutant", 
-                                    question: "Colorie 1/2 d'un rectangle.",
-                                    points: 15,
-                                    interactif: true,
-                                    typeExercice: "rectangle"
-                                },
-                                { 
-                                    type: "intermédiaire", 
-                                    question: "Repère 3/4 sur une droite graduée.",
-                                    points: 15,
-                                    interactif: true,
-                                    typeExercice: "droite"
-                                },
-                                { 
-                                    type: "avancé", 
-                                    question: "Calcule : 5/8 d'un gâteau de 32 parts.",
-                                    points: 10,
-                                    interactif: true,
-                                    typeExercice: "calcul",
-                                    reponse: 20,
-                                    methode: "(5 × 32) ÷ 8"
-                                }
-                            ],
-                            miniQuiz: [{
-                                question: "Quelle fraction représente 2 parts sur 5 ?",
-                                choix: ["2/3", "5/2", "2/5", "1/2"],
-                                reponse: "2/5",
-                                points: 20
-                            }],
-                            preEvaluation: {
-                                questions: [
-                                    {
-                                        question: "Dans la fraction 7/9, quel est le dénominateur ?",
-                                        choix: ["7", "9", "16", "2"],
-                                        reponse: "9"
-                                    },
-                                    {
-                                        question: "Que représente la fraction 3/4 ?",
-                                        choix: ["3 + 4", "3 parts sur 4", "4 parts sur 3", "3 × 4"],
-                                        reponse: "3 parts sur 4"
-                                    },
-                                    {
-                                        question: "Si je colorie 2 carrés sur 5, quelle fraction cela représente-t-il ?",
-                                        choix: ["5/2", "2/5", "3/5", "2/3"],
-                                        reponse: "2/5"
-                                    }
-                                ]
-                            },
-                            astuce: "Pour bien identifier une fraction, souviens-toi que le numérateur (en haut) indique combien de parts on prend, et le dénominateur (en bas) indique en combien de parts égales on divise le tout.",
-                            pieges: [{
-                                titre: "Piège classique",
-                                description: "Ne confonds pas 3/4 avec 4/3 ! Dans 3/4, on prend 3 parts sur 4. Dans 4/3, on prend 4 parts sur 3 (plus que le tout !)."
-                            }],
-                            defi: {
-                                titre: "Défi fractions équivalentes",
-                                description: "Tu as 30 secondes pour trouver 3 fractions équivalentes à 2/3.",
-                                exemples: ["4/6", "6/9", "8/12", "10/15", "12/18", "14/21"],
-                                duree: 30
-                            },
-                            utilite: "Les fractions sont essentielles pour cuisiner, partager des objets, calculer des remises, comprendre les pourcentages et gérer son budget.",
-                            funFact: "Une étude américaine révèle que 60 % des adultes préfèrent partager une pizza plutôt que des bonbons… mais 40 % d'entre eux seraient incapables de calculer 3/8 d'une pizza sans se tromper ! 🍕<br>(Et toi, tu saurais faire ?)",
-                            metacognition: {
-                                questions: [
-                                    {
-                                        type: "objectif",
-                                        question: "Penses-tu avoir atteint l'objectif : 'Savoir lire, écrire et représenter une fraction' ?",
-                                        options: ["🎉 Complètement", "👍 En grande partie", "🤔 Partiellement", "😔 Pas vraiment"]
-                                    },
-                                    {
-                                        type: "facilite",
-                                        question: "Qu'est-ce qui t'a semblé le plus facile ?",
-                                        options: [
-                                            "🔍 Identifier le numérateur et le dénominateur",
-                                            "🎨 Représenter une fraction sur un schéma", 
-                                            "💪 Faire les exercices interactifs",
-                                            "💡 Comprendre le concept général"
-                                        ]
-                                    },
-                                    {
-                                        type: "difficulte",
-                                        question: "Quelle a été la plus grande difficulté pour toi ?",
-                                        options: [
-                                            "🔄 Confondre numérateur et dénominateur",
-                                            "🎨 Représenter visuellement les fractions",
-                                            "⚖️ Comprendre les fractions équivalentes",
-                                            "🌟 Aucune difficulté particulière"
-                                        ]
-                                    },
-                                    {
-                                        type: "utilite",
-                                        question: "Comment pourrais-tu utiliser les fractions dans ta vie de tous les jours ?",
-                                        options: [
-                                            "🍕 Partager une pizza ou découper un gâteau",
-                                            "🍫 Partager une tablette de chocolat",
-                                            "⏰ Comprendre les heures (1/2 heure, 1/4 d'heure)",
-                                            "⚽ Compter les buts dans un match (2 buts sur 3 tentatives)"
-                                        ]
-                                    }
-                                ],
-                                defispratiques: {
-                                    cuisine: {
-                                        scenario: "🍕 Tu partages une pizza en 8 parts égales avec tes amis. Si tu en manges 3 parts, quelle fraction de la pizza as-tu mangée ?",
-                                        aide: "Nombre de parts mangées / Nombre total de parts",
-                                        reponse: "3/8"
-                                    }
-                                }
-                            }
-                        }]
-                    };
-                    console.log('✅ Données fractions chargées (fallback)');
-                } else if (subject === 'mathematiques' && level === '6ieme' && topic === 'algebre') {
-                courseData = {
-                    niveau: "6ème",
-                    chapitre: "Nombres & Calculs", 
-                    sousChapitre: "Expressions littérales",
-                    competences: [{
-                        id: "6NC-AL-1",
-                        titre: "Découvrir l'algèbre",
-                        objectif: "Comprendre ce qu'est une expression littérale et savoir la calculer.",
-                        cours: "Une expression littérale utilise des lettres pour représenter des nombres. Par exemple : 3x + 5 où x peut prendre différentes valeurs.",
-                        etapes: [
-                            {
-                                titre: "Comprendre les variables",
-                                comment: "Une lettre (comme x, y, a) représente un nombre que l'on ne connaît pas encore ou qui peut changer.",
-                                exemple: "dans 2x, si x = 3, alors 2x = 2 × 3 = 6."
-                            },
-                            {
-                                titre: "Calculer une expression",
-                                comment: "Pour calculer une expression littérale, on remplace chaque lettre par sa valeur et on fait les calculs.",
-                                exemple: "si x = 4, alors 3x + 1 = 3 × 4 + 1 = 12 + 1 = 13."
-                            },
-                            {
-                                titre: "Simplifier une expression",
-                                comment: "On peut regrouper les termes semblables pour simplifier l'écriture.",
-                                exemple: "2x + 3x = 5x (on additionne les coefficients)."
-                            }
-                        ],
-                        exemple: "Si tu achètes x bonbons à 2€ pièce, tu paies 2x euros au total.",
-                        exercices: [
-                            { 
-                                type: "débutant", 
-                                question: "Calcule 2x + 3 pour x = 5",
-                                points: 15,
-                                interactif: true,
-                                typeExercice: "calcul",
-                                reponse: 13,
-                                methode: "2 × 5 + 3"
-                            },
-                            { 
-                                type: "intermédiaire", 
-                                question: "Simplifie l'expression : 3a + 2a",
-                                points: 15,
-                                interactif: false
-                            },
-                            { 
-                                type: "avancé", 
-                                question: "Calcule 3x + 2y pour x = 4 et y = 1",
-                                points: 10,
-                                interactif: true,
-                                typeExercice: "calcul",
-                                reponse: 14,
-                                methode: "3 × 4 + 2 × 1"
-                            }
-                        ],
-                        miniQuiz: [{
-                            question: "Si x = 3, que vaut 4x ?",
-                            choix: ["7", "12", "4", "3"],
-                            reponse: "12",
-                            points: 20
-                        }],
-                        preEvaluation: {
-                            questions: [
-                                {
-                                    question: "Dans l'expression 5y, que représente y ?",
-                                    choix: ["Un nombre fixe", "Une variable", "Un résultat", "Une opération"],
-                                    reponse: "Une variable"
-                                },
-                                {
-                                    question: "Que vaut 2x si x = 6 ?",
-                                    choix: ["8", "12", "2", "6"],
-                                    reponse: "12"
-                                },
-                                {
-                                    question: "Comment écrit-on 'trois fois un nombre n' ?",
-                                    choix: ["3 + n", "3n", "n + 3", "n × n × n"],
-                                    reponse: "3n"
-                                }
-                            ]
-                        },
-                        astuce: "Quand on écrit 3x, cela veut dire 3 × x. On ne met pas le signe × entre un nombre et une lettre.",
-                        pieges: [{
-                            titre: "Piège fréquent",
-                            description: "Attention ! 2x + 3x = 5x, mais 2x × 3x = 6x² (x au carré), pas 6x !"
-                        }],
-                        defi: {
-                            titre: "Défi expressions équivalentes",
-                            description: "Tu as 30 secondes pour trouver 3 expressions équivalentes à 2x + 2x.",
-                            exemples: ["4x", "2(2x)", "x + x + x + x", "2x × 2"],
-                            duree: 30
-                        },
-                        utilite: "L'algèbre est partout : calculer le prix d'achats multiples, comprendre des formules scientifiques, programmer des jeux vidéo.",
-                        funFact: "Le mot 'algèbre' vient de l'arabe 'al-jabr' qui signifie 'réunion de parties brisées'. C'est aussi le nom d'un mathématicien perse du 9ème siècle ! 🧮✨",
-                        metacognition: {
-                            questions: [
-                                {
-                                    type: "objectif",
-                                    question: "Penses-tu avoir atteint l'objectif : 'Comprendre ce qu'est une expression littérale et savoir la calculer' ?",
-                                    options: ["🎉 Complètement", "👍 En grande partie", "🤔 Partiellement", "😔 Pas vraiment"]
-                                },
-                                {
-                                    type: "facilite",
-                                    question: "Qu'est-ce qui t'a semblé le plus facile ?",
-                                    options: [
-                                        "🔍 Comprendre ce qu'est une variable",
-                                        "🧮 Calculer des expressions simples", 
-                                        "📝 Simplifier des expressions",
-                                        "💡 Voir l'utilité de l'algèbre"
-                                    ]
-                                },
-                                {
-                                    type: "difficulte",
-                                    question: "Quelle a été la plus grande difficulté pour toi ?",
-                                    options: [
-                                        "🔤 Comprendre le rôle des lettres",
-                                        "🧮 Faire les calculs avec les variables",
-                                        "📝 Simplifier les expressions",
-                                        "🌟 Aucune difficulté particulière"
-                                    ]
-                                },
-                                {
-                                    type: "utilite",
-                                    question: "Comment pourrais-tu utiliser l'algèbre dans ta vie de tous les jours ?",
-                                    options: [
-                                        "🛒 Calculer le prix de plusieurs objets identiques",
-                                        "🎮 Comprendre les formules dans les jeux vidéo",
-                                        "⚡ Utiliser des formules scientifiques",
-                                        "💰 Calculer des économies ou des intérêts"
-                                    ]
-                                }
-                            ],
-                            defispratiques: {
-                                shopping: {
-                                    scenario: "🛒 Tu achètes x cahiers à 3€ pièce et y stylos à 2€ pièce. Si x = 5 et y = 3, combien paies-tu au total ?",
-                                    aide: "Prix total = 3x + 2y",
-                                    reponse: 21
-                                }
-                            }
-                        }
-                    }]
-                };
-                console.log('✅ Données algèbre chargées (fallback)');
-                } else {
-                    throw new Error(`Cours non trouvé: ${subject}/${level}/${topic}`);
-                }
+                console.error(`❌ Erreur d'import: ${importError.message}`);
+                throw new Error(`Impossible de charger les données pour ${subject}/${level}/${topic}. Vérifiez que le fichier ${topic}.js existe et contient la structure de données correcte.`);
             }
         }
 
         // Fonction pour afficher une erreur
+        // Fonction pour afficher une erreur
         function showError(message) {
-            document.getElementById('mainTitle').textContent = '❌ Erreur';
+            document.getElementById('mainTitle').textContent = '❌ Erreur de chargement';
+            document.getElementById('pageTitle').textContent = 'Erreur - Cours non disponible';
+            
             document.getElementById('infoSection').innerHTML = `
                 <div class="section">
-                    <h3>🚨 Erreur</h3>
-                    <p>${message}</p>
+                    <div class="error-container" style="
+                        background: linear-gradient(135deg, #fed7d7 0%, #fbb6ce 100%);
+                        border: 2px solid #f56565;
+                        border-radius: 16px;
+                        padding: 2rem;
+                        margin: 2rem 0;
+                        text-align: center;
+                        box-shadow: 0 8px 25px rgba(245, 101, 101, 0.3);
+                    ">
+                        <h2 style="color: #742a2a; margin-bottom: 1rem; font-size: 1.5rem;">
+                            🚨 Cours temporairement indisponible
+                        </h2>
+                        <p style="color: #742a2a; font-size: 1.1rem; margin-bottom: 1.5rem;">
+                            ${message}
+                        </p>
+                        <div style="
+                            background: rgba(255, 255, 255, 0.8);
+                            border-radius: 12px;
+                            padding: 1.5rem;
+                            margin: 1rem 0;
+                        ">
+                            <h3 style="color: #742a2a; margin-bottom: 1rem;">Que faire ?</h3>
+                            <ul style="color: #742a2a; text-align: left; list-style-type: none; padding: 0;">
+                                <li style="margin-bottom: 0.5rem;">✅ Vérifiez votre connexion internet</li>
+                                <li style="margin-bottom: 0.5rem;">🔄 Rechargez la page (F5)</li>
+                                <li style="margin-bottom: 0.5rem;">🏠 Retournez à la <a href="../mathematiques/6ieme/index.html" style="color: #d53f8c; text-decoration: underline;">page d'accueil</a></li>
+                                <li style="margin-bottom: 0.5rem;">📧 Signalez le problème si il persiste</li>
+                            </ul>
+                        </div>
+                        <button onclick="window.location.reload()" style="
+                            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                            color: white;
+                            border: none;
+                            padding: 0.75rem 1.5rem;
+                            border-radius: 8px;
+                            font-weight: 600;
+                            cursor: pointer;
+                            margin: 1rem 0.5rem;
+                            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+                            transition: all 0.3s ease;
+                        " onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
+                            🔄 Recharger la page
+                        </button>
+                        <button onclick="window.history.back()" style="
+                            background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+                            color: white;
+                            border: none;
+                            padding: 0.75rem 1.5rem;
+                            border-radius: 8px;
+                            font-weight: 600;
+                            cursor: pointer;
+                            margin: 1rem 0.5rem;
+                            box-shadow: 0 4px 12px rgba(72, 187, 120, 0.3);
+                            transition: all 0.3s ease;
+                        " onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
+                            ← Retour
+                        </button>
+                    </div>
                 </div>
             `;
             document.getElementById('infoSection').style.display = 'block';
+            
+            // Masquer les autres sections
+            const sections = ['coursSection', 'exercicesSection', 'evaluationSection', 'metacognitionSection'];
+            sections.forEach(sectionId => {
+                const section = document.getElementById(sectionId);
+                if (section) section.style.display = 'none';
+            });
         }
 
         // Fonction principale pour générer le HTML à partir des données
