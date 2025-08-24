@@ -34,26 +34,21 @@ export const fractions6eme = {
       exercices: [
         { 
           type: "débutant", 
-          question: "Colorie 1/2 d'un rectangle.",
-          points: 15,
-          interactif: true,
-          typeExercice: "rectangle"
+          question: "Dans 3/5, quel est le numérateur ?",
+          reponse: "3",
+          points: 10
         },
         { 
           type: "intermédiaire", 
-          question: "Repère 3/4 sur une droite graduée.",
-          points: 15,
-          interactif: true,
-          typeExercice: "droite"
+          question: "Quelle fraction représente 3 parts sur 8 ?",
+          reponse: "3/8",
+          points: 15
         },
         { 
           type: "avancé", 
-          question: "Calcule : 5/8 d'un gâteau de 32 parts.",
-          points: 10,
-          interactif: true,
-          typeExercice: "calcul",
-          reponse: 20,
-          methode: "(5 × 32) ÷ 8"
+          question: "Calcule les 2/5 de 30 ?",
+          reponse: "12",
+          points: 20
         }
       ],
 

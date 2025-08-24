@@ -557,10 +557,22 @@
         }
         
         function openTopic(topic) {
-            if (topic === 'fractions') {
-                window.location.href = '../../page_de_cours.html?subject=mathematiques&level=6ieme&topic=fractions';
-            } else if (topic === 'algebre') {
-                window.location.href = '../../page_de_cours.html?subject=mathematiques&level=6ieme&topic=algebre';
+            // Tous les sujets utilisent maintenant la structure de données
+            const availableTopics = [
+                'addition-soustraction',
+                'multiplication', 
+                'division',
+                'figures-planes',
+                'perimetre',
+                'proportionnalite',
+                'aires-figures',
+                'unites-longueur',
+                'fractions',
+                'algebre'
+            ];
+            
+            if (availableTopics.includes(topic)) {
+                window.location.href = `../../page_de_cours.html?subject=mathematiques&level=6ieme&topic=${topic}`;
             } else {
                 comingSoon(topic);
             }

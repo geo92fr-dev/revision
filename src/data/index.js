@@ -11,13 +11,8 @@ export const coursDataBySubjectAndLevel = {
   anglais: anglaisData
 };
 
-// Nouvelle structure plate pour tous les niveaux (mathématiques uniquement pour compatibilité)
-const newFormatData = [
-  ...mathematiques["6ème"],
-  ...mathematiques["5ème"],
-  ...mathematiques["4ème"],
-  ...mathematiques["3ème"]
-];
+// Nouvelle structure plate pour la 6ème uniquement (nouveau format basé sur reference.js)
+const newFormatData = Object.values(mathematiques["6ème"]);
 
 // Maintien de la compatibilité avec l'ancienne structure pour les tests
 export const coursData = convertToLegacyFormat(newFormatData);

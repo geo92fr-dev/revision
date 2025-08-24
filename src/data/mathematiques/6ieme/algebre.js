@@ -1,136 +1,141 @@
-// Données spécifiques à l'algèbre pour la classe de 6ème
+// Données spécifiques à l'Algèbre pour la classe de 6ème
 export const algebre6eme = {
   niveau: "6ème",
   chapitre: "Nombres & Calculs",
-  sousChapitre: "Expressions littérales",
+  sousChapitre: "Initiation à l'Algèbre",
   competences: [
     {
-      id: "6NC-AL-1",
-      titre: "Découvrir l'algèbre",
-      objectif: "Comprendre ce qu'est une expression littérale et savoir la calculer.",
+      id: "6NC-ALG-1",
+      titre: "Comprendre les expressions littérales",
+      objectif: "Savoir utiliser des lettres pour représenter des nombres et simplifier des expressions.",
 
-      cours: "Une expression littérale utilise des lettres pour représenter des nombres. Par exemple : 3x + 5 où x peut prendre différentes valeurs.",
+      cours: "En algèbre, on utilise des lettres comme 'x' ou 'y' pour remplacer un nombre inconnu. Une expression qui contient des lettres est appelée 'expression littérale'.",
 
       etapes: [
         {
-          titre: "Comprendre les variables",
-          comment: "Une lettre (comme x, y, a) représente un nombre que l'on ne connaît pas encore ou qui peut changer.",
-          exemple: "dans 2x, si x = 3, alors 2x = 2 × 3 = 6."
-        },
-        {
-          titre: "Calculer une expression",
-          comment: "Pour calculer une expression littérale, on remplace chaque lettre par sa valeur et on fait les calculs.",
-          exemple: "si x = 4, alors 3x + 1 = 3 × 4 + 1 = 12 + 1 = 13."
+          titre: "Écrire une expression littérale",
+          comment: "Pour écrire le périmètre d'un carré de côté 'c', on peut écrire 'c + c + c + c' ou '4 × c'.",
+          exemple: "La formule pour l'aire d'un rectangle de longueur 'L' et de largeur 'l' est 'L × l'."
         },
         {
           titre: "Simplifier une expression",
-          comment: "On peut regrouper les termes semblables pour simplifier l'écriture.",
-          exemple: "2x + 3x = 5x (on additionne les coefficients)."
+          comment: "On peut simplifier l'écriture en enlevant le signe '×' entre un nombre et une lettre. On écrit '4c' au lieu de '4 × c'.",
+          exemple: "L'expression '5 × a' se simplifie en '5a'. L'expression 'a × b' se simplifie en 'ab'."
+        },
+        {
+          titre: "Calculer la valeur d'une expression",
+          comment: "Pour calculer la valeur d'une expression, il suffit de remplacer la lettre par sa valeur. Ensuite, on effectue le calcul.",
+          exemple: "Si l'on a l'expression '5x' et que 'x = 3', on remplace 'x' par '3', ce qui donne 5 × 3 = 15."
         }
       ],
 
-      exemple: "Si tu achètes x bonbons à 2€ pièce, tu paies 2x euros au total.",
+      exemple: "Le périmètre d'un triangle équilatéral (3 côtés égaux) de côté 'c' est '3c'.",
 
       exercices: [
-        { 
-          type: "débutant", 
-          question: "Calcule 2x + 3 pour x = 5",
-          points: 15,
-          interactif: true,
-          typeExercice: "calcul",
-          reponse: 13,
-          methode: "2 × 5 + 3"
-        },
-        { 
-          type: "intermédiaire", 
-          question: "Simplifie l'expression : 3a + 2a",
-          points: 15,
-          interactif: false
-        },
-        { 
-          type: "avancé", 
-          question: "Calcule 3x + 2y pour x = 4 et y = 1",
+        {
+          type: "débutant",
+          question: "Simplifie l'expression '7 × a'.",
           points: 10,
           interactif: true,
+          typeExercice: "saisie",
+          reponse: "7a"
+        },
+        {
+          type: "intermédiaire",
+          question: "Calcule la valeur de l'expression '3x + 5' si 'x = 4'.",
+          points: 15,
+          interactif: true,
           typeExercice: "calcul",
-          reponse: 14,
-          methode: "3 × 4 + 2 × 1"
+          reponse: 17,
+          solutionDetaillee: "3 × 4 + 5 = 12 + 5 = 17."
+        },
+        {
+          type: "avancé",
+          question: "Un rectangle a une longueur 'l' et une largeur de 3 cm. Écris l'expression simplifiée de son périmètre.",
+          points: 20,
+          interactif: true,
+          typeExercice: "saisie",
+          reponse: "2l + 6",
+          solutionDetaillee: "Périmètre = (l + 3) × 2 = 2 × l + 2 × 3 = 2l + 6."
         }
       ],
 
       miniQuiz: [
         {
-          question: "Si x = 3, que vaut 4x ?",
-          choix: ["7", "12", "4", "3"],
-          reponse: "12",
-          points: 20
+          question: "Quel signe peut-on enlever dans '6 × b' ?",
+          choix: [
+            {"option": "Le plus (+)", "estCorrect": false, "feedback": "Non, il n'y a pas de '+' dans l'expression."},
+            {"option": "Le moins (-)", "estCorrect": false, "feedback": "Non, il n'y a pas de '-' dans l'expression."},
+            {"option": "Le signe '×' (fois)", "estCorrect": true, "feedback": "Bravo ! On peut l'enlever pour simplifier."},
+            {"option": "Le signe '=' (égal)", "estCorrect": false, "feedback": "Non, il n'y a pas de '='."}
+          ]
         }
       ],
 
       preEvaluation: {
         questions: [
           {
-            question: "Dans l'expression 5y, que représente y ?",
-            choix: ["Un nombre fixe", "Une variable", "Un résultat", "Une opération"],
-            reponse: "Une variable"
+            question: "Si a = 5, que vaut l'expression '2a' ?",
+            choix: ["2 + 5", "2 × 5", "5 - 2", "5 / 2"],
+            reponse: "2 × 5"
           },
           {
-            question: "Que vaut 2x si x = 6 ?",
-            choix: ["8", "12", "2", "6"],
-            reponse: "12"
+            question: "Comment simplifie-t-on l'expression '3 × (x + y)' ?",
+            choix: ["3x + 3y", "3xy", "3x + y", "3(x + y)"],
+            reponse: "3(x + y)"
           },
           {
-            question: "Comment écrit-on 'trois fois un nombre n' ?",
-            choix: ["3 + n", "3n", "n + 3", "n × n × n"],
-            reponse: "3n"
+            question: "Quelle est l'expression simplifiée du périmètre d'un carré de côté 'c' ?",
+            choix: ["c²", "4 + c", "4c", "2c + 2c"],
+            reponse: "4c"
           }
         ]
       },
 
-      astuce: "Quand on écrit 3x, cela veut dire 3 × x. On ne met pas le signe × entre un nombre et une lettre.",
-      
+      astuce: "Pense à une lettre comme si c'était une boîte qui peut contenir n'importe quel nombre. La lettre 'x' est juste une boîte vide !",
+
       pieges: [
         {
-          titre: "Piège fréquent",
-          description: "Attention ! 2x + 3x = 5x, mais 2x × 3x = 6x² (x au carré), pas 6x !"
+          titre: "Oublier la multiplication",
+          description: "N'oublie pas que '3x' veut dire '3 fois x'. C'est une multiplication cachée !"
         }
       ],
 
       defi: {
-        titre: "Défi expressions équivalentes",
-        description: "Tu as 30 secondes pour trouver 3 expressions équivalentes à 2x + 2x.",
-        exemples: ["4x", "2(2x)", "x + x + x + x", "2x × 2"],
-        duree: 30
+        titre: "Le défi du programme de calcul",
+        description: "Un programme de calcul dit : 'Prends un nombre, ajoute 5, puis multiplie le résultat par 2.' Écris ce programme en une expression littérale simple si le nombre est 'n'.",
+        reponse: "(n + 5) × 2",
+        solutionDetaillee: "On prend le nombre 'n', on ajoute 5 pour obtenir '(n + 5)'. On multiplie ensuite le résultat par 2, ce qui donne '(n + 5) × 2'."
       },
 
-      utilite: "L'algèbre est partout : calculer le prix d'achats multiples, comprendre des formules scientifiques, programmer des jeux vidéo.",
+      utilite: "L'algèbre est un langage pour exprimer des règles et des formules. Elle est indispensable en sciences, en économie, en informatique et pour résoudre des problèmes complexes de la vie courante.",
 
-      funFact: "Le mot 'algèbre' vient de l'arabe 'al-jabr' qui signifie 'réunion de parties brisées'. C'est aussi le nom d'un mathématicien perse du 9ème siècle ! 🧮✨",
+      funFact: "Le mot 'algèbre' vient du mot arabe 'al-jabr', qui signifie 'réunion des parties brisées'. C'est l'un des premiers livres de mathématiques écrits il y a plus de 1000 ans !",
 
       metacognition: {
         questions: [
           {
             type: "objectif",
-            question: "Penses-tu avoir atteint l'objectif : 'Comprendre ce qu'est une expression littérale et savoir la calculer' ?",
+            question: "Penses-tu avoir atteint l'objectif : 'Savoir utiliser des lettres pour représenter des nombres' ?",
             options: ["🎉 Complètement", "👍 En grande partie", "🤔 Partiellement", "😔 Pas vraiment"]
           },
           {
             type: "facilite",
             question: "Qu'est-ce qui t'a semblé le plus facile ?",
             options: [
-              "🔍 Comprendre ce qu'est une variable",
-              "🧮 Calculer des expressions simples", 
-              "📝 Simplifier des expressions",
-              "💡 Voir l'utilité de l'algèbre"
+              "🔍 Comprendre que les lettres sont des nombres",
+              "✏️ Simplifier les expressions",
+              "🤔 Calculer la valeur d'une expression",
+              "💡 Faire la différence entre une expression et une équation"
             ]
           },
           {
             type: "difficulte",
             question: "Quelle a été la plus grande difficulté pour toi ?",
             options: [
-              "🔤 Comprendre le rôle des lettres",
-              "🧮 Faire les calculs avec les variables",
-              "📝 Simplifier les expressions",
+              "🔄 Comprendre la multiplication cachée",
+              "🤔 Ne pas confondre x et le signe de multiplication",
+              "⚖️ Résoudre les exercices de calcul",
               "🌟 Aucune difficulté particulière"
             ]
           },
@@ -138,36 +143,34 @@ export const algebre6eme = {
             type: "utilite",
             question: "Comment pourrais-tu utiliser l'algèbre dans ta vie de tous les jours ?",
             options: [
-              "🛒 Calculer le prix de plusieurs objets identiques",
-              "🎮 Comprendre les formules dans les jeux vidéo",
-              "⚡ Utiliser des formules scientifiques",
-              "💰 Calculer des économies ou des intérêts"
+              "📝 Pour écrire les formules de géométrie",
+              "💰 Pour calculer le prix d'objets en promo",
+              "🎮 Pour comprendre les scores d'un jeu vidéo",
+              "⚽ Pour trouver un résultat dans un jeu"
             ]
           }
-        ],
-        defispratiques: {
-          shopping: {
-            scenario: "🛒 Tu achètes x cahiers à 3€ pièce et y stylos à 2€ pièce. Si x = 5 et y = 3, combien paies-tu au total ?",
-            aide: "Prix total = 3x + 2y",
-            reponse: 21
-          },
-          jeu: {
-            scenario: "🎮 Dans un jeu, tu gagnes 2n points par niveau et tu as 5 points de bonus. Si tu as fait 4 niveaux, combien as-tu de points ?",
-            aide: "Points = 2n + 5 avec n = 4",
-            reponse: 13
-          },
-          science: {
-            scenario: "⚡ La distance parcourue est d = v × t. Si v = 15 m/s et t = 6 s, quelle distance parcours-tu ?",
-            aide: "d = v × t",
-            reponse: 90
-          },
-          argent: {
-            scenario: "💰 Tu économises 5€ par semaine pendant s semaines. Après 8 semaines, combien as-tu économisé ?",
-            aide: "Économies = 5s avec s = 8",
-            reponse: 40
-          }
-        }
-      }
+        ]
+      },
+
+      // Maintien de la compatibilité avec l'ancien format
+      description: "Utiliser des lettres pour représenter des nombres et simplifier des expressions.",
+      ressources: [
+        { type: "vidéo", titre: "Introduction à l'algèbre", url: "https://www.youtube.com/watch?v=algebre" },
+        { type: "exercice", titre: "Expressions littérales", url: "https://www.sesamath.net/" }
+      ],
+      quizId: "QUIZ_6_ALGEBRE"
+    },
+    {
+      // COMPÉTENCE SIMPLE
+      id: "6NC-ALG-2",
+      titre: "Substitution et calcul",
+      description: "Remplacer une lettre par sa valeur numérique dans une expression littérale et effectuer le calcul.",
+      exemple: "Ex. : Si a = 3, alors 2a + 5 = 2 × 3 + 5 = 11",
+      astuce: "Remplace toujours la lettre par sa valeur entre parenthèses pour éviter les erreurs",
+      ressources: [
+        { type: "exercice", titre: "Calculs avec substitution", url: "https://www.maths-et-tiques.fr/" }
+      ],
+      quizId: "QUIZ_6_SUBSTITUTION"
     }
   ]
 };

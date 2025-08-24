@@ -1,20 +1,10 @@
-// Index des données mathématiques
-import { mathematiques6eme } from './sixieme.js';
-import { mathematiques5eme } from './cinquieme.js';
-import { mathematiques4eme } from './quatrieme.js';
-import { mathematiques3eme } from './troisieme.js';
+// Index des données mathématiques - Nouveau format basé sur reference.js
+import mathematiques6emeData from './6ieme/index.js';
 
 export const mathematiques = {
-  "6ème": mathematiques6eme,
-  "5ème": mathematiques5eme,
-  "4ème": mathematiques4eme,
-  "3ème": mathematiques3eme
+  "6ème": mathematiques6emeData,
+  // Les autres niveaux seront ajoutés quand ils seront créés avec le nouveau format
 };
 
-// Exports individuels pour un accès direct
-export { 
-  mathematiques6eme, 
-  mathematiques5eme, 
-  mathematiques4eme, 
-  mathematiques3eme 
-};
+// Export direct pour compatibilité
+export const mathematiques6eme = mathematiques6emeData;
