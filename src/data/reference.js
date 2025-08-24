@@ -1,5 +1,12 @@
-// FICHIER DE RÉFÉRENCE POUR LA STRUCTURE DES DONNÉES MATHÉMATIQUES 6ÈME
-// Ce fichier documente la structure attendue pour tous les sujets de mathématiques
+// FICHIER DE RÉFÉRENCE POUR LA STRUCTURE DES DONNÉES
+// ================================================
+// 
+// 📍 EMPLACEMENT : src/data/reference.js (racine de data)
+// 🎯 OBJECTIF    : Définir la structure commune à TOUS les sujets et niveaux
+// 🔗 UTILISÉ PAR : Tests d'intégrité, validation des données, documentation
+//
+// Ce fichier documente la structure attendue pour tous les sujets éducatifs.
+// Il sert de référence pour maintenir la cohérence entre tous les contenus.
 
 /**
  * STRUCTURE GÉNÉRALE D'UN SUJET

@@ -10,7 +10,7 @@ describe('Tests d\'intégrité structurelle - Mathématiques 6ème', () => {
   beforeAll(async () => {
     try {
       // Chargement de la structure de référence
-      const referenceModule = await import('../data/mathematiques/6ieme/reference.js');
+      const referenceModule = await import('../data/reference.js');
       referenceStructure = referenceModule.reference6eme || referenceModule.default;
 
       // Chargement de tous les sujets
