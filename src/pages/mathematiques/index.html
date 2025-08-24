@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mathématiques - FunRevis</title>
+    <link rel="stylesheet" href="../../styles/index.css">
+    <style>
+        .math-container {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            padding: 2rem;
+        }
+        
+        .math-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .math-title {
+            font-size: 3rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .math-subtitle {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2rem;
+        }
+        
+        .breadcrumb {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
+        }
+        
+        .breadcrumb a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+        
+        .levels-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .level-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .level-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(31, 38, 135, 0.5);
+        }
+        
+        .level-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #4facfe;
+            margin-bottom: 1rem;
+        }
+        
+        .level-description {
+            color: #666;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+        
+        .topics-list {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 2rem;
+        }
+        
+        .topics-list li {
+            background: rgba(79, 172, 254, 0.1);
+            padding: 0.8rem 1rem;
+            margin-bottom: 0.5rem;
+            border-radius: 10px;
+            border-left: 4px solid #4facfe;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .level-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .action-btn {
+            background: linear-gradient(135deg, #4facfe, #00f2fe);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 0.9rem;
+        }
+        
+        .action-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(79, 172, 254, 0.4);
+        }
+        
+        .action-btn.secondary {
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .back-btn {
+            position: fixed;
+            top: 2rem;
+            left: 2rem;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            padding: 1rem;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            z-index: 100;
+        }
+        
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="math-container">
+        <button class="back-btn" onclick="goBack()">←</button>
+        
+        <div class="math-header">
+            <div class="breadcrumb">
+                <a href="../index.html">🏠 Accueil</a> → <span>🧮 Mathématiques</span>
+            </div>
+            <h1 class="math-title">🧮 Mathématiques</h1>
+            <p class="math-subtitle">Explorez les concepts mathématiques par niveau</p>
+        </div>
+        
+        <div class="levels-grid">
+            <div class="level-card" onclick="navigateToLevel('6ieme')">
+                <h2 class="level-title">📚 6ème</h2>
+                <p class="level-description">
+                    Découvrez les bases essentielles : fractions, décimaux, géométrie plane et résolution de problèmes simples.
+                </p>
+                <ul class="topics-list">
+                    <li>🔢 Les fractions et décimaux</li>
+                    <li>📐 Géométrie plane</li>
+                    <li>📊 Proportionnalité</li>
+                    <li>🧮 Calcul mental</li>
+                </ul>
+                <div class="level-actions">
+                    <a href="../page_de_cours.html?course=../data/mathematiques/6ieme/fractions.js" class="action-btn">📊 Fractions</a>
+                    <a href="../page_de_cours.html?course=../data/mathematiques/6ieme/algebre.js" class="action-btn">🔤 Algèbre</a>
+                    <button class="action-btn secondary" onclick="comingSoon('Géométrie 6ème')">📐 Géométrie</button>
+                </div>
+            </div>
+            
+            <div class="level-card" onclick="navigateToLevel('5ieme')">
+                <h2 class="level-title">📚 5ème</h2>
+                <p class="level-description">
+                    Approfondissez avec les nombres relatifs, les priorités opératoires et les figures géométriques.
+                </p>
+                <ul class="topics-list">
+                    <li>➕➖ Nombres relatifs</li>
+                    <li>🔄 Priorités opératoires</li>
+                    <li>△ Triangles et parallélogrammes</li>
+                    <li>📈 Statistiques de base</li>
+                </ul>
+                <div class="level-actions">
+                    <button class="action-btn secondary" onclick="comingSoon('Nombres relatifs')">➕➖ Nombres relatifs</button>
+                    <button class="action-btn secondary" onclick="comingSoon('Géométrie 5ème')">△ Géométrie</button>
+                </div>
+            </div>
+            
+            <div class="level-card" onclick="navigateToLevel('4ieme')">
+                <h2 class="level-title">📚 4ème</h2>
+                <p class="level-description">
+                    Explorez les équations, les puissances et la géométrie dans l'espace.
+                </p>
+                <ul class="topics-list">
+                    <li>📐 Théorème de Pythagore</li>
+                    <li>🔢 Calcul littéral</li>
+                    <li>⚖️ Équations</li>
+                    <li>📊 Statistiques avancées</li>
+                </ul>
+                <div class="level-actions">
+                    <button class="action-btn secondary" onclick="comingSoon('Calcul littéral')">🔢 Calcul littéral</button>
+                    <button class="action-btn secondary" onclick="comingSoon('Théorème de Pythagore')">📐 Pythagore</button>
+                </div>
+            </div>
+            
+            <div class="level-card" onclick="navigateToLevel('3ieme')">
+                <h2 class="level-title">📚 3ème</h2>
+                <p class="level-description">
+                    Préparez le brevet avec les fonctions, la trigonométrie et les probabilités.
+                </p>
+                <ul class="topics-list">
+                    <li>📈 Fonctions linéaires</li>
+                    <li>📐 Trigonométrie</li>
+                    <li>🎲 Probabilités</li>
+                    <li>🔺 Géométrie dans l'espace</li>
+                </ul>
+                <div class="level-actions">
+                    <button class="action-btn secondary" onclick="comingSoon('Fonctions')">📈 Fonctions</button>
+                    <button class="action-btn secondary" onclick="comingSoon('Trigonométrie')">📐 Trigonométrie</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+        
+        function navigateToLevel(level) {
+            if (level === '6ieme') {
+                window.location.href = `${level}/index.html`;
+            } else {
+                comingSoon(`Mathématiques ${level}`);
+            }
+        }
+        
+        function comingSoon(topic) {
+            alert(`🚀 ${topic} - Bientôt disponible !\n\nCette section est en cours de développement.`);
+        }
+        
+        // Animation d'entrée
+        window.addEventListener('load', function() {
+            const cards = document.querySelectorAll('.level-card');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(50px)';
+                
+                setTimeout(() => {
+                    card.style.transition = 'all 0.6s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 200);
+            });
+        });
+    </script>
+</body>
+</html>

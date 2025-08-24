@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FunRevis - Plateforme de révision interactive</title>
+    <link rel="stylesheet" href="../styles/index.css">
+    <style>
+        .home-container {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .home-content {
+            max-width: 1200px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            text-align: center;
+        }
+        
+        .home-title {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .home-subtitle {
+            font-size: 1.3rem;
+            color: #666;
+            margin-bottom: 3rem;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .feature {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+        
+        .feature:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            border-color: #667eea;
+        }
+        
+        .feature h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+        
+        .feature p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-action {
+            color: #667eea;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        
+        .navigation {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+        
+        .nav-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .quiz-section {
+            margin-top: 3rem;
+            padding: 2rem;
+            background: rgba(102, 126, 234, 0.1);
+            border-radius: 15px;
+            border: 2px solid rgba(102, 126, 234, 0.2);
+        }
+        
+        .quiz-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .quiz-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+        
+        .quiz-card:hover {
+            transform: translateY(-3px);
+            border-color: #667eea;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .quiz-card h4 {
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+        
+        .quiz-card p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="home-container">
+        <div class="home-content">
+            <h1 class="home-title">Bienvenue sur FunRevis</h1>
+            <p class="home-subtitle">Votre plateforme de révision interactive</p>
+            
+            <div class="features">
+                <div class="feature" onclick="navigateTo('revisions')">
+                    <h3>📚 Révisions efficaces</h3>
+                    <p>Organisez vos sessions de révision de manière optimale</p>
+                    <span class="feature-action">Commencer →</span>
+                </div>
+                <div class="feature" onclick="navigateTo('mathematiques')">
+                    <h3>🧮 Mathématiques</h3>
+                    <p>Fractions, géométrie, calculs - Maîtrisez les concepts clés</p>
+                    <span class="feature-action">Explorer →</span>
+                </div>
+                <div class="feature" onclick="navigateTo('quiz')">
+                    <h3>🎯 Quiz interactifs</h3>
+                    <p>Testez vos connaissances avec des quiz personnalisés</p>
+                    <span class="feature-action">Tester →</span>
+                </div>
+            </div>
+
+            <div class="quiz-section">
+                <h2>🎮 Quiz par matière</h2>
+                <p>Choisissez votre niveau et commencez !</p>
+                
+                <div class="quiz-grid">
+                    <div class="quiz-card" onclick="startQuiz('mathematiques', '6eme')">
+                        <h4>🧮 Mathématiques 6ème</h4>
+                        <p>Fractions, décimaux, géométrie de base</p>
+                    </div>
+                    <div class="quiz-card" onclick="startQuiz('mathematiques', '5eme')">
+                        <h4>🧮 Mathématiques 5ème</h4>
+                        <p>Nombres relatifs, proportionnalité</p>
+                    </div>
+                    <div class="quiz-card" onclick="startQuiz('francais', '6eme')">
+                        <h4>📝 Français 6ème</h4>
+                        <p>Grammaire, conjugaison, vocabulaire</p>
+                    </div>
+                    <div class="quiz-card" onclick="startQuiz('histoire', '6eme')">
+                        <h4>🏛️ Histoire 6ème</h4>
+                        <p>Antiquité, civilisations anciennes</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="navigation">
+                <a href="mathematiques/index.html" class="nav-btn">📚 Mathématiques</a>
+                <a href="francais/index.html" class="nav-btn">📝 Français</a>
+                <a href="histoire/index.html" class="nav-btn">🏛️ Histoire</a>
+                <a href="sciences/index.html" class="nav-btn">🔬 Sciences</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function navigateTo(section) {
+            switch(section) {
+                case 'revisions':
+                    alert('🚀 Section Révisions - En cours de développement');
+                    break;
+                case 'mathematiques':
+                    window.location.href = 'mathematiques/index.html';
+                    break;
+                case 'quiz':
+                    alert('🎯 Section Quiz - En cours de développement');
+                    break;
+                default:
+                    console.log('Navigation vers:', section);
+            }
+        }
+        
+        function startQuiz(subject, level) {
+            alert(`🎮 Quiz ${subject} ${level} - En cours de développement`);
+        }
+        
+        // Animation d'entrée
+        window.addEventListener('load', function() {
+            const content = document.querySelector('.home-content');
+            content.style.opacity = '0';
+            content.style.transform = 'translateY(30px)';
+            
+            setTimeout(() => {
+                content.style.transition = 'all 0.8s ease';
+                content.style.opacity = '1';
+                content.style.transform = 'translateY(0)';
+            }, 100);
+        });
+    </script>
+</body>
+</html>

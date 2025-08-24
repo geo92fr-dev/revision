@@ -1,0 +1,25 @@
+/* Index principal des styles - Import de tous les modules CSS */
+
+/* Styles de base et configuration globale */
+@import './base.css';
+
+/* Composants réutilisables */
+@import './components.css';
+
+/* Sections collapsibles */
+@import './collapsible.css';
+
+/* Cartes et éléments d'information */
+@import './cards.css';
+
+/* Exercices et quiz */
+@import './exercises.css';
+
+/* Système de monitoring et progression */
+@import './monitoring.css';
+
+/* Pré-évaluation et tests */
+@import './evaluation.css';
+
+/* Métacognition et réflexion */
+@import './metacognition.css';

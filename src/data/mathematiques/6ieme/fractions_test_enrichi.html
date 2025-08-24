@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Fractions 6ème - Version Enrichie</title>
+    <link rel="stylesheet" href="../../../styles/index.css">
+</head>
+<body>
+    <div class="main-container">
+        <h1>📚 Comprendre les fractions - 6ème</h1>
+        
+        <!-- Section d'informations générales -->
+        <div class="info-section">
+            <div class="section">
+                <h3>🎯 Objectif</h3>
+                <p>Savoir lire, écrire et représenter une fraction.</p>
+            </div>
+            
+            <div class="info-grid">
+                <div class="info-card utilite-card">
+                    <h4>🌍 Pourquoi c'est important ?</h4>
+                    <p>Les fractions sont essentielles pour cuisiner, partager des objets, calculer des remises, comprendre les pourcentages et gérer son budget.</p>
+                </div>
+                
+                <div class="info-card funfact-card">
+                    <h4>🤯 Fun Fact</h4>
+                    <p>Dans une étude américaine, 3 adultes sur 5 ont avoué qu'ils préféraient partager une pizza plutôt que des bonbons… mais 2 sur 5 ne savaient pas calculer 3/8 d'une pizza ! 🍕😂</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Phase 1: Test de Pré-évaluation -->
+        <div class="collapsible-section">
+            <div class="collapsible-header" id="preEvalHeader" onclick="toggleSection('preEval')">
+                <span>🔍 Phase 1: Test de Pré-évaluation</span>
+                <span class="collapsible-icon">🔽</span>
+            </div>
+            <div class="collapsible-content expanded" id="preEvalContent">
+                <div class="collapsible-inner">
+                    <div class="section pre-evaluation" id="preEvaluation">
+                        <p>Ce test permet de voir si tu es déjà à l'aise avec ce sujet.</p>
+                        
+                        <div class="mini-test">
+                            <h4>📋 Mini-test rapide</h4>
+                            
+                            <!-- Question 1 -->
+                            <div class="test-question">
+                                <p><strong>1.</strong> Dans la fraction 7/9, quel est le dénominateur ?</p>
+                                <div class="test-options">
+                                    <button class="test-option" onclick="answerPreTest(1, 'wrong', this)">7</button>
+                                    <button class="test-option" onclick="answerPreTest(1, 'correct', this)">9</button>
+                                    <button class="test-option" onclick="answerPreTest(1, 'wrong', this)">16</button>
+                                    <button class="test-option" onclick="answerPreTest(1, 'wrong', this)">2</button>
+                                </div>
+                            </div>
+                            
+                            <!-- Question 2 -->
+                            <div class="test-question">
+                                <p><strong>2.</strong> Que représente la fraction 3/4 ?</p>
+                                <div class="test-options">
+                                    <button class="test-option" onclick="answerPreTest(2, 'wrong', this)">3 + 4</button>
+                                    <button class="test-option" onclick="answerPreTest(2, 'correct', this)">3 parts sur 4</button>
+                                    <button class="test-option" onclick="answerPreTest(2, 'wrong', this)">4 parts sur 3</button>
+                                    <button class="test-option" onclick="answerPreTest(2, 'wrong', this)">3 × 4</button>
+                                </div>
+                            </div>
+                            
+                            <!-- Question 3 -->
+                            <div class="test-question">
+                                <p><strong>3.</strong> Si je colorie 2 carrés sur 5, quelle fraction cela représente-t-il ?</p>
+                                <div class="test-options">
+                                    <button class="test-option" onclick="answerPreTest(3, 'wrong', this)">5/2</button>
+                                    <button class="test-option" onclick="answerPreTest(3, 'correct', this)">2/5</button>
+                                    <button class="test-option" onclick="answerPreTest(3, 'wrong', this)">3/5</button>
+                                    <button class="test-option" onclick="answerPreTest(3, 'wrong', this)">2/3</button>
+                                </div>
+                            </div>
+                            
+                            <div class="pre-test-result" id="preTestResult" style="display: none;">
+                                <div class="recommendation" id="recommendation"></div>
+                                <button class="btn-primary" id="startLearning" onclick="startAdaptedPath()">Commencer</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Phase 2: Cours et Étapes d'apprentissage -->
+        <div class="collapsible-section">
+            <div class="collapsible-header" id="coursHeader" onclick="toggleSection('cours')">
+                <span>📖 Phase 2: Cours et Étapes d'apprentissage</span>
+                <span class="collapsible-icon">🔽</span>
+            </div>
+            <div class="collapsible-content" id="coursContent">
+                <div class="collapsible-inner">
+                    <div class="section" id="coursSection">
+                        <h3>📖 Cours</h3>
+                        <p>Une fraction représente une partie d'un tout. Exemple : 3/4 signifie 3 parts sur 4 au total.</p>
+                    </div>
+
+                    <div class="section">
+                        <h3>🔢 Étapes d'apprentissage</h3>
+                        <div class="etapes">
+                            <ol>
+                                <li>
+                                    <strong>Identifier le numérateur et le dénominateur</strong>
+                                    <div class="etape-detail">
+                                        <strong>Comment :</strong> Dans une fraction a/b, le nombre du haut (a) est le numérateur (parts prises), le nombre du bas (b) est le dénominateur (total de parts). 
+                                        <em>Exemple : dans 3/5, le numérateur est 3 et le dénominateur est 5.</em>
+                                    </div>
+                                </li>
+                                <li>
+                                    <strong>Représenter une fraction sur un schéma</strong>
+                                    <div class="etape-detail">
+                                        <strong>Comment :</strong> Dessine une figure (cercle, rectangle, barre) et divise-la en autant de parts égales que le dénominateur, puis colorie le nombre de parts indiqué par le numérateur.
+                                        <em>Exemple : pour 2/3, divise en 3 parts et colorie 2 parts.</em>
+                                    </div>
+                                </li>
+                                <li>
+                                    <strong>Comparer et classer des fractions</strong>
+                                    <div class="etape-detail">
+                                        <strong>Comment :</strong> Si même dénominateur, compare les numérateurs. Sinon, convertis au même dénominateur ou utilise les décimaux.
+                                        <em>Exemple : 2/5 < 3/5 car 2 < 3. Pour 1/2 vs 2/3, convertis : 3/6 vs 4/6, donc 1/2 < 2/3.</em>
+                                    </div>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="section">
+                        <h3>💡 Exemple concret</h3>
+                        <p>Si tu manges 2 parts sur 8 d'un gâteau, tu as mangé 2/8, soit 1/4.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Phase 3: Exercices progressifs -->
+        <div class="collapsible-section">
+            <div class="collapsible-header" id="exercicesHeader" onclick="toggleSection('exercices')">
+                <span>🏋️ Phase 3: Exercices progressifs</span>
+                <span class="collapsible-icon">🔽</span>
+            </div>
+            <div class="collapsible-content" id="exercicesContent">
+                <div class="collapsible-inner">
+                    
+                    <!-- Astuces & Pièges -->
+                    <div class="section">
+                        <h3>💡 Astuces & Pièges</h3>
+                        <div class="astuce">
+                            <strong>🎯 Astuce :</strong> Pour bien identifier une fraction, souviens-toi que le numérateur (en haut) indique combien de parts on prend, et le dénominateur (en bas) indique en combien de parts égales on divise le tout.
+                        </div>
+                        <div class="astuce" style="margin-top: 10px; background: linear-gradient(135deg, #fed7e2 0%, #fbb6ce 100%); border-left-color: #e53e3e;">
+                            <strong>⚠️ Piège classique :</strong> Ne confonds pas 3/4 avec 4/3 ! Dans 3/4, on prend 3 parts sur 4. Dans 4/3, on prend 4 parts sur 3 (plus que le tout !).
+                        </div>
+                    </div>
+                    
+                    <div class="section">                
+                        <div class="exercices">
+                            <div class="exercice debutant">
+                                <strong>🟢 Débutant</strong><br>
+                                <p>Colorie 1/2 d'un rectangle.</p>
+                                <div class="exercice-interactif">
+                                    <div class="rectangle-grid" id="rect-exercise">
+                                        <div class="rect-part" onclick="togglePart(this)"></div>
+                                        <div class="rect-part" onclick="togglePart(this)"></div>
+                                        <div class="rect-part" onclick="togglePart(this)"></div>
+                                        <div class="rect-part" onclick="togglePart(this)"></div>
+                                    </div>
+                                    <button onclick="checkRectangle()" class="check-btn">Vérifier</button>
+                                    <div id="rect-feedback" class="exercise-feedback"></div>
+                                </div>
+                            </div>
+                            <div class="exercice intermediaire">
+                                <strong>🟡 Intermédiaire</strong><br>
+                                <p>Repère 3/4 sur une droite graduée.</p>
+                                <div class="exercice-interactif">
+                                    <div class="number-line">
+                                        <div class="line"></div>
+                                        <div class="markers">
+                                            <span class="marker" data-value="0">0</span>
+                                            <span class="marker clickable" data-value="0.25" onclick="selectMarker(this, '1/4')">|</span>
+                                            <span class="marker clickable" data-value="0.5" onclick="selectMarker(this, '1/2')">|</span>
+                                            <span class="marker clickable" data-value="0.75" onclick="selectMarker(this, '3/4')">|</span>
+                                            <span class="marker" data-value="1">1</span>
+                                        </div>
+                                    </div>
+                                    <p style="margin: 10px 0;">Clique sur la position de 3/4 :</p>
+                                    <div id="line-feedback" class="exercise-feedback"></div>
+                                </div>
+                            </div>
+                            <div class="exercice avance">
+                                <strong>🔴 Avancé</strong><br>
+                                <p>Calcule : 5/8 d'un gâteau de 32 parts.</p>
+                                <div class="exercice-interactif">
+                                    <div class="calculation-area">
+                                        <p>5/8 × 32 = ?</p>
+                                        <input type="number" id="calc-input" placeholder="Ta réponse" style="padding: 8px; border: 2px solid #e2e8f0; border-radius: 8px; width: 100px; margin: 10px;">
+                                        <button onclick="checkCalculation()" class="check-btn">Vérifier</button>
+                                        <div id="calc-feedback" class="exercise-feedback"></div>
+                                        <div class="hint" style="margin-top: 10px; font-size: 0.9em; color: #666;">
+                                            💡 Astuce : (5 × 32) ÷ 8
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Mini Quiz -->
+                        <div class="section">
+                            <h3>🎯 Mini Quiz</h3>
+                            <div class="quiz">
+                                <p><strong>Question :</strong> Quelle fraction représente 2 parts sur 5 ?</p>
+                                <div class="choix">
+                                    <span onclick="checkAnswer(this, false)">2/3</span>
+                                    <span onclick="checkAnswer(this, false)">5/2</span>
+                                    <span onclick="checkAnswer(this, true)">2/5</span>
+                                    <span onclick="checkAnswer(this, false)">1/2</span>
+                                </div>
+                                <div id="feedback" style="margin-top: 10px; font-weight: bold;"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Défi -->
+                        <div class="section">
+                            <h3>🚀 Défi</h3>
+                            <div class="defi">
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                                    <span>Tu as 30 secondes pour trouver 3 fractions équivalentes à 2/3.</span>
+                                    <button onclick="startChallenge()" id="challengeBtn" style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; border: none; padding: 8px 16px; border-radius: 8px; cursor: pointer; font-weight: 600;">Start ⏱️</button>
+                                </div>
+                                <div id="challengeTimer" style="display: none; text-align: center; font-size: 1.2rem; font-weight: bold; color: #9f7aea;"></div>
+                                <div id="challengeInput" style="display: none; margin-top: 12px;">
+                                    <input type="text" placeholder="Ex: 4/6" style="padding: 8px; margin: 4px; border: 2px solid #e2e8f0; border-radius: 8px; width: 80px;">
+                                    <input type="text" placeholder="Ex: 6/9" style="padding: 8px; margin: 4px; border: 2px solid #e2e8f0; border-radius: 8px; width: 80px;">
+                                    <input type="text" placeholder="Ex: 8/12" style="padding: 8px; margin: 4px; border: 2px solid #e2e8f0; border-radius: 8px; width: 80px;">
+                                </div>
+                                <div id="challengeResult" style="margin-top: 12px; text-align: center; font-weight: bold;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Phase 4: Réflexion et Métacognition -->
+        <div class="collapsible-section">
+            <div class="collapsible-header" id="metacognitionHeader" onclick="toggleSection('metacognition')">
+                <span>🤔 Phase 4: Réflexion et Métacognition</span>
+                <span class="collapsible-icon">🔽</span>
+            </div>
+            <div class="collapsible-content" id="metacognitionContent">
+                <div class="collapsible-inner">
+                    
+                    <!-- Penses-tu avoir atteint l'objectif -->
+                    <div class="section">
+                        <h3>🎯 Penses-tu avoir atteint l'objectif</h3>
+                        <div class="monitoring" id="monitoring-objectif">
+                            <h4>📋 "Savoir lire, écrire et représenter une fraction"</h4>
+                            <div class="monitoring-buttons">
+                                <button class="monitoring-btn" onclick="rateSection('objectif', 4, this)">🎉 Complètement</button>
+                                <button class="monitoring-btn" onclick="rateSection('objectif', 3, this)">👍 En grande partie</button>
+                                <button class="monitoring-btn" onclick="rateSection('objectif', 2, this)">🤔 Partiellement</button>
+                                <button class="monitoring-btn" onclick="rateSection('objectif', 1, this)">😔 Pas vraiment</button>
+                            </div>
+                            <div class="monitoring-feedback" id="feedback-objectif"></div>
+                        </div>
+                    </div>
+
+                    <!-- Qu'est-ce qui t'a semblé le plus facile -->
+                    <div class="section">
+                        <div class="metacognition-question">
+                            <h4>😊 Qu'est-ce qui t'a semblé le plus facile ?</h4>
+                            <div class="metacognition-options">
+                                <button class="meta-btn" onclick="selectMetaAnswer('facile', 'identifier', this)">🔍 Identifier le numérateur et le dénominateur</button>
+                                <button class="meta-btn" onclick="selectMetaAnswer('facile', 'representer', this)">🎨 Représenter une fraction sur un schéma</button>
+                                <button class="meta-btn" onclick="selectMetaAnswer('facile', 'exercices', this)">💪 Faire les exercices interactifs</button>
+                                <button class="meta-btn" onclick="selectMetaAnswer('facile', 'comprendre', this)">💡 Comprendre le concept général</button>
+                            </div>
+                            <div class="meta-feedback" id="feedback-facile"></div>
+                        </div>
+                    </div>
+
+                    <!-- Quelle a été la plus grande difficulté -->
+                    <div class="section">
+                        <div class="metacognition-question">
+                            <h4>😅 Quelle a été la plus grande difficulté pour toi ?</h4>
+                            <div class="metacognition-options">
+                                <button class="meta-btn" onclick="selectMetaAnswer('difficile', 'confusion', this)">🔄 Confondre numérateur et dénominateur</button>
+                                <button class="meta-btn" onclick="selectMetaAnswer('difficile', 'representation', this)">🎨 Représenter visuellement les fractions</button>
+                                <button class="meta-btn" onclick="selectMetaAnswer('difficile', 'equivalence', this)">⚖️ Comprendre les fractions équivalentes</button>
+                                <button class="meta-btn" onclick="selectMetaAnswer('difficile', 'aucune', this)">🌟 Aucune difficulté particulière</button>
+                            </div>
+                            <div class="meta-feedback" id="feedback-difficile"></div>
+                        </div>
+                    </div>
+
+                    <!-- Comment utiliser dans la vie quotidienne -->
+                    <div class="section">
+                        <div class="metacognition-question">
+                            <h4>🌟 Comment pourrais-tu utiliser les fractions dans ta vie de tous les jours ?</h4>
+                            <div class="metacognition-options">
+                                <button class="meta-btn" onclick="selectMetaAnswer('utilite', 'cuisine', this)">🍕 Partager une pizza ou découper un gâteau</button>
+                                <button class="meta-btn" onclick="selectMetaAnswer('utilite', 'chocolat', this)">🍫 Partager une tablette de chocolat</button>
+                                <button class="meta-btn" onclick="selectMetaAnswer('utilite', 'temps', this)">⏰ Comprendre les heures (1/2 heure, 1/4 d'heure)</button>
+                                <button class="meta-btn" onclick="selectMetaAnswer('utilite', 'sport', this)">⚽ Compter les buts dans un match (2 buts sur 3 tentatives)</button>
+                            </div>
+                            <div class="meta-feedback" id="feedback-utilite"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Défi pratique personnalisé -->
+                    <div class="practical-challenge" id="practicalChallenge" style="display: none;">
+                        <h4>🎮 Défi pratique personnalisé</h4>
+                        <div class="challenge-scenario" id="challengeScenario"></div>
+                        <div class="challenge-input">
+                            <input type="number" id="practicalAnswer" placeholder="Ta réponse">
+                            <button onclick="checkPracticalChallenge()">Vérifier</button>
+                        </div>
+                        <div class="challenge-feedback" id="practicalFeedback"></div>
+                    </div>
+                    
+                    <!-- Bouton pour finaliser -->
+                    <div class="final-completion" id="finalCompletion" style="display: none;">
+                        <button class="btn-primary celebration" onclick="completeMetacognition()">✨ J'ai terminé ma réflexion !</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Variables globales pour la pré-évaluation
+        let preTestAnswers = {};
+        let preTestScore = 0;
+        let adaptedPath = 'beginner';
+        let preTestCompleted = false;
+        
+        // Variables pour la progression
+        let progressCount = 0;
+        let totalActivities = 5;
+        
+        // Variables pour les sections collapsibles
+        let completedSections = new Set();
+        let currentPhase = 1;
+        let totalScore = 0;
+        
+        // Variables pour les exercices
+        let exercisesCompleted = {
+            rectangle: false,
+            droite: false,
+            calcul: false
+        };
+        let metacognitionAnswers = {};
+        let selectedParts = 0;
+        let selectedMarker = null;
+        
+        // Variables pour le défi
+        let challengeTimer;
+        let timeLeft = 30;
+        
+        // Fonctions pour gérer les sections collapsibles
+        function toggleSection(sectionName) {
+            const content = document.getElementById(sectionName + 'Content');
+            const header = document.getElementById(sectionName + 'Header');
+            const icon = header.querySelector('.collapsible-icon');
+            
+            if (content.classList.contains('expanded')) {
+                content.classList.remove('expanded');
+                header.classList.remove('expanded');
+                icon.textContent = '🔽';
+            } else {
+                content.classList.add('expanded');
+                header.classList.add('expanded');
+                icon.textContent = '🔼';
+            }
+        }
+        
+        function markSectionCompleted(sectionName) {
+            completedSections.add(sectionName);
+            const header = document.getElementById(sectionName + 'Header');
+            if (header) {
+                header.classList.add('completed');
+            }
+            updateProgressDisplay();
+        }
+        
+        function updateProgressDisplay() {
+            const phases = ['preEval', 'cours', 'exercices', 'metacognition'];
+            const completedCount = completedSections.size;
+            console.log(`Progression: ${completedCount}/4 phases complétées`);
+        }
+        
+        // Gestion de la pré-évaluation
+        function answerPreTest(questionNumber, correctness, button) {
+            const questionDiv = button.parentElement;
+            const allButtons = questionDiv.querySelectorAll('.test-option');
+            
+            allButtons.forEach(btn => {
+                btn.disabled = true;
+                btn.style.opacity = '0.7';
+                btn.style.cursor = 'not-allowed';
+            });
+            
+            if (correctness === 'correct') {
+                button.classList.add('correct');
+                preTestAnswers[questionNumber] = true;
+            } else {
+                button.classList.add('wrong');
+                preTestAnswers[questionNumber] = false;
+                allButtons.forEach(btn => {
+                    if (btn.getAttribute('onclick').includes('correct')) {
+                        btn.classList.add('correct');
+                    }
+                });
+            }
+            
+            if (Object.keys(preTestAnswers).length === 3) {
+                evaluatePreTest();
+            }
+        }
+        
+        function evaluatePreTest() {
+            const correctAnswers = Object.values(preTestAnswers).filter(answer => answer).length;
+            preTestScore = correctAnswers;
+            
+            const resultDiv = document.getElementById('preTestResult');
+            const recommendationDiv = document.getElementById('recommendation');
+            
+            setTimeout(() => {
+                if (correctAnswers >= 2) {
+                    adaptedPath = 'advanced';
+                    recommendationDiv.innerHTML = `
+                        <div class="recommendation advanced">
+                            🌟 <strong>Super ! Tu as ${correctAnswers}/3 bonnes réponses.</strong><br>
+                            Tu as déjà de bonnes bases. Passe aux exercices plus avancés pour te perfectionner.
+                        </div>`;
+                } else {
+                    adaptedPath = 'beginner';
+                    recommendationDiv.innerHTML = `
+                        <div class="recommendation beginner">
+                            💪 <strong>Tu as ${correctAnswers}/3 bonnes réponses.</strong><br>
+                            Pas de panique ! C'est le bon moment pour revoir le cours. On reprend ensemble les bases.
+                        </div>`;
+                }
+                
+                resultDiv.style.display = 'block';
+                resultDiv.scrollIntoView({ behavior: 'smooth' });
+                preTestCompleted = true;
+                markSectionCompleted('preEval');
+            }, 1000);
+        }
+        
+        function startAdaptedPath() {
+            markSectionCompleted('preEval');
+            toggleSection('preEval');
+            
+            if (adaptedPath === 'advanced') {
+                toggleSection('exercices');
+                setTimeout(() => {
+                    document.getElementById('exercicesContent').scrollIntoView({ behavior: 'smooth' });
+                }, 400);
+            } else {
+                toggleSection('cours');
+                setTimeout(() => {
+                    document.getElementById('coursContent').scrollIntoView({ behavior: 'smooth' });
+                }, 400);
+            }
+        }
+        
+        // Gestion des exercices interactifs
+        function togglePart(element) {
+            if (element.classList.contains('selected')) {
+                element.classList.remove('selected');
+                selectedParts--;
+            } else {
+                element.classList.add('selected');
+                selectedParts++;
+            }
+        }
+        
+        function checkRectangle() {
+            const feedback = document.getElementById('rect-feedback');
+            const targetParts = 2; // 1/2 = 2 parts sur 4
+            
+            if (selectedParts === targetParts) {
+                feedback.innerHTML = '🎉 <strong>Bravo ! C\'est exactement ça.</strong><br>Tu as bien compris comment représenter une fraction : 1/2 = 2 parts coloriées sur 4 parts au total.';
+                feedback.className = 'exercise-feedback feedback-success';
+                exercisesCompleted.rectangle = true;
+            } else {
+                feedback.innerHTML = `❌ <strong>Pas encore !</strong><br>Pour 1/2, il faut colorier 2 parts sur 4. Tu en as colorié ${selectedParts}.`;
+                feedback.className = 'exercise-feedback feedback-error';
+            }
+        }
+        
+        function selectMarker(element, fraction) {
+            if (selectedMarker) {
+                selectedMarker.classList.remove('selected');
+            }
+            
+            element.classList.add('selected');
+            selectedMarker = element;
+            
+            const feedback = document.getElementById('line-feedback');
+            
+            if (fraction === '3/4') {
+                feedback.innerHTML = '🎯 <strong>Excellent ! Tu as visé juste.</strong><br>3/4 (trois quarts) est effectivement à cette position.';
+                feedback.className = 'exercise-feedback feedback-success';
+                exercisesCompleted.droite = true;
+            } else {
+                feedback.innerHTML = `❌ <strong>Pas tout à fait !</strong><br>Tu as sélectionné ${fraction}, mais on cherche 3/4.`;
+                feedback.className = 'exercise-feedback feedback-error';
+            }
+        }
+        
+        function checkCalculation() {
+            const input = document.getElementById('calc-input');
+            const feedback = document.getElementById('calc-feedback');
+            const answer = parseInt(input.value);
+            const correct = 20; // 5/8 × 32 = 20
+            
+            if (answer === correct) {
+                feedback.innerHTML = '🍰 <strong>Bravo ! C\'est exactement ça.</strong><br>5/8 × 32 = 20 parts de gâteau.';
+                feedback.className = 'exercise-feedback feedback-success';
+                exercisesCompleted.calcul = true;
+            } else {
+                feedback.innerHTML = `❌ <strong>${answer || 'Aucune réponse'} n'est pas correct.</strong><br>La bonne réponse est 20. Méthode : (5 × 32) ÷ 8 = 20.`;
+                feedback.className = 'exercise-feedback feedback-error';
+            }
+        }
+        
+        function checkAnswer(element, isCorrect) {
+            const feedback = document.getElementById('feedback');
+            const choices = document.querySelectorAll('.choix span');
+            
+            choices.forEach(choice => {
+                choice.style.background = 'linear-gradient(135deg, #e2e8f0 0%, #cbd5e0 100%)';
+                choice.style.color = '#2d3748';
+                choice.style.border = '2px solid transparent';
+            });
+            
+            if (isCorrect) {
+                element.style.background = 'linear-gradient(135deg, #68d391 0%, #38b2ac 100%)';
+                element.style.color = 'white';
+                element.style.border = '2px solid #22543d';
+                feedback.innerHTML = '🎉 <strong>Correct ! Excellent travail.</strong>';
+                feedback.className = 'feedback-success';
+            } else {
+                element.style.background = 'linear-gradient(135deg, #fc8181 0%, #f56565 100%)';
+                element.style.color = 'white';
+                element.style.border = '2px solid #742a2a';
+                feedback.innerHTML = '❌ <strong>Pas tout à fait !</strong>';
+                feedback.className = 'feedback-error';
+                
+                // Montrer la bonne réponse
+                choices.forEach(choice => {
+                    if (choice.textContent.trim() === '2/5') {
+                        choice.style.background = 'linear-gradient(135deg, #68d391 0%, #38b2ac 100%)';
+                        choice.style.color = 'white';
+                        choice.style.border = '2px solid #22543d';
+                    }
+                });
+            }
+        }
+        
+        // Fonctions de métacognition
+        function rateSection(section, rating, button) {
+            const buttons = button.parentElement.querySelectorAll('.monitoring-btn');
+            buttons.forEach(btn => btn.classList.remove('selected'));
+            button.classList.add('selected');
+            
+            const feedback = document.getElementById(`feedback-${section}`);
+            const messages = {
+                4: '🎉 Fantastique ! Tu maîtrises parfaitement les fractions !',
+                3: '👍 Très bien ! Tu as de bonnes bases sur les fractions.',
+                2: '🤔 C\'est un bon début. Continue à t\'entraîner !',
+                1: '💪 Pas de panique ! Avec de l\'entraînement, tu vas y arriver !'
+            };
+            
+            feedback.innerHTML = messages[rating];
+            feedback.style.display = 'block';
+        }
+        
+        function selectMetaAnswer(category, answer, button) {
+            const buttons = button.parentElement.querySelectorAll('.meta-btn');
+            buttons.forEach(btn => btn.classList.remove('selected'));
+            button.classList.add('selected');
+            
+            metacognitionAnswers[category] = answer;
+            
+            const feedback = document.getElementById(`feedback-${category}`);
+            const responses = {
+                facile: {
+                    identifier: '🔍 Super ! Identifier les éléments d\'une fraction est effectivement une base importante.',
+                    representer: '🎨 Excellent ! La représentation visuelle aide beaucoup à comprendre.',
+                    exercices: '💪 Bravo ! Les exercices interactifs rendent l\'apprentissage plus amusant.',
+                    comprendre: '💡 Parfait ! Comprendre le concept général est fondamental.'
+                },
+                difficile: {
+                    confusion: '🔄 C\'est un piège classique ! Retiens : numérateur en haut, dénominateur en bas.',
+                    representation: '🎨 Normal ! Avec de l\'entraînement, tu vas y arriver.',
+                    equivalence: '⚖️ C\'est un concept avancé, pas d\'inquiétude !',
+                    aucune: '🌟 Fantastique ! Tu as l\'air d\'avoir tout compris !'
+                },
+                utilite: {
+                    cuisine: '🍕 Exactement ! Les fractions sont très utiles en cuisine.',
+                    chocolat: '🍫 Miam ! C\'est un excellent exemple pratique.',
+                    temps: '⏰ Très pertinent ! Les fractions de temps sont partout.',
+                    sport: '⚽ Bonne observation ! Les statistiques utilisent souvent les fractions.'
+                }
+            };
+            
+            feedback.innerHTML = responses[category][answer] || 'Bonne réponse !';
+            feedback.style.display = 'block';
+            
+            // Déclencher le défi pratique après avoir répondu à l'utilité
+            if (category === 'utilite') {
+                setTimeout(() => {
+                    generatePracticalChallenge(answer);
+                }, 1000);
+            }
+            
+            // Vérifier si toutes les questions sont répondues
+            if (Object.keys(metacognitionAnswers).length >= 3) {
+                setTimeout(() => {
+                    document.getElementById('finalCompletion').style.display = 'block';
+                }, 2000);
+            }
+        }
+        
+        function generatePracticalChallenge(utilityType) {
+            const challenge = document.getElementById('practicalChallenge');
+            const scenario = document.getElementById('challengeScenario');
+            
+            const scenarios = {
+                cuisine: {
+                    text: '🍕 Tu veux partager une pizza en 8 parts égales entre 3 amis. Combien de parts aura chaque ami ?',
+                    answer: 2.67
+                },
+                chocolat: {
+                    text: '🍫 Tu as une tablette de 12 carrés de chocolat. Tu en manges 1/3. Combien de carrés as-tu mangés ?',
+                    answer: 4
+                },
+                temps: {
+                    text: '⏰ Si un film dure 2 heures et que tu en as regardé 3/4, combien de minutes as-tu regardé ?',
+                    answer: 90
+                },
+                sport: {
+                    text: '⚽ Dans un match, ton équipe a tiré 15 fois au but et a marqué 2/5 des tirs. Combien de buts avez-vous marqués ?',
+                    answer: 6
+                }
+            };
+            
+            const selectedScenario = scenarios[utilityType];
+            scenario.innerHTML = `<p>${selectedScenario.text}</p>`;
+            challenge.style.display = 'block';
+            challenge.scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        // Fonction pour le défi de fractions équivalentes
+        function startChallenge() {
+            const timer = document.getElementById('challengeTimer');
+            const input = document.getElementById('challengeInput');
+            const btn = document.getElementById('challengeBtn');
+            const result = document.getElementById('challengeResult');
+            
+            // Reset
+            btn.style.display = 'none';
+            timer.style.display = 'block';
+            input.style.display = 'block';
+            result.innerHTML = '';
+            timeLeft = 30;
+            
+            // Clear previous inputs
+            const inputs = input.querySelectorAll('input');
+            inputs.forEach(inp => {
+                inp.value = '';
+                inp.style.backgroundColor = '';
+            });
+            
+            // Start timer
+            challengeTimer = setInterval(() => {
+                timeLeft--;
+                timer.innerHTML = `⏱️ ${timeLeft} secondes`;
+                
+                if (timeLeft <= 10) {
+                    timer.style.color = '#f56565';
+                }
+                
+                if (timeLeft < 0) {
+                    endChallenge();
+                }
+            }, 1000);
+        }
+        
+        function endChallenge() {
+            clearInterval(challengeTimer);
+            const timer = document.getElementById('challengeTimer');
+            const input = document.getElementById('challengeInput');
+            const result = document.getElementById('challengeResult');
+            const btn = document.getElementById('challengeBtn');
+            
+            timer.innerHTML = '⏰ Temps écoulé !';
+            
+            const inputs = input.querySelectorAll('input');
+            const answers = Array.from(inputs).map(inp => inp.value.trim());
+            const validAnswers = ['4/6', '6/9', '8/12', '10/15', '12/18', '14/21'];
+            
+            let correct = 0;
+            answers.forEach((answer, index) => {
+                if (validAnswers.includes(answer)) {
+                    inputs[index].style.backgroundColor = '#c6f6d5';
+                    correct++;
+                } else if (answer) {
+                    inputs[index].style.backgroundColor = '#fed7d7';
+                }
+            });
+            
+            if (correct === 3) {
+                result.innerHTML = '🎉 Parfait ! Tu as trouvé 3 fractions équivalentes !';
+                result.style.color = '#22543d';
+            } else if (correct > 0) {
+                result.innerHTML = `👍 Bien ! Tu en as trouvé ${correct}/3. Exemples : 4/6, 6/9, 8/12`;
+                result.style.color = '#744210';
+            } else {
+                result.innerHTML = '💪 Pas grave ! Exemples : 4/6, 6/9, 8/12 (multiplie haut et bas par 2, 3, 4...)';
+                result.style.color = '#9f7aea';
+            }
+            
+            setTimeout(() => {
+                btn.style.display = 'inline-block';
+                btn.innerHTML = 'Rejouer ⏱️';
+                timer.style.display = 'none';
+            }, 3000);
+        }
+        
+        function checkPracticalChallenge() {
+            document.getElementById('practicalFeedback').innerHTML = '🎉 Bien joué !';
+        }
+        
+        function completeMetacognition() {
+            alert('🎉 Félicitations ! Tu as terminé cette leçon sur les fractions avec succès !');
+        }
+        
+        // Initialiser l'état par défaut (pré-évaluation ouverte)
+        window.addEventListener('load', function() {
+            toggleSection('preEval');
+            updateProgressDisplay();
+        });
+    </script>
+</body>
+</html>

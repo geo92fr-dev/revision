@@ -1,0 +1,85 @@
+/* Styles pour pré-évaluation et tests */
+
+.pre-evaluation {
+    background: linear-gradient(135deg, #e6fffa 0%, #b2f5ea 100%);
+    border-left: 4px solid #38b2ac;
+    box-shadow: 0 4px 12px rgba(56, 178, 172, 0.2);
+}
+
+.mini-test {
+    margin-top: 20px;
+}
+
+.test-question {
+    margin-bottom: 24px;
+    padding: 16px;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 12px;
+    backdrop-filter: blur(5px);
+}
+
+.test-question p {
+    margin-bottom: 12px;
+    font-weight: 600;
+    color: #2d3748;
+}
+
+.test-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+}
+
+.test-option {
+    padding: 12px 16px;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    background: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    color: #4a5568;
+}
+
+.test-option:hover {
+    border-color: #38b2ac;
+    background: #f0fdfa;
+    transform: translateY(-1px);
+}
+
+.test-option.correct {
+    background: linear-gradient(135deg, #c6f6d5 0%, #9ae6b4 100%);
+    border-color: #48bb78;
+    color: #22543d;
+}
+
+.test-option.wrong {
+    background: linear-gradient(135deg, #fed7d7 0%, #fbb6ce 100%);
+    border-color: #f56565;
+    color: #742a2a;
+}
+
+.pre-test-result {
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.recommendation {
+    margin-bottom: 16px;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.recommendation.advanced {
+    background: linear-gradient(135deg, #c6f6d5 0%, #9ae6b4 100%);
+    color: #22543d;
+    border-left: 4px solid #48bb78;
+}
+
+.recommendation.beginner {
+    background: linear-gradient(135deg, #bee3f8 0%, #90cdf4 100%);
+    color: #2c5282;
+    border-left: 4px solid #3182ce;
+}

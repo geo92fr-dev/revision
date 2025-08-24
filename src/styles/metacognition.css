@@ -1,0 +1,111 @@
+/* Styles pour métacognition et réflexion */
+
+.metacognition {
+    background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+    border-left: 4px solid #4a5568;
+    box-shadow: 0 4px 12px rgba(74, 85, 104, 0.2);
+}
+
+.metacognition-question {
+    margin-bottom: 24px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 12px;
+    backdrop-filter: blur(5px);
+}
+
+.metacognition-question h4 {
+    margin-bottom: 16px;
+    color: #2d3748;
+    font-size: 1.1rem;
+}
+
+.metacognition-options {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.meta-btn {
+    padding: 12px 16px;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    background: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: left;
+    font-weight: 500;
+    color: #4a5568;
+}
+
+.meta-btn:hover {
+    border-color: #4a5568;
+    background: #f7fafc;
+    transform: translateX(4px);
+}
+
+.meta-btn.selected {
+    background: linear-gradient(135deg, #bee3f8 0%, #90cdf4 100%);
+    border-color: #3182ce;
+    color: #2c5282;
+}
+
+.meta-feedback {
+    margin-top: 12px;
+    padding: 12px;
+    border-radius: 8px;
+    font-style: italic;
+    display: none;
+}
+
+.meta-feedback.show {
+    display: block;
+    background: linear-gradient(135deg, #e6fffa 0%, #b2f5ea 100%);
+    border-left: 3px solid #38b2ac;
+    color: #234e52;
+}
+
+.practical-challenge {
+    margin-top: 20px;
+    padding: 20px;
+    background: linear-gradient(135deg, #fef5e7 0%, #fdeaa7 100%);
+    border-radius: 12px;
+    border-left: 4px solid #ecc94b;
+}
+
+.challenge-scenario {
+    margin-bottom: 16px;
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: #744210;
+}
+
+.challenge-input {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.challenge-input input {
+    flex: 1;
+    padding: 10px;
+    border: 2px solid #d69e2e;
+    border-radius: 6px;
+    font-size: 1rem;
+}
+
+.challenge-input button {
+    padding: 10px 20px;
+    background: linear-gradient(135deg, #ecc94b 0%, #d69e2e 100%);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.final-completion {
+    text-align: center;
+    margin-top: 30px;
+}

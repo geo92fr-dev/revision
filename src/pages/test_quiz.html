@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test QuizPreEvaluation</title>
+    <link rel="stylesheet" href="../styles/index.css">
+    <style>
+        /* Styles pour le composant QuizPreEvaluation */
+        .quiz-progress {
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 1rem;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transition: width 0.3s ease;
+        }
+        
+        .quiz-question h4 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: #2d3748;
+        }
+        
+        .quiz-options {
+            display: grid;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .quiz-option {
+            padding: 1rem;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.8);
+            color: #2d3748;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: left;
+        }
+        
+        .quiz-option:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(31, 38, 135, 0.3);
+            border-color: #667eea;
+        }
+        
+        .quiz-option.correct {
+            background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+            border-color: #28a745;
+            color: #155724;
+        }
+        
+        .quiz-option.wrong {
+            background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%);
+            border-color: #dc3545;
+            color: #721c24;
+        }
+        
+        .quiz-feedback {
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        
+        .feedback-success {
+            background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+            color: #155724;
+            margin: 0;
+        }
+        
+        .feedback-error {
+            background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%);
+            color: #721c24;
+            margin: 0;
+        }
+        
+        .quiz-next {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+        
+        .quiz-next:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(31, 38, 135, 0.5);
+        }
+        
+        .quiz-results {
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .score-display {
+            margin: 2rem 0;
+        }
+        
+        .score-circle {
+            display: inline-block;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto;
+        }
+        
+        .score-number {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        
+        .score-percentage {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        
+        .recommendation {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .detailed-results {
+            text-align: left;
+            margin: 2rem 0;
+        }
+        
+        .result-item {
+            padding: 1rem;
+            margin: 0.5rem 0;
+            border-radius: 8px;
+            border-left: 4px solid;
+        }
+        
+        .result-item.correct {
+            background: rgba(212, 237, 218, 0.5);
+            border-left-color: #28a745;
+        }
+        
+        .result-item.incorrect {
+            background: rgba(248, 215, 218, 0.5);
+            border-left-color: #dc3545;
+        }
+        
+        .btn-large {
+            padding: 1.5rem 3rem;
+            font-size: 1.1rem;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <h1>🧪 Test du composant QuizPreEvaluation</h1>
+        
+        <div class="section">
+            <h3>📋 Test de Pré-évaluation</h3>
+            <div id="quizContainer">
+                <!-- Le quiz sera rendu ici -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Phase 1: Composant QuizPreEvaluation - Version de test
+        class QuizPreEvaluation {
+            constructor(questions, containerId) {
+                console.log('🔧 Initialisation QuizPreEvaluation', { questions, containerId });
+                this.questions = questions;
+                this.container = document.getElementById(containerId);
+                this.currentQuestion = 0;
+                this.answers = {};
+                this.score = 0;
+                this.isCompleted = false;
+                
+                if (!this.container) {
+                    console.error('❌ Container non trouvé:', containerId);
+                    return;
+                }
+                console.log('✅ Container trouvé:', this.container);
+            }
+
+            render() {
+                this.container.innerHTML = '';
+                
+                if (this.currentQuestion < this.questions.length) {
+                    this.renderCurrentQuestion();
+                } else {
+                    this.renderResults();
+                }
+            }
+
+            renderCurrentQuestion() {
+                const question = this.questions[this.currentQuestion];
+                const progress = ((this.currentQuestion + 1) / this.questions.length) * 100;
+                
+                this.container.innerHTML = `
+                    <div class="quiz-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: ${progress}%"></div>
+                        </div>
+                        <p>Question ${this.currentQuestion + 1} sur ${this.questions.length}</p>
+                    </div>
+                    
+                    <div class="quiz-question">
+                        <h4>${question.question}</h4>
+                        <div class="quiz-options">
+                            ${question.choix.map((choix, index) => `
+                                <button class="quiz-option" data-answer="${choix}" onclick="quizComponent.selectAnswer('${choix}', this)">
+                                    ${choix}
+                                </button>
+                            `).join('')}
+                        </div>
+                    </div>
+                    
+                    <div class="quiz-feedback" id="questionFeedback" style="display: none;"></div>
+                    <button class="quiz-next" id="nextButton" onclick="quizComponent.nextQuestion()" style="display: none;">
+                        ${this.currentQuestion === this.questions.length - 1 ? 'Voir mes résultats' : 'Question suivante'}
+                    </button>
+                `;
+            }
+
+            selectAnswer(selectedAnswer, buttonElement) {
+                const question = this.questions[this.currentQuestion];
+                const isCorrect = selectedAnswer === question.reponse;
+                
+                // Désactiver tous les boutons
+                const buttons = this.container.querySelectorAll('.quiz-option');
+                buttons.forEach(btn => {
+                    btn.disabled = true;
+                    btn.style.opacity = '0.7';
+                });
+
+                // Marquer la réponse
+                if (isCorrect) {
+                    buttonElement.classList.add('correct');
+                    this.score++;
+                } else {
+                    buttonElement.classList.add('wrong');
+                    // Montrer la bonne réponse
+                    buttons.forEach(btn => {
+                        if (btn.dataset.answer === question.reponse) {
+                            btn.classList.add('correct');
+                        }
+                    });
+                }
+
+                // Stocker la réponse
+                this.answers[this.currentQuestion] = {
+                    selected: selectedAnswer,
+                    correct: question.reponse,
+                    isCorrect: isCorrect
+                };
+
+                // Afficher feedback et bouton suivant
+                this.showFeedback(isCorrect);
+                document.getElementById('nextButton').style.display = 'block';
+            }
+
+            showFeedback(isCorrect) {
+                const feedbackDiv = document.getElementById('questionFeedback');
+                feedbackDiv.style.display = 'block';
+                
+                if (isCorrect) {
+                    feedbackDiv.innerHTML = '<p class="feedback-success">🎉 Bonne réponse !</p>';
+                } else {
+                    feedbackDiv.innerHTML = '<p class="feedback-error">❌ Pas tout à fait, mais continue !</p>';
+                }
+            }
+
+            nextQuestion() {
+                this.currentQuestion++;
+                this.render();
+            }
+
+            renderResults() {
+                const percentage = Math.round((this.score / this.questions.length) * 100);
+                let level, message, recommendation;
+
+                if (percentage >= 67) {
+                    level = 'advanced';
+                    message = '🎉 Excellent !';
+                    recommendation = 'Tu peux aller directement aux exercices avancés.';
+                } else if (percentage >= 33) {
+                    level = 'intermediate';
+                    message = '👍 Bien joué !';
+                    recommendation = 'Révise le cours puis fais les exercices.';
+                } else {
+                    level = 'beginner';
+                    message = '💪 C\'est un début !';
+                    recommendation = 'Commence par bien étudier le cours.';
+                }
+
+                this.container.innerHTML = `
+                    <div class="quiz-results">
+                        <h3>${message}</h3>
+                        <div class="score-display">
+                            <div class="score-circle">
+                                <span class="score-number">${this.score}/${this.questions.length}</span>
+                                <span class="score-percentage">${percentage}%</span>
+                            </div>
+                        </div>
+                        
+                        <div class="recommendation">
+                            <h4>📊 Ton niveau</h4>
+                            <p><strong>Parcours recommandé :</strong> ${recommendation}</p>
+                        </div>
+                        
+                        <div class="detailed-results">
+                            <h4>📋 Détail de tes réponses</h4>
+                            ${this.questions.map((q, index) => {
+                                const answer = this.answers[index];
+                                return `
+                                    <div class="result-item ${answer.isCorrect ? 'correct' : 'incorrect'}">
+                                        <p><strong>Q${index + 1}:</strong> ${q.question}</p>
+                                        <p>Ta réponse: ${answer.selected} ${answer.isCorrect ? '✅' : '❌'}</p>
+                                        ${!answer.isCorrect ? `<p>Bonne réponse: ${answer.correct}</p>` : ''}
+                                    </div>
+                                `;
+                            }).join('')}
+                        </div>
+                        
+                        <button onclick="alert('Test terminé ! Niveau: ${level}')" class="btn-primary btn-large">
+                            🚀 Test terminé (${level})
+                        </button>
+                    </div>
+                `;
+
+                this.isCompleted = true;
+                console.log('✅ Quiz terminé. Score:', this.score, 'Niveau:', level);
+            }
+        }
+
+        // Données de test
+        const testQuestions = [
+            {
+                question: "Dans la fraction 7/9, quel est le dénominateur ?",
+                choix: ["7", "9", "16", "2"],
+                reponse: "9"
+            },
+            {
+                question: "Que représente la fraction 3/4 ?",
+                choix: ["3 + 4", "3 parts sur 4", "4 parts sur 3", "3 × 4"],
+                reponse: "3 parts sur 4"
+            },
+            {
+                question: "Si je colorie 2 carrés sur 5, quelle fraction cela représente-t-il ?",
+                choix: ["5/2", "2/5", "3/5", "2/3"],
+                reponse: "2/5"
+            }
+        ];
+
+        // Initialisation du test
+        let quizComponent;
+
+        window.addEventListener('load', function() {
+            console.log('🔄 Page de test chargée');
+            quizComponent = new QuizPreEvaluation(testQuestions, 'quizContainer');
+            quizComponent.render();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mathématiques 6ème - FunRevis</title>
+    <link rel="stylesheet" href="../../../styles/index.css">
+    <style>
+        .sixth-container {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 2rem;
+        }
+        
+        .sixth-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .sixth-title {
+            font-size: 3rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .sixth-subtitle {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2rem;
+        }
+        
+        .breadcrumb {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
+        }
+        
+        .breadcrumb a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+        
+        .topics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .topic-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-align: center;
+        }
+        
+        .topic-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(31, 38, 135, 0.5);
+        }
+        
+        .topic-card.available {
+            border-left: 5px solid #4CAF50;
+        }
+        
+        .topic-card.coming-soon {
+            border-left: 5px solid #FF9800;
+            opacity: 0.8;
+        }
+        
+        .topic-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .topic-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+        
+        .topic-description {
+            color: #666;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        
+        .topic-skills {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+        
+        .topic-skills li {
+            background: rgba(102, 126, 234, 0.1);
+            padding: 0.5rem 1rem;
+            margin-bottom: 0.5rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            color: #333;
+        }
+        
+        .topic-status {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .status-available {
+            background: #4CAF50;
+            color: white;
+        }
+        
+        .status-coming-soon {
+            background: #FF9800;
+            color: white;
+        }
+        
+        .topic-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            width: 100%;
+        }
+        
+        .topic-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .topic-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .back-btn {
+            position: fixed;
+            top: 2rem;
+            left: 2rem;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            padding: 1rem;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            z-index: 100;
+        }
+        
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+        
+        .progress-info {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
+            text-align: center;
+        }
+        
+        .progress-info h3 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+        
+        .progress-info p {
+            color: rgba(255, 255, 255, 0.9);
+        }
+    </style>
+</head>
+<body>
+    <div class="sixth-container">
+        <button class="back-btn" onclick="goBack()">←</button>
+        
+        <div class="sixth-header">
+            <div class="breadcrumb">
+                <a href="../../index.html">🏠 Accueil</a> → 
+                <a href="../index.html">🧮 Mathématiques</a> → 
+                <span>📚 6ème</span>
+            </div>
+            <h1 class="sixth-title">📚 Mathématiques 6ème</h1>
+            <p class="sixth-subtitle">Maîtrisez les fondamentaux des mathématiques</p>
+            
+            <div class="progress-info">
+                <h3>🎯 Votre Progression</h3>
+                <p>2 chapitres disponibles • Plus de contenus à venir</p>
+            </div>
+        </div>
+        
+        <div class="topics-grid">
+            <div class="topic-card available" onclick="openTopic('fractions')">
+                <div class="topic-icon">🍕</div>
+                <span class="topic-status status-available">✅ Disponible</span>
+                <h2 class="topic-title">Les Fractions</h2>
+                <p class="topic-description">
+                    Apprenez à lire, écrire et représenter les fractions. 
+                    Un concept fondamental expliqué de manière interactive et ludique.
+                </p>
+                <ul class="topic-skills">
+                    <li>🔍 Identifier numérateur et dénominateur</li>
+                    <li>🎨 Représentation graphique</li>
+                    <li>⚖️ Comparaison de fractions</li>
+                    <li>🧮 Calculs simples</li>
+                </ul>
+                <a href="../../page_de_cours.html?subject=mathematiques&level=6ieme&topic=fractions" class="topic-btn">Commencer les fractions</a>
+            </div>
+            
+            <div class="topic-card available" onclick="openTopic('algebre')">
+                <div class="topic-icon">🔤</div>
+                <span class="topic-status status-available">✅ Disponible</span>
+                <h2 class="topic-title">Découvrir l'algèbre</h2>
+                <p class="topic-description">
+                    Introduction aux expressions littérales et au calcul algébrique.
+                    Apprenez le langage des mathématiques !
+                </p>
+                <ul class="topic-skills">
+                    <li>🔤 Comprendre les variables</li>
+                    <li>🧮 Calculer des expressions</li>
+                    <li>📝 Simplifier des expressions</li>
+                    <li>🎯 Applications pratiques</li>
+                </ul>
+                <a href="../../page_de_cours.html?subject=mathematiques&level=6ieme&topic=algebre" class="topic-btn">Découvrir l'algèbre</a>
+            </div>
+            
+            <div class="topic-card coming-soon" onclick="comingSoon('Nombres décimaux')">
+                <div class="topic-icon">🔢</div>
+                <span class="topic-status status-coming-soon">🚧 Bientôt</span>
+                <h2 class="topic-title">Nombres Décimaux</h2>
+                <p class="topic-description">
+                    Découvrez les nombres à virgule, leur écriture et leurs opérations.
+                </p>
+                <ul class="topic-skills">
+                    <li>📝 Écriture décimale</li>
+                    <li>📊 Comparaison et rangement</li>
+                    <li>➕ Addition et soustraction</li>
+                    <li>✖️ Multiplication par 10, 100, 1000</li>
+                </ul>
+                <button class="topic-btn" disabled>Bientôt disponible</button>
+            </div>
+            
+            <div class="topic-card coming-soon" onclick="comingSoon('Géométrie plane')">
+                <div class="topic-icon">📐</div>
+                <span class="topic-status status-coming-soon">🚧 Bientôt</span>
+                <h2 class="topic-title">Géométrie Plane</h2>
+                <p class="topic-description">
+                    Explorez les figures géométriques : droites, segments, cercles, polygones.
+                </p>
+                <ul class="topic-skills">
+                    <li>📏 Droites et segments</li>
+                    <li>⭕ Cercles et arcs</li>
+                    <li>🔺 Triangles et quadrilatères</li>
+                    <li>📐 Utilisation des instruments</li>
+                </ul>
+                <button class="topic-btn" disabled>Bientôt disponible</button>
+            </div>
+            
+            <div class="topic-card coming-soon" onclick="comingSoon('Proportionnalité')">
+                <div class="topic-icon">📊</div>
+                <span class="topic-status status-coming-soon">🚧 Bientôt</span>
+                <h2 class="topic-title">Proportionnalité</h2>
+                <p class="topic-description">
+                    Résolvez des problèmes de proportionnalité et découvrez les pourcentages.
+                </p>
+                <ul class="topic-skills">
+                    <li>📋 Tableaux de proportionnalité</li>
+                    <li>🔢 Règle de trois</li>
+                    <li>📈 Graphiques</li>
+                    <li>💯 Pourcentages simples</li>
+                </ul>
+                <button class="topic-btn" disabled>Bientôt disponible</button>
+            </div>
+            
+            <div class="topic-card coming-soon" onclick="comingSoon('Calcul mental')">
+                <div class="topic-icon">🧮</div>
+                <span class="topic-status status-coming-soon">🚧 Bientôt</span>
+                <h2 class="topic-title">Calcul Mental</h2>
+                <p class="topic-description">
+                    Développez vos techniques de calcul rapide et mental.
+                </p>
+                <ul class="topic-skills">
+                    <li>⚡ Additions et soustractions rapides</li>
+                    <li>✖️ Tables de multiplication</li>
+                    <li>🎯 Ordres de grandeur</li>
+                    <li>🧠 Stratégies de calcul</li>
+                </ul>
+                <button class="topic-btn" disabled>Bientôt disponible</button>
+            </div>
+            
+            <div class="topic-card coming-soon" onclick="comingSoon('Résolution de problèmes')">
+                <div class="topic-icon">🧩</div>
+                <span class="topic-status status-coming-soon">🚧 Bientôt</span>
+                <h2 class="topic-title">Résolution de Problèmes</h2>
+                <p class="topic-description">
+                    Apprenez à analyser et résoudre des problèmes mathématiques concrets.
+                </p>
+                <ul class="topic-skills">
+                    <li>📖 Comprendre l'énoncé</li>
+                    <li>🎯 Identifier les données</li>
+                    <li>🛠️ Choisir la méthode</li>
+                    <li>✅ Vérifier le résultat</li>
+                </ul>
+                <button class="topic-btn" disabled>Bientôt disponible</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function goBack() {
+            window.location.href = '../index.html';
+        }
+        
+        function openTopic(topic) {
+            if (topic === 'fractions') {
+                window.location.href = '../../page_de_cours.html?subject=mathematiques&level=6ieme&topic=fractions';
+            } else if (topic === 'algebre') {
+                window.location.href = '../../page_de_cours.html?subject=mathematiques&level=6ieme&topic=algebre';
+            } else {
+                comingSoon(topic);
+            }
+        }
+        
+        function comingSoon(topic) {
+            alert(`🚀 ${topic} - Bientôt disponible !\n\nCe chapitre est en cours de développement. Les fractions sont déjà disponibles !`);
+        }
+        
+        // Animation d'entrée
+        window.addEventListener('load', function() {
+            const cards = document.querySelectorAll('.topic-card');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(50px)';
+                
+                setTimeout(() => {
+                    card.style.transition = 'all 0.6s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 150);
+            });
+        });
+    </script>
+</body>
+</html>

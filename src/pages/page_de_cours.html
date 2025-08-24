@@ -1,0 +1,3241 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageTitle">Page de cours - FunRevis</title>
+    <link rel="stylesheet" href="../styles/index.css">
+    <style>
+        /* Styles pour le composant ModuleLecon */
+        .module-lesson {
+            padding: 1rem;
+        }
+        
+        .lesson-content > div {
+            margin-bottom: 2rem;
+        }
+        
+        .explanation-card, .example-card, .steps-card {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border-left: 4px solid #667eea;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+            margin-bottom: 1.5rem;
+        }
+        
+        .explanation-card h4, .example-card h4, .steps-card h4 {
+            color: #2d3748;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .explanation-text, .example-content p {
+            color: #4a5568;
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+        
+        /* Styles pour les étapes */
+        .steps-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .step-item {
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            border-radius: 8px;
+            padding: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .step-item.active {
+            border-color: #667eea;
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.2);
+        }
+        
+        .step-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .step-number {
+            background: #667eea;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        
+        .step-title {
+            color: #2d3748;
+            font-size: 1rem;
+            font-weight: 600;
+            margin: 0;
+        }
+        
+        .step-content {
+            margin-left: 1.5rem;
+        }
+        
+        .step-explanation, .step-example {
+            margin-bottom: 0.5rem;
+            color: #4a5568;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        
+        .step-example {
+            font-style: italic;
+            color: #718096;
+        }
+        
+        .astuce {
+            background: linear-gradient(135deg, #c6f6d5 0%, #9ae6b4 100%);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border-left: 4px solid #48bb78;
+            box-shadow: 0 4px 12px rgba(72, 187, 120, 0.2);
+            color: #22543d;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+        }
+        
+        .astuce h4 {
+            color: #22543d;
+            margin-bottom: 0.5rem;
+        }
+        
+        .pieges {
+            background: linear-gradient(135deg, #fed7d7 0%, #fbb6ce 100%);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border-left: 4px solid #f56565;
+            box-shadow: 0 4px 12px rgba(245, 101, 101, 0.2);
+            color: #742a2a;
+            margin-bottom: 1.5rem;
+        }
+        
+        .pieges h4 {
+            color: #742a2a;
+            margin-bottom: 1rem;
+        }
+        
+        .piege-item {
+            margin-bottom: 0.5rem;
+        }
+        
+        .defi {
+            background: linear-gradient(135deg, #e9d8fd 0%, #d6bcfa 100%);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border-left: 4px solid #9f7aea;
+            box-shadow: 0 4px 12px rgba(159, 122, 234, 0.2);
+            color: #44337a;
+            margin-bottom: 1.5rem;
+        }
+        
+        .defi h4 {
+            color: #44337a;
+            margin-bottom: 1rem;
+        }
+        
+        .defi-details {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+        
+        /* Style spécial pour le défi mis en évidence */
+        .defi-highlighted {
+            background: linear-gradient(135deg, #fef5e7 0%, #fdeaa7 100%);
+            border: 2px solid #f59e0b;
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 25px rgba(245, 158, 11, 0.3);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        
+        .defi-highlighted h4 {
+            color: #92400e;
+            font-size: 1.3rem;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        
+        .defi-highlighted .defi {
+            background: rgba(255, 255, 255, 0.8);
+            border-left-color: #f59e0b;
+            margin-bottom: 0;
+        }
+        
+        @keyframes glow {
+            from {
+                box-shadow: 0 8px 25px rgba(245, 158, 11, 0.3);
+            }
+            to {
+                box-shadow: 0 12px 35px rgba(245, 158, 11, 0.5);
+            }
+        }
+        
+        /* Styles pour les exercices progressifs */
+        .exercices-module {
+            padding: 1rem;
+        }
+        
+        .exercices-module > div {
+            margin-bottom: 2rem;
+        }
+        
+        .exercise-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid #10b981;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
+        }
+        
+        .exercise-card.débutant { border-left-color: #10b981; }
+        .exercise-card.intermédiaire { border-left-color: #f59e0b; }
+        .exercise-card.avancé { border-left-color: #ef4444; }
+        
+        .exercise-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .exercise-level {
+            font-weight: 600;
+            color: #2d3748;
+        }
+        
+        .exercise-points {
+            background: #667eea;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .exercise-question {
+            color: #4a5568;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .exercise-interactive {
+            margin: 1rem 0;
+        }
+        
+        .exercise-instruction {
+            font-size: 0.9rem;
+            color: #718096;
+            margin-top: 0.5rem;
+            font-style: italic;
+        }
+        
+        .exercise-input {
+            padding: 0.75rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1rem;
+            width: 150px;
+            transition: border-color 0.3s ease;
+        }
+        
+        .exercise-input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .calcul-hint {
+            margin-top: 0.5rem;
+            color: #9ca3af;
+        }
+        
+        .btn-validate {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        }
+        
+        .btn-validate:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+        
+        .success-feedback {
+            background: linear-gradient(135deg, #c6f6d5 0%, #9ae6b4 100%);
+            color: #22543d;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+        
+        .error-feedback {
+            background: linear-gradient(135deg, #fed7d7 0%, #fbb6ce 100%);
+            color: #742a2a;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+        
+        .quiz-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 12px;
+            padding: 1.5rem;
+            border-left: 4px solid #f59e0b;
+        }
+        
+        .quiz-question {
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 1rem;
+        }
+        
+        .quiz-choices {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 0.5rem;
+        }
+        
+        .quiz-choice {
+            padding: 0.75rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .quiz-choice:hover {
+            border-color: #667eea;
+            transform: translateY(-1px);
+        }
+        
+        .quiz-choice.correct {
+            background: #10b981;
+            color: white;
+            border-color: #10b981;
+        }
+        
+        .quiz-choice.incorrect {
+            background: #ef4444;
+            color: white;
+            border-color: #ef4444;
+        }
+        
+        .btn-defi {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            color: white;
+            border: none;
+            padding: 1.2rem 2.5rem;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin: 1rem auto;
+            display: block;
+        }
+        
+        .btn-defi:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(245, 158, 11, 0.6);
+            background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
+        }
+        
+        .defi-controls {
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+        
+        /* Styles pour le composant QuizPreEvaluation */
+        .quiz-progress {
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        /* Styles pour la section d'informations */
+        .info-section {
+            margin-bottom: 2rem;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+        
+        .info-card {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border-left: 4px solid #667eea;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+        }
+        
+        .info-card h4 {
+            color: #2d3748;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .info-card p {
+            color: #4a5568;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        
+        .utilite-card {
+            border-left-color: #48bb78;
+        }
+        
+        .funfact-card {
+            border-left-color: #f093fb;
+        }
+        
+        @media (max-width: 768px) {
+            .info-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 1rem;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transition: width 0.3s ease;
+        }
+        
+        .quiz-question h4 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: #2d3748;
+        }
+        
+        .quiz-options {
+            display: grid;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .quiz-option {
+            padding: 1rem;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.8);
+            color: #2d3748;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: left;
+        }
+        
+        .quiz-option:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(31, 38, 135, 0.3);
+            border-color: #667eea;
+        }
+        
+        .quiz-option.correct {
+            background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+            border-color: #28a745;
+            color: #155724;
+        }
+        
+        .quiz-option.wrong {
+            background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%);
+            border-color: #dc3545;
+            color: #721c24;
+        }
+        
+        .quiz-feedback {
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        
+        .feedback-success {
+            background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+            color: #155724;
+            margin: 0;
+        }
+        
+        .feedback-error {
+            background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%);
+            color: #721c24;
+            margin: 0;
+        }
+        
+        .quiz-next {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+        
+        .quiz-next:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(31, 38, 135, 0.5);
+        }
+        
+        .quiz-results {
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .score-display {
+            margin: 2rem 0;
+        }
+        
+        .score-circle {
+            display: inline-block;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto;
+        }
+        
+        .score-number {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        
+        .score-percentage {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        
+        .recommendation {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .detailed-results {
+            text-align: left;
+            margin: 2rem 0;
+        }
+        
+        .result-item {
+            padding: 1rem;
+            margin: 0.5rem 0;
+            border-radius: 8px;
+            border-left: 4px solid;
+        }
+        
+        .result-item.correct {
+            background: rgba(212, 237, 218, 0.5);
+            border-left-color: #28a745;
+        }
+        
+        .result-item.incorrect {
+            background: rgba(248, 215, 218, 0.5);
+            border-left-color: #dc3545;
+        }
+        
+        .btn-large {
+            padding: 1.5rem 3rem;
+            font-size: 1.1rem;
+            margin-top: 2rem;
+        }
+        
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* Styles pour le composant ModuleLecon */
+        .module-lesson {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .explanation-card, .example-card, .summary-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .explanation-text {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            color: #2d3748;
+        }
+
+        .btn-understand, .btn-step, .btn-complete {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-right: 1rem;
+        }
+
+        .btn-understand:hover, .btn-step:hover, .btn-complete:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(31, 38, 135, 0.4);
+        }
+
+        .btn-understand:disabled, .btn-step:disabled, .btn-complete:disabled {
+            cursor: not-allowed;
+            transform: none;
+            opacity: 0.8;
+        }
+
+        .steps-container {
+            margin-bottom: 2rem;
+        }
+
+        .step-item {
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid #e2e8f0;
+            display: none;
+            transition: all 0.3s ease;
+        }
+
+        .step-item.active {
+            display: block;
+            border-left-color: #667eea;
+            box-shadow: 0 4px 20px rgba(102, 126, 234, 0.2);
+        }
+
+        .step-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .step-number {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 1rem;
+        }
+
+        .step-title {
+            margin: 0;
+            color: #2d3748;
+            font-size: 1.1rem;
+        }
+
+        .step-content {
+            margin-left: 3rem;
+        }
+
+        .step-explanation, .step-example {
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 8px;
+        }
+
+        .step-example {
+            background: rgba(102, 126, 234, 0.1);
+            border-left: 3px solid #667eea;
+        }
+
+        .steps-navigation {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .summary-checklist {
+            margin-bottom: 2rem;
+        }
+
+        .checklist {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .check-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .check-item input[type="checkbox"] {
+            transform: scale(1.2);
+        }
+
+        .check-item label {
+            font-weight: 600;
+            color: #10b981;
+        }
+
+        .confidence-meter {
+            border-top: 2px solid rgba(255, 255, 255, 0.3);
+            padding-top: 1.5rem;
+        }
+
+        .confidence-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .confidence-btn {
+            padding: 1rem;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.8);
+            color: #2d3748;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .confidence-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(31, 38, 135, 0.3);
+            border-color: #667eea;
+        }
+
+        .confidence-btn.selected {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-color: #667eea;
+        }
+
+        @media (max-width: 768px) {
+            .confidence-buttons {
+                grid-template-columns: 1fr;
+            }
+            
+            .steps-navigation {
+                flex-direction: column;
+            }
+            
+            .step-content {
+                margin-left: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="main-container">
+        <h1 id="mainTitle">📚 Chargement du cours...</h1>
+        
+        <!-- Section d'informations générales -->
+        <div class="info-section" id="infoSection" style="display: block;">
+            <div class="section">
+                <h3>🎯 Objectif</h3>
+                <p id="objectifText">Chargement en cours...</p>
+            </div>
+            
+            <div class="info-grid">
+                <div class="info-card utilite-card">
+                    <h4>🌍 Pourquoi c'est important ?</h4>
+                    <p id="utiliteText">Chargement en cours...</p>
+                </div>
+                
+                <div class="info-card funfact-card">
+                    <h4>🤯 Le saviez-vous ?</h4>
+                    <p id="funFactText">Chargement en cours...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Phase 1: Test de Pré-évaluation -->
+        <div class="collapsible-section">
+            <div class="collapsible-header" id="preEvalHeader" onclick="toggleSection('preEval')">
+                <span>🔍 Phase 1: Test de Pré-évaluation</span>
+                <span class="collapsible-icon">🔽</span>
+            </div>
+            <div class="collapsible-content expanded" id="preEvalContent">
+                <div class="collapsible-inner">
+                    <div class="section pre-evaluation" id="preEvaluation">
+                        <p>Ce test permet de voir si tu es déjà à l'aise avec ce sujet.</p>
+                        
+                        <div class="mini-test">
+                            <h4>📋 Mini-test rapide</h4>
+                            <div id="preTestQuestions">
+                                <!-- Questions générées dynamiquement par QuizPreEvaluation -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Phase 2: Cours -->
+        <div class="collapsible-section">
+            <div class="collapsible-header" id="coursHeader" onclick="toggleSection('cours')">
+                <span>📖 Phase 2: Cours</span>
+                <span class="collapsible-icon">🔽</span>
+            </div>
+            <div class="collapsible-content expanded" id="coursContent">
+                <!-- Le contenu sera généré par ModuleLecon -->
+            </div>
+        </div>
+
+        <!-- Phase 3: Exercices -->
+        <div class="collapsible-section">
+            <div class="collapsible-header" id="exercicesHeader" onclick="toggleSection('exercices')">
+                <span>💪 Phase 3: Exercices</span>
+                <span class="collapsible-icon">🔽</span>
+            </div>
+            <div class="collapsible-content" id="exercicesContent">
+                <div class="collapsible-inner">
+                    <div class="section">
+                        <div id="astuceSection" class="astuce">
+                            <!-- Astuces générées dynamiquement -->
+                        </div>
+                        
+                        <div id="piegesSection">
+                            <!-- Pièges générés dynamiquement -->
+                        </div>
+                        
+                        <h3>💪 Exercices d'entraînement</h3>
+                        <div id="exercicesContainer">
+                            <!-- Exercices générés dynamiquement -->
+                        </div>
+                        
+                        <h3>⚡ Mini Quiz</h3>
+                        <div id="miniQuizContainer">
+                            <!-- Quiz généré dynamiquement -->
+                        </div>
+                        
+                        <h3>🏆 Défi Spécial</h3>
+                        <div id="defiContainer" class="challenge">
+                            <!-- Défi généré dynamiquement -->
+                        </div>
+                        
+                        <button onclick="markSectionCompleted('exercices')" class="btn-primary">J'ai terminé les exercices !</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Phase 4: Métacognition -->
+        <div class="collapsible-section">
+            <div class="collapsible-header" id="metacognitionHeader" onclick="toggleSection('metacognition')">
+                <span>🤔 Phase 4: Réflexion sur mes apprentissages</span>
+                <span class="collapsible-icon">🔽</span>
+            </div>
+            <div class="collapsible-content" id="metacognitionContent">
+                <div class="collapsible-inner">
+                    <div id="metacognitionContainer">
+                        <!-- Contenu généré dynamiquement -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        // Variables globales
+        let courseData = null;
+        let preTestAnswers = {};
+        let preTestScore = 0;
+        let adaptedPath = 'beginner';
+        let preTestCompleted = false;
+        let progressCount = 0;
+        let totalActivities = 5;
+        let completedSections = new Set();
+        let currentPhase = 1;
+        let totalScore = 0;
+        let exercisesCompleted = {};
+        let metacognitionAnswers = {};
+        let selectedParts = 0;
+        let selectedMarker = null;
+        let challengeTimer;
+        let timeLeft = 30;
+
+        // Fonction pour charger un cours à partir d'un paramètre URL
+        async function loadCourse() {
+            try {
+                console.log('🚀 Démarrage du chargement du cours...');
+                
+                // Récupérer les paramètres depuis l'URL
+                const urlParams = new URLSearchParams(window.location.search);
+                const subject = urlParams.get('subject');
+                const level = urlParams.get('level');
+                const topic = urlParams.get('topic');
+                
+                console.log('📋 Paramètres URL:', { subject, level, topic });
+                
+                if (subject && level && topic) {
+                    // Système avec paramètres structurés
+                    await loadCourseByParams(subject, level, topic);
+                } else {
+                    // Par défaut, charger les fractions
+                    console.log('⚠️ Paramètres manquants, chargement par défaut des fractions');
+                    await loadCourseByParams('mathematiques', '6ieme', 'fractions');
+                }
+                
+                console.log('📚 Données de cours chargées:', courseData);
+                
+                if (courseData && courseData.competences && courseData.competences.length > 0) {
+                    renderCourse(courseData.competences[0]); // Prendre la première compétence
+                    console.log('✅ Cours rendu avec succès');
+                } else {
+                    throw new Error('Structure de données invalide');
+                }
+            } catch (error) {
+                console.error('❌ Erreur lors du chargement du cours:', error);
+                showError('Impossible de charger le cours. Vérifiez le fichier de données.');
+            }
+        }
+
+        // Fonction pour charger un cours par paramètres structurés
+        async function loadCourseByParams(subject, level, topic) {
+            console.log(`🔧 Chargement de: ${subject}/${level}/${topic}`);
+            
+            if (subject === 'mathematiques' && level === '6ieme' && topic === 'fractions') {
+                courseData = {
+                    niveau: "6ème",
+                    chapitre: "Nombres & Calculs",
+                    sousChapitre: "Fractions (bases)",
+                    competences: [{
+                        id: "6NC-FR-1",
+                        titre: "Comprendre les fractions",
+                        objectif: "Savoir lire, écrire et représenter une fraction.",
+                        cours: "Une fraction représente une partie d'un tout. Exemple : 3/4 signifie 3 parts sur 4 au total.",
+                        etapes: [
+                            {
+                                titre: "Identifier le numérateur et le dénominateur",
+                                comment: "Dans une fraction a/b, le nombre du haut (a) est le numérateur (parts prises), le nombre du bas (b) est le dénominateur (total de parts).",
+                                exemple: "dans 3/5, le numérateur est 3 et le dénominateur est 5."
+                            },
+                            {
+                                titre: "Représenter une fraction sur un schéma", 
+                                comment: "Dessine une figure (cercle, rectangle, barre) et divise-la en autant de parts égales que le dénominateur, puis colorie le nombre de parts indiqué par le numérateur.",
+                                exemple: "pour 2/3, divise en 3 parts et colorie 2 parts."
+                            },
+                            {
+                                titre: "Comparer et classer des fractions",
+                                comment: "Si même dénominateur, compare les numérateurs. Sinon, convertis au même dénominateur ou utilise les décimaux.",
+                                exemple: "2/5 < 3/5 car 2 < 3. Pour 1/2 vs 2/3, convertis : 3/6 vs 4/6, donc 1/2 < 2/3."
+                            }
+                        ],
+                        exemple: "Si tu manges 2 parts sur 8 d'un gâteau, tu as mangé 2/8, soit 1/4.",
+                        exercices: [
+                            { 
+                                type: "débutant", 
+                                question: "Colorie 1/2 d'un rectangle.",
+                                points: 15,
+                                interactif: true,
+                                typeExercice: "rectangle"
+                            },
+                            { 
+                                type: "intermédiaire", 
+                                question: "Repère 3/4 sur une droite graduée.",
+                                points: 15,
+                                interactif: true,
+                                typeExercice: "droite"
+                            },
+                            { 
+                                type: "avancé", 
+                                question: "Calcule : 5/8 d'un gâteau de 32 parts.",
+                                points: 10,
+                                interactif: true,
+                                typeExercice: "calcul",
+                                reponse: 20,
+                                methode: "(5 × 32) ÷ 8"
+                            }
+                        ],
+                        miniQuiz: [{
+                            question: "Quelle fraction représente 2 parts sur 5 ?",
+                            choix: ["2/3", "5/2", "2/5", "1/2"],
+                            reponse: "2/5",
+                            points: 20
+                        }],
+                        preEvaluation: {
+                            questions: [
+                                {
+                                    question: "Dans la fraction 7/9, quel est le dénominateur ?",
+                                    choix: ["7", "9", "16", "2"],
+                                    reponse: "9"
+                                },
+                                {
+                                    question: "Que représente la fraction 3/4 ?",
+                                    choix: ["3 + 4", "3 parts sur 4", "4 parts sur 3", "3 × 4"],
+                                    reponse: "3 parts sur 4"
+                                },
+                                {
+                                    question: "Si je colorie 2 carrés sur 5, quelle fraction cela représente-t-il ?",
+                                    choix: ["5/2", "2/5", "3/5", "2/3"],
+                                    reponse: "2/5"
+                                }
+                            ]
+                        },
+                        astuce: "Pour bien identifier une fraction, souviens-toi que le numérateur (en haut) indique combien de parts on prend, et le dénominateur (en bas) indique en combien de parts égales on divise le tout.",
+                        pieges: [{
+                            titre: "Piège classique",
+                            description: "Ne confonds pas 3/4 avec 4/3 ! Dans 3/4, on prend 3 parts sur 4. Dans 4/3, on prend 4 parts sur 3 (plus que le tout !)."
+                        }],
+                        defi: {
+                            titre: "Défi fractions équivalentes",
+                            description: "Tu as 30 secondes pour trouver 3 fractions équivalentes à 2/3.",
+                            exemples: ["4/6", "6/9", "8/12", "10/15", "12/18", "14/21"],
+                            duree: 30
+                        },
+                        utilite: "Les fractions sont essentielles pour cuisiner, partager des objets, calculer des remises, comprendre les pourcentages et gérer son budget.",
+                        funFact: "Une étude américaine révèle que 60 % des adultes préfèrent partager une pizza plutôt que des bonbons… mais 40 % d'entre eux seraient incapables de calculer 3/8 d'une pizza sans se tromper ! 🍕<br>(Et toi, tu saurais faire ?)",
+                        metacognition: {
+                            questions: [
+                                {
+                                    type: "objectif",
+                                    question: "Penses-tu avoir atteint l'objectif : 'Savoir lire, écrire et représenter une fraction' ?",
+                                    options: ["🎉 Complètement", "👍 En grande partie", "🤔 Partiellement", "😔 Pas vraiment"]
+                                },
+                                {
+                                    type: "facilite",
+                                    question: "Qu'est-ce qui t'a semblé le plus facile ?",
+                                    options: [
+                                        "🔍 Identifier le numérateur et le dénominateur",
+                                        "🎨 Représenter une fraction sur un schéma", 
+                                        "💪 Faire les exercices interactifs",
+                                        "💡 Comprendre le concept général"
+                                    ]
+                                },
+                                {
+                                    type: "difficulte",
+                                    question: "Quelle a été la plus grande difficulté pour toi ?",
+                                    options: [
+                                        "🔄 Confondre numérateur et dénominateur",
+                                        "🎨 Représenter visuellement les fractions",
+                                        "⚖️ Comprendre les fractions équivalentes",
+                                        "🌟 Aucune difficulté particulière"
+                                    ]
+                                },
+                                {
+                                    type: "utilite",
+                                    question: "Comment pourrais-tu utiliser les fractions dans ta vie de tous les jours ?",
+                                    options: [
+                                        "🍕 Partager une pizza ou découper un gâteau",
+                                        "🍫 Partager une tablette de chocolat",
+                                        "⏰ Comprendre les heures (1/2 heure, 1/4 d'heure)",
+                                        "⚽ Compter les buts dans un match (2 buts sur 3 tentatives)"
+                                    ]
+                                }
+                            ],
+                            defispratiques: {
+                                cuisine: {
+                                    scenario: "🍕 Tu partages une pizza en 8 parts égales avec tes amis. Si tu en manges 3 parts, quelle fraction de la pizza as-tu mangée ?",
+                                    aide: "Nombre de parts mangées / Nombre total de parts",
+                                    reponse: "3/8"
+                                }
+                            }
+                        }
+                    }]
+                };
+                console.log('✅ Données fractions chargées');
+            } else if (subject === 'mathematiques' && level === '6ieme' && topic === 'algebre') {
+                courseData = {
+                    niveau: "6ème",
+                    chapitre: "Nombres & Calculs", 
+                    sousChapitre: "Expressions littérales",
+                    competences: [{
+                        id: "6NC-AL-1",
+                        titre: "Découvrir l'algèbre",
+                        objectif: "Comprendre ce qu'est une expression littérale et savoir la calculer.",
+                        cours: "Une expression littérale utilise des lettres pour représenter des nombres. Par exemple : 3x + 5 où x peut prendre différentes valeurs.",
+                        etapes: [
+                            {
+                                titre: "Comprendre les variables",
+                                comment: "Une lettre (comme x, y, a) représente un nombre que l'on ne connaît pas encore ou qui peut changer.",
+                                exemple: "dans 2x, si x = 3, alors 2x = 2 × 3 = 6."
+                            },
+                            {
+                                titre: "Calculer une expression",
+                                comment: "Pour calculer une expression littérale, on remplace chaque lettre par sa valeur et on fait les calculs.",
+                                exemple: "si x = 4, alors 3x + 1 = 3 × 4 + 1 = 12 + 1 = 13."
+                            },
+                            {
+                                titre: "Simplifier une expression",
+                                comment: "On peut regrouper les termes semblables pour simplifier l'écriture.",
+                                exemple: "2x + 3x = 5x (on additionne les coefficients)."
+                            }
+                        ],
+                        exemple: "Si tu achètes x bonbons à 2€ pièce, tu paies 2x euros au total.",
+                        exercices: [
+                            { 
+                                type: "débutant", 
+                                question: "Calcule 2x + 3 pour x = 5",
+                                points: 15,
+                                interactif: true,
+                                typeExercice: "calcul",
+                                reponse: 13,
+                                methode: "2 × 5 + 3"
+                            },
+                            { 
+                                type: "intermédiaire", 
+                                question: "Simplifie l'expression : 3a + 2a",
+                                points: 15,
+                                interactif: false
+                            },
+                            { 
+                                type: "avancé", 
+                                question: "Calcule 3x + 2y pour x = 4 et y = 1",
+                                points: 10,
+                                interactif: true,
+                                typeExercice: "calcul",
+                                reponse: 14,
+                                methode: "3 × 4 + 2 × 1"
+                            }
+                        ],
+                        miniQuiz: [{
+                            question: "Si x = 3, que vaut 4x ?",
+                            choix: ["7", "12", "4", "3"],
+                            reponse: "12",
+                            points: 20
+                        }],
+                        preEvaluation: {
+                            questions: [
+                                {
+                                    question: "Dans l'expression 5y, que représente y ?",
+                                    choix: ["Un nombre fixe", "Une variable", "Un résultat", "Une opération"],
+                                    reponse: "Une variable"
+                                },
+                                {
+                                    question: "Que vaut 2x si x = 6 ?",
+                                    choix: ["8", "12", "2", "6"],
+                                    reponse: "12"
+                                },
+                                {
+                                    question: "Comment écrit-on 'trois fois un nombre n' ?",
+                                    choix: ["3 + n", "3n", "n + 3", "n × n × n"],
+                                    reponse: "3n"
+                                }
+                            ]
+                        },
+                        astuce: "Quand on écrit 3x, cela veut dire 3 × x. On ne met pas le signe × entre un nombre et une lettre.",
+                        pieges: [{
+                            titre: "Piège fréquent",
+                            description: "Attention ! 2x + 3x = 5x, mais 2x × 3x = 6x² (x au carré), pas 6x !"
+                        }],
+                        defi: {
+                            titre: "Défi expressions équivalentes",
+                            description: "Tu as 30 secondes pour trouver 3 expressions équivalentes à 2x + 2x.",
+                            exemples: ["4x", "2(2x)", "x + x + x + x", "2x × 2"],
+                            duree: 30
+                        },
+                        utilite: "L'algèbre est partout : calculer le prix d'achats multiples, comprendre des formules scientifiques, programmer des jeux vidéo.",
+                        funFact: "Le mot 'algèbre' vient de l'arabe 'al-jabr' qui signifie 'réunion de parties brisées'. C'est aussi le nom d'un mathématicien perse du 9ème siècle ! 🧮✨",
+                        metacognition: {
+                            questions: [
+                                {
+                                    type: "objectif",
+                                    question: "Penses-tu avoir atteint l'objectif : 'Comprendre ce qu'est une expression littérale et savoir la calculer' ?",
+                                    options: ["🎉 Complètement", "👍 En grande partie", "🤔 Partiellement", "😔 Pas vraiment"]
+                                },
+                                {
+                                    type: "facilite",
+                                    question: "Qu'est-ce qui t'a semblé le plus facile ?",
+                                    options: [
+                                        "🔍 Comprendre ce qu'est une variable",
+                                        "🧮 Calculer des expressions simples", 
+                                        "📝 Simplifier des expressions",
+                                        "💡 Voir l'utilité de l'algèbre"
+                                    ]
+                                },
+                                {
+                                    type: "difficulte",
+                                    question: "Quelle a été la plus grande difficulté pour toi ?",
+                                    options: [
+                                        "🔤 Comprendre le rôle des lettres",
+                                        "🧮 Faire les calculs avec les variables",
+                                        "📝 Simplifier les expressions",
+                                        "🌟 Aucune difficulté particulière"
+                                    ]
+                                },
+                                {
+                                    type: "utilite",
+                                    question: "Comment pourrais-tu utiliser l'algèbre dans ta vie de tous les jours ?",
+                                    options: [
+                                        "🛒 Calculer le prix de plusieurs objets identiques",
+                                        "🎮 Comprendre les formules dans les jeux vidéo",
+                                        "⚡ Utiliser des formules scientifiques",
+                                        "💰 Calculer des économies ou des intérêts"
+                                    ]
+                                }
+                            ],
+                            defispratiques: {
+                                shopping: {
+                                    scenario: "🛒 Tu achètes x cahiers à 3€ pièce et y stylos à 2€ pièce. Si x = 5 et y = 3, combien paies-tu au total ?",
+                                    aide: "Prix total = 3x + 2y",
+                                    reponse: 21
+                                }
+                            }
+                        }
+                    }]
+                };
+                console.log('✅ Données algèbre chargées');
+            } else {
+                throw new Error(`Cours non trouvé: ${subject}/${level}/${topic}`);
+            }
+        }
+
+        // Fonction pour afficher une erreur
+        function showError(message) {
+            document.getElementById('mainTitle').textContent = '❌ Erreur';
+            document.getElementById('infoSection').innerHTML = `
+                <div class="section">
+                    <h3>🚨 Erreur</h3>
+                    <p>${message}</p>
+                </div>
+            `;
+            document.getElementById('infoSection').style.display = 'block';
+        }
+
+        // Fonction principale pour générer le HTML à partir des données
+        function renderCourse(competence) {
+            console.log('🎨 Début du rendu du cours:', competence.titre);
+            
+            // Titre et informations générales
+            console.log('📝 Mise à jour du titre:', competence.titre);
+            document.getElementById('pageTitle').textContent = `${competence.titre} - ${courseData.niveau}`;
+            document.getElementById('mainTitle').textContent = `📚 ${competence.titre}`;
+            
+            console.log('🎯 Mise à jour de l\'objectif:', competence.objectif);
+            document.getElementById('objectifText').textContent = competence.objectif;
+            
+            console.log('🌍 Mise à jour de l\'utilité:', competence.utilite);
+            document.getElementById('utiliteText').textContent = competence.utilite || 'Cette compétence est importante pour votre apprentissage.';
+            
+            console.log('🤯 Mise à jour du fun fact:', competence.funFact);
+            document.getElementById('funFactText').innerHTML = competence.funFact || 'Saviez-vous que l\'apprentissage actif améliore la rétention de 60% ? 🧠✨';
+
+            // Afficher la section d'informations
+            const infoSection = document.getElementById('infoSection');
+            console.log('📦 Section info trouvée:', !!infoSection);
+            if (infoSection) {
+                infoSection.style.display = 'block';
+                console.log('✅ Section info affichée');
+            }
+
+            // Générer la pré-évaluation
+            if (competence.preEvaluation && competence.preEvaluation.questions) {
+                console.log('🔍 Génération de la pré-évaluation');
+                renderPreEvaluation(competence.preEvaluation.questions);
+            }
+
+            // Générer le cours
+            console.log('📖 Génération de la section cours');
+            renderCoursSection(competence);
+
+            // Générer les exercices
+            console.log('💪 Génération des exercices');
+            renderExercices(competence);
+
+            // Générer la métacognition
+            if (competence.metacognition && competence.metacognition.questions) {
+                console.log('🤔 Génération de la métacognition');
+                renderMetacognition(competence.metacognition);
+            }
+            
+            console.log('✅ Rendu du cours terminé');
+        }
+
+        // Phase 1: Composant QuizPreEvaluation - Version améliorée
+        class QuizPreEvaluation {
+            constructor(questions, containerId) {
+                console.log('🔧 Initialisation QuizPreEvaluation', { questions, containerId });
+                this.questions = questions;
+                this.container = document.getElementById(containerId);
+                this.currentQuestion = 0;
+                this.answers = {};
+                this.score = 0;
+                this.isCompleted = false;
+                
+                if (!this.container) {
+                    console.error('❌ Container non trouvé:', containerId);
+                    return;
+                }
+                console.log('✅ Container trouvé:', this.container);
+            }
+
+            render() {
+                this.container.innerHTML = '';
+                
+                if (this.currentQuestion < this.questions.length) {
+                    this.renderCurrentQuestion();
+                } else {
+                    this.renderResults();
+                }
+            }
+
+            renderCurrentQuestion() {
+                const question = this.questions[this.currentQuestion];
+                const progress = ((this.currentQuestion + 1) / this.questions.length) * 100;
+                
+                this.container.innerHTML = `
+                    <div class="quiz-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: ${progress}%"></div>
+                        </div>
+                        <p>Question ${this.currentQuestion + 1} sur ${this.questions.length}</p>
+                    </div>
+                    
+                    <div class="quiz-question">
+                        <h4>${question.question}</h4>
+                        <div class="quiz-options">
+                            ${question.choix.map((choix, index) => `
+                                <button class="quiz-option" data-answer="${choix}" data-index="${index}">
+                                    ${choix}
+                                </button>
+                            `).join('')}
+                        </div>
+                    </div>
+                    
+                    <div class="quiz-feedback" id="questionFeedback" style="display: none;"></div>
+                    <button class="quiz-next" id="nextButton" style="display: none;">
+                        ${this.currentQuestion === this.questions.length - 1 ? 'Voir mes résultats' : 'Question suivante'}
+                    </button>
+                `;
+
+                // Ajouter les event listeners après avoir créé le HTML
+                this.addEventListeners();
+            }
+
+            addEventListeners() {
+                // Event listeners pour les options
+                const buttons = this.container.querySelectorAll('.quiz-option');
+                buttons.forEach(button => {
+                    button.addEventListener('click', (e) => {
+                        const selectedAnswer = e.target.dataset.answer;
+                        this.selectAnswer(selectedAnswer, e.target);
+                    });
+                });
+
+                // Event listener pour le bouton suivant
+                const nextButton = this.container.querySelector('#nextButton');
+                if (nextButton) {
+                    nextButton.addEventListener('click', () => {
+                        this.nextQuestion();
+                    });
+                }
+            }
+
+            selectAnswer(selectedAnswer, buttonElement) {
+                console.log('🎯 Réponse sélectionnée:', selectedAnswer);
+                const question = this.questions[this.currentQuestion];
+                const isCorrect = selectedAnswer === question.reponse;
+                console.log('✅ Correct?', isCorrect, 'Attendu:', question.reponse);
+                
+                // Désactiver tous les boutons
+                const buttons = this.container.querySelectorAll('.quiz-option');
+                buttons.forEach(btn => {
+                    btn.disabled = true;
+                    btn.style.opacity = '0.7';
+                    btn.style.cursor = 'not-allowed';
+                });
+
+                // Marquer la réponse
+                if (isCorrect) {
+                    buttonElement.classList.add('correct');
+                    this.score++;
+                } else {
+                    buttonElement.classList.add('wrong');
+                    // Montrer la bonne réponse
+                    buttons.forEach(btn => {
+                        if (btn.dataset.answer === question.reponse) {
+                            btn.classList.add('correct');
+                        }
+                    });
+                }
+
+                // Stocker la réponse
+                this.answers[this.currentQuestion] = {
+                    selected: selectedAnswer,
+                    correct: question.reponse,
+                    isCorrect: isCorrect
+                };
+
+                // Afficher feedback et bouton suivant
+                this.showFeedback(isCorrect);
+                const nextButton = this.container.querySelector('#nextButton');
+                if (nextButton) {
+                    nextButton.style.display = 'block';
+                }
+            }
+
+            showFeedback(isCorrect) {
+                const feedbackDiv = this.container.querySelector('#questionFeedback');
+                if (feedbackDiv) {
+                    feedbackDiv.style.display = 'block';
+                    
+                    if (isCorrect) {
+                        feedbackDiv.innerHTML = '<p class="feedback-success">🎉 Bonne réponse !</p>';
+                    } else {
+                        feedbackDiv.innerHTML = '<p class="feedback-error">❌ Pas tout à fait, mais continue !</p>';
+                    }
+                }
+            }
+
+            nextQuestion() {
+                this.currentQuestion++;
+                this.render();
+            }
+
+            renderResults() {
+                const percentage = Math.round((this.score / this.questions.length) * 100);
+                let level, message, recommendation;
+
+                if (percentage >= 67) {
+                    level = 'advanced';
+                    message = '🎉 Excellent !';
+                    recommendation = 'Tu peux aller directement aux exercices avancés.';
+                } else if (percentage >= 33) {
+                    level = 'intermediate';
+                    message = '👍 Bien joué !';
+                    recommendation = 'Révise le cours puis fais les exercices.';
+                } else {
+                    level = 'beginner';
+                    message = '💪 C\'est un début !';
+                    recommendation = 'Commence par bien étudier le cours.';
+                }
+
+                this.container.innerHTML = `
+                    <div class="quiz-results">
+                        <h3>${message}</h3>
+                        <div class="score-display">
+                            <div class="score-circle">
+                                <span class="score-number">${this.score}/${this.questions.length}</span>
+                                <span class="score-percentage">${percentage}%</span>
+                            </div>
+                        </div>
+                        
+                        <div class="recommendation">
+                            <h4>📊 Ton niveau</h4>
+                            <p><strong>Parcours recommandé :</strong> ${recommendation}</p>
+                        </div>
+                        
+                        <div class="detailed-results">
+                            <h4>📋 Détail de tes réponses</h4>
+                            ${this.questions.map((q, index) => {
+                                const answer = this.answers[index];
+                                return `
+                                    <div class="result-item ${answer.isCorrect ? 'correct' : 'incorrect'}">
+                                        <p><strong>Q${index + 1}:</strong> ${q.question}</p>
+                                        <p>Ta réponse: ${answer.selected} ${answer.isCorrect ? '✅' : '❌'}</p>
+                                        ${!answer.isCorrect ? `<p>Bonne réponse: ${answer.correct}</p>` : ''}
+                                    </div>
+                                `;
+                            }).join('')}
+                        </div>
+                        
+                        <button id="startPathButton" class="btn-primary btn-large">
+                            🚀 Commencer mon parcours personnalisé
+                        </button>
+                    </div>
+                `;
+
+                // Ajouter l'event listener pour le bouton final
+                const startButton = this.container.querySelector('#startPathButton');
+                if (startButton) {
+                    startButton.addEventListener('click', () => {
+                        if (typeof startAdaptedPath === 'function') {
+                            startAdaptedPath(level);
+                        } else {
+                            console.log('✅ Quiz terminé. Niveau:', level);
+                            alert(`Test terminé ! Niveau: ${level}`);
+                        }
+                    });
+                }
+
+                this.isCompleted = true;
+                adaptedPath = level;
+                if (typeof markSectionCompleted === 'function') {
+                    markSectionCompleted('preEval');
+                }
+            }
+        }
+
+        // Instance globale du quiz
+        let quizComponent;
+
+        // Phase 2: Composant ModuleLecon - Version améliorée
+        class ModuleLecon {
+            constructor(competence, containerId) {
+                console.log('📖 Initialisation ModuleLecon', { competence, containerId });
+                this.competence = competence;
+                this.container = document.getElementById(containerId);
+                this.currentStep = 0;
+                this.isCompleted = false;
+                this.expandedSections = new Set();
+
+                if (!this.container) {
+                    console.error('❌ Container cours non trouvé:', containerId);
+                    return;
+                }
+                console.log('✅ Container cours trouvé:', this.container);
+            }
+
+            render() {
+                this.container.innerHTML = '';
+                this.renderMainContent();
+                this.addEventListeners();
+            }
+
+            renderMainContent() {
+                this.container.innerHTML = `
+                    <div class="module-lesson">
+                        <!-- Cours complet -->
+                        <div class="lesson-content">
+                            <h3>� Contenu du cours</h3>
+                            
+                            <!-- Explication et Exemple fusionnés -->
+                            <div class="explanation-card">
+                                <h4>💡 Explication et Exemple</h4>
+                                <div class="explanation-text">
+                                    <p>${this.competence.cours}</p>
+                                    
+                                    <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(102, 126, 234, 0.1); border-radius: 8px; border-left: 3px solid #667eea;">
+                                        <h5 style="color: #667eea; margin-bottom: 0.5rem;">🌟 Exemple concret :</h5>
+                                        <p style="margin: 0; font-style: italic;">${this.competence.exemple}</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Étapes détaillées -->
+                            <div class="steps-card">
+                                <h4>🔍 Étapes détaillées</h4>
+                                <div class="steps-container">
+                                    ${this.renderSteps()}
+                                </div>
+                            </div>
+
+                            <!-- Astuces importantes -->
+                            ${this.competence.astuce ? `
+                                <div class="astuce-section">
+                                    <h4>🎯 Astuce importante</h4>
+                                    <div class="astuce">
+                                        <p>${this.competence.astuce}</p>
+                                    </div>
+                                </div>
+                            ` : ''}
+
+                            <!-- Pièges à éviter -->
+                            ${this.competence.pieges && this.competence.pieges.length > 0 ? `
+                                <div class="pieges-section">
+                                    <h4>⚠️ Pièges à éviter</h4>
+                                    <div class="pieges">
+                                        ${this.competence.pieges.map(piege => `
+                                            <div class="piege-item">
+                                                <strong>${piege.titre} :</strong> ${piege.description}
+                                            </div>
+                                        `).join('')}
+                                    </div>
+                                </div>
+                            ` : ''}
+
+                        </div>
+                    </div>
+                `;
+            }
+
+            renderSteps() {
+                if (!this.competence.etapes || this.competence.etapes.length === 0) {
+                    return '<p>Aucune étape détaillée disponible.</p>';
+                }
+
+                return this.competence.etapes.map((etape, index) => `
+                    <div class="step-item active" data-step="${index}">
+                        <div class="step-header">
+                            <span class="step-number">${index + 1}</span>
+                            <h5 class="step-title">${etape.titre}</h5>
+                        </div>
+                        <div class="step-content">
+                            <div class="step-explanation">
+                                <strong>Comment :</strong> ${etape.comment}
+                            </div>
+                            <div class="step-example">
+                                <strong>Exemple :</strong> <em>${etape.exemple}</em>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            addEventListeners() {
+                // Bouton compréhension de l'explication
+                const understandBtn = this.container.querySelector('#understandBtn');
+                if (understandBtn) {
+                    understandBtn.addEventListener('click', () => {
+                        this.showExample();
+                    });
+                }
+
+                // Bouton compréhension de l'exemple
+                const exampleBtn = this.container.querySelector('#exampleBtn');
+                if (exampleBtn) {
+                    exampleBtn.addEventListener('click', () => {
+                        this.showSteps();
+                    });
+                }
+
+                // Navigation des étapes
+                const nextStepBtn = this.container.querySelector('#nextStepBtn');
+                const prevStepBtn = this.container.querySelector('#prevStepBtn');
+                
+                if (nextStepBtn) {
+                    nextStepBtn.addEventListener('click', () => {
+                        this.nextStep();
+                    });
+                }
+
+                if (prevStepBtn) {
+                    prevStepBtn.addEventListener('click', () => {
+                        this.previousStep();
+                    });
+                }
+
+                // Bouton complétion des étapes
+                const completeStepsBtn = this.container.querySelector('#completeStepsBtn');
+                if (completeStepsBtn) {
+                    completeStepsBtn.addEventListener('click', () => {
+                        this.showSummary();
+                    });
+                }
+
+                // Boutons de confiance
+                const confidenceBtns = this.container.querySelectorAll('.confidence-btn');
+                confidenceBtns.forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        this.setConfidence(parseInt(e.target.dataset.level));
+                    });
+                });
+            }
+
+            showExample() {
+                const exampleSection = this.container.querySelector('.lesson-example');
+                if (exampleSection) {
+                    exampleSection.style.display = 'block';
+                    exampleSection.scrollIntoView({ behavior: 'smooth' });
+                }
+
+                // Marquer comme compris
+                const understandBtn = this.container.querySelector('#understandBtn');
+                if (understandBtn) {
+                    understandBtn.textContent = '✅ Compris !';
+                    understandBtn.disabled = true;
+                    understandBtn.style.background = 'linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%)';
+                }
+            }
+
+            showSteps() {
+                const stepsSection = this.container.querySelector('.lesson-steps');
+                if (stepsSection) {
+                    stepsSection.style.display = 'block';
+                    stepsSection.scrollIntoView({ behavior: 'smooth' });
+                }
+
+                // Marquer l'exemple comme compris
+                const exampleBtn = this.container.querySelector('#exampleBtn');
+                if (exampleBtn) {
+                    exampleBtn.textContent = '✅ Exemple clair !';
+                    exampleBtn.disabled = true;
+                    exampleBtn.style.background = 'linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%)';
+                }
+            }
+
+            nextStep() {
+                const steps = this.container.querySelectorAll('.step-item');
+                const totalSteps = steps.length;
+
+                if (this.currentStep < totalSteps - 1) {
+                    // Masquer l'étape actuelle
+                    steps[this.currentStep].classList.remove('active');
+                    
+                    // Afficher la prochaine étape
+                    this.currentStep++;
+                    steps[this.currentStep].classList.add('active');
+                    
+                    // Mettre à jour les boutons
+                    this.updateStepNavigation();
+                    
+                    // Scroll vers la nouvelle étape
+                    steps[this.currentStep].scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+
+            previousStep() {
+                const steps = this.container.querySelectorAll('.step-item');
+
+                if (this.currentStep > 0) {
+                    // Masquer l'étape actuelle
+                    steps[this.currentStep].classList.remove('active');
+                    
+                    // Afficher l'étape précédente
+                    this.currentStep--;
+                    steps[this.currentStep].classList.add('active');
+                    
+                    // Mettre à jour les boutons
+                    this.updateStepNavigation();
+                    
+                    // Scroll vers l'étape
+                    steps[this.currentStep].scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+
+            updateStepNavigation() {
+                const steps = this.container.querySelectorAll('.step-item');
+                const totalSteps = steps.length;
+                const nextBtn = this.container.querySelector('#nextStepBtn');
+                const prevBtn = this.container.querySelector('#prevStepBtn');
+                const completeBtn = this.container.querySelector('#completeStepsBtn');
+
+                // Bouton précédent
+                if (prevBtn) {
+                    prevBtn.style.display = this.currentStep > 0 ? 'inline-block' : 'none';
+                }
+
+                // Bouton suivant vs complétion
+                if (this.currentStep === totalSteps - 1) {
+                    if (nextBtn) nextBtn.style.display = 'none';
+                    if (completeBtn) completeBtn.style.display = 'inline-block';
+                } else {
+                    if (nextBtn) nextBtn.style.display = 'inline-block';
+                    if (completeBtn) completeBtn.style.display = 'none';
+                }
+            }
+
+            showSummary() {
+                const summarySection = this.container.querySelector('.lesson-summary');
+                if (summarySection) {
+                    summarySection.style.display = 'block';
+                    summarySection.scrollIntoView({ behavior: 'smooth' });
+                }
+
+                // Marquer les étapes comme complètes
+                const completeBtn = this.container.querySelector('#completeStepsBtn');
+                if (completeBtn) {
+                    completeBtn.textContent = '✅ Étapes maîtrisées !';
+                    completeBtn.disabled = true;
+                    completeBtn.style.background = 'linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%)';
+                }
+            }
+
+            setConfidence(level) {
+                const buttons = this.container.querySelectorAll('.confidence-btn');
+                const resultDiv = this.container.querySelector('#confidenceResult');
+
+                // Réinitialiser tous les boutons
+                buttons.forEach(btn => btn.classList.remove('selected'));
+                
+                // Marquer le bouton sélectionné
+                const selectedBtn = this.container.querySelector(`[data-level="${level}"]`);
+                if (selectedBtn) {
+                    selectedBtn.classList.add('selected');
+                }
+
+                // Afficher le résultat et le message
+                const messages = {
+                    1: "C'est normal ! Relis le cours et n'hésite pas à refaire les étapes.",
+                    2: "Tu es sur la bonne voie ! Un peu d'exercice va t'aider.",
+                    3: "Super ! Tu as bien assimilé les concepts principaux.",
+                    4: "Excellent ! Tu es prêt pour les exercices avancés !"
+                };
+
+                if (resultDiv) {
+                    resultDiv.innerHTML = `<p style="margin-top: 1rem; font-style: italic;">${messages[level]}</p>`;
+                    resultDiv.style.display = 'block';
+                }
+
+                this.confidenceLevel = level;
+            }
+
+            finishLesson() {
+                this.isCompleted = true;
+                
+                if (typeof markSectionCompleted === 'function') {
+                    markSectionCompleted('cours');
+                }
+
+                // Message de félicitations
+                const notification = document.createElement('div');
+                notification.style.cssText = `
+                    position: fixed; top: 20px; right: 20px; z-index: 1000;
+                    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+                    color: white; padding: 1rem 2rem; border-radius: 12px;
+                    box-shadow: 0 8px 25px rgba(16, 185, 129, 0.5);
+                    font-weight: 600; animation: slideIn 0.3s ease;
+                `;
+                notification.innerHTML = '🎉 Leçon terminée ! Prêt pour les exercices ?';
+                document.body.appendChild(notification);
+
+                setTimeout(() => {
+                    notification.remove();
+                }, 4000);
+
+                console.log('✅ Leçon terminée. Niveau de confiance:', this.confidenceLevel);
+            }
+        }
+
+        // Instance globale du module leçon
+        let moduleLecon;
+
+        // Phase 3: Composants d'exercices interactifs
+        class ExercicesProgressifs {
+            constructor(competence, containerId) {
+                console.log('💪 Initialisation ExercicesProgressifs', { competence, containerId });
+                this.competence = competence;
+                this.container = document.getElementById(containerId);
+                this.currentExercise = 0;
+                this.completedExercises = new Set();
+                this.score = 0;
+
+                if (!this.container) {
+                    console.error('❌ Container exercices non trouvé:', containerId);
+                    return;
+                }
+                console.log('✅ Container exercices trouvé:', this.container);
+            }
+
+            render() {
+                this.container.innerHTML = '';
+                this.renderMainContent();
+                this.addEventListeners();
+            }
+
+            renderMainContent() {
+                this.container.innerHTML = `
+                    <div class="exercices-module">
+                        <!-- Exercices interactifs -->
+                        <div class="exercices-section">
+                            <h4>💪 Exercices d'entraînement</h4>
+                            <div class="exercices-container">
+                                ${this.renderExercices()}
+                            </div>
+                        </div>
+
+                        <!-- Mini Quiz -->
+                        ${this.competence.miniQuiz && this.competence.miniQuiz.length > 0 ? `
+                            <div class="quiz-section">
+                                <h4>⚡ Mini Quiz</h4>
+                                <div class="mini-quiz-container">
+                                    ${this.renderMiniQuiz()}
+                                </div>
+                            </div>
+                        ` : ''}
+
+                        <!-- Défi spécial - Positionné après le Mini Quiz -->
+                        ${this.competence.defi ? `
+                            <div class="defi-section defi-highlighted">
+                                <h4>🏆 ${this.competence.defi.titre}</h4>
+                                <div class="defi">
+                                    <p>${this.competence.defi.description}</p>
+                                    <div class="defi-details">
+                                        <strong>⏱️ Durée :</strong> ${this.competence.defi.duree} secondes<br>
+                                        <strong>💡 Exemples possibles :</strong> ${this.competence.defi.exemples.slice(0, 3).join(', ')}
+                                    </div>
+                                    <div class="defi-controls">
+                                        <button class="btn-defi" id="startDefiBtn">🎯 Commencer le défi</button>
+                                        <div id="defiTimer" style="display: none;"></div>
+                                        <div id="defiInput" style="display: none;"></div>
+                                        <div id="defiResult" style="display: none;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        ` : ''}
+                    </div>
+                `;
+            }
+
+            renderExercices() {
+                if (!this.competence.exercices || this.competence.exercices.length === 0) {
+                    return '<p>Aucun exercice disponible.</p>';
+                }
+
+                return this.competence.exercices.map((exercice, index) => `
+                    <div class="exercise-card ${exercice.type}" data-exercise="${index}">
+                        <div class="exercise-header">
+                            <span class="exercise-level">${this.getExerciceIcon(exercice.type)} ${exercice.type.charAt(0).toUpperCase() + exercice.type.slice(1)}</span>
+                            <span class="exercise-points">${exercice.points} pts</span>
+                        </div>
+                        <div class="exercise-content">
+                            <p class="exercise-question">${exercice.question}</p>
+                            ${this.renderExerciceInteractif(exercice, index)}
+                        </div>
+                        <div class="exercise-validation" id="validation_${index}" style="display: none;">
+                            <button class="btn-validate" data-exercise-index="${index}">
+                                ✅ Valider ma réponse
+                            </button>
+                        </div>
+                        <div class="exercise-feedback" id="feedback_${index}" style="display: none;"></div>
+                    </div>
+                `).join('');
+            }
+
+            renderMiniQuiz() {
+                const quiz = this.competence.miniQuiz[0];
+                return `
+                    <div class="quiz-card">
+                        <p class="quiz-question">${quiz.question}</p>
+                        <div class="quiz-choices">
+                            ${quiz.choix.map((choix, index) => `
+                                <button class="quiz-choice" data-choice="${choix}">
+                                    ${choix}
+                                </button>
+                            `).join('')}
+                        </div>
+                        <div id="quizFeedback" class="quiz-feedback" style="display: none;"></div>
+                    </div>
+                `;
+            }
+
+            renderExerciceInteractif(exercice, index) {
+                switch(exercice.typeExercice) {
+                    case 'rectangle':
+                        return `
+                            <div class="exercise-interactive rectangle-exercise">
+                                <canvas id="canvas_${index}" width="300" height="200" style="border: 2px solid #667eea; border-radius: 8px; cursor: pointer;"></canvas>
+                                <p class="exercise-instruction">Clique sur les parties à colorier pour représenter la fraction.</p>
+                            </div>
+                        `;
+                    case 'droite':
+                        return `
+                            <div class="exercise-interactive droite-exercise">
+                                <canvas id="canvas_${index}" width="400" height="100" style="border: 2px solid #667eea; border-radius: 8px; cursor: pointer;"></canvas>
+                                <p class="exercise-instruction">Clique sur la droite graduée pour placer la fraction.</p>
+                            </div>
+                        `;
+                    case 'calcul':
+                        return `
+                            <div class="exercise-interactive calcul-exercise">
+                                <input type="number" id="input_${index}" placeholder="Votre réponse" class="exercise-input">
+                                <div class="calcul-hint">
+                                    <small>💡 Méthode suggérée : ${exercice.methode}</small>
+                                </div>
+                            </div>
+                        `;
+                    default:
+                        return '<p>Type d\'exercice non reconnu.</p>';
+                }
+            }
+
+            getExerciceIcon(type) {
+                const icons = {
+                    'débutant': '🟢',
+                    'intermédiaire': '🟡', 
+                    'avancé': '🔴'
+                };
+                return icons[type] || '📝';
+            }
+
+            addEventListeners() {
+                // Event listeners pour les boutons de validation des exercices
+                this.container.querySelectorAll('.btn-validate').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        const exerciseIndex = parseInt(e.target.dataset.exerciseIndex);
+                        this.validateExercise(exerciseIndex);
+                    });
+                });
+
+                // Event listeners pour les choix du mini quiz
+                this.container.querySelectorAll('.quiz-choice').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        const chosen = e.target.dataset.choice;
+                        const correct = this.competence.miniQuiz[0].reponse;
+                        this.checkQuizAnswer(chosen, correct, e.target);
+                    });
+                });
+
+                // Event listeners pour les exercices interactifs
+                this.setupCanvasExercises();
+                this.setupCalculExercises();
+                
+                // Défi
+                const startDefiBtn = this.container.querySelector('#startDefiBtn');
+                if (startDefiBtn) {
+                    startDefiBtn.addEventListener('click', () => {
+                        this.startDefi();
+                    });
+                }
+
+                // Bouton terminer
+                const finishBtn = this.container.querySelector('#finishExercisesBtn');
+                if (finishBtn) {
+                    finishBtn.addEventListener('click', () => {
+                        this.finishExercises();
+                    });
+                }
+            }
+
+            setupCanvasExercises() {
+                // Configuration des exercices canvas (rectangle et droite graduée)
+                this.competence.exercices?.forEach((exercice, index) => {
+                    const canvas = this.container.querySelector(`#canvas_${index}`);
+                    if (canvas && exercice.typeExercice === 'rectangle') {
+                        this.setupRectangleExercise(canvas, exercice, index);
+                    } else if (canvas && exercice.typeExercice === 'droite') {
+                        this.setupDroiteExercise(canvas, exercice, index);
+                    }
+                });
+            }
+
+            setupCalculExercises() {
+                // Configuration des exercices de calcul
+                this.competence.exercices?.forEach((exercice, index) => {
+                    const input = this.container.querySelector(`#input_${index}`);
+                    if (input && exercice.typeExercice === 'calcul') {
+                        input.addEventListener('input', () => {
+                            const validation = this.container.querySelector(`#validation_${index}`);
+                            if (validation) {
+                                validation.style.display = input.value.trim() ? 'block' : 'none';
+                            }
+                        });
+                    }
+                });
+            }
+
+            setupRectangleExercise(canvas, exercice, index) {
+                const ctx = canvas.getContext('2d');
+                const cols = 4, rows = 2; // Rectangle 4x2 pour 1/2
+                const cellWidth = canvas.width / cols;
+                const cellHeight = canvas.height / rows;
+                
+                let coloredCells = new Set(); // Utiliser un Set pour éviter les doublons
+                const targetCells = cols * rows / 2; // Pour 1/2
+
+                // Dessiner la grille
+                this.drawGrid(ctx, canvas.width, canvas.height, cols, rows);
+
+                canvas.addEventListener('click', (e) => {
+                    const rect = canvas.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    const col = Math.floor(x / cellWidth);
+                    const row = Math.floor(y / cellHeight);
+                    const cellKey = `${col}_${row}`;
+                    
+                    // Alterner coloration
+                    const cellX = col * cellWidth;
+                    const cellY = row * cellHeight;
+                    
+                    if (coloredCells.has(cellKey)) {
+                        // Décolorier
+                        ctx.fillStyle = '#ffffff';
+                        ctx.fillRect(cellX + 1, cellY + 1, cellWidth - 2, cellHeight - 2);
+                        coloredCells.delete(cellKey);
+                    } else {
+                        // Colorier
+                        ctx.fillStyle = '#667eea';
+                        ctx.fillRect(cellX + 1, cellY + 1, cellWidth - 2, cellHeight - 2);
+                        coloredCells.add(cellKey);
+                    }
+
+                    // Redessiner la grille par-dessus
+                    this.drawGrid(ctx, canvas.width, canvas.height, cols, rows);
+
+                    // Vérifier si on peut valider
+                    const validation = this.container.querySelector(`#validation_${index}`);
+                    if (validation) {
+                        validation.style.display = coloredCells.size > 0 ? 'block' : 'none';
+                    }
+
+                    // Stocker l'état pour validation
+                    canvas.coloredCells = coloredCells;
+                    canvas.targetCells = targetCells;
+                });
+            }
+
+            setupDroiteExercise(canvas, exercice, index) {
+                const ctx = canvas.getContext('2d');
+                let clickedPosition = null;
+                
+                // Dessiner une droite graduée de 0 à 1
+                this.drawNumberLine(ctx, canvas.width, canvas.height);
+
+                canvas.addEventListener('click', (e) => {
+                    const rect = canvas.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    
+                    // Effacer les anciens points
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    this.drawNumberLine(ctx, canvas.width, canvas.height);
+                    
+                    // Placer un nouveau point
+                    ctx.fillStyle = '#667eea';
+                    ctx.beginPath();
+                    ctx.arc(x, 50, 5, 0, 2 * Math.PI);
+                    ctx.fill();
+                    
+                    clickedPosition = x;
+                    
+                    // Afficher la validation
+                    const validation = this.container.querySelector(`#validation_${index}`);
+                    if (validation) validation.style.display = 'block';
+
+                    // Stocker la position pour validation
+                    canvas.clickedPosition = clickedPosition;
+                });
+            }
+
+            drawNumberLine(ctx, width, height) {
+                ctx.strokeStyle = '#2d3748';
+                ctx.lineWidth = 2;
+                
+                // Ligne principale
+                ctx.beginPath();
+                ctx.moveTo(50, 50);
+                ctx.lineTo(width - 50, 50);
+                ctx.stroke();
+                
+                // Graduations pour 3/4
+                const divisions = 4;
+                for (let i = 0; i <= divisions; i++) {
+                    const x = 50 + ((width - 100) / divisions) * i;
+                    ctx.beginPath();
+                    ctx.moveTo(x, 40);
+                    ctx.lineTo(x, 60);
+                    ctx.stroke();
+                    
+                    ctx.fillStyle = '#2d3748';
+                    ctx.font = '12px Arial';
+                    ctx.textAlign = 'center';
+                    ctx.fillText(`${i}/${divisions}`, x, 80);
+                }
+            }
+
+            drawGrid(ctx, width, height, cols, rows) {
+                ctx.strokeStyle = '#2d3748';
+                ctx.lineWidth = 1;
+                
+                // Lignes verticales
+                for (let i = 0; i <= cols; i++) {
+                    const x = (width / cols) * i;
+                    ctx.beginPath();
+                    ctx.moveTo(x, 0);
+                    ctx.lineTo(x, height);
+                    ctx.stroke();
+                }
+                
+                // Lignes horizontales
+                for (let i = 0; i <= rows; i++) {
+                    const y = (height / rows) * i;
+                    ctx.beginPath();
+                    ctx.moveTo(0, y);
+                    ctx.lineTo(width, y);
+                    ctx.stroke();
+                }
+            }
+
+            validateExercise(index) {
+                const exercice = this.competence.exercices[index];
+                const feedback = this.container.querySelector(`#feedback_${index}`);
+                const validation = this.container.querySelector(`#validation_${index}`);
+                
+                let isCorrect = false;
+                let message = '';
+                
+                console.log('🔍 Validation exercice', index, exercice.typeExercice);
+                
+                switch(exercice.typeExercice) {
+                    case 'calcul':
+                        const input = this.container.querySelector(`#input_${index}`);
+                        const userAnswer = parseInt(input.value);
+                        isCorrect = userAnswer === exercice.reponse;
+                        message = isCorrect ? 
+                            `Correct ! ${exercice.methode} = ${exercice.reponse}` :
+                            `La bonne réponse est ${exercice.reponse}. Méthode: ${exercice.methode}`;
+                        break;
+                        
+                    case 'rectangle':
+                        const canvasRect = this.container.querySelector(`#canvas_${index}`);
+                        if (canvasRect && canvasRect.coloredCells) {
+                            const coloredCount = canvasRect.coloredCells.size;
+                            const targetCount = canvasRect.targetCells;
+                            isCorrect = coloredCount === targetCount;
+                            message = isCorrect ? 
+                                `Parfait ! Tu as colorié ${coloredCount} cases sur ${targetCount * 2} pour représenter 1/2` :
+                                `Tu as colorié ${coloredCount} cases. Pour 1/2, il faut colorier ${targetCount} cases sur ${targetCount * 2}`;
+                        }
+                        break;
+                        
+                    case 'droite':
+                        const canvasDroite = this.container.querySelector(`#canvas_${index}`);
+                        if (canvasDroite && canvasDroite.clickedPosition) {
+                            // Pour 3/4, la position correcte est à 75% de la droite
+                            const lineStart = 50;
+                            const lineLength = canvasDroite.width - 100;
+                            const correctPosition = lineStart + (lineLength * 0.75); // 3/4
+                            const tolerance = lineLength * 0.05; // 5% de tolérance
+                            
+                            isCorrect = Math.abs(canvasDroite.clickedPosition - correctPosition) <= tolerance;
+                            message = isCorrect ? 
+                                'Excellent placement de 3/4 sur la droite !' :
+                                'Pas tout à fait. 3/4 se trouve aux 3/4 de la droite entre 0 et 1';
+                        }
+                        break;
+                        
+                    default:
+                        isCorrect = true; // Par défaut, accepter
+                        message = 'Exercice complété !';
+                }
+
+                // Afficher le feedback
+                if (feedback) {
+                    if (isCorrect) {
+                        feedback.innerHTML = `<div class="success-feedback">✅ ${message} (+${exercice.points} points)</div>`;
+                        this.completedExercises.add(index);
+                        this.score += exercice.points;
+                    } else {
+                        feedback.innerHTML = `<div class="error-feedback">❌ ${message}</div>`;
+                    }
+                    feedback.style.display = 'block';
+                }
+
+                // Cacher le bouton de validation
+                if (validation) {
+                    validation.style.display = 'none';
+                }
+                
+                this.updateProgress();
+                console.log('📊 Score actuel:', this.score, 'Exercices complétés:', this.completedExercises.size);
+            }
+
+            checkQuizAnswer(chosen, correct, buttonElement) {
+                console.log('🎯 Vérification quiz:', chosen, 'vs', correct);
+                
+                const isCorrect = chosen === correct;
+                const feedback = this.container.querySelector('#quizFeedback');
+                
+                // Désactiver tous les boutons
+                this.container.querySelectorAll('.quiz-choice').forEach(btn => {
+                    btn.disabled = true;
+                    btn.style.pointerEvents = 'none';
+                    
+                    if (btn.dataset.choice === correct) {
+                        btn.classList.add('correct');
+                    } else if (btn === buttonElement && !isCorrect) {
+                        btn.classList.add('incorrect');
+                    }
+                });
+
+                if (feedback) {
+                    if (isCorrect) {
+                        feedback.innerHTML = `<div class="success-feedback">✅ Excellent ! +${this.competence.miniQuiz[0].points} points</div>`;
+                        this.score += this.competence.miniQuiz[0].points;
+                        this.completedExercises.add('quiz');
+                    } else {
+                        feedback.innerHTML = `<div class="error-feedback">❌ La bonne réponse était "${correct}"</div>`;
+                    }
+                    feedback.style.display = 'block';
+                }
+                
+                this.updateProgress();
+                console.log('📊 Score après quiz:', this.score);
+            }
+
+            updateProgress() {
+                const totalExercises = (this.competence.exercices?.length || 0) + (this.competence.miniQuiz?.length || 0);
+                const completed = this.completedExercises.size;
+                
+                const completedEl = this.container.querySelector('#completedCount');
+                const progressFill = this.container.querySelector('#progressFillExercise');
+                const finishBtn = this.container.querySelector('#finishExercisesBtn');
+                
+                if (completedEl) completedEl.textContent = completed;
+                if (progressFill) progressFill.style.width = `${(completed / totalExercises) * 100}%`;
+                
+                if (completed >= totalExercises && finishBtn) {
+                    finishBtn.style.display = 'block';
+                }
+            }
+
+            startDefi() {
+                console.log('🏆 Défi démarré !');
+                
+                // Récupérer les éléments du défi
+                const defiSection = this.container.querySelector('.defi-section');
+                const startBtn = this.container.querySelector('#startDefiBtn');
+                const timerDiv = this.container.querySelector('#defiTimer');
+                const inputDiv = this.container.querySelector('#defiInput');
+                const resultDiv = this.container.querySelector('#defiResult');
+                
+                if (!defiSection || !startBtn || !timerDiv || !inputDiv || !resultDiv) {
+                    console.error('Éléments du défi introuvables');
+                    return;
+                }
+                
+                // Cacher le bouton de démarrage
+                startBtn.style.display = 'none';
+                
+                // Initialiser le défi
+                this.defiTimeRemaining = this.courseData?.defi?.duree || 30;
+                this.defiResponses = [];
+                this.defiCurrentQuestion = 0;
+                this.defiQuestions = this.generateDefiQuestions();
+                
+                // Afficher le timer
+                timerDiv.style.display = 'block';
+                timerDiv.innerHTML = `<div style="text-align: center; font-size: 1.2rem; color: #f59e0b; font-weight: bold;">⏰ Temps restant: <span id="timeDisplay">${this.defiTimeRemaining}</span>s</div>`;
+                
+                // Afficher la première question
+                this.showDefiQuestion();
+                
+                // Démarrer le timer
+                this.defiTimer = setInterval(() => {
+                    this.defiTimeRemaining--;
+                    const timeDisplay = document.getElementById('timeDisplay');
+                    if (timeDisplay) {
+                        timeDisplay.textContent = this.defiTimeRemaining;
+                    }
+                    
+                    if (this.defiTimeRemaining <= 0) {
+                        this.endDefi();
+                    }
+                }, 1000);
+            }
+            
+            generateDefiQuestions() {
+                // Générer des questions variées de fractions équivalentes
+                const questions = [];
+                
+                // Type 1: Trouver le numérateur manquant (ex: 1/2 = ?/4)
+                for (let i = 0; i < 2; i++) {
+                    const numerator1 = Math.floor(Math.random() * 4) + 1; // 1-4
+                    const denominator1 = Math.floor(Math.random() * 6) + 2; // 2-7
+                    const multiplier = Math.floor(Math.random() * 3) + 2; // 2-4
+                    const numerator2 = numerator1 * multiplier;
+                    const denominator2 = denominator1 * multiplier;
+                    
+                    questions.push({
+                        question: `${numerator1}/${denominator1} = ?/${denominator2}`,
+                        answer: numerator2,
+                        explanation: `${numerator1}/${denominator1} = ${numerator2}/${denominator2} (multiplié par ${multiplier})`
+                    });
+                }
+                
+                // Type 2: Trouver le dénominateur manquant (ex: 2/3 = 4/?)
+                for (let i = 0; i < 2; i++) {
+                    const numerator1 = Math.floor(Math.random() * 4) + 1; // 1-4
+                    const denominator1 = Math.floor(Math.random() * 6) + 2; // 2-7
+                    const multiplier = Math.floor(Math.random() * 3) + 2; // 2-4
+                    const numerator2 = numerator1 * multiplier;
+                    const denominator2 = denominator1 * multiplier;
+                    
+                    questions.push({
+                        question: `${numerator1}/${denominator1} = ${numerator2}/?`,
+                        answer: denominator2,
+                        explanation: `${numerator1}/${denominator1} = ${numerator2}/${denominator2} (multiplié par ${multiplier})`
+                    });
+                }
+                
+                // Type 3: Simplification (ex: 6/8 = ?/4)
+                const simplifyQuestion = () => {
+                    const multiplier = Math.floor(Math.random() * 3) + 2; // 2-4
+                    const numerator1 = Math.floor(Math.random() * 3) + 1; // 1-3
+                    const denominator1 = Math.floor(Math.random() * 4) + 2; // 2-5
+                    const numerator2 = numerator1 * multiplier;
+                    const denominator2 = denominator1 * multiplier;
+                    
+                    return {
+                        question: `${numerator2}/${denominator2} = ?/${denominator1}`,
+                        answer: numerator1,
+                        explanation: `${numerator2}/${denominator2} = ${numerator1}/${denominator1} (divisé par ${multiplier})`
+                    };
+                };
+                
+                questions.push(simplifyQuestion());
+                
+                // Mélanger les questions
+                for (let i = questions.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [questions[i], questions[j]] = [questions[j], questions[i]];
+                }
+                
+                return questions;
+            }
+            
+            showDefiQuestion() {
+                const inputDiv = this.container.querySelector('#defiInput');
+                if (!inputDiv || this.defiCurrentQuestion >= this.defiQuestions.length) {
+                    this.endDefi();
+                    return;
+                }
+                
+                const question = this.defiQuestions[this.defiCurrentQuestion];
+                inputDiv.style.display = 'block';
+                inputDiv.innerHTML = `
+                    <div style="text-align: center; margin: 1rem 0;">
+                        <h5 style="color: #2d3748; margin-bottom: 1rem;">Question ${this.defiCurrentQuestion + 1}/5</h5>
+                        <p style="font-size: 1.1rem; margin-bottom: 1rem;">${question.question}</p>
+                        <input type="number" id="defiAnswer" placeholder="Votre réponse" style="padding: 0.5rem; border-radius: 8px; border: 2px solid #f59e0b; font-size: 1rem; width: 100px; text-align: center;">
+                        <button id="submitDefiAnswer" style="margin-left: 1rem; padding: 0.5rem 1rem; background: #f59e0b; color: white; border: none; border-radius: 8px; cursor: pointer;">Valider</button>
+                    </div>
+                `;
+                
+                // Event listener pour la validation
+                const submitBtn = document.getElementById('submitDefiAnswer');
+                const answerInput = document.getElementById('defiAnswer');
+                
+                const submitAnswer = () => {
+                    const userAnswer = parseInt(answerInput.value);
+                    if (!isNaN(userAnswer)) {
+                        this.defiResponses.push({
+                            question: question.question,
+                            userAnswer: userAnswer,
+                            correctAnswer: question.answer,
+                            isCorrect: userAnswer === question.answer,
+                            explanation: question.explanation
+                        });
+                        
+                        this.defiCurrentQuestion++;
+                        this.showDefiQuestion();
+                    }
+                };
+                
+                if (submitBtn) {
+                    submitBtn.addEventListener('click', submitAnswer);
+                }
+                
+                if (answerInput) {
+                    answerInput.addEventListener('keypress', (e) => {
+                        if (e.key === 'Enter') {
+                            submitAnswer();
+                        }
+                    });
+                    answerInput.focus();
+                }
+            }
+            
+            endDefi() {
+                console.log('🏁 Défi terminé !');
+                
+                // Arrêter le timer
+                if (this.defiTimer) {
+                    clearInterval(this.defiTimer);
+                }
+                
+                // Calculer le score
+                const correctAnswers = this.defiResponses.filter(r => r.isCorrect).length;
+                const totalQuestions = this.defiResponses.length;
+                const scorePercent = totalQuestions > 0 ? Math.round((correctAnswers / totalQuestions) * 100) : 0;
+                
+                // Afficher les résultats
+                const resultDiv = this.container.querySelector('#defiResult');
+                const timerDiv = this.container.querySelector('#defiTimer');
+                const inputDiv = this.container.querySelector('#defiInput');
+                
+                if (timerDiv) timerDiv.style.display = 'none';
+                if (inputDiv) inputDiv.style.display = 'none';
+                
+                if (resultDiv) {
+                    resultDiv.style.display = 'block';
+                    
+                    // Générer le détail des réponses
+                    const detailsHtml = this.defiResponses.map((response, index) => `
+                        <div style="margin: 0.5rem 0; padding: 0.75rem; background: ${response.isCorrect ? 'rgba(16, 185, 129, 0.1)' : 'rgba(239, 68, 68, 0.1)'}; border-radius: 8px; text-align: left;">
+                            <strong>Q${index + 1}:</strong> ${response.question}<br>
+                            <span style="color: ${response.isCorrect ? '#10b981' : '#ef4444'};">
+                                ${response.isCorrect ? '✅' : '❌'} Votre réponse: ${response.userAnswer} | Correct: ${response.correctAnswer}
+                            </span><br>
+                            <small style="color: #6b7280; font-style: italic;">${response.explanation}</small>
+                        </div>
+                    `).join('');
+                    
+                    resultDiv.innerHTML = `
+                        <div style="padding: 1rem; background: rgba(245, 158, 11, 0.1); border-radius: 12px; margin-top: 1rem;">
+                            <h4 style="color: #f59e0b; margin-bottom: 1rem; text-align: center;">🏆 Résultats du défi</h4>
+                            <p style="font-size: 1.2rem; font-weight: bold; text-align: center; margin-bottom: 1rem; color: ${scorePercent >= 70 ? '#10b981' : scorePercent >= 50 ? '#f59e0b' : '#ef4444'};">
+                                Score: ${correctAnswers}/${totalQuestions} (${scorePercent}%)
+                            </p>
+                            <p style="margin: 0.5rem 0; color: #4a5568; text-align: center; margin-bottom: 1rem;">
+                                ${scorePercent >= 70 ? '🎉 Excellent travail !' : scorePercent >= 50 ? '👍 Bien joué, continue tes efforts !' : '💪 Continue à t\'entraîner !'}
+                            </p>
+                            
+                            <div style="margin: 1rem 0;">
+                                <h5 style="color: #2d3748; margin-bottom: 0.5rem;">📝 Détail de tes réponses :</h5>
+                                ${detailsHtml}
+                            </div>
+                            
+                            <div style="text-align: center; margin-top: 1rem;">
+                                <button id="showDetailsBtn" style="margin-right: 0.5rem; padding: 0.5rem 1rem; background: #667eea; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 600;">
+                                    👁️ ${this.showDetails ? 'Masquer' : 'Voir'} les détails
+                                </button>
+                                <button id="restartDefi" style="padding: 0.75rem 1.5rem; background: #f59e0b; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 600;">
+                                    🔄 Recommencer le défi
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                    
+                    // Event listeners pour les boutons
+                    const restartBtn = document.getElementById('restartDefi');
+                    const showDetailsBtn = document.getElementById('showDetailsBtn');
+                    
+                    if (restartBtn) {
+                        restartBtn.addEventListener('click', () => {
+                            resultDiv.style.display = 'none';
+                            const startBtn = this.container.querySelector('#startDefiBtn');
+                            if (startBtn) {
+                                startBtn.style.display = 'block';
+                            }
+                        });
+                    }
+                    
+                    if (showDetailsBtn) {
+                        showDetailsBtn.addEventListener('click', () => {
+                            const detailsDiv = resultDiv.querySelector('div[style*="margin: 1rem 0"]');
+                            if (detailsDiv) {
+                                const isVisible = detailsDiv.style.display !== 'none';
+                                detailsDiv.style.display = isVisible ? 'none' : 'block';
+                                showDetailsBtn.textContent = isVisible ? '👁️ Voir les détails' : '👁️ Masquer les détails';
+                            }
+                        });
+                    }
+                }
+            }
+
+            finishExercises() {
+                console.log('🎉 Exercices terminés ! Score:', this.score);
+                
+                // Notification de fin
+                const notification = document.createElement('div');
+                notification.style.cssText = `
+                    position: fixed; top: 20px; right: 20px; z-index: 1000;
+                    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+                    color: white; padding: 1rem 2rem; border-radius: 12px;
+                    box-shadow: 0 8px 25px rgba(240, 147, 251, 0.5);
+                    font-weight: 600; animation: slideIn 0.3s ease;
+                `;
+                notification.innerHTML = `🎉 Bravo ! Score: ${this.score} points`;
+                document.body.appendChild(notification);
+
+                setTimeout(() => {
+                    notification.remove();
+                }, 4000);
+            }
+        }
+
+        // Instance globale des exercices
+        let exercicesComponent;
+
+        // Fonction pour générer la pré-évaluation (mise à jour)
+        function renderPreEvaluation(questions) {
+            console.log('🎯 Rendu de la pré-évaluation avec QuizPreEvaluation', questions);
+            quizComponent = new QuizPreEvaluation(questions, 'preTestQuestions');
+            quizComponent.render();
+            console.log('✅ QuizPreEvaluation rendu avec succès');
+        }
+
+        // Fonction pour générer la section cours (mise à jour)
+        function renderCoursSection(competence) {
+            console.log('📖 Rendu de la section cours avec ModuleLecon');
+            console.log('📋 Données compétence:', competence);
+            console.log('📝 Cours:', competence.cours);
+            console.log('🌟 Exemple:', competence.exemple);
+            console.log('🔍 Étapes:', competence.etapes);
+            
+            // Créer un container pour le module leçon
+            const coursContainer = document.getElementById('coursContent');
+            console.log('📦 Container cours trouvé:', !!coursContainer);
+            
+            if (coursContainer) {
+                // S'assurer que la section est visible
+                coursContainer.classList.add('expanded');
+                coursContainer.style.display = 'block';
+                
+                // Supprimer l'ancien contenu et créer un nouveau container
+                coursContainer.innerHTML = '<div class="collapsible-inner"><div id="moduleLeconContainer"></div></div>';
+                
+                // Vérifier que le nouveau container existe
+                const moduleContainer = document.getElementById('moduleLeconContainer');
+                console.log('📦 Module container créé:', !!moduleContainer);
+                
+                if (moduleContainer) {
+                    // Initialiser le composant ModuleLecon
+                    moduleLecon = new ModuleLecon(competence, 'moduleLeconContainer');
+                    moduleLecon.render();
+                    console.log('✅ ModuleLecon rendu avec succès');
+                } else {
+                    console.error('❌ Module container non créé');
+                }
+            } else {
+                console.error('❌ Container cours non trouvé');
+                // Essayer de créer le contenu directement dans une section alternative
+                const alternativeContainer = document.querySelector('.collapsible-section');
+                if (alternativeContainer) {
+                    console.log('🔄 Utilisation d\'un container alternatif');
+                }
+            }
+        }
+
+        // Fonction pour générer les exercices (mise à jour)
+        function renderExercices(competence) {
+            console.log('💪 Rendu de la section exercices avec ExercicesProgressifs');
+            
+            // Créer un container pour les exercices
+            const exercicesContainer = document.getElementById('exercicesContent');
+            console.log('📦 Container exercices trouvé:', !!exercicesContainer);
+            
+            if (exercicesContainer) {
+                // S'assurer que la section est visible
+                exercicesContainer.classList.add('expanded');
+                exercicesContainer.style.display = 'block';
+                
+                // Supprimer l'ancien contenu et créer un nouveau container
+                exercicesContainer.innerHTML = '<div class="collapsible-inner"><div id="exercicesProgressifsContainer"></div></div>';
+                
+                // Vérifier que le nouveau container existe
+                const exercicesModuleContainer = document.getElementById('exercicesProgressifsContainer');
+                console.log('📦 Module exercices container créé:', !!exercicesModuleContainer);
+                
+                if (exercicesModuleContainer) {
+                    // Initialiser le composant ExercicesProgressifs
+                    exercicesComponent = new ExercicesProgressifs(competence, 'exercicesProgressifsContainer');
+                    exercicesComponent.render();
+                    console.log('✅ ExercicesProgressifs rendu avec succès');
+                } else {
+                    console.error('❌ Module exercices container non créé');
+                }
+            } else {
+                console.error('❌ Container exercices non trouvé');
+            }
+        }
+
+        // Phase 4: Composant ModuleMetacognition - Version modulaire
+        class ModuleMetacognition {
+            constructor(metacognition, containerId) {
+                console.log('🤔 Initialisation ModuleMetacognition', { metacognition, containerId });
+                this.metacognition = metacognition;
+                this.container = document.getElementById(containerId);
+                this.answers = {};
+                this.currentQuestionIndex = 0;
+                this.isCompleted = false;
+                this.practicalChallengeShown = false;
+
+                if (!this.container) {
+                    console.error('❌ Container métacognition non trouvé:', containerId);
+                    return;
+                }
+                console.log('✅ Container métacognition trouvé:', this.container);
+            }
+
+            render() {
+                this.container.innerHTML = '';
+                this.renderMainContent();
+                this.addEventListeners();
+            }
+
+            renderMainContent() {
+                this.container.innerHTML = `
+                    <div class="metacognition-module">
+                        <div class="intro-section">
+                            <h3>🤔 Réflexion sur tes apprentissages</h3>
+                            <p>Prends un moment pour réfléchir à ce que tu viens d'apprendre. Cette réflexion t'aidera à mieux mémoriser et comprendre.</p>
+                        </div>
+
+                        <div class="questions-container">
+                            ${this.renderQuestions()}
+                        </div>
+
+                        <div class="practical-challenge" id="practicalChallenge" style="display: none;">
+                            <h4>🎮 Défi pratique personnalisé</h4>
+                            <div class="challenge-scenario" id="challengeScenario"></div>
+                            <div class="challenge-input">
+                                <input type="text" id="practicalAnswer" placeholder="Ta réponse">
+                                <button class="btn-validate">Vérifier</button>
+                            </div>
+                            <div class="challenge-feedback" id="practicalFeedback"></div>
+                        </div>
+                        
+                        <div class="final-completion" id="finalCompletion" style="display: none;">
+                            <button class="btn-primary celebration">✨ J'ai terminé ma réflexion !</button>
+                        </div>
+                    </div>
+                `;
+            }
+
+            renderQuestions() {
+                if (!this.metacognition.questions || this.metacognition.questions.length === 0) {
+                    return '<p>Aucune question de métacognition disponible.</p>';
+                }
+
+                return this.metacognition.questions.map((question, index) => {
+                    if (question.type === 'objectif') {
+                        return `
+                            <div class="metacognition-section objective-section" data-question="${index}">
+                                <h3>🎯 ${question.question}</h3>
+                                <div class="monitoring" id="monitoring-${question.type}">
+                                    <div class="monitoring-buttons">
+                                        ${question.options.map((option, optionIndex) => `
+                                            <button class="monitoring-btn" data-rating="${4-optionIndex}" data-question="${question.type}">
+                                                ${option}
+                                            </button>
+                                        `).join('')}
+                                    </div>
+                                    <div class="monitoring-feedback" id="feedback-${question.type}"></div>
+                                </div>
+                            </div>
+                        `;
+                    } else {
+                        return `
+                            <div class="metacognition-section" data-question="${index}">
+                                <div class="metacognition-question">
+                                    <h4>${question.question}</h4>
+                                    <div class="metacognition-options">
+                                        ${question.options.map((option, optionIndex) => `
+                                            <button class="meta-btn" data-answer="${question.type}_${optionIndex}" data-question="${question.type}">
+                                                ${option}
+                                            </button>
+                                        `).join('')}
+                                    </div>
+                                    <div class="meta-feedback" id="feedback-${question.type}"></div>
+                                </div>
+                            </div>
+                        `;
+                    }
+                }).join('');
+            }
+
+            addEventListeners() {
+                // Event listeners pour les boutons de monitoring (objectif)
+                this.container.querySelectorAll('.monitoring-btn').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        const rating = parseInt(e.target.dataset.rating);
+                        const questionType = e.target.dataset.question;
+                        this.rateSection(questionType, rating, e.target);
+                    });
+                });
+
+                // Event listeners pour les questions métacognitives
+                this.container.querySelectorAll('.meta-btn').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        const answer = e.target.dataset.answer;
+                        const questionType = e.target.dataset.question;
+                        this.selectMetaAnswer(questionType, answer, e.target);
+                    });
+                });
+
+                // Event listener pour la validation du défi pratique
+                const validateBtn = this.container.querySelector('.challenge-input .btn-validate');
+                if (validateBtn) {
+                    validateBtn.addEventListener('click', () => {
+                        this.checkPracticalChallenge();
+                    });
+                }
+
+                // Event listener pour l'input du défi pratique (Enter)
+                const practicalInput = this.container.querySelector('#practicalAnswer');
+                if (practicalInput) {
+                    practicalInput.addEventListener('keypress', (e) => {
+                        if (e.key === 'Enter') {
+                            this.checkPracticalChallenge();
+                        }
+                    });
+                }
+
+                // Event listener pour la complétion finale
+                const completionBtn = this.container.querySelector('.final-completion .btn-primary');
+                if (completionBtn) {
+                    completionBtn.addEventListener('click', () => {
+                        this.completeMetacognition();
+                    });
+                }
+            }
+
+            rateSection(section, rating, buttonElement) {
+                this.answers[section] = rating;
+                
+                // Réinitialiser tous les boutons du même groupe
+                const buttons = buttonElement.parentElement.querySelectorAll('.monitoring-btn');
+                buttons.forEach(btn => btn.classList.remove('selected'));
+                buttonElement.classList.add('selected');
+                
+                // Afficher le feedback
+                const feedback = document.getElementById(`feedback-${section}`);
+                const messages = [
+                    'Il est normal de ne pas tout maîtriser du premier coup. Continue de t\'exercer !',
+                    'Tu es sur la bonne voie ! Avec un peu plus de pratique, tu y arriveras.',
+                    'Très bien ! Tu as bien assimilé la plupart des concepts.',
+                    'Excellent ! Tu maîtrises parfaitement cette compétence.'
+                ];
+                
+                if (feedback) {
+                    feedback.innerHTML = `<p style="margin-top: 10px; font-style: italic;">${messages[rating - 1]}</p>`;
+                }
+
+                console.log('📊 Section évaluée:', section, 'Note:', rating);
+            }
+
+            selectMetaAnswer(category, answer, buttonElement) {
+                this.answers[category] = answer;
+                
+                // Réinitialiser tous les boutons du même groupe
+                const buttons = buttonElement.parentElement.querySelectorAll('.meta-btn');
+                buttons.forEach(btn => btn.classList.remove('selected'));
+                buttonElement.classList.add('selected');
+                
+                // Afficher le feedback
+                const feedback = document.getElementById(`feedback-${category}`);
+                if (feedback) {
+                    feedback.innerHTML = '<p style="margin-top: 10px; color: #10b981; font-weight: 600;">✓ Réponse enregistrée</p>';
+                }
+                
+                // Afficher le défi pratique personnalisé après la question d'utilité
+                if (category === 'utilite' && !this.practicalChallengeShown) {
+                    this.generatePracticalChallenge(answer);
+                }
+
+                console.log('✅ Réponse métacognitive:', category, answer);
+            }
+
+            generatePracticalChallenge(utilityType) {
+                const practicalChallenge = this.container.querySelector('#practicalChallenge');
+                const scenario = this.container.querySelector('#challengeScenario');
+                
+                // Récupérer le défi depuis les données du cours
+                const defis = this.metacognition.defispratiques;
+                
+                if (defis && defis.cuisine) {
+                    scenario.innerHTML = `
+                        <p><strong>${defis.cuisine.scenario}</strong></p>
+                        <p><em>💡 Aide : ${defis.cuisine.aide}</em></p>
+                    `;
+                    
+                    practicalChallenge.style.display = 'block';
+                    practicalChallenge.scrollIntoView({ behavior: 'smooth' });
+                    this.practicalChallengeShown = true;
+                    
+                    console.log('🎮 Défi pratique généré');
+                }
+            }
+
+            checkPracticalChallenge() {
+                const answerInput = this.container.querySelector('#practicalAnswer');
+                const feedback = this.container.querySelector('#practicalFeedback');
+                
+                if (!answerInput || !feedback) return;
+                
+                const answer = answerInput.value.trim();
+                const defis = this.metacognition.defispratiques;
+                
+                if (defis && defis.cuisine) {
+                    const correctAnswer = defis.cuisine.reponse;
+                    
+                    if (answer === correctAnswer || answer === correctAnswer.toString()) {
+                        feedback.innerHTML = '🎉 <strong>Parfait !</strong> Tu as bien appliqué tes connaissances !';
+                        feedback.style.color = '#10b981';
+                        
+                        setTimeout(() => {
+                            const finalCompletion = this.container.querySelector('#finalCompletion');
+                            if (finalCompletion) {
+                                finalCompletion.style.display = 'block';
+                                finalCompletion.scrollIntoView({ behavior: 'smooth' });
+                            }
+                        }, 1000);
+                        
+                        console.log('✅ Défi pratique réussi');
+                    } else {
+                        feedback.innerHTML = `❌ <strong>Pas tout à fait !</strong> Réfléchis encore : ${defis.cuisine.aide}`;
+                        feedback.style.color = '#ef4444';
+                        
+                        console.log('❌ Réponse incorrecte au défi pratique');
+                    }
+                }
+            }
+
+            completeMetacognition() {
+                this.isCompleted = true;
+                
+                if (typeof markSectionCompleted === 'function') {
+                    markSectionCompleted('metacognition');
+                }
+
+                // Message de félicitations
+                const notification = document.createElement('div');
+                notification.style.cssText = `
+                    position: fixed; top: 20px; right: 20px; z-index: 1000;
+                    background: linear-gradient(135deg, #9f7aea 0%, #805ad5 100%);
+                    color: white; padding: 1rem 2rem; border-radius: 12px;
+                    box-shadow: 0 8px 25px rgba(159, 122, 234, 0.5);
+                    font-weight: 600; animation: slideIn 0.3s ease;
+                `;
+                notification.innerHTML = '🎉 Félicitations ! Tu as terminé cette leçon avec succès !';
+                document.body.appendChild(notification);
+
+                setTimeout(() => {
+                    notification.remove();
+                }, 5000);
+
+                console.log('✅ Métacognition terminée. Réponses:', this.answers);
+            }
+
+            getAnswers() {
+                return { ...this.answers };
+            }
+
+            getCompletionStatus() {
+                return {
+                    isCompleted: this.isCompleted,
+                    questionsAnswered: Object.keys(this.answers).length,
+                    totalQuestions: this.metacognition.questions ? this.metacognition.questions.length : 0,
+                    practicalChallengeCompleted: this.practicalChallengeShown
+                };
+            }
+        }
+
+        // Instance globale du module métacognition
+        let moduleMetacognition;
+
+        // Fonction pour générer la métacognition (maintient la compatibilité)
+        function renderMetacognition(metacognition) {
+            console.log('🤔 Rendu de la métacognition avec le nouveau composant');
+            
+            moduleMetacognition = new ModuleMetacognition(metacognition, 'metacognitionContainer');
+            if (moduleMetacognition.container) {
+                moduleMetacognition.render();
+            }
+        }
+
+        // Fonctions utilitaires
+        function getExerciceIcon(type) {
+            const icons = {
+                'débutant': '🟢',
+                'intermédiaire': '🟡', 
+                'avancé': '🔴'
+            };
+            return icons[type] || '📝';
+        }
+
+        function renderExerciceInteractif(exercice) {
+            if (!exercice.interactif) {
+                return '<p><em>Exercice à faire sur papier.</em></p>';
+            }
+
+            switch(exercice.typeExercice) {
+                case 'rectangle':
+                    return `
+                        <div class="exercice-interactif">
+                            <div class="rectangle-grid" id="rect-exercise">
+                                <div class="rectangle-part" onclick="togglePart(this)"></div>
+                                <div class="rectangle-part" onclick="togglePart(this)"></div>
+                                <div class="rectangle-part" onclick="togglePart(this)"></div>
+                                <div class="rectangle-part" onclick="togglePart(this)"></div>
+                            </div>
+                            <button onclick="checkRectangle()" class="check-btn">Vérifier</button>
+                            <div id="rect-feedback" class="exercise-feedback"></div>
+                        </div>
+                    `;
+                
+                case 'droite':
+                    return `
+                        <div class="exercice-interactif">
+                            <div class="number-line">
+                                <div class="line-marker" onclick="selectMarker(this, '0')">0</div>
+                                <div class="line-marker" onclick="selectMarker(this, '1/4')">1/4</div>
+                                <div class="line-marker" onclick="selectMarker(this, '1/2')">1/2</div>
+                                <div class="line-marker" onclick="selectMarker(this, '3/4')">3/4</div>
+                                <div class="line-marker" onclick="selectMarker(this, '1')">1</div>
+                            </div>
+                            <p style="margin: 10px 0;">Clique sur la position de 3/4 :</p>
+                            <div id="line-feedback" class="exercise-feedback"></div>
+                        </div>
+                    `;
+                
+                case 'calcul':
+                    return `
+                        <div class="exercice-interactif">
+                            <input type="number" id="calc-input" placeholder="Ta réponse" style="padding: 8px; margin: 8px; border: 2px solid #e2e8f0; border-radius: 8px;">
+                            <button onclick="checkCalculation()" class="check-btn">Vérifier</button>
+                            <div id="calc-feedback" class="exercise-feedback"></div>
+                        </div>
+                    `;
+                
+                default:
+                    return '<div class="exercice-interactif"><p>Exercice interactif à développer...</p></div>';
+            }
+        }
+
+        // Fonctions pour gérer les sections collapsibles
+        window.toggleSection = function(sectionName) {
+            const content = document.getElementById(sectionName + 'Content');
+            const header = document.getElementById(sectionName + 'Header');
+            const icon = header.querySelector('.collapsible-icon');
+            
+            if (content.classList.contains('expanded')) {
+                content.classList.remove('expanded');
+                header.classList.remove('expanded');
+                icon.textContent = '🔽';
+            } else {
+                content.classList.add('expanded');
+                header.classList.add('expanded');
+                icon.textContent = '🔼';
+            }
+        };
+
+        window.markSectionCompleted = function(sectionName) {
+            completedSections.add(sectionName);
+            const header = document.getElementById(sectionName + 'Header');
+            if (header) {
+                header.classList.add('completed');
+            }
+            updateProgressDisplay();
+        };
+
+        window.updateProgressDisplay = function() {
+            const phases = ['preEval', 'cours', 'exercices', 'metacognition'];
+            const completedCount = completedSections.size;
+            console.log(`Progression: ${completedCount}/4 phases complétées`);
+        };
+
+        // [Ancien code de pré-évaluation supprimé - remplacé par QuizPreEvaluation]
+
+        window.startAdaptedPath = function(level = adaptedPath) {
+            adaptedPath = level;
+            markSectionCompleted('preEval');
+            toggleSection('preEval');
+            
+            // Messages personnalisés selon le niveau
+            const messages = {
+                'advanced': '🚀 Parfait ! Tu peux aller directement aux exercices pour te perfectionner.',
+                'intermediate': '👍 Bien ! Commence par réviser le cours puis fais les exercices.',
+                'beginner': '💪 C\'est parti ! Étudie bien le cours avant de faire les exercices.'
+            };
+            
+            // Afficher un message de transition
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed; top: 20px; right: 20px; z-index: 1000;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                color: white; padding: 1rem 2rem; border-radius: 12px;
+                box-shadow: 0 8px 25px rgba(31, 38, 135, 0.5);
+                font-weight: 600; animation: slideIn 0.3s ease;
+            `;
+            notification.innerHTML = messages[level] || messages['intermediate'];
+            document.body.appendChild(notification);
+            
+            // Supprimer la notification après 4 secondes
+            setTimeout(() => {
+                notification.remove();
+            }, 4000);
+            
+            if (level === 'advanced') {
+                // Aller directement aux exercices
+                setTimeout(() => {
+                    toggleSection('exercices');
+                    document.getElementById('exercicesContent').scrollIntoView({ behavior: 'smooth' });
+                }, 500);
+            } else {
+                // Commencer par le cours
+                setTimeout(() => {
+                    toggleSection('cours');
+                    document.getElementById('coursContent').scrollIntoView({ behavior: 'smooth' });
+                }, 500);
+            }
+        };
+
+        // Fonctions des exercices
+        window.togglePart = function(element) {
+            if (element.classList.contains('selected')) {
+                element.classList.remove('selected');
+                selectedParts--;
+            } else {
+                element.classList.add('selected');
+                selectedParts++;
+            }
+        };
+
+        window.checkRectangle = function() {
+            const feedback = document.getElementById('rect-feedback');
+            const targetParts = 2; // 1/2 = 2 parts sur 4
+            
+            if (selectedParts === targetParts) {
+                feedback.innerHTML = '🎉 <strong>Bravo ! C\'est exactement ça.</strong><br>Tu as bien compris comment représenter une fraction : 1/2 = 2 parts coloriées sur 4 parts au total.';
+                feedback.className = 'exercise-feedback feedback-success';
+                exercisesCompleted.rectangle = true;
+            } else {
+                feedback.innerHTML = `❌ <strong>Pas encore !</strong><br>Pour 1/2, il faut colorier 2 parts sur 4. Tu en as colorié ${selectedParts}.`;
+                feedback.className = 'exercise-feedback feedback-error';
+            }
+        };
+
+        window.selectMarker = function(element, fraction) {
+            if (selectedMarker) {
+                selectedMarker.classList.remove('selected');
+            }
+            
+            element.classList.add('selected');
+            selectedMarker = element;
+            
+            const feedback = document.getElementById('line-feedback');
+            
+            if (fraction === '3/4') {
+                feedback.innerHTML = '🎉 <strong>Parfait !</strong><br>Tu as correctement placé 3/4 sur la droite graduée.';
+                feedback.className = 'exercise-feedback feedback-success';
+                exercisesCompleted.droite = true;
+            } else {
+                feedback.innerHTML = `❌ <strong>Essaie encore !</strong><br>Tu as choisi ${fraction}, mais on cherche 3/4. Réfléchis : 3/4 signifie 3 parts sur 4.`;
+                feedback.className = 'exercise-feedback feedback-error';
+            }
+        };
+
+        window.checkCalculation = function() {
+            const input = document.getElementById('calc-input');
+            const feedback = document.getElementById('calc-feedback');
+            const answer = parseInt(input.value);
+            const correct = 20; // 5/8 × 32 = 20
+            
+            if (answer === correct) {
+                feedback.innerHTML = '🎉 <strong>Excellent !</strong><br>Tu as bien calculé : 5/8 de 32 = (5 × 32) ÷ 8 = 160 ÷ 8 = 20 parts.';
+                feedback.className = 'exercise-feedback feedback-success';
+                exercisesCompleted.calcul = true;
+            } else {
+                feedback.innerHTML = `❌ <strong>Pas tout à fait !</strong><br>Ta réponse : ${answer}. La bonne méthode : (5 × 32) ÷ 8 = ?`;
+                feedback.className = 'exercise-feedback feedback-error';
+            }
+        };
+
+        window.checkAnswer = function(element, isCorrect) {
+            const feedback = document.getElementById('feedback');
+            const choices = document.querySelectorAll('.choix span');
+            
+            choices.forEach(choice => {
+                choice.style.border = '2px solid transparent';
+                choice.style.pointerEvents = 'none';
+            });
+            
+            if (isCorrect) {
+                element.style.border = '2px solid #10b981';
+                element.style.backgroundColor = '#d1fae5';
+                feedback.innerHTML = '🎉 <strong>Bravo !</strong> C\'est la bonne réponse.';
+                feedback.className = 'feedback-success';
+            } else {
+                element.style.border = '2px solid #ef4444';
+                element.style.backgroundColor = '#fee2e2';
+                choices.forEach(choice => {
+                    if (choice.textContent === '2/5') {
+                        choice.style.border = '2px solid #10b981';
+                        choice.style.backgroundColor = '#d1fae5';
+                    }
+                });
+                feedback.innerHTML = '❌ <strong>Pas encore !</strong> La bonne réponse est 2/5 : 2 parts prises sur 5 parts au total.';
+                feedback.className = 'feedback-error';
+            }
+        };
+
+        // Fonctions utilitaires (anciennes fonctions de métacognition supprimées - maintenant dans ModuleMetacognition)
+
+        window.startChallenge = function() {
+            const button = document.getElementById('challengeBtn');
+            const timer = document.getElementById('challengeTimer');
+            const input = document.getElementById('challengeInput');
+            const result = document.getElementById('challengeResult');
+            
+            button.style.display = 'none';
+            timer.style.display = 'block';
+            input.style.display = 'block';
+            
+            let timeLeft = 30;
+            timer.textContent = `⏰ ${timeLeft} secondes`;
+            
+            challengeTimer = setInterval(() => {
+                timeLeft--;
+                timer.textContent = `⏰ ${timeLeft} secondes`;
+                
+                if (timeLeft <= 0) {
+                    clearInterval(challengeTimer);
+                    timer.textContent = '⏰ Temps écoulé !';
+                    
+                    const inputs = input.querySelectorAll('input');
+                    const answers = Array.from(inputs).map(inp => inp.value.trim()).filter(val => val);
+                    
+                    result.innerHTML = `
+                        <p><strong>Tes réponses :</strong> ${answers.join(', ')}</p>
+                        <p><strong>Exemples possibles :</strong> 4/6, 6/9, 8/12, 10/15...</p>
+                        <p>💪 Bien joué pour avoir essayé !</p>
+                    `;
+                    result.style.color = '#9f7aea';
+                }
+            }, 1000);
+        };
+
+        // Initialisation au chargement de la page
+        window.addEventListener('load', function() {
+            console.log('🔄 Page chargée, initialisation...');
+            loadCourse().then(() => {
+                console.log('✅ Chargement terminé, affichage de la pré-évaluation');
+                toggleSection('preEval');
+                updateProgressDisplay();
+            }).catch(error => {
+                console.error('❌ Erreur lors de l\'initialisation:', error);
+            });
+        });
+    </script>
+</body>
+</html>
