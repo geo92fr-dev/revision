@@ -1,5 +1,5 @@
 // Données spécifiques aux moyennes pour la classe de 6ème
-export const moyennes6eme = {
+export const moyenne6eme = {
   niveau: "6ème",
   chapitre: "Organisation et gestion de données",
   sousChapitre: "Calcul de la moyenne",
