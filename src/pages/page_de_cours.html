@@ -1240,9 +1240,24 @@
             console.log(`🔧 Chargement de: ${subject}/${level}/${topic}`);
             
             try {
-                // Essayer de charger depuis les fichiers de données
+                // Charger depuis l'index centralisé
+                const indexPath = `../data/${subject}/${level}/index.js`;
+                console.log(`📂 Tentative de chargement depuis l'index: ${indexPath}`);
+                
+                const indexModule = await import(indexPath);
+                
+                // Utiliser l'export par défaut qui contient toutes les données du niveau
+                if (indexModule.default && indexModule.default[topic]) {
+                    courseData = indexModule.default[topic];
+                    console.log(`✅ Données ${topic} chargées depuis l'index`, courseData);
+                    return;
+                }
+                
+                // Si pas trouvé dans l'index, essayer l'ancienne méthode de chargement direct
+                console.log(`⚠️ Topic ${topic} non trouvé dans l'index, tentative de chargement direct...`);
+                
                 const dataPath = `../data/${subject}/${level}/${topic}.js`;
-                console.log(`📂 Tentative de chargement depuis: ${dataPath}`);
+                console.log(`📂 Tentative de chargement direct depuis: ${dataPath}`);
                 
                 const module = await import(dataPath);
                 
@@ -1252,7 +1267,7 @@
                 
                 if (module[dataKey]) {
                     courseData = module[dataKey];
-                    console.log(`✅ Données ${topic} chargées depuis le fichier`, courseData);
+                    console.log(`✅ Données ${topic} chargées depuis le fichier direct`, courseData);
                     return;
                 }
                 
@@ -1263,11 +1278,13 @@
                     return;
                 }
                 
-                throw new Error(`Structure de données non trouvée: ${dataKey}. Clés disponibles: ${Object.keys(module).join(', ')}`);
+                // Lister les topics disponibles dans l'index pour le debug
+                const availableTopics = indexModule.default ? Object.keys(indexModule.default) : [];
+                throw new Error(`Topic "${topic}" non trouvé. Topics disponibles dans l'index: ${availableTopics.join(', ')}`);
                 
             } catch (importError) {
                 console.error(`❌ Erreur d'import: ${importError.message}`);
-                throw new Error(`Impossible de charger les données pour ${subject}/${level}/${topic}. Vérifiez que le fichier ${topic}.js existe et contient la structure de données correcte.`);
+                throw new Error(`Impossible de charger les données pour ${subject}/${level}/${topic}. ${importError.message}`);
             }
         }
 
