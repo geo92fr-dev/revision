@@ -840,9 +840,9 @@
         <div class="collapsible-section">
             <div class="collapsible-header" id="coursHeader" onclick="toggleSection('cours')">
                 <span>📖 Phase 2: Cours</span>
-                <span class="collapsible-icon">🔽</span>
+                <span class="collapsible-icon">▶️</span>
             </div>
-            <div class="collapsible-content expanded" id="coursContent">
+            <div class="collapsible-content" id="coursContent">
                 <!-- Le contenu sera généré par ModuleLecon -->
             </div>
         </div>
@@ -851,7 +851,7 @@
         <div class="collapsible-section">
             <div class="collapsible-header" id="exercicesHeader" onclick="toggleSection('exercices')">
                 <span>💪 Phase 3: Exercices</span>
-                <span class="collapsible-icon">🔽</span>
+                <span class="collapsible-icon">▶️</span>
             </div>
             <div class="collapsible-content" id="exercicesContent">
                 <div class="collapsible-inner">
@@ -889,7 +889,7 @@
         <div class="collapsible-section">
             <div class="collapsible-header" id="metacognitionHeader" onclick="toggleSection('metacognition')">
                 <span>🤔 Phase 4: Réflexion sur mes apprentissages</span>
-                <span class="collapsible-icon">🔽</span>
+                <span class="collapsible-icon">▶️</span>
             </div>
             <div class="collapsible-content" id="metacognitionContent">
                 <div class="collapsible-inner">
@@ -3031,11 +3031,11 @@
             if (content.classList.contains('expanded')) {
                 content.classList.remove('expanded');
                 header.classList.remove('expanded');
-                icon.textContent = '🔽';
+                icon.textContent = '▶️';
             } else {
                 content.classList.add('expanded');
                 header.classList.add('expanded');
-                icon.textContent = '🔼';
+                icon.textContent = '�';
             }
         };
 
