@@ -113,6 +113,8 @@ export const proportionnalite6eme = {
       defi: {
         titre: "Le défi du supermarché",
         description: "3 boîtes de conserve pèsent 1,2 kg. Combien pèsent 5 boîtes ?",
+        exemples: ["1,2 ÷ 3 × 5", "0,4 × 5", "2 kg"],
+        duree: 90,
         reponse: 2,
         solutionDetaillee: "On peut trouver la masse d'une boîte : 1,2 kg / 3 = 0,4 kg. Donc, 5 boîtes pèsent 5 × 0,4 = 2 kg."
       },

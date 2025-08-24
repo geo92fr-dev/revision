@@ -104,6 +104,8 @@ export const algebre6eme = {
       defi: {
         titre: "Le défi du programme de calcul",
         description: "Un programme de calcul dit : 'Prends un nombre, ajoute 5, puis multiplie le résultat par 2.' Écris ce programme en une expression littérale simple si le nombre est 'n'.",
+        exemples: ["n + 5 × 2", "(n + 5) × 2", "2 × (n + 5)"],
+        duree: 120,
         reponse: "(n + 5) × 2",
         solutionDetaillee: "On prend le nombre 'n', on ajoute 5 pour obtenir '(n + 5)'. On multiplie ensuite le résultat par 2, ce qui donne '(n + 5) × 2'."
       },

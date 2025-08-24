@@ -105,6 +105,8 @@ export const moyennes6eme = {
       defi: {
         titre: "Le défi du cuisinier",
         description: "Un chef a pesé les pommes de terre pour sa recette : 150g, 210g, 180g, 200g, 160g. Quelle est la masse moyenne d'une pomme de terre ?",
+        exemples: ["(150 + 210 + 180 + 200 + 160) ÷ 5", "900 ÷ 5", "180g"],
+        duree: 120,
         reponse: 180,
         solutionDetaillee: "La somme des masses est 150 + 210 + 180 + 200 + 160 = 900g. Il y a 5 pommes de terre. Donc la masse moyenne est 900 / 5 = 180g."
       },

@@ -96,6 +96,8 @@ export const multiplication6eme = {
       defi: {
         titre: "Le défi du supermarché",
         description: "Achète 3,5 kg de pommes à 2,40€ le kg. Calcule le prix total sans utiliser de calculatrice.",
+        exemples: ["3,5 × 2,40", "2,50 × 4,2", "1,8 × 3,60"],
+        duree: 60,
         reponse: 8.40,
         solutionDetaillee: "On calcule 35 × 24 = 840. Il y a 2 chiffres après la virgule au total (un dans 3,5 et un dans 2,4). On place donc la virgule : 8,40€."
       },

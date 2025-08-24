@@ -96,6 +96,8 @@ export const division6eme = {
       defi: {
         titre: "Le défi du pâtissier",
         description: "Un pâtissier a 50 œufs. Il les utilise pour faire des gâteaux qui demandent 6 œufs chacun. Combien de gâteaux peut-il faire, et combien d'œufs lui restera-t-il ?",
+        exemples: ["50 ÷ 6", "42 ÷ 7", "38 ÷ 5"],
+        duree: 90,
         reponse: {
           gateaux: 8,
           oeufs: 2
