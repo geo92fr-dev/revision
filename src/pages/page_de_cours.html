@@ -1223,11 +1223,21 @@
                 
                 console.log('📚 Données de cours chargées:', courseData);
                 
-                if (courseData && courseData.competences && courseData.competences.length > 0) {
-                    renderCourse(courseData.competences[0]); // Prendre la première compétence
-                    console.log('✅ Cours rendu avec succès');
+                // Gérer les deux types de structures de données
+                if (courseData) {
+                    if (courseData.competences && courseData.competences.length > 0) {
+                        // Structure type "compétences" (ancien format)
+                        renderCourse(courseData.competences[0]);
+                        console.log('✅ Cours rendu avec succès (format compétences)');
+                    } else if (courseData.phase1 && courseData.phase2 && courseData.phase3 && courseData.phase4) {
+                        // Structure type "phases" (nouveau format)
+                        renderPhaseBasedCourse(courseData);
+                        console.log('✅ Cours rendu avec succès (format phases)');
+                    } else {
+                        throw new Error('Structure de données non reconnue - ni compétences ni phases');
+                    }
                 } else {
-                    throw new Error('Structure de données invalide');
+                    throw new Error('Données de cours null ou undefined');
                 }
             } catch (error) {
                 console.error('❌ Erreur lors du chargement du cours:', error);
@@ -1286,15 +1296,10 @@
             
             try {
                 // Import statique de l'index pour mathématiques 6ème
-                console.log(`📂 Tentative d'import de l'index maths 6ème...`);
                 const mathsIndex = await import('../data/mathematiques/6ieme/index.js');
-                console.log(`📦 Index maths 6ème chargé avec succès`);
-                console.log(`📋 Contenu de l'index:`, mathsIndex);
-                console.log(`📋 Export par défaut:`, mathsIndex.default);
                 
                 if (mathsIndex.default && mathsIndex.default[topic]) {
                     console.log(`✅ Topic '${topic}' trouvé dans l'index maths 6ème`);
-                    console.log(`📄 Données du topic:`, mathsIndex.default[topic]);
                     return mathsIndex.default[topic];
                 }
                 
@@ -1303,7 +1308,6 @@
                 
             } catch (error) {
                 console.error(`❌ Erreur lors du chargement de l'index maths 6ème:`, error);
-                console.error(`❌ Stack trace:`, error.stack);
                 return null;
             }
         }
@@ -1384,6 +1388,58 @@
                 const section = document.getElementById(sectionId);
                 if (section) section.style.display = 'none';
             });
+        }
+
+        // Fonction pour gérer le format de données basé sur les phases (nouveau format)
+        function renderPhaseBasedCourse(data) {
+            console.log('🎨 Début du rendu du cours basé sur les phases:', data.titre);
+            
+            // Titre et informations générales
+            document.getElementById('pageTitle').textContent = `${data.titre} - ${data.niveau}`;
+            document.getElementById('mainTitle').textContent = `📚 ${data.titre}`;
+            
+            // Afficher les informations générales
+            document.getElementById('objectifText').textContent = data.description || 'Apprentissage des concepts fondamentaux';
+            document.getElementById('utiliteText').textContent = 'Cette compétence est essentielle pour votre progression en mathématiques.';
+            document.getElementById('funFactText').innerHTML = 'Saviez-vous que l\'apprentissage par phases améliore la rétention ? 🧠✨';
+
+            // Afficher la section d'informations
+            const infoSection = document.getElementById('infoSection');
+            if (infoSection) {
+                infoSection.style.display = 'block';
+            }
+
+            // Masquer les autres sections pour l'instant (à implémenter selon vos besoins)
+            const sections = ['coursSection', 'exercicesSection', 'evaluationSection', 'metacognitionSection'];
+            sections.forEach(sectionId => {
+                const section = document.getElementById(sectionId);
+                if (section) section.style.display = 'none';
+            });
+
+            // Afficher un message temporaire pour le développement
+            const infoDiv = document.getElementById('infoSection');
+            if (infoDiv) {
+                infoDiv.innerHTML = `
+                    <div class="section">
+                        <h2>🚧 Format phases en cours de développement</h2>
+                        <p><strong>Titre:</strong> ${data.titre}</p>
+                        <p><strong>Niveau:</strong> ${data.niveau}</p>
+                        <p><strong>Description:</strong> ${data.description}</p>
+                        <div class="phases-info">
+                            <h3>📚 Phases disponibles:</h3>
+                            <ul>
+                                <li>Phase 1: ${data.phase1?.titre || 'Non définie'}</li>
+                                <li>Phase 2: ${data.phase2?.titre || 'Non définie'}</li>
+                                <li>Phase 3: ${data.phase3?.titre || 'Non définie'}</li>
+                                <li>Phase 4: ${data.phase4?.titre || 'Non définie'}</li>
+                            </ul>
+                        </div>
+                        <p><em>Le rendu complet des phases sera implémenté prochainement.</em></p>
+                    </div>
+                `;
+            }
+
+            console.log('✅ Rendu temporaire des phases terminé');
         }
 
         // Fonction principale pour générer le HTML à partir des données
