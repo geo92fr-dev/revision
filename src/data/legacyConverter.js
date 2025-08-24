@@ -2,6 +2,11 @@
 export function convertToLegacyFormat(newFormatData) {
   const legacyData = [];
   
+  // Protection contre les données vides ou invalides
+  if (!newFormatData || !Array.isArray(newFormatData)) {
+    return legacyData;
+  }
+  
   // Grouper par chapitre principal
   const groupedByChapter = {};
   
@@ -25,7 +30,8 @@ export function convertToLegacyFormat(newFormatData) {
     }
     
     // Ajouter les compétences avec mapping de propriétés
-    item.competences.forEach(comp => {
+    if (item.competences && Array.isArray(item.competences)) {
+      item.competences.forEach(comp => {
       // Extraire l'ID YouTube de l'URL
       let youtubeId = "";
       const videoResource = comp.ressources?.find(r => r.type === "vidéo");
@@ -50,6 +56,7 @@ export function convertToLegacyFormat(newFormatData) {
               (videoResource && !youtubeId ? videoResource.url : "") // Si vidéo non-YouTube, mettre dans Site
       });
     });
+    } // Fermeture du if pour les compétences
   });
   
   // Convertir en tableau

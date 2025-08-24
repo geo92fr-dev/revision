@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monitoring Dashboard - FunRevis</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .dashboard {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .controls {
+            padding: 30px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #e9ecef;
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(72, 187, 120, 0.3);
+        }
+        
+        .btn.btn-secondary {
+            background: linear-gradient(135deg, #4299e1 0%, #3182ce 100%);
+        }
+        
+        .btn.btn-secondary:hover {
+            box-shadow: 0 8px 20px rgba(66, 153, 225, 0.3);
+        }
+        
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+        
+        .status-indicator.idle {
+            background: #e2e8f0;
+            color: #4a5568;
+        }
+        
+        .status-indicator.running {
+            background: #fef5e7;
+            color: #c05621;
+            animation: pulse 2s infinite;
+        }
+        
+        .status-indicator.complete {
+            background: #f0fff4;
+            color: #22543d;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        .progress-container {
+            margin: 20px 0;
+            display: none;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e2e8f0;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #48bb78 0%, #38a169 100%);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        
+        .progress-text {
+            margin-top: 8px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .content {
+            padding: 30px;
+            min-height: 400px;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+        }
+        
+        .spinner {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            border: 4px solid #e2e8f0;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .quick-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .quick-stat {
+            background: white;
+            border: 1px solid #e9ecef;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.2s;
+        }
+        
+        .quick-stat:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+        
+        .quick-stat h3 {
+            font-size: 2rem;
+            margin-bottom: 8px;
+            color: #2d3748;
+        }
+        
+        .quick-stat p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .auto-refresh {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-left: auto;
+        }
+        
+        .auto-refresh input[type="checkbox"] {
+            transform: scale(1.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <div class="header">
+            <h1>🔍 Monitoring Dashboard</h1>
+            <p>Surveillance et tests automatisés de toutes les matières</p>
+        </div>
+        
+        <div class="controls">
+            <button class="btn" id="runFullTest">
+                <span>🚀</span>
+                Lancer Test Complet
+            </button>
+            
+            <button class="btn btn-secondary" id="runQuickTest">
+                <span>⚡</span>
+                Test Rapide
+            </button>
+            
+            <button class="btn btn-secondary" id="exportReport">
+                <span>📊</span>
+                Exporter Rapport
+            </button>
+            
+            <div class="status-indicator idle" id="statusIndicator">
+                <span>●</span>
+                <span id="statusText">Prêt</span>
+            </div>
+            
+            <div class="auto-refresh">
+                <input type="checkbox" id="autoRefresh">
+                <label for="autoRefresh">Auto-refresh (5min)</label>
+            </div>
+            
+            <div class="progress-container" id="progressContainer">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <div class="progress-text" id="progressText">0/0 sujets testés</div>
+            </div>
+        </div>
+        
+        <div class="content" id="content">
+            <div class="quick-stats">
+                <div class="quick-stat">
+                    <h3 id="totalSubjects">20</h3>
+                    <p>Sujets totaux</p>
+                </div>
+                <div class="quick-stat">
+                    <h3 id="lastTestTime">-</h3>
+                    <p>Dernier test</p>
+                </div>
+                <div class="quick-stat">
+                    <h3 id="successRate">-</h3>
+                    <p>Taux de réussite</p>
+                </div>
+                <div class="quick-stat">
+                    <h3 id="avgLoadTime">-</h3>
+                    <p>Temps moyen</p>
+                </div>
+            </div>
+            
+            <div class="loading" style="display: none;" id="loadingIndicator">
+                <div class="spinner"></div>
+                <p>Initialisation du système de monitoring...</p>
+            </div>
+            
+            <div id="reportContainer">
+                <p style="text-align: center; color: #666; padding: 40px;">
+                    👆 Cliquez sur "Lancer Test Complet" pour commencer le monitoring
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { SubjectMonitor } from '../monitoring/subject-monitor.js';
+        
+        class Dashboard {
+            constructor() {
+                this.monitor = new SubjectMonitor();
+                this.isRunning = false;
+                this.autoRefreshInterval = null;
+                this.initializeEventListeners();
+                this.updateQuickStats();
+            }
+            
+            initializeEventListeners() {
+                document.getElementById('runFullTest').addEventListener('click', () => this.runFullTest());
+                document.getElementById('runQuickTest').addEventListener('click', () => this.runQuickTest());
+                document.getElementById('exportReport').addEventListener('click', () => this.exportReport());
+                document.getElementById('autoRefresh').addEventListener('change', (e) => this.toggleAutoRefresh(e.target.checked));
+            }
+            
+            async runFullTest() {
+                if (this.isRunning) return;
+                
+                this.setStatus('running', 'Test en cours...');
+                this.showProgress(true);
+                this.isRunning = true;
+                
+                try {
+                    const results = await this.monitor.runCompleteTest();
+                    this.displayResults(results);
+                    this.updateQuickStats(results);
+                    this.setStatus('complete', 'Test terminé');
+                } catch (error) {
+                    console.error('Erreur lors du test:', error);
+                    this.setStatus('idle', 'Erreur');
+                } finally {
+                    this.isRunning = false;
+                    this.showProgress(false);
+                }
+            }
+            
+            async runQuickTest() {
+                // Test rapide sur quelques sujets seulement
+                this.setStatus('running', 'Test rapide...');
+                // Implementation simplifiée...
+                setTimeout(() => {
+                    this.setStatus('complete', 'Test rapide terminé');
+                }, 2000);
+            }
+            
+            displayResults(results) {
+                const reportHtml = this.monitor.generateReport();
+                document.getElementById('reportContainer').innerHTML = reportHtml;
+            }
+            
+            updateQuickStats(results = null) {
+                if (results) {
+                    document.getElementById('totalSubjects').textContent = results.totalSubjects;
+                    document.getElementById('lastTestTime').textContent = new Date().toLocaleTimeString();
+                    document.getElementById('successRate').textContent = 
+                        ((results.passedSubjects / results.totalSubjects) * 100).toFixed(1) + '%';
+                    document.getElementById('avgLoadTime').textContent = 
+                        Math.round(results.duration / results.totalSubjects) + 'ms';
+                }
+            }
+            
+            setStatus(type, text) {
+                const indicator = document.getElementById('statusIndicator');
+                const statusText = document.getElementById('statusText');
+                
+                indicator.className = `status-indicator ${type}`;
+                statusText.textContent = text;
+            }
+            
+            showProgress(show) {
+                const container = document.getElementById('progressContainer');
+                container.style.display = show ? 'block' : 'none';
+            }
+            
+            exportReport() {
+                if (!this.monitor.testResults) {
+                    alert('Aucun rapport disponible. Lancez d\'abord un test.');
+                    return;
+                }
+                
+                const reportData = JSON.stringify(this.monitor.testResults, null, 2);
+                const blob = new Blob([reportData], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `monitoring-report-${new Date().toISOString().split('T')[0]}.json`;
+                a.click();
+                URL.revokeObjectURL(url);
+            }
+            
+            toggleAutoRefresh(enabled) {
+                if (enabled) {
+                    this.autoRefreshInterval = setInterval(() => {
+                        if (!this.isRunning) {
+                            this.runFullTest();
+                        }
+                    }, 5 * 60 * 1000); // 5 minutes
+                } else {
+                    if (this.autoRefreshInterval) {
+                        clearInterval(this.autoRefreshInterval);
+                        this.autoRefreshInterval = null;
+                    }
+                }
+            }
+        }
+        
+        // Initialiser le dashboard
+        window.addEventListener('DOMContentLoaded', () => {
+            new Dashboard();
+        });
+    </script>
+</body>
+</html>

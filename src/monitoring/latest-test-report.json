@@ -1,0 +1,366 @@
+{
+  "timestamp": "2025-08-24T20:18:46.326Z",
+  "totalFiles": 20,
+  "validFiles": 20,
+  "invalidFiles": 0,
+  "errors": [],
+  "warnings": [
+    "mathematiques/6ieme/moyenne.js: Export attendu 'moyenne6eme' non trouvé"
+  ],
+  "details": {
+    "anglais": {},
+    "francais": {},
+    "mathematiques": {
+      "6ieme": {
+        "totalFiles": 20,
+        "validFiles": 20,
+        "invalidFiles": 0,
+        "files": {
+          "addition-soustraction.js": {
+            "isValid": true,
+            "errors": [],
+            "warnings": [],
+            "structure": {
+              "hasCompetences": true,
+              "hasPhases": false,
+              "hasExport": true,
+              "hasTitle": true,
+              "lines": 91
+            },
+            "exports": [
+              "additionSoustraction6eme",
+              "data (default)"
+            ],
+            "size": 3219
+          },
+          "aires-figures.js": {
+            "isValid": true,
+            "errors": [],
+            "warnings": [],
+            "structure": {
+              "hasCompetences": false,
+              "hasPhases": true,
+              "hasExport": true,
+              "hasTitle": true,
+              "lines": 131
+            },
+            "exports": [
+              "airesFigures6eme",
+              "airesFigures6eme (default)"
+            ],
+            "size": 4445
+          },
+          "algebre.js": {
+            "isValid": true,
+            "errors": [],
+            "warnings": [],
+            "structure": {
+              "hasCompetences": true,
+              "hasPhases": false,
+              "hasExport": true,
+              "hasTitle": true,
+              "lines": 180
+            },
+            "exports": [
+              "algebre6eme",
+              "algebre6eme (default)"
+            ],
+            "size": 7840
+          },
+          "constructions-geometriques.js": {
+            "isValid": true,
+            "errors": [],
+            "warnings": [],
+            "structure": {
+              "hasCompetences": false,
+              "hasPhases": true,
+              "hasExport": true,
+              "hasTitle": true,
+              "lines": 140
+            },
+            "exports": [
+              "constructionsGeometriques6eme",
+              "constructionsGeometriques6eme (default)"
+            ],
+            "size": 5303
+          },
+          "division.js": {
+            "isValid": true,
+            "errors": [],
+            "warnings": [],
+            "structure": {
+              "hasCompetences": true,
+              "hasPhases": false,
+              "hasExport": true,
+              "hasTitle": true,
+              "lines": 175
+            },
+            "exports": [
+              "division6eme",
+              "division6eme (default)"
+            ],
+            "size": 7561
+          },
+          "durees.js": {
+            "isValid": true,
+            "errors": [],
+            "warnings": [],
+            "structure": {
+              "hasCompetences": false,
+              "hasPhases": true,
+              "hasExport": true,
+              "hasTitle": true,
+              "lines": 151
+            },
+            "exports": [
+              "durees6eme",
+              "durees6eme (default)"
+            ],
+            "size": 5015
+          },
+          "figures-planes.js": {
+            "isValid": true,
+            "errors": [],
+            "warnings": [],
+            "structure": {
+              "hasCompetences": true,
+              "hasPhases": false,
+              "hasExport": true,
+              "hasTitle": true,
+              "lines": 159
+            },
+            "exports": [
+              "figuresPlanes6eme",
+              "figuresPlanes6eme (default)"
+            ],
+            "size": 6458
+          },
+          "fractions-simples.js": {
+            "isValid": true,
+            "errors": [],
+            "warnings": [],
+            "structure": {
+              "hasCompetences": false,
+              "hasPhases": true,
+              "hasExport": true,
+              "hasTitle": true,
+              "lines": 119
+            },
+            "exports": [
+              "fractionsSimples6eme",
+              "fractionsSimples6eme (default)"
+            ],
+            "size": 4108
+          },
+          "fractions.js": {
+            "isValid": true,
+            "errors": [],
+            "warnings": [],
+            "structure": {
+              "hasCompetences": true,
+              "hasPhases": false,
+              "hasExport": true,
+              "hasTitle": true,
+              "lines": 200
+            },
+            "exports": [
+              "fractions6eme",
+              "fractions6eme (default)"
+            ],
+            "size": 8162
+          },
+          "graphiques.js": {
+            "isValid": true,
+            "errors": [],
+            "warnings": [],
+            "structure": {
+              "hasCompetences": false,
+              "hasPhases": true,
+              "hasExport": true,
+              "hasTitle": true,
+              "lines": 158
+            },
+            "exports": [
+              "graphiques6eme",
+              "graphiques6eme (default)"
+            ],
+            "size": 6364
+          },
+          "lecture-tableaux.js": {
+            "isValid": true,
+            "errors": [],
+            "warnings": [],
+            "structure": {
+              "hasCompetences": false,
+              "hasPhases": true,
+              "hasExport": true,
+              "hasTitle": true,
+              "lines": 130
+            },
+            "exports": [
+              "lectureTableaux6eme",
+              "lectureTableaux6eme (default)"
+            ],
+            "size": 5887
+          },
+          "moyenne.js": {
+            "isValid": true,
+            "errors": [],
+            "warnings": [
+              "Export attendu 'moyenne6eme' non trouvé"
+            ],
+            "structure": {
+              "hasCompetences": true,
+              "hasPhases": false,
+              "hasExport": true,
+              "hasTitle": true,
+              "lines": 45
+            },
+            "exports": [
+              "moyennes6eme",
+              "moyenne6eme (default)"
+            ],
+            "size": 1543
+          },
+          "multiplication.js": {
+            "isValid": true,
+            "errors": [],
+            "warnings": [],
+            "structure": {
+              "hasCompetences": true,
+              "hasPhases": false,
+              "hasExport": true,
+              "hasTitle": true,
+              "lines": 172
+            },
+            "exports": [
+              "multiplication6eme",
+              "multiplication6eme (default)"
+            ],
+            "size": 7606
+          },
+          "nombres-decimaux.js": {
+            "isValid": true,
+            "errors": [],
+            "warnings": [],
+            "structure": {
+              "hasCompetences": false,
+              "hasPhases": true,
+              "hasExport": true,
+              "hasTitle": true,
+              "lines": 111
+            },
+            "exports": [
+              "nombresDecimaux6eme",
+              "nombresDecimaux6eme (default)"
+            ],
+            "size": 3784
+          },
+          "nombres-entiers.js": {
+            "isValid": true,
+            "errors": [],
+            "warnings": [],
+            "structure": {
+              "hasCompetences": false,
+              "hasPhases": true,
+              "hasExport": true,
+              "hasTitle": true,
+              "lines": 110
+            },
+            "exports": [
+              "nombresEntiers6eme",
+              "nombresEntiers6eme (default)"
+            ],
+            "size": 3870
+          },
+          "perimetre.js": {
+            "isValid": true,
+            "errors": [],
+            "warnings": [],
+            "structure": {
+              "hasCompetences": true,
+              "hasPhases": false,
+              "hasExport": true,
+              "hasTitle": true,
+              "lines": 147
+            },
+            "exports": [
+              "perimetre6eme",
+              "perimetre6eme (default)"
+            ],
+            "size": 5783
+          },
+          "proportionnalite.js": {
+            "isValid": true,
+            "errors": [],
+            "warnings": [],
+            "structure": {
+              "hasCompetences": true,
+              "hasPhases": false,
+              "hasExport": true,
+              "hasTitle": true,
+              "lines": 169
+            },
+            "exports": [
+              "proportionnalite6eme",
+              "proportionnalite6eme (default)"
+            ],
+            "size": 7526
+          },
+          "symetrie-axiale.js": {
+            "isValid": true,
+            "errors": [],
+            "warnings": [],
+            "structure": {
+              "hasCompetences": false,
+              "hasPhases": true,
+              "hasExport": true,
+              "hasTitle": true,
+              "lines": 118
+            },
+            "exports": [
+              "symetrieAxiale6eme",
+              "symetrieAxiale6eme (default)"
+            ],
+            "size": 4613
+          },
+          "unites-longueur.js": {
+            "isValid": true,
+            "errors": [],
+            "warnings": [],
+            "structure": {
+              "hasCompetences": false,
+              "hasPhases": true,
+              "hasExport": true,
+              "hasTitle": true,
+              "lines": 142
+            },
+            "exports": [
+              "unitesLongueur6eme",
+              "unitesLongueur6eme (default)"
+            ],
+            "size": 4823
+          },
+          "unites-masse-capacite.js": {
+            "isValid": true,
+            "errors": [],
+            "warnings": [],
+            "structure": {
+              "hasCompetences": false,
+              "hasPhases": true,
+              "hasExport": true,
+              "hasTitle": true,
+              "lines": 166
+            },
+            "exports": [
+              "unitesMasseCapacite6eme",
+              "unitesMasseCapacite6eme (default)"
+            ],
+            "size": 5329
+          }
+        }
+      }
+    },
+    "sciences": {}
+  }
+}

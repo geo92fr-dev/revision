@@ -18,6 +18,9 @@
     "test:data:all": "node src/test/data/index.js",
     "test:data:simple": "node src/test/data/test-simple.js",
     "test:data:exports": "node src/test/data/test-exports.js",
+    "monitor": "node src/monitoring/automated-tester.js",
+    "monitor:watch": "nodemon src/monitoring/automated-tester.js",
+    "monitor:dashboard": "echo 'Dashboard: http://localhost:5173/src/monitoring/dashboard.html' && npm run dev",
     "test:data:loading": "node src/test/data/test-loading.js",
     "test:data:integration": "node src/test/data/test-integration.js"
   },

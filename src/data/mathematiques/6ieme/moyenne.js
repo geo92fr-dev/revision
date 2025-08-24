@@ -39,6 +39,6 @@ const moyenne6eme = {
   ]
 };
 
-export const moyennes6eme = moyenne6eme;
+export const moyennes6eme = moyenne6eme; // Alias pour compatibilité
 export { moyenne6eme }; // Export de la variable existante
 export default moyenne6eme;
