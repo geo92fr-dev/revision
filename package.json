@@ -11,7 +11,9 @@
     "test": "vitest",
     "test:ui": "vitest --ui",
     "test:run": "vitest run",
-    "test:coverage": "vitest run --coverage"
+    "test:coverage": "vitest run --coverage",
+    "validate": "node scripts/validate-data.js",
+    "validate:file": "node scripts/validate-data.js"
   },
   "dependencies": {
     "firebase": "^12.1.0",

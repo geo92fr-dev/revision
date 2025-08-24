@@ -788,6 +788,283 @@
             .step-content {
                 margin-left: 1rem;
             }
+
+            /* Styles pour l'évaluation finale */
+            .evaluation-finale {
+                max-width: 100%;
+            }
+
+            .evaluation-header {
+                text-align: center;
+                margin-bottom: 2rem;
+                padding: 1.5rem;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                color: white;
+                border-radius: 12px;
+            }
+
+            .evaluation-info {
+                display: flex;
+                justify-content: center;
+                gap: 2rem;
+                margin-top: 1rem;
+                font-size: 0.9rem;
+                opacity: 0.9;
+            }
+
+            .evaluation-start {
+                text-align: center;
+                padding: 2rem;
+                background: #f7fafc;
+                border-radius: 12px;
+                margin-bottom: 1rem;
+            }
+
+            .start-instructions {
+                margin-bottom: 2rem;
+                text-align: left;
+                max-width: 500px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .start-instructions ul {
+                list-style: none;
+                padding: 0;
+            }
+
+            .start-instructions li {
+                padding: 0.5rem 0;
+                padding-left: 1.5rem;
+                position: relative;
+            }
+
+            .start-instructions li:before {
+                content: "✓";
+                position: absolute;
+                left: 0;
+                color: #10b981;
+                font-weight: bold;
+            }
+
+            .evaluation-progress {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 2rem;
+                padding: 1rem;
+                background: #f7fafc;
+                border-radius: 8px;
+            }
+
+            .progress-bar {
+                flex: 1;
+                height: 8px;
+                background: #e2e8f0;
+                border-radius: 4px;
+                margin-right: 1rem;
+                overflow: hidden;
+            }
+
+            .progress-fill {
+                height: 100%;
+                background: linear-gradient(90deg, #10b981, #3b82f6);
+                transition: width 0.3s ease;
+            }
+
+            .question-card {
+                background: white;
+                border-radius: 12px;
+                padding: 2rem;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+                margin-bottom: 2rem;
+            }
+
+            .question-title {
+                color: #667eea;
+                margin-bottom: 1rem;
+                font-size: 1.2rem;
+            }
+
+            .question-text {
+                font-size: 1.1rem;
+                line-height: 1.6;
+                margin-bottom: 1.5rem;
+                color: #2d3748;
+            }
+
+            .question-points {
+                display: inline-block;
+                background: #667eea;
+                color: white;
+                padding: 0.25rem 0.75rem;
+                border-radius: 20px;
+                font-size: 0.9rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .qcm-choices {
+                display: grid;
+                gap: 0.75rem;
+            }
+
+            .qcm-choice {
+                display: flex;
+                align-items: center;
+                padding: 1rem;
+                border: 2px solid #e2e8f0;
+                border-radius: 8px;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                background: white;
+            }
+
+            .qcm-choice:hover {
+                border-color: #667eea;
+                background: #f7fafc;
+            }
+
+            .qcm-choice.selected {
+                border-color: #667eea;
+                background: #eef2ff;
+            }
+
+            .qcm-choice input[type="radio"] {
+                margin-right: 1rem;
+                transform: scale(1.2);
+            }
+
+            .choice-text {
+                flex: 1;
+                font-size: 1rem;
+            }
+
+            .calcul-input {
+                margin-bottom: 1rem;
+            }
+
+            .evaluation-input {
+                width: 100%;
+                padding: 1rem;
+                border: 2px solid #e2e8f0;
+                border-radius: 8px;
+                font-size: 1.1rem;
+                transition: border-color 0.3s ease;
+            }
+
+            .evaluation-input:focus {
+                outline: none;
+                border-color: #667eea;
+                box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            }
+
+            .evaluation-navigation {
+                display: flex;
+                justify-content: space-between;
+                gap: 1rem;
+                padding: 1rem;
+                background: #f7fafc;
+                border-radius: 8px;
+            }
+
+            .score-summary {
+                display: flex;
+                align-items: center;
+                gap: 2rem;
+                margin-bottom: 2rem;
+            }
+
+            .score-circle {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                width: 120px;
+                height: 120px;
+                background: linear-gradient(135deg, #10b981, #3b82f6);
+                color: white;
+                border-radius: 50%;
+                font-weight: bold;
+            }
+
+            .score-number {
+                font-size: 1.5rem;
+            }
+
+            .score-percentage {
+                font-size: 1rem;
+                opacity: 0.9;
+            }
+
+            .score-details {
+                flex: 1;
+            }
+
+            .score-message {
+                font-size: 1.2rem;
+                font-weight: bold;
+                margin-bottom: 0.5rem;
+                color: #2d3748;
+            }
+
+            .time-taken {
+                color: #718096;
+                font-size: 1rem;
+            }
+
+            .detailed-results {
+                margin: 2rem 0;
+            }
+
+            .result-item {
+                background: white;
+                border-radius: 8px;
+                padding: 1.5rem;
+                margin-bottom: 1rem;
+                border-left: 4px solid;
+            }
+
+            .result-item.correct {
+                border-left-color: #10b981;
+                background: rgba(16, 185, 129, 0.05);
+            }
+
+            .result-item.incorrect {
+                border-left-color: #ef4444;
+                background: rgba(239, 68, 68, 0.05);
+            }
+
+            .result-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 1rem;
+            }
+
+            .result-question {
+                font-weight: bold;
+                margin-bottom: 0.5rem;
+                color: #2d3748;
+            }
+
+            .result-answer, .result-correct {
+                margin-bottom: 0.5rem;
+                font-size: 0.95rem;
+            }
+
+            .result-explanation {
+                font-style: italic;
+                color: #718096;
+                font-size: 0.9rem;
+                margin-top: 0.5rem;
+            }
+
+            .results-actions {
+                display: flex;
+                gap: 1rem;
+                justify-content: center;
+                margin-top: 2rem;
+            }
         }
     </style>
 </head>
@@ -890,7 +1167,7 @@
         <!-- Phase 4: Métacognition -->
         <section class="phase-section">
             <button class="phase-header" id="metacognitionHeader" onclick="toggleSection('metacognition')" aria-expanded="false" aria-controls="metacognitionContent">
-                <span>🤔 Phase 4: Réflexion sur mes apprentissages</span>
+                <span>🤔 Phase 4: Réflexion sur tes apprentissages</span>
                 <span class="phase-icon">▶️</span>
             </button>
             <div class="phase-content" id="metacognitionContent" style="display: none;">
@@ -1204,8 +1481,9 @@
             selectAnswer(selectedAnswer, buttonElement) {
                 console.log('🎯 Réponse sélectionnée:', selectedAnswer);
                 const question = this.questions[this.currentQuestion];
-                const isCorrect = selectedAnswer === question.reponse;
-                console.log('✅ Correct?', isCorrect, 'Attendu:', question.reponse);
+                const correctAnswer = question.choix[question.correct];
+                const isCorrect = selectedAnswer === correctAnswer;
+                console.log('✅ Correct?', isCorrect, 'Attendu:', correctAnswer);
                 
                 // Désactiver tous les boutons
                 const buttons = this.container.querySelectorAll('.quiz-option');
@@ -1223,7 +1501,7 @@
                     buttonElement.classList.add('wrong');
                     // Montrer la bonne réponse
                     buttons.forEach(btn => {
-                        if (btn.dataset.answer === question.reponse) {
+                        if (btn.dataset.answer === correctAnswer) {
                             btn.classList.add('correct');
                         }
                     });
@@ -1232,7 +1510,7 @@
                 // Stocker la réponse
                 this.answers[this.currentQuestion] = {
                     selected: selectedAnswer,
-                    correct: question.reponse,
+                    correct: correctAnswer,
                     isCorrect: isCorrect
                 };
 
@@ -2019,10 +2297,10 @@
                 switch(exercice.typeExercice) {
                     case 'calcul':
                         const input = this.container.querySelector(`#input_${index}`);
-                        const userAnswer = parseInt(input.value);
+                        const userAnswer = input.value.trim();
                         isCorrect = userAnswer === exercice.reponse;
                         message = isCorrect ? 
-                            `Correct ! ${exercice.methode} = ${exercice.reponse}` :
+                            `Correct ! ${exercice.methode}` :
                             `La bonne réponse est ${exercice.reponse}. Méthode: ${exercice.methode}`;
                         break;
                         
@@ -2175,7 +2453,100 @@
             }
             
             generateDefiQuestions() {
-                // Générer des questions variées de fractions équivalentes
+                // Adapter les questions selon le topic actuel
+                const urlParams = new URLSearchParams(window.location.search);
+                const topic = urlParams.get('topic');
+                
+                if (topic === 'addition-soustraction') {
+                    return this.generateAdditionSoustractionQuestions();
+                } else if (topic === 'multiplication') {
+                    return this.generateMultiplicationQuestions();
+                } else if (topic === 'division') {
+                    return this.generateDivisionQuestions();
+                } else if (topic === 'fractions') {
+                    return this.generateFractionsQuestions();
+                } else {
+                    // Questions par défaut (calcul mental simple)
+                    return this.generateDefaultQuestions();
+                }
+            }
+            
+            generateAdditionSoustractionQuestions() {
+                const questions = [];
+                
+                // Type 1: Additions simples
+                for (let i = 0; i < 2; i++) {
+                    const a = Math.floor(Math.random() * 90) + 10; // 10-99
+                    const b = Math.floor(Math.random() * 90) + 10; // 10-99
+                    const answer = a + b;
+                    questions.push({
+                        question: `${a} + ${b} = ?`,
+                        answer: answer,
+                        explanation: `${a} + ${b} = ${answer}`
+                    });
+                }
+                
+                // Type 2: Soustractions simples
+                for (let i = 0; i < 2; i++) {
+                    const a = Math.floor(Math.random() * 100) + 50; // 50-149
+                    const b = Math.floor(Math.random() * 40) + 10; // 10-49
+                    const answer = a - b;
+                    questions.push({
+                        question: `${a} - ${b} = ?`,
+                        answer: answer,
+                        explanation: `${a} - ${b} = ${answer}`
+                    });
+                }
+                
+                // Type 3: Addition avec décimaux
+                const a = (Math.floor(Math.random() * 50) + 10) + (Math.floor(Math.random() * 9) + 1) / 10; // ex: 12.5
+                const b = (Math.floor(Math.random() * 30) + 5) + (Math.floor(Math.random() * 9) + 1) / 10; // ex: 7.8
+                const answer = Math.round((a + b) * 10) / 10;
+                questions.push({
+                    question: `${a} + ${b} = ?`,
+                    answer: answer,
+                    explanation: `${a} + ${b} = ${answer}`
+                });
+                
+                return questions;
+            }
+            
+            generateMultiplicationQuestions() {
+                const questions = [];
+                
+                for (let i = 0; i < 5; i++) {
+                    const a = Math.floor(Math.random() * 12) + 2; // 2-13
+                    const b = Math.floor(Math.random() * 12) + 2; // 2-13
+                    const answer = a * b;
+                    questions.push({
+                        question: `${a} × ${b} = ?`,
+                        answer: answer,
+                        explanation: `${a} × ${b} = ${answer}`
+                    });
+                }
+                
+                return questions;
+            }
+            
+            generateDivisionQuestions() {
+                const questions = [];
+                
+                for (let i = 0; i < 5; i++) {
+                    const diviseur = Math.floor(Math.random() * 10) + 2; // 2-11
+                    const quotient = Math.floor(Math.random() * 15) + 2; // 2-16
+                    const dividende = diviseur * quotient;
+                    questions.push({
+                        question: `${dividende} ÷ ${diviseur} = ?`,
+                        answer: quotient,
+                        explanation: `${dividende} ÷ ${diviseur} = ${quotient}`
+                    });
+                }
+                
+                return questions;
+            }
+            
+            generateFractionsQuestions() {
+                // Garder l'ancienne logique pour les fractions
                 const questions = [];
                 
                 // Type 1: Trouver le numérateur manquant (ex: 1/2 = ?/4)
@@ -2208,27 +2579,54 @@
                     });
                 }
                 
-                // Type 3: Simplification (ex: 6/8 = ?/4)
-                const simplifyQuestion = () => {
-                    const multiplier = Math.floor(Math.random() * 3) + 2; // 2-4
-                    const numerator1 = Math.floor(Math.random() * 3) + 1; // 1-3
-                    const denominator1 = Math.floor(Math.random() * 4) + 2; // 2-5
-                    const numerator2 = numerator1 * multiplier;
-                    const denominator2 = denominator1 * multiplier;
+                // Type 3: Simplification
+                const multiplier = Math.floor(Math.random() * 3) + 2; // 2-4
+                const numerator1 = Math.floor(Math.random() * 3) + 1; // 1-3
+                const denominator1 = Math.floor(Math.random() * 4) + 2; // 2-5
+                const numerator2 = numerator1 * multiplier;
+                const denominator2 = denominator1 * multiplier;
+                
+                questions.push({
+                    question: `${numerator2}/${denominator2} = ?/${denominator1}`,
+                    answer: numerator1,
+                    explanation: `${numerator2}/${denominator2} = ${numerator1}/${denominator1} (divisé par ${multiplier})`
+                });
+                
+                return questions;
+            }
+            
+            generateDefaultQuestions() {
+                // Questions de calcul mental général
+                const questions = [];
+                const operations = ['+', '-', '×'];
+                
+                for (let i = 0; i < 5; i++) {
+                    const op = operations[Math.floor(Math.random() * operations.length)];
+                    let a, b, answer;
                     
-                    return {
-                        question: `${numerator2}/${denominator2} = ?/${denominator1}`,
-                        answer: numerator1,
-                        explanation: `${numerator2}/${denominator2} = ${numerator1}/${denominator1} (divisé par ${multiplier})`
-                    };
-                };
-                
-                questions.push(simplifyQuestion());
-                
-                // Mélanger les questions
-                for (let i = questions.length - 1; i > 0; i--) {
-                    const j = Math.floor(Math.random() * (i + 1));
-                    [questions[i], questions[j]] = [questions[j], questions[i]];
+                    switch(op) {
+                        case '+':
+                            a = Math.floor(Math.random() * 50) + 10;
+                            b = Math.floor(Math.random() * 50) + 10;
+                            answer = a + b;
+                            break;
+                        case '-':
+                            a = Math.floor(Math.random() * 100) + 50;
+                            b = Math.floor(Math.random() * 40) + 10;
+                            answer = a - b;
+                            break;
+                        case '×':
+                            a = Math.floor(Math.random() * 10) + 2;
+                            b = Math.floor(Math.random() * 10) + 2;
+                            answer = a * b;
+                            break;
+                    }
+                    
+                    questions.push({
+                        question: `${a} ${op} ${b} = ?`,
+                        answer: answer,
+                        explanation: `${a} ${op} ${b} = ${answer}`
+                    });
                 }
                 
                 return questions;
@@ -2473,7 +2871,352 @@
             }
         }
 
-        // Phase 4: Composant ModuleMetacognition - Version modulaire
+        // Phase 4: Composant EvaluationFinale
+        class EvaluationFinale {
+            constructor(evaluationData, containerId) {
+                this.evaluationData = evaluationData;
+                this.container = document.getElementById(containerId);
+                this.currentQuestion = 0;
+                this.responses = [];
+                this.score = 0;
+                this.startTime = null;
+                this.timeElapsed = 0;
+                this.isFinished = false;
+            }
+
+            render() {
+                if (!this.container || !this.evaluationData) return;
+
+                this.container.innerHTML = `
+                    <div class="evaluation-finale">
+                        <div class="evaluation-header">
+                            <h3>📝 ${this.evaluationData.titre}</h3>
+                            <p class="evaluation-description">${this.evaluationData.description}</p>
+                            <div class="evaluation-info">
+                                <span class="evaluation-duration">⏱️ Durée recommandée : ${this.evaluationData.duree} minutes</span>
+                                <span class="evaluation-questions">📊 ${this.evaluationData.questions.length} questions</span>
+                            </div>
+                        </div>
+
+                        <div id="evaluationStart" class="evaluation-start">
+                            <div class="start-instructions">
+                                <h4>📋 Instructions</h4>
+                                <ul>
+                                    <li>Lis bien chaque question avant de répondre</li>
+                                    <li>Pour les calculs, écris ta réponse exacte</li>
+                                    <li>Tu peux revenir en arrière si nécessaire</li>
+                                    <li>Prends ton temps pour réfléchir</li>
+                                </ul>
+                            </div>
+                            <button id="startEvaluationBtn" class="btn-primary btn-large">
+                                🚀 Commencer l'évaluation
+                            </button>
+                        </div>
+
+                        <div id="evaluationQuestions" class="evaluation-questions" style="display: none;">
+                            <div class="evaluation-progress">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" id="evaluationProgress"></div>
+                                </div>
+                                <span class="progress-text" id="progressText">Question 1/${this.evaluationData.questions.length}</span>
+                            </div>
+                            
+                            <div id="questionContainer"></div>
+                            
+                            <div class="evaluation-navigation">
+                                <button id="prevQuestionBtn" class="btn-secondary" style="display: none;">⬅️ Précédent</button>
+                                <button id="nextQuestionBtn" class="btn-primary">Suivant ➡️</button>
+                                <button id="finishEvaluationBtn" class="btn-success" style="display: none;">✅ Terminer</button>
+                            </div>
+                        </div>
+
+                        <div id="evaluationResults" class="evaluation-results" style="display: none;">
+                            <!-- Résultats générés dynamiquement -->
+                        </div>
+                    </div>
+                `;
+
+                this.setupEventListeners();
+            }
+
+            setupEventListeners() {
+                const startBtn = this.container.querySelector('#startEvaluationBtn');
+                const prevBtn = this.container.querySelector('#prevQuestionBtn');
+                const nextBtn = this.container.querySelector('#nextQuestionBtn');
+                const finishBtn = this.container.querySelector('#finishEvaluationBtn');
+
+                if (startBtn) {
+                    startBtn.addEventListener('click', () => this.startEvaluation());
+                }
+
+                if (prevBtn) {
+                    prevBtn.addEventListener('click', () => this.previousQuestion());
+                }
+
+                if (nextBtn) {
+                    nextBtn.addEventListener('click', () => this.nextQuestion());
+                }
+
+                if (finishBtn) {
+                    finishBtn.addEventListener('click', () => this.finishEvaluation());
+                }
+            }
+
+            startEvaluation() {
+                this.startTime = new Date();
+                this.container.querySelector('#evaluationStart').style.display = 'none';
+                this.container.querySelector('#evaluationQuestions').style.display = 'block';
+                this.showQuestion();
+            }
+
+            showQuestion() {
+                const question = this.evaluationData.questions[this.currentQuestion];
+                const container = this.container.querySelector('#questionContainer');
+                const progressText = this.container.querySelector('#progressText');
+                const progressFill = this.container.querySelector('#evaluationProgress');
+
+                // Mise à jour de la barre de progression
+                const progress = ((this.currentQuestion + 1) / this.evaluationData.questions.length) * 100;
+                progressFill.style.width = progress + '%';
+                progressText.textContent = `Question ${this.currentQuestion + 1}/${this.evaluationData.questions.length}`;
+
+                let questionHtml = `
+                    <div class="question-card">
+                        <h4 class="question-title">Question ${this.currentQuestion + 1}</h4>
+                        <p class="question-text">${question.question}</p>
+                        <div class="question-points">📊 ${question.points} points</div>
+                `;
+
+                if (question.type === 'qcm') {
+                    questionHtml += `<div class="qcm-choices">`;
+                    question.choix.forEach((choix, index) => {
+                        const isSelected = this.responses[this.currentQuestion] === index;
+                        questionHtml += `
+                            <label class="qcm-choice ${isSelected ? 'selected' : ''}">
+                                <input type="radio" name="question_${this.currentQuestion}" value="${index}" ${isSelected ? 'checked' : ''}>
+                                <span class="choice-text">${choix}</span>
+                            </label>
+                        `;
+                    });
+                    questionHtml += `</div>`;
+                } else {
+                    const currentAnswer = this.responses[this.currentQuestion] || '';
+                    questionHtml += `
+                        <div class="calcul-input">
+                            <input type="text" id="answer_${this.currentQuestion}" placeholder="Écris ta réponse" value="${currentAnswer}" class="evaluation-input">
+                        </div>
+                    `;
+                }
+
+                questionHtml += `</div>`;
+                container.innerHTML = questionHtml;
+
+                // Event listeners pour les réponses
+                if (question.type === 'qcm') {
+                    const radioInputs = container.querySelectorAll('input[type="radio"]');
+                    radioInputs.forEach(input => {
+                        input.addEventListener('change', (e) => {
+                            this.responses[this.currentQuestion] = parseInt(e.target.value);
+                            this.updateChoiceSelection();
+                        });
+                    });
+                } else {
+                    const textInput = container.querySelector(`#answer_${this.currentQuestion}`);
+                    if (textInput) {
+                        textInput.addEventListener('input', (e) => {
+                            this.responses[this.currentQuestion] = e.target.value.trim();
+                        });
+                        textInput.focus();
+                    }
+                }
+
+                // Gestion des boutons de navigation
+                this.updateNavigationButtons();
+            }
+
+            updateChoiceSelection() {
+                const choices = this.container.querySelectorAll('.qcm-choice');
+                choices.forEach((choice, index) => {
+                    if (this.responses[this.currentQuestion] === index) {
+                        choice.classList.add('selected');
+                    } else {
+                        choice.classList.remove('selected');
+                    }
+                });
+            }
+
+            updateNavigationButtons() {
+                const prevBtn = this.container.querySelector('#prevQuestionBtn');
+                const nextBtn = this.container.querySelector('#nextQuestionBtn');
+                const finishBtn = this.container.querySelector('#finishEvaluationBtn');
+
+                prevBtn.style.display = this.currentQuestion > 0 ? 'inline-block' : 'none';
+                
+                if (this.currentQuestion === this.evaluationData.questions.length - 1) {
+                    nextBtn.style.display = 'none';
+                    finishBtn.style.display = 'inline-block';
+                } else {
+                    nextBtn.style.display = 'inline-block';
+                    finishBtn.style.display = 'none';
+                }
+            }
+
+            previousQuestion() {
+                if (this.currentQuestion > 0) {
+                    this.currentQuestion--;
+                    this.showQuestion();
+                }
+            }
+
+            nextQuestion() {
+                if (this.currentQuestion < this.evaluationData.questions.length - 1) {
+                    this.currentQuestion++;
+                    this.showQuestion();
+                }
+            }
+
+            finishEvaluation() {
+                this.timeElapsed = Math.round((new Date() - this.startTime) / 1000 / 60); // en minutes
+                this.calculateScore();
+                this.showResults();
+            }
+
+            calculateScore() {
+                this.score = 0;
+                this.evaluationData.questions.forEach((question, index) => {
+                    const userResponse = this.responses[index];
+                    let isCorrect = false;
+
+                    if (question.type === 'qcm') {
+                        isCorrect = userResponse === question.correct;
+                    } else {
+                        // Pour les calculs et problèmes
+                        isCorrect = userResponse && userResponse.toString() === question.reponse.toString();
+                    }
+
+                    if (isCorrect) {
+                        this.score += question.points;
+                    }
+                });
+            }
+
+            showResults() {
+                const maxScore = this.evaluationData.questions.reduce((total, q) => total + q.points, 0);
+                const percentage = Math.round((this.score / maxScore) * 100);
+                
+                // Déterminer le niveau selon le barème
+                let niveau = this.evaluationData.bareme.insuffisant;
+                if (this.score >= this.evaluationData.bareme.excellent.min) niveau = this.evaluationData.bareme.excellent;
+                else if (this.score >= this.evaluationData.bareme.bien.min) niveau = this.evaluationData.bareme.bien;
+                else if (this.score >= this.evaluationData.bareme.moyen.min) niveau = this.evaluationData.bareme.moyen;
+
+                this.container.querySelector('#evaluationQuestions').style.display = 'none';
+                
+                const resultsContainer = this.container.querySelector('#evaluationResults');
+                resultsContainer.innerHTML = `
+                    <div class="results-header">
+                        <h3>🎯 Résultats de l'évaluation</h3>
+                        <div class="score-summary">
+                            <div class="score-circle">
+                                <span class="score-number">${this.score}/${maxScore}</span>
+                                <span class="score-percentage">${percentage}%</span>
+                            </div>
+                            <div class="score-details">
+                                <p class="score-message">${niveau.message}</p>
+                                <p class="time-taken">⏱️ Temps écoulé : ${this.timeElapsed} minutes</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="detailed-results">
+                        <h4>📊 Détail des réponses</h4>
+                        ${this.generateDetailedResults()}
+                    </div>
+
+                    <div class="results-actions">
+                        <button id="reviewAnswers" class="btn-secondary">📝 Revoir mes réponses</button>
+                        <button id="retakeEvaluation" class="btn-primary">🔄 Recommencer</button>
+                    </div>
+                `;
+
+                resultsContainer.style.display = 'block';
+                this.setupResultsEventListeners();
+            }
+
+            generateDetailedResults() {
+                return this.evaluationData.questions.map((question, index) => {
+                    const userResponse = this.responses[index];
+                    let isCorrect = false;
+                    let userAnswerText = '';
+
+                    if (question.type === 'qcm') {
+                        isCorrect = userResponse === question.correct;
+                        userAnswerText = userResponse !== undefined ? question.choix[userResponse] : 'Pas de réponse';
+                    } else {
+                        isCorrect = userResponse && userResponse.toString() === question.reponse.toString();
+                        userAnswerText = userResponse || 'Pas de réponse';
+                    }
+
+                    return `
+                        <div class="result-item ${isCorrect ? 'correct' : 'incorrect'}">
+                            <div class="result-header">
+                                <span class="result-icon">${isCorrect ? '✅' : '❌'}</span>
+                                <span class="result-points">${isCorrect ? question.points : 0}/${question.points} pts</span>
+                            </div>
+                            <p class="result-question">${question.question}</p>
+                            <p class="result-answer">
+                                <strong>Ta réponse :</strong> ${userAnswerText}
+                            </p>
+                            ${!isCorrect ? `
+                                <p class="result-correct">
+                                    <strong>Bonne réponse :</strong> ${question.type === 'qcm' ? question.choix[question.correct] : question.reponse}
+                                </p>
+                            ` : ''}
+                            <p class="result-explanation">${question.explanation}</p>
+                        </div>
+                    `;
+                }).join('');
+            }
+
+            setupResultsEventListeners() {
+                const reviewBtn = this.container.querySelector('#reviewAnswers');
+                const retakeBtn = this.container.querySelector('#retakeEvaluation');
+
+                if (reviewBtn) {
+                    reviewBtn.addEventListener('click', () => {
+                        this.currentQuestion = 0;
+                        this.container.querySelector('#evaluationResults').style.display = 'none';
+                        this.container.querySelector('#evaluationQuestions').style.display = 'block';
+                        this.showQuestion();
+                    });
+                }
+
+                if (retakeBtn) {
+                    retakeBtn.addEventListener('click', () => {
+                        this.currentQuestion = 0;
+                        this.responses = [];
+                        this.score = 0;
+                        this.startTime = null;
+                        this.timeElapsed = 0;
+                        this.container.querySelector('#evaluationResults').style.display = 'none';
+                        this.container.querySelector('#evaluationStart').style.display = 'block';
+                    });
+                }
+            }
+        }
+
+        let moduleEvaluationFinale;
+        let moduleMetacognition;
+
+        // Fonction pour générer l'évaluation finale
+        function renderEvaluationFinale(evaluationData) {
+            console.log('📝 Rendu de l\'évaluation finale');
+            
+            moduleEvaluationFinale = new EvaluationFinale(evaluationData, 'evaluationFinaleContainer');
+            if (moduleEvaluationFinale.container) {
+                moduleEvaluationFinale.render();
+            }
+        }
         class ModuleMetacognition {
             constructor(metacognition, containerId) {
                 console.log('🤔 Initialisation ModuleMetacognition', { metacognition, containerId });
@@ -2756,15 +3499,18 @@
         }
 
         // Instance globale du module métacognition
-        let moduleMetacognition;
-
-        // Fonction pour générer la métacognition (maintient la compatibilité)
+        // Fonction pour générer la métacognition
         function renderMetacognition(metacognition) {
-            console.log('🤔 Rendu de la métacognition avec le nouveau composant');
+            console.log('🤔 Rendu de la métacognition');
             
-            moduleMetacognition = new ModuleMetacognition(metacognition, 'metacognitionContainer');
-            if (moduleMetacognition.container) {
-                moduleMetacognition.render();
+            if (courseData && courseData.competences[0].metacognition) {
+                const metacognitionData = courseData.competences[0].metacognition;
+                moduleMetacognition = new ModuleMetacognition(metacognitionData, 'metacognitionContainer');
+                if (moduleMetacognition.container) {
+                    moduleMetacognition.render();
+                }
+            } else {
+                console.log('⚠️ Pas de métacognition définie pour ce cours');
             }
         }
 
