@@ -2607,10 +2607,6 @@
             console.log('📦 Container cours trouvé:', !!coursContainer);
             
             if (coursContainer) {
-                // S'assurer que la section est visible
-                coursContainer.classList.add('expanded');
-                coursContainer.style.display = 'block';
-                
                 // Supprimer l'ancien contenu et créer un nouveau container
                 coursContainer.innerHTML = '<div class="collapsible-inner"><div id="moduleLeconContainer"></div></div>';
                 
@@ -2645,10 +2641,6 @@
             console.log('📦 Container exercices trouvé:', !!exercicesContainer);
             
             if (exercicesContainer) {
-                // S'assurer que la section est visible
-                exercicesContainer.classList.add('expanded');
-                exercicesContainer.style.display = 'block';
-                
                 // Supprimer l'ancien contenu et créer un nouveau container
                 exercicesContainer.innerHTML = '<div class="collapsible-inner"><div id="exercicesProgressifsContainer"></div></div>';
                 
