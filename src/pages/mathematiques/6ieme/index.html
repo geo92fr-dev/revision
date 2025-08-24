@@ -217,11 +217,267 @@
             
             <div class="progress-info">
                 <h3>🎯 Votre Progression</h3>
-                <p>2 chapitres disponibles • Plus de contenus à venir</p>
+                <p>8 chapitres disponibles • 9 nouveaux sujets créés • Programme complet de 6ème</p>
             </div>
         </div>
         
         <div class="topics-grid">
+            <!-- 1. Addition et soustraction -->
+            <div class="topic-card available" onclick="openTopic('addition-soustraction')">
+                <div class="topic-icon">➕</div>
+                <span class="topic-status status-available">✅ Disponible</span>
+                <h2 class="topic-title">Addition et soustraction</h2>
+                <p class="topic-description">
+                    Maîtrisez les opérations de base avec les nombres entiers et décimaux.
+                </p>
+                <ul class="topic-skills">
+                    <li>🔢 Addition d'entiers et décimaux</li>
+                    <li>➖ Soustraction avec retenues</li>
+                    <li>📝 Calcul posé et mental</li>
+                    <li>🎯 Problèmes concrets</li>
+                </ul>
+                <a href="addition-soustraction/index.html" class="topic-btn">Commencer</a>
+            </div>
+            
+            <!-- 2. Multiplication -->
+            <div class="topic-card available" onclick="openTopic('multiplication')">
+                <div class="topic-icon">✖️</div>
+                <span class="topic-status status-available">✅ Disponible</span>
+                <h2 class="topic-title">Multiplication</h2>
+                <p class="topic-description">
+                    Apprenez la multiplication des nombres entiers et décimaux.
+                </p>
+                <ul class="topic-skills">
+                    <li>� Tables de multiplication</li>
+                    <li>🔢 Multiplication posée</li>
+                    <li>✖️ Multiplication par 10, 100, 1000</li>
+                    <li>🔸 Multiplication de décimaux</li>
+                </ul>
+                <a href="multiplication/index.html" class="topic-btn">Commencer</a>
+            </div>
+            
+            <!-- 3. Division -->
+            <div class="topic-card available" onclick="openTopic('division')">
+                <div class="topic-icon">➗</div>
+                <span class="topic-status status-available">✅ Disponible</span>
+                <h2 class="topic-title">Division</h2>
+                <p class="topic-description">
+                    Découvrez la division euclidienne et la division décimale.
+                </p>
+                <ul class="topic-skills">
+                    <li>📐 Division euclidienne</li>
+                    <li>📝 Division posée</li>
+                    <li>🔢 Division par 10, 100, 1000</li>
+                    <li>🎯 Division décimale</li>
+                </ul>
+                <a href="division/index.html" class="topic-btn">Commencer</a>
+            </div>
+            
+            <!-- 4. Les figures planes -->
+            <div class="topic-card available" onclick="openTopic('figures-planes')">
+                <div class="topic-icon">🔸</div>
+                <span class="topic-status status-available">✅ Disponible</span>
+                <h2 class="topic-title">Les figures planes</h2>
+                <p class="topic-description">
+                    Découvrez les propriétés des triangles, quadrilatères et cercles.
+                </p>
+                <ul class="topic-skills">
+                    <li>🔺 Types de triangles</li>
+                    <li>🔲 Quadrilatères particuliers</li>
+                    <li>⭕ Cercle et vocabulaire</li>
+                    <li>📐 Polygones réguliers</li>
+                </ul>
+                <a href="figures-planes/index.html" class="topic-btn">Commencer</a>
+            </div>
+            
+            <!-- 5. Périmètre -->
+            <div class="topic-card available" onclick="openTopic('perimetre')">
+                <div class="topic-icon">📏</div>
+                <span class="topic-status status-available">✅ Disponible</span>
+                <h2 class="topic-title">Périmètre</h2>
+                <p class="topic-description">
+                    Apprenez à calculer le périmètre des figures géométriques.
+                </p>
+                <ul class="topic-skills">
+                    <li>📚 Définition du périmètre</li>
+                    <li>🔲 Périmètre du carré et rectangle</li>
+                    <li>🔺 Périmètre du triangle</li>
+                    <li>⭕ Circonférence du cercle</li>
+                </ul>
+                <a href="perimetre/index.html" class="topic-btn">Commencer</a>
+            </div>
+            
+            <!-- 6. Proportionnalité simple -->
+            <div class="topic-card available" onclick="openTopic('proportionnalite')">
+                <div class="topic-icon">�</div>
+                <span class="topic-status status-available">✅ Disponible</span>
+                <h2 class="topic-title">Proportionnalité simple</h2>
+                <p class="topic-description">
+                    Découvrez les situations de proportionnalité et apprenez à les résoudre.
+                </p>
+                <ul class="topic-skills">
+                    <li>🔍 Reconnaissance de proportionnalité</li>
+                    <li>📋 Tableaux de proportionnalité</li>
+                    <li>🔢 Coefficient de proportionnalité</li>
+                    <li>🎯 Résolution de problèmes</li>
+                </ul>
+                <a href="proportionnalite/index.html" class="topic-btn">Commencer</a>
+            </div>
+            
+            <!-- 7. Symétrie axiale -->
+            <div class="topic-card coming-soon" onclick="comingSoon('Symétrie axiale')">
+                <div class="topic-icon">🪞</div>
+                <span class="topic-status status-coming-soon">🚧 Bientôt</span>
+                <h2 class="topic-title">Symétrie axiale</h2>
+                <p class="topic-description">
+                    Découvrez la symétrie axiale et apprenez à construire des figures symétriques.
+                </p>
+                <ul class="topic-skills">
+                    <li>🪞 Définition de la symétrie</li>
+                    <li>📐 Construction du symétrique</li>
+                    <li>🔍 Propriétés de la symétrie</li>
+                    <li>🎨 Applications créatives</li>
+                </ul>
+                <button class="topic-btn" disabled>Bientôt disponible</button>
+            </div>
+            
+            <!-- 8. Aires des figures -->
+            <div class="topic-card coming-soon" onclick="comingSoon('Aires des figures')">
+                <div class="topic-icon">📐</div>
+                <span class="topic-status status-coming-soon">� Bientôt</span>
+                <h2 class="topic-title">Aires des figures</h2>
+                <p class="topic-description">
+                    Apprenez à calculer l'aire des figures géométriques de base.
+                </p>
+                <ul class="topic-skills">
+                    <li>🔲 Aire du carré et rectangle</li>
+                    <li>🔺 Aire du triangle</li>
+                    <li>⭕ Aire du disque</li>
+                    <li>🧩 Figures composées</li>
+                </ul>
+                <button class="topic-btn" disabled>Bientôt disponible</button>
+            </div>
+            
+            <!-- 9. Constructions géométriques -->
+            <div class="topic-card coming-soon" onclick="comingSoon('Constructions géométriques')">
+                <div class="topic-icon">📐</div>
+                <span class="topic-status status-coming-soon">🚧 Bientôt</span>
+                <h2 class="topic-title">Constructions géométriques</h2>
+                <p class="topic-description">
+                    Maîtrisez l'utilisation des instruments de géométrie.
+                </p>
+                <ul class="topic-skills">
+                    <li>📏 Règle et équerre</li>
+                    <li>📐 Compas et rapporteur</li>
+                    <li>🔺 Construction de triangles</li>
+                    <li>⭕ Construction de cercles</li>
+                </ul>
+                <button class="topic-btn" disabled>Bientôt disponible</button>
+            </div>
+            
+            <!-- 10. Les unités de longueur -->
+            <div class="topic-card coming-soon" onclick="comingSoon('Unités de longueur')">
+                <div class="topic-icon">�</div>
+                <span class="topic-status status-coming-soon">🚧 Bientôt</span>
+                <h2 class="topic-title">Les unités de longueur</h2>
+                <p class="topic-description">
+                    Découvrez les différentes unités et apprenez les conversions.
+                </p>
+                <ul class="topic-skills">
+                    <li>📏 Mètre et ses multiples</li>
+                    <li>🔄 Conversions d'unités</li>
+                    <li>📊 Tableau de conversion</li>
+                    <li>🎯 Problèmes pratiques</li>
+                </ul>
+                <button class="topic-btn" disabled>Bientôt disponible</button>
+            </div>
+            
+            <!-- 11. Les unités de masse et capacité -->
+            <div class="topic-card coming-soon" onclick="comingSoon('Unités de masse et capacité')">
+                <div class="topic-icon">⚖️</div>
+                <span class="topic-status status-coming-soon">🚧 Bientôt</span>
+                <h2 class="topic-title">Unités de masse et capacité</h2>
+                <p class="topic-description">
+                    Apprenez les unités de masse (kg, g) et de capacité (L, mL).
+                </p>
+                <ul class="topic-skills">
+                    <li>⚖️ Kilogramme et gramme</li>
+                    <li>🥤 Litre et millilitre</li>
+                    <li>� Conversions d'unités</li>
+                    <li>🛒 Problèmes du quotidien</li>
+                </ul>
+                <button class="topic-btn" disabled>Bientôt disponible</button>
+            </div>
+            
+            <!-- 12. Les durées -->
+            <div class="topic-card coming-soon" onclick="comingSoon('Les durées')">
+                <div class="topic-icon">⏰</div>
+                <span class="topic-status status-coming-soon">🚧 Bientôt</span>
+                <h2 class="topic-title">Les durées</h2>
+                <p class="topic-description">
+                    Maîtrisez les calculs de durées et les conversions de temps.
+                </p>
+                <ul class="topic-skills">
+                    <li>⏰ Heures, minutes, secondes</li>
+                    <li>🔄 Conversions de temps</li>
+                    <li>➕ Addition de durées</li>
+                    <li>📅 Problèmes d'horaires</li>
+                </ul>
+                <button class="topic-btn" disabled>Bientôt disponible</button>
+            </div>
+            
+            <!-- 13. Lecture de tableaux -->
+            <div class="topic-card coming-soon" onclick="comingSoon('Lecture de tableaux')">
+                <div class="topic-icon">�</div>
+                <span class="topic-status status-coming-soon">🚧 Bientôt</span>
+                <h2 class="topic-title">Lecture de tableaux</h2>
+                <p class="topic-description">
+                    Apprenez à lire et interpréter des données dans des tableaux.
+                </p>
+                <ul class="topic-skills">
+                    <li>📋 Structure d'un tableau</li>
+                    <li>🔍 Extraction d'informations</li>
+                    <li>📊 Analyse de données</li>
+                    <li>🎯 Exercices pratiques</li>
+                </ul>
+                <button class="topic-btn" disabled>Bientôt disponible</button>
+            </div>
+            
+            <!-- 14. Graphiques -->
+            <div class="topic-card coming-soon" onclick="comingSoon('Graphiques')">
+                <div class="topic-icon">📈</div>
+                <span class="topic-status status-coming-soon">🚧 Bientôt</span>
+                <h2 class="topic-title">Graphiques</h2>
+                <p class="topic-description">
+                    Découvrez les différents types de graphiques et leur utilisation.
+                </p>
+                <ul class="topic-skills">
+                    <li>� Diagrammes en barres</li>
+                    <li>🥧 Diagrammes circulaires</li>
+                    <li>� Graphiques en courbes</li>
+                    <li>� Interprétation de données</li>
+                </ul>
+                <button class="topic-btn" disabled>Bientôt disponible</button>
+            </div>
+            
+            <!-- 15. Moyennes -->
+            <div class="topic-card coming-soon" onclick="comingSoon('Moyennes')">
+                <div class="topic-icon">📊</div>
+                <span class="topic-status status-coming-soon">🚧 Bientôt</span>
+                <h2 class="topic-title">Moyennes</h2>
+                <p class="topic-description">
+                    Apprenez à calculer et interpréter des moyennes arithmétiques.
+                </p>
+                <ul class="topic-skills">
+                    <li>🧮 Calcul de moyenne</li>
+                    <li>📊 Moyenne pondérée</li>
+                    <li>🎯 Applications scolaires</li>
+                    <li>📈 Interprétation des résultats</li>
+                </ul>
+                <button class="topic-btn" disabled>Bientôt disponible</button>
+            </div>
+            
+            <!-- Garder les anciens sujets existants -->
             <div class="topic-card available" onclick="openTopic('fractions')">
                 <div class="topic-icon">🍕</div>
                 <span class="topic-status status-available">✅ Disponible</span>
@@ -248,56 +504,13 @@
                     Apprenez le langage des mathématiques !
                 </p>
                 <ul class="topic-skills">
-                    <li>🔤 Comprendre les variables</li>
+                    <li>� Comprendre les variables</li>
                     <li>🧮 Calculer des expressions</li>
-                    <li>📝 Simplifier des expressions</li>
+                    <li>� Simplifier des expressions</li>
                     <li>🎯 Applications pratiques</li>
                 </ul>
                 <a href="../../page_de_cours.html?subject=mathematiques&level=6ieme&topic=algebre" class="topic-btn">Découvrir l'algèbre</a>
             </div>
-            
-            <div class="topic-card coming-soon" onclick="comingSoon('Nombres décimaux')">
-                <div class="topic-icon">🔢</div>
-                <span class="topic-status status-coming-soon">🚧 Bientôt</span>
-                <h2 class="topic-title">Nombres Décimaux</h2>
-                <p class="topic-description">
-                    Découvrez les nombres à virgule, leur écriture et leurs opérations.
-                </p>
-                <ul class="topic-skills">
-                    <li>📝 Écriture décimale</li>
-                    <li>📊 Comparaison et rangement</li>
-                    <li>➕ Addition et soustraction</li>
-                    <li>✖️ Multiplication par 10, 100, 1000</li>
-                </ul>
-                <button class="topic-btn" disabled>Bientôt disponible</button>
-            </div>
-            
-            <div class="topic-card coming-soon" onclick="comingSoon('Géométrie plane')">
-                <div class="topic-icon">📐</div>
-                <span class="topic-status status-coming-soon">🚧 Bientôt</span>
-                <h2 class="topic-title">Géométrie Plane</h2>
-                <p class="topic-description">
-                    Explorez les figures géométriques : droites, segments, cercles, polygones.
-                </p>
-                <ul class="topic-skills">
-                    <li>📏 Droites et segments</li>
-                    <li>⭕ Cercles et arcs</li>
-                    <li>🔺 Triangles et quadrilatères</li>
-                    <li>📐 Utilisation des instruments</li>
-                </ul>
-                <button class="topic-btn" disabled>Bientôt disponible</button>
-            </div>
-            
-            <div class="topic-card coming-soon" onclick="comingSoon('Proportionnalité')">
-                <div class="topic-icon">📊</div>
-                <span class="topic-status status-coming-soon">🚧 Bientôt</span>
-                <h2 class="topic-title">Proportionnalité</h2>
-                <p class="topic-description">
-                    Résolvez des problèmes de proportionnalité et découvrez les pourcentages.
-                </p>
-                <ul class="topic-skills">
-                    <li>📋 Tableaux de proportionnalité</li>
-                    <li>🔢 Règle de trois</li>
                     <li>📈 Graphiques</li>
                     <li>💯 Pourcentages simples</li>
                 </ul>

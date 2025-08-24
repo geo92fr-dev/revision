@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Périmètre - 6ème - FunRevis</title>
+    <link rel="stylesheet" href="../../../../styles/index.css">
+    <link rel="stylesheet" href="../../../../styles/modern.css">
+    <link rel="stylesheet" href="../../../../styles/educational.css">
+    <link rel="stylesheet" href="../../../../styles/evaluation.css">
+</head>
+<body>
+    <div class="course-container">
+        <!-- Navigation et titre -->
+        <header class="course-header">
+            <nav class="breadcrumb">
+                <a href="../../../../index.html">🏠 Accueil</a> → 
+                <a href="../../../index.html">📚 Matières</a> → 
+                <a href="../../index.html">🔢 Mathématiques</a> → 
+                <a href="../index.html">📖 6ème</a> → 
+                <span>📏 Périmètre</span>
+            </nav>
+            
+            <div class="hero-section">
+                <h1 class="course-title">📏 Périmètre</h1>
+                <p class="course-subtitle">Apprenons à calculer le périmètre des figures géométriques</p>
+                <div class="course-stats">
+                    <span class="stat-item">📊 Niveau : 6ème</span>
+                    <span class="stat-item">⏱️ Durée : 40 min</span>
+                    <span class="stat-item">🎯 Difficulté : ⭐⭐⭐</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Bouton pour aller au contenu principal (accessibilité) -->
+        <a href="#main-content" class="skip-link">Aller au contenu principal</a>
+
+        <!-- Contenu principal -->
+        <main id="main-content" class="course-content">
+            
+            <!-- Phase 1: Pré-évaluation -->
+            <section class="phase-section">
+                <button class="phase-header" id="preEvalHeader" onclick="toggleSection('preEval')" aria-expanded="false" aria-controls="preEvalContent">
+                    <span>🎯 Phase 1: Pré-évaluation</span>
+                    <span class="phase-icon">▶️</span>
+                </button>
+                <div class="phase-content" id="preEvalContent" style="display: none;">
+                    <div class="space-y-md">
+                        <div class="section pre-evaluation" id="preEvaluation">
+                            <div class="lesson-card">
+                                <h4>📋 Mini-test rapide</h4>
+                                <div id="preTestQuestions">
+                                    <div class="test-question">
+                                        <p>1. Le périmètre d'un carré de côté 5 cm est :</p>
+                                        <div class="test-options">
+                                            <div class="test-option">15 cm</div>
+                                            <div class="test-option" data-correct="true">20 cm</div>
+                                            <div class="test-option">25 cm</div>
+                                            <div class="test-option">10 cm</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="test-question">
+                                        <p>2. Le périmètre d'un rectangle de longueur 6 cm et largeur 3 cm est :</p>
+                                        <div class="test-options">
+                                            <div class="test-option">12 cm</div>
+                                            <div class="test-option">15 cm</div>
+                                            <div class="test-option" data-correct="true">18 cm</div>
+                                            <div class="test-option">21 cm</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="test-question">
+                                        <p>3. Pour calculer le périmètre d'une figure, on :</p>
+                                        <div class="test-options">
+                                            <div class="test-option">Multiplie tous les côtés</div>
+                                            <div class="test-option" data-correct="true">Additionne tous les côtés</div>
+                                            <div class="test-option">Divise tous les côtés</div>
+                                            <div class="test-option">Soustrait tous les côtés</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Phase 2: Cours -->
+            <section class="phase-section">
+                <button class="phase-header" id="coursHeader" onclick="toggleSection('cours')" aria-expanded="false" aria-controls="coursContent">
+                    <span>📖 Phase 2: Cours</span>
+                    <span class="phase-icon">▶️</span>
+                </button>
+                <div class="phase-content" id="coursContent" style="display: none;">
+                    <div class="lesson-content">
+                        <!-- I. Définition du périmètre -->
+                        <div class="lesson-card">
+                            <h3>I. Définition du périmètre</h3>
+                            
+                            <div class="explanation-card">
+                                <h4>📚 Qu'est-ce que le périmètre ?</h4>
+                                <div class="explanation-text">
+                                    <p>Le <strong>périmètre</strong> d'une figure géométrique est la <strong>longueur du contour</strong> de cette figure.</p>
+                                    <p>Pour calculer le périmètre, on <strong>additionne</strong> la longueur de tous les côtés de la figure.</p>
+                                    <p><strong>Unité :</strong> Le périmètre s'exprime en unités de longueur (cm, m, km, etc.)</p>
+                                </div>
+                            </div>
+
+                            <div class="example-card">
+                                <h4>💡 Exemple simple</h4>
+                                <div class="example-content">
+                                    <p>Pour un triangle de côtés 3 cm, 4 cm et 5 cm :</p>
+                                    <div class="formula-display">
+                                        Périmètre = 3 + 4 + 5 = 12 cm
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- II. Périmètre du carré -->
+                        <div class="lesson-card">
+                            <h3>II. Périmètre du carré</h3>
+                            
+                            <div class="explanation-card">
+                                <h4>📚 Formule du carré</h4>
+                                <div class="explanation-text">
+                                    <p>Un carré a <strong>4 côtés égaux</strong>. Si le côté mesure c :</p>
+                                    <div class="formula-box">
+                                        <strong>Périmètre du carré = 4 × c</strong>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="example-card">
+                                <h4>💡 Exemple</h4>
+                                <div class="example-content">
+                                    <p>Carré de côté 7 cm :</p>
+                                    <div class="calculation-display">
+                                        <pre>Périmètre = 4 × 7 = 28 cm</pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- III. Périmètre du rectangle -->
+                        <div class="lesson-card">
+                            <h3>III. Périmètre du rectangle</h3>
+                            
+                            <div class="explanation-card">
+                                <h4>📚 Formule du rectangle</h4>
+                                <div class="explanation-text">
+                                    <p>Un rectangle a <strong>2 longueurs égales</strong> et <strong>2 largeurs égales</strong>.</p>
+                                    <p>Si la longueur est L et la largeur est l :</p>
+                                    <div class="formula-box">
+                                        <strong>Périmètre du rectangle = 2 × (L + l)</strong><br>
+                                        ou <strong>2 × L + 2 × l</strong>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="example-card">
+                                <h4>💡 Exemple</h4>
+                                <div class="example-content">
+                                    <p>Rectangle de longueur 8 cm et largeur 3 cm :</p>
+                                    <div class="calculation-display">
+                                        <pre>Périmètre = 2 × (8 + 3) = 2 × 11 = 22 cm</pre>
+                                        <pre>ou</pre>
+                                        <pre>Périmètre = 2 × 8 + 2 × 3 = 16 + 6 = 22 cm</pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- IV. Périmètre du triangle -->
+                        <div class="lesson-card">
+                            <h3>IV. Périmètre du triangle</h3>
+                            
+                            <div class="explanation-card">
+                                <h4>📚 Formule générale</h4>
+                                <div class="explanation-text">
+                                    <p>Pour un triangle de côtés a, b et c :</p>
+                                    <div class="formula-box">
+                                        <strong>Périmètre du triangle = a + b + c</strong>
+                                    </div>
+                                    <p><strong>Cas particuliers :</strong></p>
+                                    <ul>
+                                        <li>Triangle équilatéral (3 côtés égaux c) : P = 3 × c</li>
+                                        <li>Triangle isocèle (2 côtés égaux a et 1 côté b) : P = 2 × a + b</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="example-card">
+                                <h4>💡 Exemples</h4>
+                                <div class="example-content">
+                                    <p><strong>Triangle équilatéral</strong> de côté 6 cm :</p>
+                                    <div class="calculation-display">
+                                        <pre>Périmètre = 3 × 6 = 18 cm</pre>
+                                    </div>
+                                    <p><strong>Triangle quelconque</strong> de côtés 5 cm, 7 cm et 9 cm :</p>
+                                    <div class="calculation-display">
+                                        <pre>Périmètre = 5 + 7 + 9 = 21 cm</pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- V. Périmètre du cercle -->
+                        <div class="lesson-card">
+                            <h3>V. Périmètre du cercle (circonférence)</h3>
+                            
+                            <div class="explanation-card">
+                                <h4>📚 Formule du cercle</h4>
+                                <div class="explanation-text">
+                                    <p>Le périmètre d'un cercle s'appelle la <strong>circonférence</strong>.</p>
+                                    <p>Si le rayon est r et le diamètre d :</p>
+                                    <div class="formula-box">
+                                        <strong>Circonférence = π × d = π × 2 × r</strong><br>
+                                        (π ≈ 3,14)
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="example-card">
+                                <h4>💡 Exemple</h4>
+                                <div class="example-content">
+                                    <p>Cercle de rayon 5 cm :</p>
+                                    <div class="calculation-display">
+                                        <pre>Circonférence = π × 2 × 5 = π × 10 ≈ 3,14 × 10 = 31,4 cm</pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Phase 3: Exercices -->
+            <section class="phase-section">
+                <button class="phase-header" id="exercicesHeader" onclick="toggleSection('exercices')" aria-expanded="false" aria-controls="exercicesContent">
+                    <span>💪 Phase 3: Exercices</span>
+                    <span class="phase-icon">▶️</span>
+                </button>
+                <div class="phase-content" id="exercicesContent" style="display: none;">
+                    <div class="exercises-content">
+                        
+                        <!-- Exercice 1 : Périmètre de carrés -->
+                        <div class="exercise-card">
+                            <h4>📝 Exercice 1 : Périmètre de carrés</h4>
+                            <div class="exercise-content">
+                                <p>Calcule le périmètre des carrés suivants :</p>
+                                <div class="exercise-list">
+                                    <div class="exercise-item">a) Carré de côté 6 cm</div>
+                                    <div class="exercise-item">b) Carré de côté 12 mm</div>
+                                    <div class="exercise-item">c) Carré de côté 2,5 m</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Exercice 2 : Périmètre de rectangles -->
+                        <div class="exercise-card">
+                            <h4>📝 Exercice 2 : Périmètre de rectangles</h4>
+                            <div class="exercise-content">
+                                <p>Calcule le périmètre des rectangles suivants :</p>
+                                <div class="exercise-list">
+                                    <div class="exercise-item">a) Rectangle : L = 9 cm, l = 4 cm</div>
+                                    <div class="exercise-item">b) Rectangle : L = 15 mm, l = 8 mm</div>
+                                    <div class="exercise-item">c) Rectangle : L = 3,2 m, l = 1,8 m</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Exercice 3 : Périmètre de triangles -->
+                        <div class="exercise-card">
+                            <h4>📝 Exercice 3 : Périmètre de triangles</h4>
+                            <div class="exercise-content">
+                                <p>Calcule le périmètre des triangles suivants :</p>
+                                <div class="exercise-list">
+                                    <div class="exercise-item">a) Triangle équilatéral de côté 7 cm</div>
+                                    <div class="exercise-item">b) Triangle de côtés 6 cm, 8 cm et 10 cm</div>
+                                    <div class="exercise-item">c) Triangle isocèle : 2 côtés de 5 cm et 1 côté de 3 cm</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Exercice 4 : Problèmes concrets -->
+                        <div class="exercise-card">
+                            <h4>📝 Exercice 4 : Problèmes concrets</h4>
+                            <div class="exercise-content">
+                                <p>Résous ces problèmes :</p>
+                                <div class="exercise-list">
+                                    <div class="exercise-item">a) Combien faut-il de mètres de grillage pour entourer un jardin carré de 12 m de côté ?</div>
+                                    <div class="exercise-item">b) Une piscine rectangulaire mesure 8 m sur 4 m. Quelle est la longueur du contour ?</div>
+                                    <div class="exercise-item">c) Un terrain triangulaire a des côtés de 25 m, 30 m et 35 m. Calcule son périmètre.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Phase 4: Évaluation finale -->
+            <section class="phase-section">
+                <button class="phase-header" id="evalHeader" onclick="toggleSection('eval')" aria-expanded="false" aria-controls="evalContent">
+                    <span>🎯 Phase 4: Évaluation finale</span>
+                    <span class="phase-icon">▶️</span>
+                </button>
+                <div class="phase-content" id="evalContent" style="display: none;">
+                    <div class="evaluation-content">
+                        <div class="lesson-card">
+                            <h4>🎖️ Quiz final</h4>
+                            <div id="finalQuiz">
+                                
+                                <div class="test-question">
+                                    <p>1. Un jardin carré a un périmètre de 40 m. Quelle est la longueur d'un côté ?</p>
+                                    <div class="test-options">
+                                        <div class="test-option">8 m</div>
+                                        <div class="test-option" data-correct="true">10 m</div>
+                                        <div class="test-option">12 m</div>
+                                        <div class="test-option">15 m</div>
+                                    </div>
+                                </div>
+
+                                <div class="test-question">
+                                    <p>2. Le périmètre d'un rectangle de longueur 12 cm et largeur 7 cm est :</p>
+                                    <div class="test-options">
+                                        <div class="test-option">19 cm</div>
+                                        <div class="test-option">26 cm</div>
+                                        <div class="test-option" data-correct="true">38 cm</div>
+                                        <div class="test-option">84 cm</div>
+                                    </div>
+                                </div>
+
+                                <div class="test-question">
+                                    <p>3. Un triangle équilatéral a un périmètre de 21 cm. Chaque côté mesure :</p>
+                                    <div class="test-options">
+                                        <div class="test-option">6 cm</div>
+                                        <div class="test-option" data-correct="true">7 cm</div>
+                                        <div class="test-option">8 cm</div>
+                                        <div class="test-option">9 cm</div>
+                                    </div>
+                                </div>
+
+                                <div class="test-question">
+                                    <p>4. Pour entourer une piscine circulaire de rayon 3 m avec une barrière, il faut environ :</p>
+                                    <div class="test-options">
+                                        <div class="test-option">9,42 m</div>
+                                        <div class="test-option" data-correct="true">18,84 m</div>
+                                        <div class="test-option">28,26 m</div>
+                                        <div class="test-option">37,68 m</div>
+                                    </div>
+                                </div>
+
+                                <div class="test-question">
+                                    <p>5. Si on double tous les côtés d'un rectangle, son périmètre :</p>
+                                    <div class="test-options">
+                                        <div class="test-option">Reste le même</div>
+                                        <div class="test-option" data-correct="true">Double</div>
+                                        <div class="test-option">Triple</div>
+                                        <div class="test-option">Quadruple</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // Fonction pour afficher/masquer les sections
+        function toggleSection(sectionId) {
+            const content = document.getElementById(sectionId + 'Content');
+            const header = document.getElementById(sectionId + 'Header') || 
+                          document.getElementById(sectionId.replace('Eval', 'eval') + 'Header');
+            const icon = header.querySelector('.phase-icon');
+            
+            if (content.style.display === 'none') {
+                content.style.display = 'block';
+                header.setAttribute('aria-expanded', 'true');
+                icon.textContent = '🔽';
+            } else {
+                content.style.display = 'none';
+                header.setAttribute('aria-expanded', 'false');
+                icon.textContent = '▶️';
+            }
+        }
+
+        // Gestion des quiz interactifs
+        document.addEventListener('DOMContentLoaded', function() {
+            const testOptions = document.querySelectorAll('.test-option');
+            
+            testOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    // Désélectionner toutes les options de cette question
+                    const question = this.closest('.test-question');
+                    const allOptions = question.querySelectorAll('.test-option');
+                    allOptions.forEach(opt => {
+                        opt.classList.remove('correct', 'wrong');
+                    });
+                    
+                    // Marquer la réponse
+                    if (this.hasAttribute('data-correct')) {
+                        this.classList.add('correct');
+                    } else {
+                        this.classList.add('wrong');
+                        // Montrer la bonne réponse
+                        const correctOption = question.querySelector('[data-correct="true"]');
+                        if (correctOption) {
+                            correctOption.classList.add('correct');
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+
+    <style>
+        .calculation-display {
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+            font-family: 'Courier New', monospace;
+            font-size: 1.1rem;
+            text-align: center;
+        }
+
+        .calculation-display pre {
+            margin: 0;
+            color: #2d3748;
+            font-weight: 600;
+        }
+
+        .formula-display {
+            background: var(--color-lesson-light);
+            border: 2px solid var(--color-lesson);
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+            font-family: 'Courier New', monospace;
+            font-size: 1.2rem;
+            text-align: center;
+            font-weight: bold;
+            color: var(--color-lesson-dark);
+        }
+
+        .formula-box {
+            background: rgba(255, 255, 255, 0.9);
+            border: 2px solid var(--color-lesson);
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+        .exercise-list {
+            display: grid;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .exercise-item {
+            background: rgba(255, 255, 255, 0.6);
+            padding: 0.75rem;
+            border-radius: 6px;
+            border-left: 3px solid var(--color-lesson);
+            font-size: 1rem;
+        }
+    </style>
+</body>
+</html>

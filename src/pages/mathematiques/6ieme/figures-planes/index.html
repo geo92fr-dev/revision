@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Les figures planes - 6ème - FunRevis</title>
+    <link rel="stylesheet" href="../../../../styles/index.css">
+    <link rel="stylesheet" href="../../../../styles/modern.css">
+    <link rel="stylesheet" href="../../../../styles/educational.css">
+    <link rel="stylesheet" href="../../../../styles/evaluation.css">
+</head>
+<body>
+    <div class="course-container">
+        <!-- Navigation et titre -->
+        <header class="course-header">
+            <nav class="breadcrumb">
+                <a href="../../../../index.html">🏠 Accueil</a> → 
+                <a href="../../../index.html">📚 Matières</a> → 
+                <a href="../../index.html">🔢 Mathématiques</a> → 
+                <a href="../index.html">📖 6ème</a> → 
+                <span>🔸 Les figures planes</span>
+            </nav>
+            
+            <div class="hero-section">
+                <h1 class="course-title">🔸 Les figures planes</h1>
+                <p class="course-subtitle">Découvrons les propriétés des triangles, quadrilatères et cercles</p>
+                <div class="course-stats">
+                    <span class="stat-item">📊 Niveau : 6ème</span>
+                    <span class="stat-item">⏱️ Durée : 45 min</span>
+                    <span class="stat-item">🎯 Difficulté : ⭐⭐⭐</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Bouton pour aller au contenu principal (accessibilité) -->
+        <a href="#main-content" class="skip-link">Aller au contenu principal</a>
+
+        <!-- Contenu principal -->
+        <main id="main-content" class="course-content">
+            
+            <!-- Phase 1: Pré-évaluation -->
+            <section class="phase-section">
+                <button class="phase-header" id="preEvalHeader" onclick="toggleSection('preEval')" aria-expanded="false" aria-controls="preEvalContent">
+                    <span>🎯 Phase 1: Pré-évaluation</span>
+                    <span class="phase-icon">▶️</span>
+                </button>
+                <div class="phase-content" id="preEvalContent" style="display: none;">
+                    <div class="space-y-md">
+                        <div class="section pre-evaluation" id="preEvaluation">
+                            <div class="lesson-card">
+                                <h4>📋 Mini-test rapide</h4>
+                                <div id="preTestQuestions">
+                                    <div class="test-question">
+                                        <p>1. Combien de côtés a un triangle ?</p>
+                                        <div class="test-options">
+                                            <div class="test-option">2</div>
+                                            <div class="test-option" data-correct="true">3</div>
+                                            <div class="test-option">4</div>
+                                            <div class="test-option">5</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="test-question">
+                                        <p>2. Un quadrilatère qui a 4 côtés égaux et 4 angles droits est :</p>
+                                        <div class="test-options">
+                                            <div class="test-option">Un rectangle</div>
+                                            <div class="test-option" data-correct="true">Un carré</div>
+                                            <div class="test-option">Un losange</div>
+                                            <div class="test-option">Un parallélogramme</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="test-question">
+                                        <p>3. Dans un cercle, le segment qui passe par le centre et relie deux points du cercle s'appelle :</p>
+                                        <div class="test-options">
+                                            <div class="test-option">Le rayon</div>
+                                            <div class="test-option" data-correct="true">Le diamètre</div>
+                                            <div class="test-option">La corde</div>
+                                            <div class="test-option">L'arc</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Phase 2: Cours -->
+            <section class="phase-section">
+                <button class="phase-header" id="coursHeader" onclick="toggleSection('cours')" aria-expanded="false" aria-controls="coursContent">
+                    <span>📖 Phase 2: Cours</span>
+                    <span class="phase-icon">▶️</span>
+                </button>
+                <div class="phase-content" id="coursContent" style="display: none;">
+                    <div class="lesson-content">
+                        <!-- I. Les triangles -->
+                        <div class="lesson-card">
+                            <h3>I. Les triangles</h3>
+                            
+                            <div class="explanation-card">
+                                <h4>📚 Définition</h4>
+                                <div class="explanation-text">
+                                    <p>Un <strong>triangle</strong> est un polygone à 3 côtés et 3 sommets.</p>
+                                    <p><strong>Types de triangles selon les côtés :</strong></p>
+                                    <ul>
+                                        <li><strong>Triangle quelconque :</strong> tous les côtés sont différents</li>
+                                        <li><strong>Triangle isocèle :</strong> deux côtés égaux</li>
+                                        <li><strong>Triangle équilatéral :</strong> trois côtés égaux</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="example-card">
+                                <h4>💡 Types selon les angles</h4>
+                                <div class="example-content">
+                                    <ul>
+                                        <li><strong>Triangle rectangle :</strong> un angle droit (90°)</li>
+                                        <li><strong>Triangle obtus :</strong> un angle obtus (> 90°)</li>
+                                        <li><strong>Triangle aigu :</strong> tous les angles aigus (< 90°)</li>
+                                    </ul>
+                                    <p><strong>Propriété importante :</strong> La somme des angles d'un triangle = 180°</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- II. Les quadrilatères -->
+                        <div class="lesson-card">
+                            <h3>II. Les quadrilatères</h3>
+                            
+                            <div class="explanation-card">
+                                <h4>📚 Définition</h4>
+                                <div class="explanation-text">
+                                    <p>Un <strong>quadrilatère</strong> est un polygone à 4 côtés et 4 sommets.</p>
+                                </div>
+                            </div>
+
+                            <div class="example-card">
+                                <h4>💡 Les quadrilatères particuliers</h4>
+                                <div class="example-content">
+                                    <div class="quadrilaterals-grid">
+                                        <div class="quad-item">
+                                            <h5>🔲 Carré</h5>
+                                            <p>4 côtés égaux + 4 angles droits</p>
+                                        </div>
+                                        <div class="quad-item">
+                                            <h5>📐 Rectangle</h5>
+                                            <p>Côtés opposés égaux + 4 angles droits</p>
+                                        </div>
+                                        <div class="quad-item">
+                                            <h5>💎 Losange</h5>
+                                            <p>4 côtés égaux + angles opposés égaux</p>
+                                        </div>
+                                        <div class="quad-item">
+                                            <h5>⏸️ Parallélogramme</h5>
+                                            <p>Côtés opposés égaux et parallèles</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- III. Le cercle -->
+                        <div class="lesson-card">
+                            <h3>III. Le cercle</h3>
+                            
+                            <div class="explanation-card">
+                                <h4>📚 Définition et vocabulaire</h4>
+                                <div class="explanation-text">
+                                    <p>Un <strong>cercle</strong> de centre O et de rayon r est l'ensemble des points situés à la distance r du point O.</p>
+                                    <p><strong>Vocabulaire du cercle :</strong></p>
+                                    <ul>
+                                        <li><strong>Centre :</strong> point équidistant de tous les points du cercle</li>
+                                        <li><strong>Rayon :</strong> segment reliant le centre à un point du cercle</li>
+                                        <li><strong>Diamètre :</strong> segment passant par le centre et reliant deux points du cercle</li>
+                                        <li><strong>Corde :</strong> segment reliant deux points du cercle</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="example-card">
+                                <h4>💡 Propriétés importantes</h4>
+                                <div class="example-content">
+                                    <ul>
+                                        <li>Le diamètre = 2 × rayon</li>
+                                        <li>Tous les rayons d'un même cercle ont la même longueur</li>
+                                        <li>Le diamètre est la plus grande corde du cercle</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- IV. Polygones réguliers -->
+                        <div class="lesson-card">
+                            <h3>IV. Polygones réguliers</h3>
+                            
+                            <div class="explanation-card">
+                                <h4>📚 Définition</h4>
+                                <div class="explanation-text">
+                                    <p>Un <strong>polygone régulier</strong> est un polygone qui a tous ses côtés égaux et tous ses angles égaux.</p>
+                                </div>
+                            </div>
+
+                            <div class="example-card">
+                                <h4>💡 Exemples</h4>
+                                <div class="example-content">
+                                    <ul>
+                                        <li><strong>Triangle équilatéral :</strong> 3 côtés égaux, 3 angles de 60°</li>
+                                        <li><strong>Carré :</strong> 4 côtés égaux, 4 angles de 90°</li>
+                                        <li><strong>Pentagone régulier :</strong> 5 côtés égaux, 5 angles de 108°</li>
+                                        <li><strong>Hexagone régulier :</strong> 6 côtés égaux, 6 angles de 120°</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Phase 3: Exercices -->
+            <section class="phase-section">
+                <button class="phase-header" id="exercicesHeader" onclick="toggleSection('exercices')" aria-expanded="false" aria-controls="exercicesContent">
+                    <span>💪 Phase 3: Exercices</span>
+                    <span class="phase-icon">▶️</span>
+                </button>
+                <div class="phase-content" id="exercicesContent" style="display: none;">
+                    <div class="exercises-content">
+                        
+                        <!-- Exercice 1 : Reconnaissance de triangles -->
+                        <div class="exercise-card">
+                            <h4>📝 Exercice 1 : Reconnaissance de triangles</h4>
+                            <div class="exercise-content">
+                                <p>Indique le type de chaque triangle :</p>
+                                <div class="exercise-list">
+                                    <div class="exercise-item">a) Triangle avec 3 côtés de 5 cm</div>
+                                    <div class="exercise-item">b) Triangle avec côtés de 3 cm, 4 cm et 5 cm</div>
+                                    <div class="exercise-item">c) Triangle avec deux côtés de 6 cm et un de 8 cm</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Exercice 2 : Quadrilatères -->
+                        <div class="exercise-card">
+                            <h4>📝 Exercice 2 : Quadrilatères particuliers</h4>
+                            <div class="exercise-content">
+                                <p>Complète les propriétés :</p>
+                                <div class="exercise-list">
+                                    <div class="exercise-item">a) Un carré a ... côtés égaux et ... angles droits</div>
+                                    <div class="exercise-item">b) Un rectangle a ... angles droits et ses côtés opposés sont ...</div>
+                                    <div class="exercise-item">c) Un losange a ... côtés égaux</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Exercice 3 : Le cercle -->
+                        <div class="exercise-card">
+                            <h4>📝 Exercice 3 : Cercle et vocabulaire</h4>
+                            <div class="exercise-content">
+                                <p>Un cercle a un rayon de 4 cm. Calcule :</p>
+                                <div class="exercise-list">
+                                    <div class="exercise-item">a) La longueur du diamètre</div>
+                                    <div class="exercise-item">b) Cite 3 rayons possibles si le centre est O</div>
+                                    <div class="exercise-item">c) Qu'est-ce qu'une corde ?</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Exercice 4 : Angles dans un triangle -->
+                        <div class="exercise-card">
+                            <h4>📝 Exercice 4 : Angles dans un triangle</h4>
+                            <div class="exercise-content">
+                                <p>Calcule l'angle manquant dans chaque triangle :</p>
+                                <div class="exercise-list">
+                                    <div class="exercise-item">a) Angles : 60° et 80°, le troisième angle = ?</div>
+                                    <div class="exercise-item">b) Angles : 45° et 90°, le troisième angle = ?</div>
+                                    <div class="exercise-item">c) Angles : 30° et 120°, le troisième angle = ?</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Phase 4: Évaluation finale -->
+            <section class="phase-section">
+                <button class="phase-header" id="evalHeader" onclick="toggleSection('eval')" aria-expanded="false" aria-controls="evalContent">
+                    <span>🎯 Phase 4: Évaluation finale</span>
+                    <span class="phase-icon">▶️</span>
+                </button>
+                <div class="phase-content" id="evalContent" style="display: none;">
+                    <div class="evaluation-content">
+                        <div class="lesson-card">
+                            <h4>🎖️ Quiz final</h4>
+                            <div id="finalQuiz">
+                                
+                                <div class="test-question">
+                                    <p>1. Un triangle qui a un angle de 95° est :</p>
+                                    <div class="test-options">
+                                        <div class="test-option">Aigu</div>
+                                        <div class="test-option" data-correct="true">Obtus</div>
+                                        <div class="test-option">Rectangle</div>
+                                        <div class="test-option">Équilatéral</div>
+                                    </div>
+                                </div>
+
+                                <div class="test-question">
+                                    <p>2. Quelle figure a 4 côtés égaux mais pas forcément 4 angles droits ?</p>
+                                    <div class="test-options">
+                                        <div class="test-option">Le carré</div>
+                                        <div class="test-option">Le rectangle</div>
+                                        <div class="test-option" data-correct="true">Le losange</div>
+                                        <div class="test-option">Le parallélogramme</div>
+                                    </div>
+                                </div>
+
+                                <div class="test-question">
+                                    <p>3. Si un cercle a un diamètre de 10 cm, son rayon mesure :</p>
+                                    <div class="test-options">
+                                        <div class="test-option" data-correct="true">5 cm</div>
+                                        <div class="test-option">10 cm</div>
+                                        <div class="test-option">20 cm</div>
+                                        <div class="test-option">15 cm</div>
+                                    </div>
+                                </div>
+
+                                <div class="test-question">
+                                    <p>4. Dans un triangle, si deux angles mesurent 50° et 60°, le troisième mesure :</p>
+                                    <div class="test-options">
+                                        <div class="test-option">60°</div>
+                                        <div class="test-option" data-correct="true">70°</div>
+                                        <div class="test-option">80°</div>
+                                        <div class="test-option">90°</div>
+                                    </div>
+                                </div>
+
+                                <div class="test-question">
+                                    <p>5. Un polygone régulier à 6 côtés s'appelle :</p>
+                                    <div class="test-options">
+                                        <div class="test-option">Pentagone</div>
+                                        <div class="test-option" data-correct="true">Hexagone</div>
+                                        <div class="test-option">Heptagone</div>
+                                        <div class="test-option">Octogone</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // Fonction pour afficher/masquer les sections
+        function toggleSection(sectionId) {
+            const content = document.getElementById(sectionId + 'Content');
+            const header = document.getElementById(sectionId + 'Header') || 
+                          document.getElementById(sectionId.replace('Eval', 'eval') + 'Header');
+            const icon = header.querySelector('.phase-icon');
+            
+            if (content.style.display === 'none') {
+                content.style.display = 'block';
+                header.setAttribute('aria-expanded', 'true');
+                icon.textContent = '🔽';
+            } else {
+                content.style.display = 'none';
+                header.setAttribute('aria-expanded', 'false');
+                icon.textContent = '▶️';
+            }
+        }
+
+        // Gestion des quiz interactifs
+        document.addEventListener('DOMContentLoaded', function() {
+            const testOptions = document.querySelectorAll('.test-option');
+            
+            testOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    // Désélectionner toutes les options de cette question
+                    const question = this.closest('.test-question');
+                    const allOptions = question.querySelectorAll('.test-option');
+                    allOptions.forEach(opt => {
+                        opt.classList.remove('correct', 'wrong');
+                    });
+                    
+                    // Marquer la réponse
+                    if (this.hasAttribute('data-correct')) {
+                        this.classList.add('correct');
+                    } else {
+                        this.classList.add('wrong');
+                        // Montrer la bonne réponse
+                        const correctOption = question.querySelector('[data-correct="true"]');
+                        if (correctOption) {
+                            correctOption.classList.add('correct');
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+
+    <style>
+        .quadrilaterals-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .quad-item {
+            background: rgba(255, 255, 255, 0.7);
+            padding: 1rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--color-lesson);
+            text-align: center;
+        }
+
+        .quad-item h5 {
+            color: var(--color-lesson-dark);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .quad-item p {
+            color: #4a5568;
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        .exercise-list {
+            display: grid;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .exercise-item {
+            background: rgba(255, 255, 255, 0.6);
+            padding: 0.75rem;
+            border-radius: 6px;
+            border-left: 3px solid var(--color-lesson);
+            font-size: 1rem;
+        }
+    </style>
+</body>
+</html>
