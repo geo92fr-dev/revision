@@ -4,13 +4,14 @@
 .course-container {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--space-lg);
+  gap: var(--space-sm);
   max-inline-size: 1200px;
   margin-inline: auto;
   padding: var(--space-md);
   
   @media (width > 768px) {
     padding: var(--space-lg);
+    gap: var(--space-md);
   }
 }
 

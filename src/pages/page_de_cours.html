@@ -820,11 +820,11 @@
 
         <!-- Phase 1: Test de Pré-évaluation -->
         <section class="phase-section">
-            <button class="phase-header" id="preEvalHeader" onclick="toggleSection('preEval')" aria-expanded="true" aria-controls="preEvalContent">
+            <button class="phase-header" id="preEvalHeader" onclick="toggleSection('preEval')" aria-expanded="false" aria-controls="preEvalContent">
                 <span>🔍 Phase 1: Test de Pré-évaluation</span>
-                <span class="phase-icon">🔽</span>
+                <span class="phase-icon">▶️</span>
             </button>
-            <div class="phase-content expanded" id="preEvalContent">
+            <div class="phase-content" id="preEvalContent">
                 <div class="space-y-md">
                     <div class="section pre-evaluation" id="preEvaluation">
                         <p>Ce test permet de voir si tu es déjà à l'aise avec ce sujet.</p>
@@ -3094,17 +3094,11 @@
             }, 4000);
             
             if (level === 'advanced') {
-                // Aller directement aux exercices
-                setTimeout(() => {
-                    toggleSection('exercices');
-                    document.getElementById('exercicesContent').scrollIntoView({ behavior: 'smooth' });
-                }, 500);
+                // Message pour niveau avancé - l'utilisateur peut ouvrir les exercices manuellement
+                console.log('👍 Niveau avancé détecté - vous pouvez aller directement aux exercices');
             } else {
-                // Commencer par le cours
-                setTimeout(() => {
-                    toggleSection('cours');
-                    document.getElementById('coursContent').scrollIntoView({ behavior: 'smooth' });
-                }, 500);
+                // Message pour autres niveaux - l'utilisateur peut ouvrir le cours manuellement  
+                console.log('📚 Commencez par ouvrir la section cours pour réviser');
             }
         };
 
