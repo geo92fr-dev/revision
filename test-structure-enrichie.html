@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Structure Enrichie - Fractions</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body { 
+            font-family: 'Inter', system-ui, -apple-system, sans-serif; 
+            max-width: 900px; 
+            margin: 0 auto; 
+            padding: 20px; 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+        
+        .main-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            padding: 32px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #2d3748;
+            font-weight: 700;
+            font-size: 2.2rem;
+            margin-bottom: 32px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .competence { 
+            background: rgba(255, 255, 255, 0.8);
+            border: none;
+            padding: 0;
+            margin: 0;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+        }
+        
+        .competence h2 {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            padding: 24px 32px;
+            margin: 0 0 24px 0;
+            color: #2d3748;
+            font-weight: 600;
+            font-size: 1.8rem;
+            text-align: center;
+        }
+        
+        .section { 
+            margin: 24px 32px; 
+            position: relative;
+        }
+        
+        .section h3 { 
+            color: #4a5568; 
+            margin-bottom: 12px; 
+            font-weight: 600;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .etapes { 
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 20px; 
+            border-radius: 16px; 
+            border-left: 4px solid #f093fb;
+            box-shadow: 0 4px 12px rgba(240, 147, 251, 0.2);
+        }
+        
+        .etapes ol { 
+            padding-left: 20px; 
+        }
+        
+        .etapes ol li { 
+            margin: 15px 0; 
+            color: #2d3748;
+            font-weight: 500;
+        }
+        
+        .etape-detail {
+            margin-top: 8px;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 8px;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        
+        .etape-detail strong {
+            color: #2d3748;
+            font-weight: 600;
+        }
+        
+        .etape-detail em {
+            display: block;
+            margin-top: 6px;
+            color: #4a5568;
+            font-style: italic;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 6px 8px;
+            border-radius: 4px;
+            border-left: 3px solid #9f7aea;
+        }
+        
+        .exercices { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            gap: 16px; 
+        }
+        
+        .exercice { 
+            padding: 20px; 
+            border-radius: 16px; 
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .exercice:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        }
+        
+        .exercice.debutant { 
+            background: linear-gradient(135deg, #a8edea 0%, #b2fefa 100%);
+            border-left: 4px solid #38b2ac;
+        }
+        
+        .exercice.intermediaire { 
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            border-left: 4px solid #ed8936;
+        }
+        
+        .exercice.avance { 
+            background: linear-gradient(135deg, #fccb90 0%, #d57eeb 100%);
+            border-left: 4px solid #9f7aea;
+        }
+        
+        .quiz { 
+            background: linear-gradient(135deg, #fff5f5 0%, #fed7e2 100%);
+            padding: 24px; 
+            border-radius: 16px; 
+            border-left: 4px solid #f56565;
+            box-shadow: 0 4px 12px rgba(245, 101, 101, 0.2);
+        }
+        
+        .astuce { 
+            background: linear-gradient(135deg, #c6f6d5 0%, #9ae6b4 100%);
+            padding: 20px; 
+            border-radius: 16px; 
+            border-left: 4px solid #48bb78;
+            box-shadow: 0 4px 12px rgba(72, 187, 120, 0.2);
+            color: #22543d;
+            font-weight: 500;
+        }
+        
+        .astuce strong {
+            display: block;
+            margin-bottom: 8px;
+        }
+        
+        /* Styles pour exercices interactifs */
+        .exercice-interactif {
+            margin-top: 15px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 12px;
+            border: 2px dashed rgba(0, 0, 0, 0.1);
+        }
+        
+        .rectangle-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            gap: 4px;
+            width: 120px;
+            height: 80px;
+            margin: 10px auto;
+            border: 2px solid #4a5568;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .rect-part {
+            background: #f7fafc;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .rect-part:hover {
+            background: #bee3f8;
+        }
+        
+        .rect-part.selected {
+            background: #4299e1;
+        }
+        
+        .number-line {
+            position: relative;
+            margin: 20px auto;
+            width: 250px;
+        }
+        
+        .line {
+            height: 4px;
+            background: linear-gradient(90deg, #4299e1, #9f7aea);
+            border-radius: 2px;
+        }
+        
+        .markers {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 5px;
+            position: relative;
+        }
+        
+        .marker {
+            font-weight: bold;
+            color: #4a5568;
+            cursor: default;
+        }
+        
+        .marker.clickable {
+            cursor: pointer;
+            font-size: 1.2em;
+            color: #2d3748;
+            padding: 5px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        
+        .marker.clickable:hover {
+            background: #bee3f8;
+            transform: scale(1.2);
+        }
+        
+        .marker.selected {
+            background: #4299e1;
+            color: white;
+            transform: scale(1.3);
+        }
+        
+        .calculation-area {
+            text-align: center;
+        }
+        
+        .calculation-area p {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #2d3748;
+            margin: 10px 0;
+        }
+        
+        .check-btn {
+            background: linear-gradient(135deg, #4299e1, #9f7aea);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin: 5px;
+        }
+        
+        .check-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(66, 153, 225, 0.4);
+        }
+        
+        .exercise-feedback {
+            margin-top: 10px;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-align: center;
+            min-height: 20px;
+        }
+        
+        .feedback-success {
+            background: linear-gradient(135deg, #c6f6d5 0%, #9ae6b4 100%);
+            color: #22543d;
+            border: 2px solid #48bb78;
+        }
+        
+        .feedback-error {
+            background: linear-gradient(135deg, #fed7d7 0%, #fbb6ce 100%);
+            color: #742a2a;
+            border: 2px solid #f56565;
+        }
+        
+        .hint {
+            font-style: italic;
+            opacity: 0.8;
+        }
+        
+        /* Styles pour système de monitoring */
+        .monitoring {
+            margin-top: 16px;
+            padding: 16px;
+            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+            border-radius: 12px;
+            border: 2px solid #e2e8f0;
+            text-align: center;
+        }
+        
+        .monitoring h4 {
+            color: #4a5568;
+            font-size: 0.9rem;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        
+        .monitoring-buttons {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .monitoring-btn {
+            background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e0 100%);
+            border: 2px solid transparent;
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            font-size: 0.85rem;
+        }
+        
+        .monitoring-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .monitoring-btn.excellent {
+            background: linear-gradient(135deg, #68d391 0%, #38b2ac 100%);
+            color: white;
+            border-color: #22543d;
+        }
+        
+        .monitoring-btn.bon {
+            background: linear-gradient(135deg, #81d4fa 0%, #4fc3f7 100%);
+            color: white;
+            border-color: #0277bd;
+        }
+        
+        .monitoring-btn.moyen {
+            background: linear-gradient(135deg, #ffd54f 0%, #ffb74d 100%);
+            color: #5d4037;
+            border-color: #ff8f00;
+        }
+        
+        .monitoring-btn.difficile {
+            background: linear-gradient(135deg, #ff8a80 0%, #ff5722 100%);
+            color: white;
+            border-color: #d32f2f;
+        }
+        
+        .monitoring-feedback {
+            margin-top: 12px;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-weight: 500;
+            font-size: 0.85rem;
+            min-height: 20px;
+        }
+        
+        .score-display {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 16px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            z-index: 1000;
+            font-weight: 600;
+        }
+        
+        .score-breakdown {
+            font-size: 0.8rem;
+            opacity: 0.9;
+            margin-top: 4px;
+        }
+        
+        .pieges { 
+            background: linear-gradient(135deg, #fed7d7 0%, #fbb6ce 100%);
+            padding: 20px; 
+            border-radius: 16px;
+            border-left: 4px solid #f56565;
+            box-shadow: 0 4px 12px rgba(245, 101, 101, 0.2);
+            color: #742a2a;
+        }
+        
+        .defi { 
+            background: linear-gradient(135deg, #e9d8fd 0%, #d6bcfa 100%);
+            padding: 20px; 
+            border-radius: 16px; 
+            font-weight: 600;
+            border-left: 4px solid #9f7aea;
+            box-shadow: 0 4px 12px rgba(159, 122, 234, 0.2);
+            color: #44337a;
+        }
+        
+        .utilite { 
+            background: linear-gradient(135deg, #c6f6d5 0%, #9ae6b4 100%);
+            padding: 20px; 
+            border-radius: 16px;
+            border-left: 4px solid #38b2ac;
+            box-shadow: 0 4px 12px rgba(56, 178, 172, 0.2);
+            color: #234e52;
+        }
+        
+        .consequence { 
+            background: linear-gradient(135deg, #fed7d7 0%, #fbb6ce 100%);
+            padding: 20px; 
+            border-radius: 16px;
+            border-left: 4px solid #f093fb;
+            box-shadow: 0 4px 12px rgba(240, 147, 251, 0.2);
+            color: #44337a;
+        }
+        
+        .funfact { 
+            background: linear-gradient(135deg, #fef5e7 0%, #fdeaa7 100%);
+            padding: 24px; 
+            border-radius: 16px; 
+            font-style: italic;
+            border-left: 4px solid #ecc94b;
+            box-shadow: 0 4px 12px rgba(236, 201, 75, 0.2);
+            color: #744210;
+            font-weight: 500;
+            position: relative;
+        }
+        
+        .funfact::before {
+            content: '✨';
+            position: absolute;
+            top: 16px;
+            right: 20px;
+            font-size: 1.5rem;
+        }
+        
+        .choix { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 12px; 
+            margin: 16px 0; 
+        }
+        
+        .choix span { 
+            background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e0 100%);
+            padding: 12px 16px; 
+            border-radius: 12px; 
+            cursor: pointer;
+            text-align: center;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            color: #2d3748;
+        }
+        
+        .choix span:hover { 
+            background: linear-gradient(135deg, #bee3f8 0%, #90cdf4 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(66, 153, 225, 0.3);
+            border-color: #4299e1;
+        }
+        
+        .section p {
+            color: #4a5568;
+            font-weight: 400;
+            line-height: 1.7;
+        }
+        
+        #feedback {
+            margin-top: 16px;
+            padding: 12px 16px;
+            border-radius: 12px;
+            font-weight: 600;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .feedback-success {
+            background: linear-gradient(135deg, #c6f6d5 0%, #9ae6b4 100%);
+            color: #22543d;
+            border: 2px solid #48bb78;
+        }
+        
+        .feedback-error {
+            background: linear-gradient(135deg, #fed7d7 0%, #fbb6ce 100%);
+            color: #742a2a;
+            border: 2px solid #f56565;
+        }
+        
+        /* Animation pour les sections */
+        .section {
+            animation: fadeInUp 0.6s ease forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Délais d'animation échelonnés */
+        .section:nth-child(1) { animation-delay: 0.1s; }
+        .section:nth-child(2) { animation-delay: 0.2s; }
+        .section:nth-child(3) { animation-delay: 0.3s; }
+        .section:nth-child(4) { animation-delay: 0.4s; }
+        .section:nth-child(5) { animation-delay: 0.5s; }
+        .section:nth-child(6) { animation-delay: 0.6s; }
+        .section:nth-child(7) { animation-delay: 0.7s; }
+        .section:nth-child(8) { animation-delay: 0.8s; }
+        .section:nth-child(9) { animation-delay: 0.9s; }
+        .section:nth-child(10) { animation-delay: 1.0s; }
+        .section:nth-child(11) { animation-delay: 1.1s; }
+        .section:nth-child(12) { animation-delay: 1.2s; }
+    </style>
+</head>
+<body>
+    <div class="score-display" id="scoreDisplay">
+        <div>📊 Score: <span id="totalScore">0</span>/100</div>
+        <div class="score-breakdown" id="scoreBreakdown">Progression: 0%</div>
+    </div>
+    
+    <div class="main-container">
+        <h1>🧪 Test Structure Enrichie - Compétence Fractions</h1>
+        
+        <div class="competence">
+            <h2>📚 Comprendre les fractions</h2>
+        
+        <div class="section">
+            <h3>🎯 Objectif</h3>
+            <p>Savoir lire, écrire et représenter une fraction.</p>
+        </div>
+
+        <div class="section">
+            <h3>📖 Cours</h3>
+            <p>Une fraction représente une partie d'un tout. Exemple : 3/4 signifie 3 parts sur 4 au total.</p>
+        </div>
+
+        <div class="section">
+            <h3>🔢 Étapes d'apprentissage</h3>
+            <div class="etapes">
+                <ol>
+                    <li>
+                        <strong>Identifier le numérateur et le dénominateur</strong>
+                        <div class="etape-detail">
+                            <strong>Comment :</strong> Dans une fraction a/b, le nombre du haut (a) est le numérateur (parts prises), le nombre du bas (b) est le dénominateur (total de parts). 
+                            <em>Exemple : dans 3/5, le numérateur est 3 et le dénominateur est 5.</em>
+                        </div>
+                    </li>
+                    <li>
+                        <strong>Représenter une fraction sur un schéma</strong>
+                        <div class="etape-detail">
+                            <strong>Comment :</strong> Dessine une figure (cercle, rectangle, barre) et divise-la en autant de parts égales que le dénominateur, puis colorie le nombre de parts indiqué par le numérateur.
+                            <em>Exemple : pour 2/3, divise en 3 parts et colorie 2 parts.</em>
+                        </div>
+                    </li>
+                    <li>
+                        <strong>Comparer et classer des fractions</strong>
+                        <div class="etape-detail">
+                            <strong>Comment :</strong> Si même dénominateur, compare les numérateurs. Sinon, convertis au même dénominateur ou utilise les décimaux.
+                            <em>Exemple : 2/5 < 3/5 car 2 < 3. Pour 1/2 vs 2/3, convertis : 3/6 vs 4/6, donc 1/2 < 2/3.</em>
+                        </div>
+                    </li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>💡 Exemple concret</h3>
+            <p>Si tu manges 2 parts sur 8 d'un gâteau, tu as mangé 2/8, soit 1/4.</p>
+            
+            <div class="monitoring" id="monitoring-exemple">
+                <h4>📝 As-tu bien compris cet exemple ?</h4>
+                <div class="monitoring-buttons">
+                    <button class="monitoring-btn" onclick="rateSection('exemple', 4, this)">😍 Très clair</button>
+                    <button class="monitoring-btn" onclick="rateSection('exemple', 3, this)">👍 Assez clair</button>
+                    <button class="monitoring-btn" onclick="rateSection('exemple', 2, this)">🤔 Un peu flou</button>
+                    <button class="monitoring-btn" onclick="rateSection('exemple', 1, this)">😵 Pas compris</button>
+                </div>
+                <div class="monitoring-feedback" id="feedback-exemple"></div>
+            </div>
+        </div>
+
+            <div class="section">
+                <h3>🏋️ Exercices progressifs</h3>
+                <div class="exercices">
+                    <div class="exercice debutant">
+                        <strong>🟢 Débutant</strong><br>
+                        <p></p>Colorie 1/2 d'un rectangle.</p>
+                        <div class="exercice-interactif">
+                            <div class="rectangle-grid" id="rect-exercise">
+                                <div class="rect-part" onclick="togglePart(this)"></div>
+                                <div class="rect-part" onclick="togglePart(this)"></div>
+                                <div class="rect-part" onclick="togglePart(this)"></div>
+                                <div class="rect-part" onclick="togglePart(this)"></div>
+                            </div>
+                            <button onclick="checkRectangle()" class="check-btn">Vérifier</button>
+                            <div id="rect-feedback" class="exercise-feedback"></div>
+                        </div>
+                    </div>
+                    <div class="exercice intermediaire">
+                        <strong>🟡 Intermédiaire</strong><br>
+                        <p>Repère 3/4 sur une droite graduée.</p>
+                        <div class="exercice-interactif">
+                            <div class="number-line">
+                                <div class="line"></div>
+                                <div class="markers">
+                                    <span class="marker" data-value="0">0</span>
+                                    <span class="marker clickable" data-value="0.25" onclick="selectMarker(this, '1/4')">|</span>
+                                    <span class="marker clickable" data-value="0.5" onclick="selectMarker(this, '1/2')">|</span>
+                                    <span class="marker clickable" data-value="0.75" onclick="selectMarker(this, '3/4')">|</span>
+                                    <span class="marker" data-value="1">1</span>
+                                </div>
+                            </div>
+                            <p style="margin: 10px 0;">Clique sur la position de 3/4 :</p>
+                            <div id="line-feedback" class="exercise-feedback"></div>
+                        </div>
+                    </div>
+                    <div class="exercice avance">
+                        <strong>🔴 Avancé</strong><br>
+                        <p>Calcule : 5/8 d'un gâteau de 32 parts.</p>
+                        <div class="exercice-interactif">
+                            <div class="calculation-area">
+                                <p>5/8 × 32 = ?</p>
+                                <input type="number" id="calc-input" placeholder="Ta réponse" style="padding: 8px; border: 2px solid #e2e8f0; border-radius: 8px; width: 100px; margin: 10px;">
+                                <button onclick="checkCalculation()" class="check-btn">Vérifier</button>
+                                <div id="calc-feedback" class="exercise-feedback"></div>
+                                <div class="hint" style="margin-top: 10px; font-size: 0.9em; color: #666;">
+                                    💡 Astuce : (5 × 32) ÷ 8
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>        <div class="section">
+            <h3>🎯 Mini Quiz</h3>
+            <div class="quiz">
+                <p><strong>Question :</strong> Quelle fraction représente 2 parts sur 5 ?</p>
+                <div class="choix">
+                    <span onclick="checkAnswer(this, false)">2/3</span>
+                    <span onclick="checkAnswer(this, false)">5/2</span>
+                    <span onclick="checkAnswer(this, true)">2/5</span>
+                    <span onclick="checkAnswer(this, false)">1/2</span>
+                </div>
+                <div id="feedback" style="margin-top: 10px; font-weight: bold;"></div>
+            </div>
+        </div>
+
+            <div class="section">
+                <h3>💡 Astuces & Pièges</h3>
+                <div class="astuce">
+                    <strong>✅ Astuce :</strong> Numérateur = parts prises. Dénominateur = parts totales.<br>
+                    <strong>⚠️ Piège à éviter :</strong> Confondre numérateur et dénominateur
+                </div>
+            </div>            <div class="section">
+                <h3>🚀 Défi</h3>
+                <div class="defi">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                        <span>Tu as 30 secondes pour trouver 3 fractions équivalentes à 2/3.</span>
+                        <button onclick="startChallenge()" id="challengeBtn" style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; border: none; padding: 8px 16px; border-radius: 8px; cursor: pointer; font-weight: 600;">Start ⏱️</button>
+                    </div>
+                    <div id="challengeTimer" style="display: none; text-align: center; font-size: 1.2rem; font-weight: bold; color: #9f7aea;"></div>
+                    <div id="challengeInput" style="display: none; margin-top: 12px;">
+                        <input type="text" placeholder="Ex: 4/6" style="padding: 8px; margin: 4px; border: 2px solid #e2e8f0; border-radius: 8px; width: 80px;">
+                        <input type="text" placeholder="Ex: 6/9" style="padding: 8px; margin: 4px; border: 2px solid #e2e8f0; border-radius: 8px; width: 80px;">
+                        <input type="text" placeholder="Ex: 8/12" style="padding: 8px; margin: 4px; border: 2px solid #e2e8f0; border-radius: 8px; width: 80px;">
+                    </div>
+                    <div id="challengeResult" style="margin-top: 12px; text-align: center; font-weight: bold;"></div>
+                </div>
+            </div>            <div class="section">
+                <h3>🌍 Pourquoi c'est important ?</h3>
+                <div class="utilite">
+                    Les fractions sont essentielles pour cuisiner, partager des objets, calculer des remises, comprendre les pourcentages et gérer son budget. Sans la maîtrise des fractions, tu auras des difficultés à suivre des recettes, gérer ton argent, calculer des remises ou comprendre des statistiques.
+                </div>
+            </div>        <div class="section">
+            <h3>🎉 Fun Fact</h3>
+            <div class="funfact">
+                Dans une étude américaine, 3 adultes sur 5 ont avoué qu'ils préféraient partager une pizza plutôt que des bonbons… mais 2 sur 5 ne savaient pas calculer 3/8 d'une pizza ! 🍕😂
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>🎯 Évaluation finale</h3>
+            <div class="monitoring" id="monitoring-objectif">
+                <h4>📋 Penses-tu avoir atteint l'objectif : "Savoir lire, écrire et représenter une fraction" ?</h4>
+                <div class="monitoring-buttons">
+                    <button class="monitoring-btn" onclick="rateSection('objectif', 4, this)">🎉 Complètement</button>
+                    <button class="monitoring-btn" onclick="rateSection('objectif', 3, this)">👍 En grande partie</button>
+                    <button class="monitoring-btn" onclick="rateSection('objectif', 2, this)">🤔 Partiellement</button>
+                    <button class="monitoring-btn" onclick="rateSection('objectif', 1, this)">😔 Pas vraiment</button>
+                </div>
+                <div class="monitoring-feedback" id="feedback-objectif"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function checkAnswer(element, isCorrect) {
+            const feedback = document.getElementById('feedback');
+            const choices = document.querySelectorAll('.choix span');
+            
+            // Reset all choices
+            choices.forEach(choice => {
+                choice.style.background = 'linear-gradient(135deg, #e2e8f0 0%, #cbd5e0 100%)';
+                choice.style.color = '#2d3748';
+                choice.style.border = '2px solid transparent';
+            });
+            
+            if (isCorrect) {
+                element.style.background = 'linear-gradient(135deg, #68d391 0%, #38b2ac 100%)';
+                element.style.color = 'white';
+                element.style.border = '2px solid #22543d';
+                feedback.innerHTML = '✅ Correct ! 2 parts sur 5 = 2/5';
+                feedback.className = 'feedback-success';
+            } else {
+                element.style.background = 'linear-gradient(135deg, #fc8181 0%, #f56565 100%)';
+                element.style.color = 'white';
+                element.style.border = '2px solid #742a2a';
+                feedback.innerHTML = '❌ Essaie encore ! Rappel : 2 parts sur 5 = 2/5';
+                feedback.className = 'feedback-error';
+            }
+        }
+
+        let challengeTimer;
+        let timeLeft;
+        let selectedParts = 0;
+        let selectedMarker = null;
+
+        // Exercice 1: Rectangle à colorier
+        function togglePart(element) {
+            if (element.classList.contains('selected')) {
+                element.classList.remove('selected');
+                selectedParts--;
+            } else {
+                element.classList.add('selected');
+                selectedParts++;
+            }
+        }
+
+        function checkRectangle() {
+            const feedback = document.getElementById('rect-feedback');
+            const totalParts = 4;
+            const targetParts = totalParts / 2; // 1/2 = 2 parts sur 4
+            
+            if (selectedParts === targetParts) {
+                feedback.innerHTML = '✅ Parfait ! Tu as colorié exactement 1/2 du rectangle (2 parts sur 4)';
+                feedback.className = 'exercise-feedback feedback-success';
+                exercisesCompleted.rectangle = true;
+                updateExerciseProgress();
+            } else if (selectedParts === 0) {
+                feedback.innerHTML = '💡 Colorie 2 cases pour représenter 1/2';
+                feedback.className = 'exercise-feedback feedback-error';
+            } else {
+                feedback.innerHTML = `❌ Tu as colorié ${selectedParts}/4 parts. Pour 1/2, il faut colorier 2 parts sur 4.`;
+                feedback.className = 'exercise-feedback feedback-error';
+            }
+        }
+
+        // Exercice 2: Droite graduée
+        function selectMarker(element, fraction) {
+            // Reset previous selection
+            if (selectedMarker) {
+                selectedMarker.classList.remove('selected');
+            }
+            
+            // Select new marker
+            element.classList.add('selected');
+            selectedMarker = element;
+            
+            const feedback = document.getElementById('line-feedback');
+            
+            if (fraction === '3/4') {
+                feedback.innerHTML = '✅ Excellent ! 3/4 est bien à cette position sur la droite';
+                feedback.className = 'exercise-feedback feedback-success';
+                exercisesCompleted.droite = true;
+                updateExerciseProgress();
+            } else {
+                feedback.innerHTML = `❌ Tu as sélectionné ${fraction}. Cherche 3/4 (trois quarts)`;
+                feedback.className = 'exercise-feedback feedback-error';
+            }
+        }
+
+        // Exercice 3: Calcul
+        function checkCalculation() {
+            const input = document.getElementById('calc-input');
+            const feedback = document.getElementById('calc-feedback');
+            const answer = parseInt(input.value);
+            const correct = 20; // 5/8 × 32 = (5 × 32) ÷ 8 = 160 ÷ 8 = 20
+            
+            if (answer === correct) {
+                feedback.innerHTML = '✅ Bravo ! 5/8 × 32 = 20 parts de gâteau';
+                feedback.className = 'exercise-feedback feedback-success';
+                exercisesCompleted.calcul = true;
+                updateExerciseProgress();
+            } else if (isNaN(answer)) {
+                feedback.innerHTML = '💡 Entre un nombre pour calculer 5/8 de 32';
+                feedback.className = 'exercise-feedback feedback-error';
+            } else {
+                feedback.innerHTML = `❌ ${answer} n'est pas correct. Calcule : (5 × 32) ÷ 8`;
+                feedback.className = 'exercise-feedback feedback-error';
+            }
+        }
+
+        function startChallenge() {
+            const btn = document.getElementById('challengeBtn');
+            const timer = document.getElementById('challengeTimer');
+            const input = document.getElementById('challengeInput');
+            const result = document.getElementById('challengeResult');
+            
+            // Reset
+            result.innerHTML = '';
+            timeLeft = 30;
+            
+            // Show timer and inputs
+            timer.style.display = 'block';
+            input.style.display = 'block';
+            btn.style.display = 'none';
+            
+            // Clear inputs
+            input.querySelectorAll('input').forEach(inp => {
+                inp.value = '';
+                inp.style.backgroundColor = 'white';
+            });
+            
+            // Start countdown
+            challengeTimer = setInterval(() => {
+                timer.innerHTML = `⏱️ ${timeLeft}s`;
+                timeLeft--;
+                
+                if (timeLeft < 10) {
+                    timer.style.color = '#f56565';
+                }
+                
+                if (timeLeft < 0) {
+                    endChallenge();
+                }
+            }, 1000);
+        }
+
+        function endChallenge() {
+            clearInterval(challengeTimer);
+            const timer = document.getElementById('challengeTimer');
+            const input = document.getElementById('challengeInput');
+            const result = document.getElementById('challengeResult');
+            const btn = document.getElementById('challengeBtn');
+            
+            timer.innerHTML = '⏰ Temps écoulé !';
+            
+            // Check answers
+            const inputs = input.querySelectorAll('input');
+            const answers = Array.from(inputs).map(inp => inp.value.trim());
+            const validAnswers = ['4/6', '6/9', '8/12', '10/15', '12/18', '14/21'];
+            
+            let correct = 0;
+            answers.forEach((answer, index) => {
+                if (validAnswers.includes(answer)) {
+                    inputs[index].style.backgroundColor = '#c6f6d5';
+                    correct++;
+                } else if (answer) {
+                    inputs[index].style.backgroundColor = '#fed7d7';
+                }
+            });
+            
+            if (correct === 3) {
+                result.innerHTML = '🎉 Parfait ! Tu as trouvé 3 fractions équivalentes !';
+                result.style.color = '#22543d';
+            } else if (correct > 0) {
+                result.innerHTML = `👍 Bien ! Tu en as trouvé ${correct}/3. Exemples : 4/6, 6/9, 8/12`;
+                result.style.color = '#744210';
+            } else {
+                result.innerHTML = '💪 Pas grave ! Exemples : 4/6, 6/9, 8/12 (multiplie haut et bas par 2, 3, 4...)';
+                result.style.color = '#9f7aea';
+            }
+            
+            // Reset button
+            setTimeout(() => {
+                btn.style.display = 'inline-block';
+                btn.innerHTML = 'Rejouer ⏱️';
+                timer.style.display = 'none';
+            }, 3000);
+        }
+
+        // Système de monitoring et scoring
+        let monitoringScores = {
+            exemple: 0,
+            objectif: 0
+        };
+        
+        let maxScores = {
+            exemple: 30,     // 30 points max pour compréhension exemple
+            objectif: 30     // 30 points max pour atteinte de l'objectif
+            // + 40 points max pour les 3 exercices interactifs (auto-calculés)
+        };
+        
+        // Suivi des exercices interactifs (40 points total)
+        let exercisesCompleted = {
+            rectangle: false,    // 15 points
+            droite: false,       // 15 points  
+            calcul: false        // 10 points
+        };
+        
+        let exercisePoints = {
+            rectangle: 15,
+            droite: 15,
+            calcul: 10
+        };
+
+        function rateSection(section, rating, button) {
+            // Reset visual state of all buttons in this section
+            const sectionButtons = button.parentElement.querySelectorAll('.monitoring-btn');
+            sectionButtons.forEach(btn => {
+                btn.className = 'monitoring-btn';
+            });
+            
+            // Apply appropriate style to selected button
+            const styles = ['difficile', 'moyen', 'bon', 'excellent'];
+            button.className = `monitoring-btn ${styles[rating - 1]}`;
+            
+            // Calculate score (rating from 1-4, convert to percentage of max points)
+            const scorePercent = (rating / 4);
+            monitoringScores[section] = Math.round(maxScores[section] * scorePercent);
+            
+            // Show feedback
+            const feedback = document.getElementById(`feedback-${section}`);
+            const feedbacks = {
+                1: { text: '💪 Pas de souci, on progresse étape par étape !', class: 'feedback-error' },
+                2: { text: '🤔 C\'est normal, les fractions demandent de la pratique.', class: 'feedback-error' },
+                3: { text: '👍 Bon travail ! Tu es sur la bonne voie.', class: 'feedback-success' },
+                4: { text: '🎉 Excellent ! Tu maîtrises bien cette partie.', class: 'feedback-success' }
+            };
+            
+            feedback.innerHTML = feedbacks[rating].text;
+            feedback.className = `monitoring-feedback ${feedbacks[rating].class}`;
+            
+            // Update total score
+            updateTotalScore();
+        }
+
+        function updateTotalScore() {
+            // Score des sections de monitoring
+            const monitoringTotal = Object.values(monitoringScores).reduce((sum, score) => sum + score, 0);
+            
+            // Score des exercices interactifs
+            const exerciseTotal = Object.entries(exercisesCompleted)
+                .filter(([key, completed]) => completed)
+                .reduce((sum, [key]) => sum + exercisePoints[key], 0);
+            
+            // Score du quiz (s'il existe)
+            const quizScore = monitoringScores.quiz || 0;
+            
+            const totalScore = monitoringTotal + exerciseTotal + quizScore;
+            const completedSections = Object.values(monitoringScores).filter(score => score > 0).length;
+            const totalSections = Object.keys(monitoringScores).length;
+            
+            document.getElementById('totalScore').textContent = totalScore;
+            
+            const progressPercent = Math.round((completedSections / totalSections) * 100);
+            const completedExercises = Object.values(exercisesCompleted).filter(Boolean).length;
+            
+            document.getElementById('scoreBreakdown').innerHTML = 
+                `Sections: ${completedSections}/${totalSections} • Exercices: ${completedExercises}/3`;
+            
+            // Feedback général basé sur le score total
+            if (totalScore >= 85) {
+                document.getElementById('scoreBreakdown').innerHTML += ' 🌟 Excellent !';
+            } else if (totalScore >= 70) {
+                document.getElementById('scoreBreakdown').innerHTML += ' 👍 Bon niveau !';
+            } else if (totalScore >= 50) {
+                document.getElementById('scoreBreakdown').innerHTML += ' 📚 À revoir';
+            }
+        }
+
+        function updateExerciseProgress() {
+            // Les exercices rapportent automatiquement des points quand réussis
+            updateTotalScore();
+        }
+
+        function updateCompetenceBadgesDetailed() {
+            const completedSections = Object.values(monitoringScores).filter(score => score > 0).length;
+            const totalSections = Object.keys(monitoringScores).length;
+            const totalScore = Object.values(monitoringScores).reduce((sum, score) => sum + score, 0);
+            
+            const completedExercises = Object.values(exercisesCompleted).filter(Boolean).length;
+            const totalExercises = Object.keys(exercisesCompleted).length;
+            
+            const completionBadge = document.getElementById('completionBadge');
+            const levelBadge = document.getElementById('levelBadge');
+            
+            // Badge de complétion avec détail exercices
+            if (completedSections === totalSections && completedExercises === totalExercises) {
+                completionBadge.textContent = '✅ Tout terminé';
+                completionBadge.className = 'completion-badge termine';
+            } else {
+                const sectionsText = `${completedSections}/${totalSections} sections`;
+                const exercisesText = `${completedExercises}/${totalExercises} exercices`;
+                completionBadge.textContent = `⏳ ${sectionsText} • ${exercisesText}`;
+                completionBadge.className = 'completion-badge en-cours';
+            }
+            
+            // Badge de niveau (seulement si au moins une section évaluée)
+            if (completedSections > 0) {
+                if (totalScore >= 85) {
+                    levelBadge.textContent = '🌟 Excellent';
+                    levelBadge.className = 'level-badge excellent';
+                } else if (totalScore >= 70) {
+                    levelBadge.textContent = '👍 Bon niveau';
+                    levelBadge.className = 'level-badge bon';
+                } else if (totalScore >= 50) {
+                    levelBadge.textContent = '📚 Moyen';
+                    levelBadge.className = 'level-badge moyen';
+                } else {
+                    levelBadge.textContent = '💪 Débutant';
+                    levelBadge.className = 'level-badge debutant';
+                }
+            } else {
+                levelBadge.textContent = '🎯 Non évalué';
+                levelBadge.className = 'level-badge non-evalue';
+            }
+        }
+
+        // Intégration du quiz au système de scoring
+        function checkAnswer(element, isCorrect) {
+            const feedback = document.getElementById('feedback');
+            const choices = document.querySelectorAll('.choix span');
+            
+            // Reset all choices
+            choices.forEach(choice => {
+                choice.style.background = 'linear-gradient(135deg, #e2e8f0 0%, #cbd5e0 100%)';
+                choice.style.color = '#2d3748';
+                choice.style.border = '2px solid transparent';
+            });
+            
+            if (isCorrect) {
+                element.style.background = 'linear-gradient(135deg, #68d391 0%, #38b2ac 100%)';
+                element.style.color = 'white';
+                element.style.border = '2px solid #22543d';
+                feedback.innerHTML = '✅ Correct ! 2 parts sur 5 = 2/5';
+                feedback.className = 'feedback-success';
+                
+                // Ajouter les points quiz (bonus de 20 points)
+                if (!monitoringScores.quiz) {
+                    monitoringScores.quiz = 20;
+                    maxScores.quiz = 20;
+                    updateTotalScore();
+                }
+            } else {
+                element.style.background = 'linear-gradient(135deg, #fc8181 0%, #f56565 100%)';
+                element.style.color = 'white';
+                element.style.border = '2px solid #742a2a';
+                feedback.innerHTML = '❌ Essaie encore ! Rappel : 2 parts sur 5 = 2/5';
+                feedback.className = 'feedback-error';
+            }
+        }
+    </script>
+</body>
+</html>
