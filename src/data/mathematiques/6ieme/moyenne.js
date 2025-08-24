@@ -158,4 +158,4 @@ export const moyenne6eme = {
   ]
 };
 
-export default moyennes6eme;
+export default moyenne6eme;

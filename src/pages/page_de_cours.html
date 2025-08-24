@@ -1286,11 +1286,15 @@
             
             try {
                 // Import statique de l'index pour mathématiques 6ème
+                console.log(`📂 Tentative d'import de l'index maths 6ème...`);
                 const mathsIndex = await import('../data/mathematiques/6ieme/index.js');
-                console.log(`📦 Index maths 6ème chargé`, mathsIndex.default);
+                console.log(`📦 Index maths 6ème chargé avec succès`);
+                console.log(`📋 Contenu de l'index:`, mathsIndex);
+                console.log(`📋 Export par défaut:`, mathsIndex.default);
                 
                 if (mathsIndex.default && mathsIndex.default[topic]) {
                     console.log(`✅ Topic '${topic}' trouvé dans l'index maths 6ème`);
+                    console.log(`📄 Données du topic:`, mathsIndex.default[topic]);
                     return mathsIndex.default[topic];
                 }
                 
@@ -1299,6 +1303,7 @@
                 
             } catch (error) {
                 console.error(`❌ Erreur lors du chargement de l'index maths 6ème:`, error);
+                console.error(`❌ Stack trace:`, error.stack);
                 return null;
             }
         }
