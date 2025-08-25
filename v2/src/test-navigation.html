@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎓 FunRevis V2 - Test Navigation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            margin: 0;
+            padding: 2rem;
+            color: white;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .card {
+            background: white;
+            color: #333;
+            margin: 1rem;
+            padding: 2rem;
+            border-radius: 10px;
+            display: inline-block;
+            width: 200px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .card-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .debug {
+            background: rgba(0,0,0,0.7);
+            padding: 1rem;
+            margin-top: 2rem;
+            border-radius: 5px;
+            font-family: monospace;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎓 FunRevis V2 - Test Navigation</h1>
+        <p>Cliquez sur une matière pour tester la navigation</p>
+        
+        <div id="cards">
+            <!-- Les cartes seront générées ici -->
+        </div>
+        
+        <div class="debug" id="debug">
+            <strong>Debug Console:</strong><br>
+            <div id="logs"></div>
+        </div>
+    </div>
+
+    <script>
+        function log(message) {
+            const now = new Date().toLocaleTimeString();
+            const logs = document.getElementById('logs');
+            logs.innerHTML += `[${now}] ${message}<br>`;
+            console.log(message);
+        }
+
+        const subjects = [
+            { key: 'mathematiques', icon: '📐', title: 'Mathématiques', url: 'pages/mathematiques/index.html' },
+            { key: 'francais', icon: '📝', title: 'Français', url: 'pages/francais/index.html' },
+            { key: 'sciences', icon: '🔬', title: 'Sciences', url: 'pages/sciences/index.html' },
+            { key: 'histoire', icon: '🏛️', title: 'Histoire', url: 'pages/histoire/index.html' }
+        ];
+
+        function createCards() {
+            log('Création des cartes...');
+            const container = document.getElementById('cards');
+            
+            subjects.forEach(subject => {
+                const card = document.createElement('a');
+                card.className = 'card';
+                card.href = subject.url;
+                card.dataset.subject = subject.key;
+                
+                card.innerHTML = `
+                    <div class="card-icon">${subject.icon}</div>
+                    <div class="card-title">${subject.title}</div>
+                `;
+                
+                // Test 1: Clic simple
+                card.addEventListener('click', function(e) {
+                    log(`🔥 CLIC détecté sur ${subject.title}`);
+                    log(`🔗 URL cible: ${subject.url}`);
+                    log(`🌐 URL complète: ${window.location.origin}/${subject.url}`);
+                    
+                    // Vérifier si l'URL existe
+                    fetch(subject.url)
+                        .then(response => {
+                            if (response.ok) {
+                                log(`✅ URL accessible: ${subject.url}`);
+                            } else {
+                                log(`❌ URL non accessible: ${subject.url} (${response.status})`);
+                            }
+                        })
+                        .catch(error => {
+                            log(`❌ Erreur de réseau: ${error.message}`);
+                        });
+                });
+                
+                // Test 2: Survol
+                card.addEventListener('mouseenter', function() {
+                    log(`👆 Survol: ${subject.title}`);
+                });
+                
+                container.appendChild(card);
+            });
+            
+            log(`✅ ${subjects.length} cartes créées`);
+        }
+
+        // Initialisation
+        log('🚀 Page de test chargée');
+        createCards();
+    </script>
+</body>
+</html>

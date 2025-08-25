@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>TEST BASIQUE</title>
+</head>
+<body>
+    <h1 style="color: red; font-size: 3em; text-align: center;">✅ PAGE CHARGÉE !</h1>
+    <p style="text-align: center; font-size: 1.5em;">Si vous voyez ceci, le lien fonctionne</p>
+    <hr>
+    <p><strong>URL actuelle :</strong> <span id="url"></span></p>
+    <script>
+        document.getElementById('url').textContent = window.location.href;
+    </script>
+</body>
+</html>

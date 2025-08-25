@@ -1,0 +1,85 @@
+/* Styles pour pré-évaluation et tests */
+
+.pre-evaluation {
+    background: linear-gradient(135deg, var(--color-lesson-light) 0%, var(--color-lesson) 100%);
+    border-left: 4px solid var(--color-lesson-dark);
+    box-shadow: 0 4px 12px color-mix(in oklch, var(--color-lesson-dark) 20%, transparent);
+}
+
+.mini-test {
+    margin-top: 20px;
+}
+
+.test-question {
+    margin-bottom: 24px;
+    padding: 16px;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 12px;
+    backdrop-filter: blur(5px);
+}
+
+.test-question p {
+    margin-bottom: 12px;
+    font-weight: 600;
+    color: #2d3748;
+}
+
+.test-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+}
+
+.test-option {
+    padding: 12px 16px;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    background: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    color: #4a5568;
+}
+
+.test-option:hover {
+    border-color: var(--color-lesson-dark);
+    background: var(--color-lesson-light);
+    transform: translateY(-1px);
+}
+
+.test-option.correct {
+    background: linear-gradient(135deg, var(--color-success-light) 0%, var(--color-success) 100%);
+    border-color: var(--color-success-dark);
+    color: oklch(0.25 0.15 140);
+}
+
+.test-option.wrong {
+    background: linear-gradient(135deg, var(--color-danger-light) 0%, var(--color-danger) 100%);
+    border-color: var(--color-danger-dark);
+    color: oklch(0.25 0.15 25);
+}
+
+.pre-test-result {
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.recommendation {
+    margin-bottom: 16px;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.recommendation.advanced {
+    background: linear-gradient(135deg, var(--color-lesson-light) 0%, var(--color-lesson) 100%);
+    color: oklch(0.25 0.08 220);
+    border-left: 4px solid var(--color-lesson-dark);
+}
+
+.recommendation.beginner {
+    background: linear-gradient(135deg, var(--color-info-light) 0%, var(--color-info) 100%);
+    color: oklch(0.25 0.08 250);
+    border-left: 4px solid var(--color-info-dark);
+}

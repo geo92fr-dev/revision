@@ -1,0 +1,240 @@
+{
+  "fileCount": 158,
+  "issues": [
+    {
+      "type": "DOCUMENTATION",
+      "severity": "MEDIUM",
+      "message": "Documentation éparpillée (20 fichiers .md)"
+    },
+    {
+      "type": "DOCUMENTATION_REDUNDANCY",
+      "severity": "LOW",
+      "message": "Documentation redondante pour architecture: 5 fichiers"
+    },
+    {
+      "type": "DOCUMENTATION_REDUNDANCY",
+      "severity": "LOW",
+      "message": "Documentation redondante pour optimization: 3 fichiers"
+    },
+    {
+      "type": "DOCUMENTATION_REDUNDANCY",
+      "severity": "LOW",
+      "message": "Documentation redondante pour validation: 3 fichiers"
+    }
+  ],
+  "duplicates": [],
+  "obsoleteFiles": [
+    "\\src\\coursData.js",
+    "\\src\\monitoring\\latest-test-report.json",
+    "\\src\\monitoring\\test-runner.js",
+    "\\src\\quizData.js",
+    "\\src\\test\\data\\test-complet.js",
+    "\\src\\test\\data\\test-exports-detailed.js",
+    "\\src\\test\\data\\test-exports.js",
+    "\\src\\test\\data\\test-final.js",
+    "\\src\\test\\data\\test-import.js",
+    "\\src\\test\\data\\test-index.js",
+    "\\src\\test\\data\\test-integration.js",
+    "\\src\\test\\data\\test-integrite.js",
+    "\\src\\test\\data\\test-loading.js",
+    "\\src\\test\\data\\test-moyenne.js",
+    "\\src\\test\\data\\test-simple.js",
+    "\\src\\test\\data-structure-validation.test.js",
+    "\\structure-proposee.js",
+    "\\test-final.js",
+    "\\test-structure.mjs"
+  ],
+  "incompleteFiles": [
+    {
+      "file": "\\src\\data\\anglais\\cinquieme.js",
+      "issues": [
+        "Structure non analysable"
+      ],
+      "completeness": 0
+    },
+    {
+      "file": "\\src\\data\\anglais\\sixieme.js",
+      "issues": [
+        "Structure non analysable"
+      ],
+      "completeness": 0
+    },
+    {
+      "file": "\\src\\data\\francais\\cinquieme.js",
+      "issues": [
+        "Structure non analysable"
+      ],
+      "completeness": 0
+    },
+    {
+      "file": "\\src\\data\\francais\\quatrieme.js",
+      "issues": [
+        "Structure non analysable"
+      ],
+      "completeness": 0
+    },
+    {
+      "file": "\\src\\data\\francais\\sixieme.js",
+      "issues": [
+        "Structure non analysable"
+      ],
+      "completeness": 0
+    },
+    {
+      "file": "\\src\\data\\francais\\troisieme.js",
+      "issues": [
+        "Structure non analysable"
+      ],
+      "completeness": 0
+    },
+    {
+      "file": "\\src\\data\\legacyConverter.js",
+      "issues": [
+        "Structure non analysable"
+      ],
+      "completeness": 0
+    },
+    {
+      "file": "\\src\\data\\mathematiques\\6ieme\\addition-soustraction.js",
+      "issues": [
+        "Structure non analysable"
+      ],
+      "completeness": 0
+    },
+    {
+      "file": "\\src\\data\\mathematiques\\6ieme\\aires-figures.js",
+      "issues": [
+        "Structure non analysable"
+      ],
+      "completeness": 0
+    },
+    {
+      "file": "\\src\\data\\mathematiques\\6ieme\\algebre.js",
+      "issues": [
+        "Structure non analysable"
+      ],
+      "completeness": 0
+    },
+    {
+      "file": "\\src\\data\\mathematiques\\6ieme\\constructions-geometriques.js",
+      "issues": [
+        "Structure non analysable"
+      ],
+      "completeness": 0
+    },
+    {
+      "file": "\\src\\data\\mathematiques\\6ieme\\division.js",
+      "issues": [
+        "Structure non analysable"
+      ],
+      "completeness": 0
+    },
+    {
+      "file": "\\src\\data\\mathematiques\\6ieme\\durees.js",
+      "issues": [
+        "Structure non analysable"
+      ],
+      "completeness": 0
+    },
+    {
+      "file": "\\src\\data\\mathematiques\\6ieme\\figures-planes.js",
+      "issues": [
+        "Structure non analysable"
+      ],
+      "completeness": 0
+    },
+    {
+      "file": "\\src\\data\\mathematiques\\6ieme\\fractions-simples.js",
+      "issues": [
+        "Structure non analysable"
+      ],
+      "completeness": 0
+    },
+    {
+      "file": "\\src\\data\\mathematiques\\6ieme\\fractions.js",
+      "issues": [
+        "Structure non analysable"
+      ],
+      "completeness": 0
+    },
+    {
+      "file": "\\src\\data\\mathematiques\\6ieme\\graphiques.js",
+      "issues": [
+        "Structure non analysable"
+      ],
+      "completeness": 0
+    },
+    {
+      "file": "\\src\\data\\mathematiques\\6ieme\\lecture-tableaux.js",
+      "issues": [
+        "Structure non analysable"
+      ],
+      "completeness": 0
+    },
+    {
+      "file": "\\src\\data\\mathematiques\\6ieme\\moyenne.js",
+      "issues": [
+        "Structure non analysable"
+      ],
+      "completeness": 0
+    },
+    {
+      "file": "\\src\\data\\mathematiques\\6ieme\\multiplication.js",
+      "issues": [
+        "Structure non analysable"
+      ],
+      "completeness": 0
+    },
+    {
+      "file": "\\src\\data\\mathematiques\\6ieme\\nombres-decimaux.js",
+      "issues": [
+        "Structure non analysable"
+      ],
+      "completeness": 0
+    },
+    {
+      "file": "\\src\\data\\mathematiques\\6ieme\\nombres-entiers.js",
+      "issues": [
+        "Structure non analysable"
+      ],
+      "completeness": 0
+    },
+    {
+      "file": "\\src\\data\\mathematiques\\6ieme\\perimetre.js",
+      "issues": [
+        "Structure non analysable"
+      ],
+      "completeness": 0
+    },
+    {
+      "file": "\\src\\data\\mathematiques\\6ieme\\proportionnalite.js",
+      "issues": [
+        "Structure non analysable"
+      ],
+      "completeness": 0
+    },
+    {
+      "file": "\\src\\data\\mathematiques\\6ieme\\symetrie-axiale.js",
+      "issues": [
+        "Structure non analysable"
+      ],
+      "completeness": 0
+    },
+    {
+      "file": "\\src\\data\\mathematiques\\6ieme\\unites-longueur.js",
+      "issues": [
+        "Structure non analysable"
+      ],
+      "completeness": 0
+    },
+    {
+      "file": "\\src\\data\\mathematiques\\6ieme\\unites-masse-capacite.js",
+      "issues": [
+        "Structure non analysable"
+      ],
+      "completeness": 0
+    }
+  ],
+  "structureProblems": [],
+  "recommendations": []
+}

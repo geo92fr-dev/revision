@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎓 FunRevis - Plateforme d'apprentissage interactive</title>
+    <meta name="description" content="Plateforme d'apprentissage interactive pour tous les niveaux">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 3rem;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 90%;
+        }
+        
+        .logo {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+        
+        h1 {
+            color: #2d3748;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        
+        .subtitle {
+            color: #4a5568;
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+        
+        .nav-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .nav-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem 1.5rem;
+            text-decoration: none;
+            color: #2d3748;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .nav-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            border-color: #667eea;
+        }
+        
+        .nav-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .nav-card:hover::before {
+            left: 100%;
+        }
+        
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+        
+        .card-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .card-description {
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+        
+        .version {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: #4a5568;
+            font-weight: 600;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 2rem;
+                margin: 1rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .nav-cards {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="version">V2.0</div>
+    
+    <div class="container">
+        <div class="logo">🎓</div>
+        <h1>FunRevis</h1>
+        <p class="subtitle">Plateforme d'apprentissage interactive</p>
+        
+        <div class="nav-cards">
+            <a href="pages/mathematiques/index.html" class="nav-card">
+                <span class="card-icon">📐</span>
+                <div class="card-title">Mathématiques</div>
+                <div class="card-description">Explorez les concepts mathématiques de manière interactive</div>
+            </a>
+            
+            <a href="pages/francais/index.html" class="nav-card">
+                <span class="card-icon">📝</span>
+                <div class="card-title">Français</div>
+                <div class="card-description">Maîtrisez la langue française avec nos exercices</div>
+            </a>
+            
+            <a href="pages/sciences/index.html" class="nav-card">
+                <span class="card-icon">🔬</span>
+                <div class="card-title">Sciences</div>
+                <div class="card-description">Découvrez les sciences à travers des expériences</div>
+            </a>
+            
+            <a href="pages/histoire/index.html" class="nav-card">
+                <span class="card-icon">🏛️</span>
+                <div class="card-title">Histoire</div>
+                <div class="card-description">Voyagez à travers les époques et civilisations</div>
+            </a>
+        </div>
+    </div>
+
+    <script type="module">
+        // Module de tracking et analytics léger
+        class AppTracker {
+            constructor() {
+                this.startTime = Date.now();
+                this.trackPageLoad();
+            }
+            
+            trackPageLoad() {
+                console.log('🎓 FunRevis V2 - Page d\'accueil chargée');
+                
+                // Tracking des clics sur les cartes
+                document.querySelectorAll('.nav-card').forEach(card => {
+                    card.addEventListener('click', (e) => {
+                        const subject = e.currentTarget.href.split('/').pop().replace('.html', '');
+                        console.log(`📊 Navigation vers: ${subject}`);
+                    });
+                });
+            }
+        }
+        
+        // Initialisation
+        new AppTracker();
+        
+        // Service Worker pour cache offline (optionnel)
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js')
+                .then(() => console.log('🔧 Service Worker registered'))
+                .catch(() => console.log('ℹ️ Service Worker not available'));
+        }
+    </script>
+</body>
+</html>

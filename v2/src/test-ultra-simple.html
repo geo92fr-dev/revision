@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Test Ultra Simple</title>
+</head>
+<body>
+    <h1>Test de navigation</h1>
+    <div id="result">En cours...</div>
+    
+    <script>
+        // Test sans modules ES6, juste JavaScript classique
+        document.getElementById('result').innerHTML = 'JavaScript fonctionne !';
+        
+        // Afficher les paramètres URL
+        const params = new URLSearchParams(window.location.search);
+        const subject = params.get('subject');
+        const level = params.get('level');
+        const topic = params.get('topic');
+        
+        document.getElementById('result').innerHTML += '<br>Subject: ' + subject;
+        document.getElementById('result').innerHTML += '<br>Level: ' + level;
+        document.getElementById('result').innerHTML += '<br>Topic: ' + topic;
+        
+        if (subject && level && topic) {
+            document.getElementById('result').innerHTML += '<br><strong style="color: green;">✅ Paramètres OK !</strong>';
+        } else {
+            document.getElementById('result').innerHTML += '<br><strong style="color: red;">❌ Paramètres manquants</strong>';
+        }
+    </script>
+</body>
+</html>

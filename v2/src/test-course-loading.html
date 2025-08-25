@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Cours - Debug</title>
+</head>
+<body>
+    <h1>Test de chargement de cours</h1>
+    <div id="debug"></div>
+    <div id="courseContent">Chargement...</div>
+
+    <script type="module">
+        async function testCourseLoading() {
+            const debug = document.getElementById('debug');
+            const courseContent = document.getElementById('courseContent');
+            
+            try {
+                debug.innerHTML += "<p>🚀 Début du test...</p>";
+                
+                // Test de chargement direct du fichier
+                debug.innerHTML += "<p>📄 Test chargement direct fractions.js...</p>";
+                const module = await import('../data/mathematiques/6ieme/fractions.js');
+                debug.innerHTML += "<p>✅ Module chargé:</p>";
+                debug.innerHTML += "<pre>" + JSON.stringify(Object.keys(module), null, 2) + "</pre>";
+                
+                if (module.fractions6eme) {
+                    debug.innerHTML += "<p>✅ fractions6eme trouvé!</p>";
+                    debug.innerHTML += "<pre>" + JSON.stringify(module.fractions6eme.niveau, null, 2) + "</pre>";
+                    courseContent.innerHTML = "<h2>" + module.fractions6eme.sousChapitre + "</h2>";
+                } else if (module.default) {
+                    debug.innerHTML += "<p>✅ export default trouvé!</p>";
+                    debug.innerHTML += "<pre>" + JSON.stringify(module.default.niveau, null, 2) + "</pre>";
+                    courseContent.innerHTML = "<h2>" + module.default.sousChapitre + "</h2>";
+                } else {
+                    debug.innerHTML += "<p>❌ Aucune donnée trouvée</p>";
+                }
+                
+            } catch (error) {
+                debug.innerHTML += "<p>❌ Erreur: " + error.message + "</p>";
+                console.error('Erreur:', error);
+            }
+        }
+
+        window.addEventListener('load', testCourseLoading);
+    </script>
+</body>
+</html>

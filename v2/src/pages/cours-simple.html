@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>COURS SIMPLE - TEST</title>
+</head>
+<body>
+    <h1 style="color: green; text-align: center;">🎉 COURS SIMPLE FONCTIONNE !</h1>
+    <p style="text-align: center; font-size: 1.2em;">Si vous voyez cette page, la navigation fonctionne parfaitement.</p>
+    <div id="params" style="background: #f0f0f0; padding: 1rem; margin: 1rem; border-radius: 8px;"></div>
+    
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        document.getElementById('params').innerHTML = 
+            '<strong>Paramètres reçus :</strong><br>' +
+            'Subject: ' + (params.get('subject') || 'AUCUN') + '<br>' +
+            'Level: ' + (params.get('level') || 'AUCUN') + '<br>' +
+            'Topic: ' + (params.get('topic') || 'AUCUN');
+    </script>
+</body>
+</html>

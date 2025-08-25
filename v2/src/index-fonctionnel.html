@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎓 FunRevis V2 - Fonctionnel</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>">
+    
+    <!-- Intégration des styles CSS -->
+    <link rel="stylesheet" href="styles/base.css">
+    <link rel="stylesheet" href="styles/educational.css">
+    <link rel="stylesheet" href="styles/components.css">
+    <link rel="stylesheet" href="styles/modern.css">
+    <link rel="stylesheet" href="styles/v2-custom.css">
+    
+    <style>
+        .home-container {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+        
+        .hero-section {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: white;
+        }
+        
+        .logo {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            animation: bounce 2s infinite;
+        }
+        
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .hero-subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+        
+        .subjects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            max-width: 800px;
+            width: 100%;
+        }
+        
+        .subject-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            text-decoration: none;
+            color: #333;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            cursor: pointer;
+            border: none;
+        }
+        
+        .subject-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+        
+        .subject-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+        
+        .subject-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .subject-description {
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+        
+        .version {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: #4a5568;
+            font-weight: 600;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .home-container {
+                padding: 1rem;
+            }
+            
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .subjects-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="version">V2.0 - Fonctionnel</div>
+    
+    <div class="home-container">
+        <div class="hero-section">
+            <div class="logo">🎓</div>
+            <h1 class="hero-title">FunRevis</h1>
+            <p class="hero-subtitle">Plateforme d'apprentissage interactive</p>
+        </div>
+        
+        <div class="subjects-grid">
+            <!-- Cartes en HTML statique pour garantir le fonctionnement -->
+            <a href="pages/mathematiques/index.html" class="subject-card">
+                <span class="subject-icon">📐</span>
+                <div class="subject-title">Mathématiques</div>
+                <div class="subject-description">Explorez les concepts mathématiques de manière interactive</div>
+            </a>
+            
+            <a href="pages/francais/index.html" class="subject-card">
+                <span class="subject-icon">📝</span>
+                <div class="subject-title">Français</div>
+                <div class="subject-description">Maîtrisez la langue française avec nos exercices</div>
+            </a>
+            
+            <a href="pages/sciences/index.html" class="subject-card">
+                <span class="subject-icon">🔬</span>
+                <div class="subject-title">Sciences</div>
+                <div class="subject-description">Découvrez les sciences à travers des expériences</div>
+            </a>
+            
+            <a href="pages/histoire/index.html" class="subject-card">
+                <span class="subject-icon">🏛️</span>
+                <div class="subject-title">Histoire</div>
+                <div class="subject-description">Voyagez à travers les époques et civilisations</div>
+            </a>
+            
+            <a href="pages/geographie/index.html" class="subject-card">
+                <span class="subject-icon">🌍</span>
+                <div class="subject-title">Géographie</div>
+                <div class="subject-description">Continents, pays et environnement</div>
+            </a>
+            
+            <a href="pages/anglais/index.html" class="subject-card">
+                <span class="subject-icon">🇬🇧</span>
+                <div class="subject-title">Anglais</div>
+                <div class="subject-description">Vocabulaire, grammaire et expression</div>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        console.log('🚀 FunRevis V2 - Version fonctionnelle chargée');
+        
+        // Ajout d'animations simples après chargement
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('📦 DOM chargé, ajout des animations...');
+            
+            const cards = document.querySelectorAll('.subject-card');
+            console.log(`🔍 ${cards.length} cartes trouvées`);
+            
+            cards.forEach((card, index) => {
+                // Animation d'apparition
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    card.style.transition = 'all 0.5s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 100);
+                
+                // Log des clics
+                card.addEventListener('click', function() {
+                    console.log(`🔗 Navigation vers: ${this.href}`);
+                });
+            });
+            
+            console.log('✅ Animations ajoutées');
+        });
+    </script>
+</body>
+</html>

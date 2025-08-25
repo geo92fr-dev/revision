@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageTitle">🎓 Cours - FunRevis V2</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2rem;
+            border-radius: 20px 20px 0 0;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .breadcrumb {
+            color: #666;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+        
+        .breadcrumb a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        .course-title {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+        
+        .course-subtitle {
+            color: #666;
+            font-size: 1.2rem;
+        }
+        
+        .content {
+            background: white;
+            border-radius: 0 0 20px 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        .tabs {
+            display: flex;
+            background: #f8f9fa;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .tab {
+            flex: 1;
+            padding: 1rem;
+            text-align: center;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            color: #666;
+        }
+        
+        .tab.active {
+            background: white;
+            color: #667eea;
+            border-bottom: 3px solid #667eea;
+        }
+        
+        .tab:hover {
+            background: #e9ecef;
+        }
+        
+        .tab-content {
+            padding: 2rem;
+            display: none;
+            animation: fadeIn 0.3s ease-in;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .section-card {
+            background: #f8f9ff;
+            border-left: 4px solid #667eea;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .section-card h3 {
+            color: #4c51bf;
+            margin-bottom: 1rem;
+        }
+        
+        .etapes-grid {
+            display: grid;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .etape-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 3px solid #10b981;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+        
+        .etape-item h4 {
+            color: #047857;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .exemple {
+            background: #fef3c7;
+            border: 1px solid #fbbf24;
+            padding: 1rem;
+            border-radius: 6px;
+            margin-top: 0.5rem;
+            font-style: italic;
+        }
+        
+        .exercices-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .exercice-card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .exercice-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .difficulty {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .difficulty.débutant {
+            background: #d1fae5;
+            color: #047857;
+        }
+        
+        .difficulty.intermédiaire {
+            background: #fef3c7;
+            color: #d97706;
+        }
+        
+        .difficulty.avancé {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+        
+        .quiz-container {
+            background: #f0f9ff;
+            border: 1px solid #0ea5e9;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+        }
+        
+        .quiz-question {
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #0c4a6e;
+        }
+        
+        .quiz-choices {
+            display: grid;
+            gap: 0.5rem;
+        }
+        
+        .quiz-choice {
+            padding: 0.75rem;
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .quiz-choice:hover {
+            background: #e0f2fe;
+            border-color: #0ea5e9;
+        }
+        
+        .astuce-card {
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+        
+        .piege-card {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+        
+        .defi-card {
+            background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+        
+        .metacognition-card {
+            background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+        
+        .navigation {
+            margin-top: 2rem;
+            text-align: center;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            margin: 0 0.5rem;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background: #5a6fd8;
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background: #6b7280;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 3rem;
+        }
+        
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .error {
+            text-align: center;
+            padding: 2rem;
+            background: #fee2e2;
+            color: #dc2626;
+            border-radius: 8px;
+            margin: 2rem 0;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: #e5e7eb;
+            border-radius: 3px;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #10b981 0%, #059669 100%);
+            transition: width 0.3s ease;
+            width: 0%;
+        }
+        
+        .simple-answer-input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: border-color 0.2s ease;
+        }
+        
+        .simple-answer-input:focus {
+            outline: none;
+            border-color: #0ea5e9;
+        }
+        
+        .simple-answer-input.correct {
+            border-color: #10b981;
+            background: #f0fdf4;
+        }
+        
+        .simple-answer-input.incorrect {
+            border-color: #ef4444;
+            background: #fef2f2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="breadcrumb">
+                <a href="../index.html">🏠 Accueil</a> › 
+                <span id="breadcrumbSubject">Matière</span> › 
+                <span id="breadcrumbLevel">Niveau</span> › 
+                <span id="breadcrumbTopic">Sujet</span>
+            </div>
+            <h1 class="course-title" id="courseTitle">Chargement...</h1>
+            <p class="course-subtitle" id="courseSubtitle">Préparation du contenu...</p>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+        </div>
+        
+        <div class="content">
+            <div id="loadingSection" class="loading">
+                <div class="spinner"></div>
+                <p>Chargement du contenu du cours...</p>
+            </div>
+            
+            <div id="errorSection" class="error hidden">
+                <h3>❌ Erreur de chargement</h3>
+                <p id="errorMessage"></p>
+            </div>
+            
+            <div id="courseContent" class="hidden">
+                <div class="tabs">
+                    <button class="tab active" data-tab="cours">📚 Cours</button>
+                    <button class="tab" data-tab="exercices">💪 Exercices</button>
+                    <button class="tab" data-tab="quiz">🧠 Quiz</button>
+                    <button class="tab" data-tab="ressources">🎯 Ressources</button>
+                </div>
+                
+                <div id="tab-cours" class="tab-content active">
+                    <!-- Contenu du cours -->
+                </div>
+                
+                <div id="tab-exercices" class="tab-content">
+                    <!-- Exercices -->
+                </div>
+                
+                <div id="tab-quiz" class="tab-content">
+                    <!-- Quiz et évaluations -->
+                </div>
+                
+                <div id="tab-ressources" class="tab-content">
+                    <!-- Astuces, pièges, défis -->
+                </div>
+            </div>
+        </div>
+        
+        <div class="navigation">
+            <a href="javascript:history.back()" class="btn btn-secondary">← Retour</a>
+            <a href="../index.html" class="btn">🏠 Accueil</a>
+        </div>
+    </div>
+
+    <script type="module">
+        let courseData = null;
+        let currentProgress = 0;
+        
+        async function loadCourse() {
+            try {
+                updateProgress(10);
+                
+                // Récupération des paramètres URL
+                const urlParams = new URLSearchParams(window.location.search);
+                const subject = urlParams.get('subject');
+                const level = urlParams.get('level');
+                const topic = urlParams.get('topic');
+                
+                if (!subject || !level || !topic) {
+                    throw new Error('Paramètres URL manquants (subject, level, topic)');
+                }
+                
+                updateProgress(30);
+                updateBreadcrumb(subject, level, topic);
+                
+                // Chargement du module de données
+                const filePath = `../data/${subject}/${level}/${topic}.js`;
+                const module = await import(filePath);
+                
+                updateProgress(60);
+                
+                // Récupération des données selon différentes stratégies
+                courseData = extractCourseData(module, topic, level);
+                
+                if (!courseData) {
+                    throw new Error('Aucune donnée trouvée dans le module');
+                }
+                
+                updateProgress(80);
+                
+                // Mise à jour de l'interface
+                updateHeader(courseData);
+                renderContent(courseData);
+                initializeTabs();
+                
+                updateProgress(100);
+                
+                // Affichage du contenu
+                setTimeout(() => {
+                    document.getElementById('loadingSection').classList.add('hidden');
+                    document.getElementById('courseContent').classList.remove('hidden');
+                }, 500);
+                
+                console.log('✅ Cours chargé avec succès:', courseData.sousChapitre);
+                
+            } catch (error) {
+                console.error('❌ Erreur lors du chargement:', error);
+                showError(error.message);
+            }
+        }
+        
+        function extractCourseData(module, topic, level) {
+            // Stratégie 1: Export par défaut
+            if (module.default) {
+                return module.default;
+            }
+            
+            // Stratégie 2: Export nommé avec conventions
+            const conventions = [
+                topic.replace('-', '') + level.replace('ieme', '') + 'eme',
+                topic + level.replace('ieme', '') + 'eme',
+                topic.replace('-', '').toLowerCase() + level.replace('ieme', '') + 'eme'
+            ];
+            
+            for (const convention of conventions) {
+                if (module[convention]) {
+                    return module[convention];
+                }
+            }
+            
+            // Stratégie 3: Première clé disponible
+            const keys = Object.keys(module).filter(k => k !== 'default');
+            if (keys.length > 0) {
+                return module[keys[0]];
+            }
+            
+            return null;
+        }
+        
+        function updateProgress(percent) {
+            currentProgress = percent;
+            document.getElementById('progressFill').style.width = percent + '%';
+        }
+        
+        function updateBreadcrumb(subject, level, topic) {
+            document.getElementById('breadcrumbSubject').textContent = capitalize(subject);
+            document.getElementById('breadcrumbLevel').textContent = level.toUpperCase();
+            document.getElementById('breadcrumbTopic').textContent = capitalize(topic.replace('-', ' '));
+        }
+        
+        function updateHeader(data) {
+            document.getElementById('pageTitle').textContent = `🎓 ${data.sousChapitre} - FunRevis V2`;
+            document.getElementById('courseTitle').textContent = data.sousChapitre || data.titre;
+            document.getElementById('courseSubtitle').textContent = `${data.niveau} • ${data.chapitre}`;
+        }
+        
+        function renderContent(data) {
+            renderCoursTab(data);
+            renderExercicesTab(data);
+            renderQuizTab(data);
+            renderRessourcesTab(data);
+        }
+        
+        function renderCoursTab(data) {
+            const container = document.getElementById('tab-cours');
+            let html = '';
+            
+            if (data.competences && data.competences.length > 0) {
+                data.competences.forEach((competence, index) => {
+                    html += `
+                        <div class="section-card">
+                            <h3>${competence.titre}</h3>
+                            <p><strong>Objectif :</strong> ${competence.objectif}</p>
+                            
+                            ${competence.cours ? `
+                                <div style="margin: 1rem 0;">
+                                    <h4>📖 Cours</h4>
+                                    <p>${competence.cours}</p>
+                                </div>
+                            ` : ''}
+                            
+                            ${competence.etapes ? `
+                                <div class="etapes-grid">
+                                    <h4>📝 Étapes à suivre</h4>
+                                    ${competence.etapes.map((etape, i) => `
+                                        <div class="etape-item">
+                                            <h4>${i + 1}. ${etape.titre}</h4>
+                                            <p>${etape.comment}</p>
+                                            ${etape.exemple ? `
+                                                <div class="exemple">
+                                                    <strong>Exemple :</strong> ${etape.exemple}
+                                                </div>
+                                            ` : ''}
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            ` : ''}
+                            
+                            ${competence.exemple ? `
+                                <div class="exemple">
+                                    <strong>Exemple concret :</strong> ${competence.exemple}
+                                </div>
+                            ` : ''}
+                        </div>
+                    `;
+                });
+            }
+            
+            container.innerHTML = html;
+        }
+        
+        function renderExercicesTab(data) {
+            const container = document.getElementById('tab-exercices');
+            let html = '';
+            
+            if (data.competences && data.competences.length > 0) {
+                data.competences.forEach((competence, index) => {
+                    if (competence.exercices && competence.exercices.length > 0) {
+                        html += `
+                            <div class="section-card">
+                                <h3>${competence.titre} - Exercices</h3>
+                                <div class="exercices-grid">
+                                    ${competence.exercices.map((exercice, i) => `
+                                        <div class="exercice-card">
+                                            <div class="difficulty ${exercice.type}">${exercice.type}</div>
+                                            <p><strong>Question :</strong> ${exercice.question}</p>
+                                            <p><strong>Points :</strong> ${exercice.points}</p>
+                                            <button class="btn" onclick="showAnswer(this, '${exercice.reponse}')">
+                                                Voir la réponse
+                                            </button>
+                                            <div class="answer" style="display: none; margin-top: 1rem; padding: 1rem; background: #f0f9ff; border-radius: 6px;">
+                                                <strong>Réponse :</strong> ${exercice.reponse}
+                                            </div>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            </div>
+                        `;
+                    }
+                });
+            }
+            
+            container.innerHTML = html || '<p>Aucun exercice disponible pour ce cours.</p>';
+        }
+        
+        function renderQuizTab(data) {
+            const container = document.getElementById('tab-quiz');
+            let html = '';
+            
+            if (data.competences && data.competences.length > 0) {
+                data.competences.forEach((competence, index) => {
+                    // Mini Quiz (format avec choix multiples)
+                    if (competence.miniQuiz && competence.miniQuiz.length > 0) {
+                        html += `
+                            <div class="section-card">
+                                <h3>🧠 Mini Quiz - ${competence.titre}</h3>
+                                ${competence.miniQuiz.map((quiz, i) => `
+                                    <div class="quiz-container">
+                                        <div class="quiz-question">${quiz.question}</div>
+                                        <div class="quiz-choices">
+                                            ${quiz.choix.map((choix, j) => `
+                                                <div class="quiz-choice" onclick="selectAnswer(this, '${choix}', '${quiz.reponse}')">
+                                                    ${choix}
+                                                </div>
+                                            `).join('')}
+                                        </div>
+                                        <div class="quiz-result" style="display: none; margin-top: 1rem;"></div>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        `;
+                    }
+                    
+                    // Pré-évaluation (format avec questions et choix)
+                    if (competence.preEvaluation && competence.preEvaluation.questions) {
+                        html += `
+                            <div class="section-card">
+                                <h3>📊 Pré-évaluation - ${competence.titre}</h3>
+                                ${competence.preEvaluation.questions.map((question, i) => `
+                                    <div class="quiz-container">
+                                        <div class="quiz-question">Question ${i + 1}: ${question.question}</div>
+                                        <div class="quiz-choices">
+                                            ${question.choix.map((choix, j) => `
+                                                <div class="quiz-choice" onclick="selectAnswer(this, '${choix}', '${question.reponse}')">
+                                                    ${choix}
+                                                </div>
+                                            `).join('')}
+                                        </div>
+                                        <div class="quiz-result" style="display: none; margin-top: 1rem;"></div>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        `;
+                    }
+                    
+                    // Pré-évaluation (format array simple avec réponse libre)
+                    if (competence.preEvaluation && Array.isArray(competence.preEvaluation) && competence.preEvaluation.length > 0) {
+                        html += `
+                            <div class="section-card">
+                                <h3>📊 Pré-évaluation - ${competence.titre}</h3>
+                                <p style="color: #666; margin-bottom: 1rem;">Tapez votre réponse et appuyez sur Entrée pour valider.</p>
+                                ${competence.preEvaluation.map((question, i) => `
+                                    <div class="quiz-container">
+                                        <div class="quiz-question">Question ${i + 1}: ${question.question}</div>
+                                        <div style="margin: 1rem 0;">
+                                            <input type="text" 
+                                                   class="simple-answer-input" 
+                                                   placeholder="Votre réponse..." 
+                                                   onkeyup="checkSimpleAnswer(event, this, '${question.reponse}')"
+                                                   onblur="checkSimpleAnswer(event, this, '${question.reponse}')">
+                                            <div class="quiz-result" style="display: none; margin-top: 0.5rem;"></div>
+                                        </div>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        `;
+                    }
+                    
+                    // Métacognition
+                    if (competence.metacognition && competence.metacognition.questions) {
+                        html += `
+                            <div class="metacognition-card">
+                                <h3>🤔 Réflexion sur ton apprentissage</h3>
+                                <p style="margin-bottom: 1rem; opacity: 0.9;">Prends un moment pour réfléchir à ton apprentissage...</p>
+                                ${competence.metacognition.questions.map((question, i) => `
+                                    <div class="quiz-container" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);">
+                                        <div class="quiz-question" style="color: white;">${question.question}</div>
+                                        <div class="quiz-choices">
+                                            ${question.options.map((option, j) => `
+                                                <div class="quiz-choice" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: white;" onclick="selectMetacognition(this)">
+                                                    ${option}
+                                                </div>
+                                            `).join('')}
+                                        </div>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        `;
+                    }
+                });
+            }
+            
+            container.innerHTML = html || '<p>Aucun quiz disponible pour ce cours.</p>';
+        }
+        
+        function renderRessourcesTab(data) {
+            const container = document.getElementById('tab-ressources');
+            let html = '';
+            
+            if (data.competences && data.competences.length > 0) {
+                data.competences.forEach((competence, index) => {
+                    // Astuces
+                    if (competence.astuce) {
+                        html += `
+                            <div class="astuce-card">
+                                <h3>💡 Astuce</h3>
+                                <p>${competence.astuce}</p>
+                            </div>
+                        `;
+                    }
+                    
+                    // Pièges
+                    if (competence.pieges && competence.pieges.length > 0) {
+                        html += `
+                            <div class="piege-card">
+                                <h3>⚠️ Attention aux pièges !</h3>
+                                ${competence.pieges.map(piege => `
+                                    <div style="margin: 1rem 0;">
+                                        <h4>${piege.titre}</h4>
+                                        <p>${piege.description}</p>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        `;
+                    }
+                    
+                    // Défis
+                    if (competence.defi) {
+                        html += `
+                            <div class="defi-card">
+                                <h3>🏆 ${competence.defi.titre}</h3>
+                                <p>${competence.defi.description}</p>
+                                ${competence.defi.duree ? `<p><strong>Durée :</strong> ${competence.defi.duree} secondes</p>` : ''}
+                            </div>
+                        `;
+                    }
+                    
+                    // Utilité
+                    if (competence.utilite) {
+                        html += `
+                            <div class="section-card">
+                                <h3>🎯 Pourquoi c'est utile ?</h3>
+                                <p>${competence.utilite}</p>
+                            </div>
+                        `;
+                    }
+                    
+                    // Ressources
+                    if (competence.ressources && competence.ressources.length > 0) {
+                        html += `
+                            <div class="section-card">
+                                <h3>📚 Ressources supplémentaires</h3>
+                                ${competence.ressources.map(ressource => `
+                                    <div style="margin: 1rem 0;">
+                                        <strong>${ressource.type} :</strong> 
+                                        <a href="${ressource.url}" target="_blank" style="color: #667eea; text-decoration: none;">
+                                            ${ressource.titre}
+                                        </a>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        `;
+                    }
+                });
+            }
+            
+            container.innerHTML = html || '<p>Aucune ressource supplémentaire disponible.</p>';
+        }
+        
+        function initializeTabs() {
+            const tabs = document.querySelectorAll('.tab');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    // Retirer active de tous les onglets
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tabContents.forEach(tc => tc.classList.remove('active'));
+                    
+                    // Activer l'onglet cliqué
+                    tab.classList.add('active');
+                    const targetTab = document.getElementById(`tab-${tab.dataset.tab}`);
+                    if (targetTab) {
+                        targetTab.classList.add('active');
+                    }
+                });
+            });
+        }
+        
+        function showError(message) {
+            document.getElementById('loadingSection').classList.add('hidden');
+            document.getElementById('errorSection').classList.remove('hidden');
+            document.getElementById('errorMessage').textContent = message;
+        }
+        
+        function capitalize(str) {
+            return str.charAt(0).toUpperCase() + str.slice(1);
+        }
+        
+        // Fonctions globales pour l'interaction
+        window.showAnswer = function(button, answer) {
+            const answerDiv = button.nextElementSibling;
+            if (answerDiv.style.display === 'none') {
+                answerDiv.style.display = 'block';
+                button.textContent = 'Masquer la réponse';
+            } else {
+                answerDiv.style.display = 'none';
+                button.textContent = 'Voir la réponse';
+            }
+        };
+        
+        window.selectAnswer = function(element, selected, correct) {
+            const container = element.closest('.quiz-container');
+            const choices = container.querySelectorAll('.quiz-choice');
+            const result = container.querySelector('.quiz-result');
+            
+            // Réinitialiser les styles
+            choices.forEach(choice => {
+                choice.style.background = 'white';
+                choice.style.color = '#333';
+            });
+            
+            // Marquer la réponse sélectionnée
+            element.style.background = selected === correct ? '#10b981' : '#ef4444';
+            element.style.color = 'white';
+            
+            // Marquer la bonne réponse si différente
+            if (selected !== correct) {
+                choices.forEach(choice => {
+                    if (choice.textContent.trim() === correct) {
+                        choice.style.background = '#10b981';
+                        choice.style.color = 'white';
+                    }
+                });
+            }
+            
+            // Afficher le résultat
+            result.style.display = 'block';
+            result.innerHTML = selected === correct 
+                ? '<span style="color: #10b981; font-weight: bold;">✅ Correct !</span>'
+                : '<span style="color: #ef4444; font-weight: bold;">❌ Incorrect. La bonne réponse est surlignée en vert.</span>';
+        };
+        
+        window.selectMetacognition = function(element) {
+            const container = element.closest('.quiz-container');
+            const choices = container.querySelectorAll('.quiz-choice');
+            
+            // Réinitialiser les styles
+            choices.forEach(choice => {
+                choice.style.background = 'rgba(255,255,255,0.1)';
+                choice.style.borderColor = 'rgba(255,255,255,0.2)';
+            });
+            
+            // Marquer la réponse sélectionnée
+            element.style.background = 'rgba(255,255,255,0.3)';
+            element.style.borderColor = 'rgba(255,255,255,0.5)';
+        };
+        
+        window.checkSimpleAnswer = function(event, element, correct) {
+            if (event.type === 'keyup' && event.key !== 'Enter') return;
+            
+            const userAnswer = element.value.trim();
+            const container = element.closest('.quiz-container');
+            const result = container.querySelector('.quiz-result');
+            
+            if (userAnswer === '') {
+                element.className = 'simple-answer-input';
+                result.style.display = 'none';
+                return;
+            }
+            
+            const isCorrect = userAnswer === correct || userAnswer.toLowerCase() === correct.toLowerCase();
+            
+            element.className = `simple-answer-input ${isCorrect ? 'correct' : 'incorrect'}`;
+            
+            result.style.display = 'block';
+            result.innerHTML = isCorrect 
+                ? '<span style="color: #10b981; font-weight: bold;">✅ Correct !</span>'
+                : `<span style="color: #ef4444; font-weight: bold;">❌ Incorrect. La réponse attendue est : <strong>${correct}</strong></span>`;
+        };
+        
+        // Initialisation
+        window.addEventListener('load', loadCourse);
+    </script>
+</body>
+</html>

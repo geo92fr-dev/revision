@@ -1,0 +1,104 @@
+/* Styles pour composants réutilisables */
+
+.competence { 
+    background: rgba(255, 255, 255, 0.8);
+    border: none;
+    padding: 0;
+    margin: 0;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+}
+
+.competence h2 {
+    background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+    padding: 24px 32px;
+    margin: 0 0 24px 0;
+    color: #2d3748;
+    font-weight: 600;
+    font-size: 1.8rem;
+    text-align: center;
+}
+
+/* Boutons */
+.btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+.btn-primary.celebration {
+    font-size: 1.2rem;
+    padding: 16px 32px;
+    background: linear-gradient(135deg, #ed64a6 0%, #f093fb 100%);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.check-btn {
+    background: linear-gradient(135deg, #4299e1, #9f7aea);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    margin: 5px;
+}
+
+.check-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(66, 153, 225, 0.4);
+}
+
+/* Feedback styles */
+#feedback {
+    margin-top: 16px;
+    padding: 12px 16px;
+    border-radius: 12px;
+    font-weight: 600;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.feedback-success {
+    background: linear-gradient(135deg, #c6f6d5 0%, #9ae6b4 100%);
+    color: #22543d;
+    border: 2px solid #48bb78;
+}
+
+.feedback-error {
+    background: linear-gradient(135deg, #fed7d7 0%, #fbb6ce 100%);
+    color: #742a2a;
+    border: 2px solid #f56565;
+}
+
+.exercise-feedback {
+    margin-top: 10px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-weight: 600;
+    text-align: center;
+    min-height: 20px;
+}
+
+.hint {
+    font-style: italic;
+    opacity: 0.8;
+}

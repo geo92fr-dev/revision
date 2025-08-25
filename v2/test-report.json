@@ -1,0 +1,392 @@
+{
+  "timestamp": "2025-08-25T10:56:09.299Z",
+  "totalTests": 64,
+  "successfulTests": 61,
+  "successRate": 95,
+  "results": [
+    {
+      "category": "Structure",
+      "message": "Dossier présent: src",
+      "success": true,
+      "timestamp": "2025-08-25T10:56:09.254Z"
+    },
+    {
+      "category": "Structure",
+      "message": "Dossier présent: src/components",
+      "success": true,
+      "timestamp": "2025-08-25T10:56:09.255Z"
+    },
+    {
+      "category": "Structure",
+      "message": "Dossier présent: src/data",
+      "success": true,
+      "timestamp": "2025-08-25T10:56:09.255Z"
+    },
+    {
+      "category": "Structure",
+      "message": "Dossier présent: src/pages",
+      "success": true,
+      "timestamp": "2025-08-25T10:56:09.255Z"
+    },
+    {
+      "category": "Structure",
+      "message": "Dossier présent: src/config",
+      "success": true,
+      "timestamp": "2025-08-25T10:56:09.255Z"
+    },
+    {
+      "category": "Structure",
+      "message": "Fichier présent: firebase.json",
+      "success": true,
+      "timestamp": "2025-08-25T10:56:09.255Z"
+    },
+    {
+      "category": "Structure",
+      "message": "Fichier présent: package.json",
+      "success": true,
+      "timestamp": "2025-08-25T10:56:09.257Z"
+    },
+    {
+      "category": "Structure",
+      "message": "Fichier présent: src/index.html",
+      "success": true,
+      "timestamp": "2025-08-25T10:56:09.258Z"
+    },
+    {
+      "category": "Modules",
+      "message": "Syntaxe ES6 OK: src/components/ModuleLoader.js",
+      "success": true,
+      "timestamp": "2025-08-25T10:56:09.261Z"
+    },
+    {
+      "category": "Modules",
+      "message": "Imports/Exports OK: src/components/ModuleLoader.js",
+      "success": true,
+      "timestamp": "2025-08-25T10:56:09.261Z"
+    },
+    {
+      "category": "Modules",
+      "message": "Module manquant: src/components/CourseRenderer.js",
+      "success": false,
+      "timestamp": "2025-08-25T10:56:09.261Z"
+    },
+    {
+      "category": "Modules",
+      "message": "Syntaxe ES6 OK: src/components/NavigationManager.js",
+      "success": true,
+      "timestamp": "2025-08-25T10:56:09.263Z"
+    },
+    {
+      "category": "Modules",
+      "message": "Imports/Exports OK: src/components/NavigationManager.js",
+      "success": true,
+      "timestamp": "2025-08-25T10:56:09.263Z"
+    },
+    {
+      "category": "Données",
+      "message": "Structure OK: addition-soustraction.js",
+      "success": true,
+      "timestamp": "2025-08-25T10:56:09.265Z"
+    },
+    {
+      "category": "Données",
+      "message": "Propriétés OK: addition-soustraction.js",
+      "success": true,
+      "timestamp": "2025-08-25T10:56:09.265Z"
+    },
+    {
+      "category": "Données",
+      "message": "Structure OK: aires-figures.js",
+      "success": true,
+      "timestamp": "2025-08-25T10:56:09.266Z"
+    },
+    {
+      "category": "Données",
+      "message": "Propriétés OK: aires-figures.js",
+      "success": true,
+      "timestamp": "2025-08-25T10:56:09.266Z"
+    },
+    {
+      "category": "Données",
+      "message": "Structure OK: algebre.js",
+      "success": true,
+      "timestamp": "2025-08-25T10:56:09.267Z"
+    },
+    {
+      "category": "Données",
+      "message": "Propriétés OK: algebre.js",
+      "success": true,
+      "timestamp": "2025-08-25T10:56:09.267Z"
+    },
+    {
+      "category": "Données",
+      "message": "Structure OK: constructions-geometriques.js",
+      "success": true,
+      "timestamp": "2025-08-25T10:56:09.268Z"
+    },
+    {
+      "category": "Données",
+      "message": "Propriétés OK: constructions-geometriques.js",
+      "success": true,
+      "timestamp": "2025-08-25T10:56:09.268Z"
+    },
+    {
+      "category": "Données",
+      "message": "Structure OK: division.js",
+      "success": true,
+      "timestamp": "2025-08-25T10:56:09.268Z"
+    },
+    {
+      "category": "Données",
+      "message": "Propriétés OK: division.js",
+      "success": true,
+      "timestamp": "2025-08-25T10:56:09.269Z"
+    },
+    {
+      "category": "Données",
+      "message": "Structure OK: durees.js",
+      "success": true,
+      "timestamp": "2025-08-25T10:56:09.269Z"
+    },
+    {
+      "category": "Données",
+      "message": "Propriétés OK: durees.js",
+      "success": true,
+      "timestamp": "2025-08-25T10:56:09.270Z"
+    },
+    {
+      "category": "Données",
+      "message": "Structure OK: figures-planes.js",
+      "success": true,
+      "timestamp": "2025-08-25T10:56:09.271Z"
+    },
+    {
+      "category": "Données",
+      "message": "Propriétés OK: figures-planes.js",
+      "success": true,
+      "timestamp": "2025-08-25T10:56:09.271Z"
+    },
+    {
+      "category": "Données",
+      "message": "Structure OK: fractions-simples.js",
+      "success": true,
+      "timestamp": "2025-08-25T10:56:09.272Z"
+    },
+    {
+      "category": "Données",
+      "message": "Propriétés OK: fractions-simples.js",
+      "success": true,
+      "timestamp": "2025-08-25T10:56:09.272Z"
+    },
+    {
+      "category": "Données",
+      "message": "Structure OK: fractions.js",
+      "success": true,
+      "timestamp": "2025-08-25T10:56:09.273Z"
+    },
+    {
+      "category": "Données",
+      "message": "Propriétés OK: fractions.js",
+      "success": true,
+      "timestamp": "2025-08-25T10:56:09.273Z"
+    },
+    {
+      "category": "Données",
+      "message": "Structure OK: graphiques.js",
+      "success": true,
+      "timestamp": "2025-08-25T10:56:09.275Z"
+    },
+    {
+      "category": "Données",
+      "message": "Propriétés OK: graphiques.js",
+      "success": true,
+      "timestamp": "2025-08-25T10:56:09.275Z"
+    },
+    {
+      "category": "Données",
+      "message": "Structure OK: index.js",
+      "success": true,
+      "timestamp": "2025-08-25T10:56:09.276Z"
+    },
+    {
+      "category": "Données",
+      "message": "Index file OK: index.js",
+      "success": true,
+      "timestamp": "2025-08-25T10:56:09.277Z"
+    },
+    {
+      "category": "Données",
+      "message": "Structure OK: lecture-tableaux.js",
+      "success": true,
+      "timestamp": "2025-08-25T10:56:09.278Z"
+    },
+    {
+      "category": "Données",
+      "message": "Propriétés OK: lecture-tableaux.js",
+      "success": true,
+      "timestamp": "2025-08-25T10:56:09.278Z"
+    },
+    {
+      "category": "Données",
+      "message": "Structure OK: moyenne.js",
+      "success": true,
+      "timestamp": "2025-08-25T10:56:09.279Z"
+    },
+    {
+      "category": "Données",
+      "message": "Propriétés OK: moyenne.js",
+      "success": true,
+      "timestamp": "2025-08-25T10:56:09.280Z"
+    },
+    {
+      "category": "Données",
+      "message": "Structure OK: multiplication.js",
+      "success": true,
+      "timestamp": "2025-08-25T10:56:09.281Z"
+    },
+    {
+      "category": "Données",
+      "message": "Propriétés OK: multiplication.js",
+      "success": true,
+      "timestamp": "2025-08-25T10:56:09.281Z"
+    },
+    {
+      "category": "Données",
+      "message": "Structure OK: nombres-decimaux.js",
+      "success": true,
+      "timestamp": "2025-08-25T10:56:09.282Z"
+    },
+    {
+      "category": "Données",
+      "message": "Propriétés OK: nombres-decimaux.js",
+      "success": true,
+      "timestamp": "2025-08-25T10:56:09.282Z"
+    },
+    {
+      "category": "Données",
+      "message": "Structure OK: nombres-entiers.js",
+      "success": true,
+      "timestamp": "2025-08-25T10:56:09.283Z"
+    },
+    {
+      "category": "Données",
+      "message": "Propriétés OK: nombres-entiers.js",
+      "success": true,
+      "timestamp": "2025-08-25T10:56:09.283Z"
+    },
+    {
+      "category": "Données",
+      "message": "Structure OK: perimetre.js",
+      "success": true,
+      "timestamp": "2025-08-25T10:56:09.284Z"
+    },
+    {
+      "category": "Données",
+      "message": "Propriétés OK: perimetre.js",
+      "success": true,
+      "timestamp": "2025-08-25T10:56:09.284Z"
+    },
+    {
+      "category": "Données",
+      "message": "Structure OK: pourcentages.js",
+      "success": true,
+      "timestamp": "2025-08-25T10:56:09.285Z"
+    },
+    {
+      "category": "Données",
+      "message": "Propriétés OK: pourcentages.js",
+      "success": true,
+      "timestamp": "2025-08-25T10:56:09.285Z"
+    },
+    {
+      "category": "Données",
+      "message": "Structure OK: proportionnalite.js",
+      "success": true,
+      "timestamp": "2025-08-25T10:56:09.286Z"
+    },
+    {
+      "category": "Données",
+      "message": "Propriétés OK: proportionnalite.js",
+      "success": true,
+      "timestamp": "2025-08-25T10:56:09.286Z"
+    },
+    {
+      "category": "Données",
+      "message": "Structure OK: symetrie-axiale.js",
+      "success": true,
+      "timestamp": "2025-08-25T10:56:09.287Z"
+    },
+    {
+      "category": "Données",
+      "message": "Propriétés OK: symetrie-axiale.js",
+      "success": true,
+      "timestamp": "2025-08-25T10:56:09.287Z"
+    },
+    {
+      "category": "Données",
+      "message": "Structure OK: unites-longueur.js",
+      "success": true,
+      "timestamp": "2025-08-25T10:56:09.288Z"
+    },
+    {
+      "category": "Données",
+      "message": "Propriétés OK: unites-longueur.js",
+      "success": true,
+      "timestamp": "2025-08-25T10:56:09.289Z"
+    },
+    {
+      "category": "Données",
+      "message": "Structure OK: unites-masse-capacite.js",
+      "success": true,
+      "timestamp": "2025-08-25T10:56:09.289Z"
+    },
+    {
+      "category": "Données",
+      "message": "Propriétés OK: unites-masse-capacite.js",
+      "success": true,
+      "timestamp": "2025-08-25T10:56:09.289Z"
+    },
+    {
+      "category": "Pages",
+      "message": "DOCTYPE OK: src/index.html",
+      "success": true,
+      "timestamp": "2025-08-25T10:56:09.293Z"
+    },
+    {
+      "category": "Pages",
+      "message": "Charset OK: src/index.html",
+      "success": true,
+      "timestamp": "2025-08-25T10:56:09.293Z"
+    },
+    {
+      "category": "Pages",
+      "message": "Modules ES6 manquants: src/index.html",
+      "success": false,
+      "timestamp": "2025-08-25T10:56:09.293Z"
+    },
+    {
+      "category": "Pages",
+      "message": "Page manquante: src/pages/page_de_cours.html",
+      "success": false,
+      "timestamp": "2025-08-25T10:56:09.294Z"
+    },
+    {
+      "category": "Pages",
+      "message": "DOCTYPE OK: src/pages/mathematiques/index.html",
+      "success": true,
+      "timestamp": "2025-08-25T10:56:09.296Z"
+    },
+    {
+      "category": "Pages",
+      "message": "Charset OK: src/pages/mathematiques/index.html",
+      "success": true,
+      "timestamp": "2025-08-25T10:56:09.296Z"
+    },
+    {
+      "category": "Pages",
+      "message": "Modules ES6 OK: src/pages/mathematiques/index.html",
+      "success": true,
+      "timestamp": "2025-08-25T10:56:09.296Z"
+    }
+  ]
+}

@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mathématiques 6ème - FunRevis</title>
+    <link rel="stylesheet" href="../../../styles/index.css">
+    <style>
+        .sixth-container {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 2rem;
+        }
+        
+        .sixth-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .sixth-title {
+            font-size: 3rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .sixth-subtitle {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2rem;
+        }
+        
+        .breadcrumb {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
+        }
+        
+        .breadcrumb a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+        
+        .topics-grid {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        .topic-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .topic-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        .topic-card.available {
+            border-left: 5px solid #4CAF50;
+        }
+        
+        .topic-card.coming-soon {
+            border-left: 5px solid #FF9800;
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+        
+        .topic-info {
+            display: flex;
+            align-items: center;
+            flex: 1;
+        }
+        
+        .topic-icon {
+            font-size: 2rem;
+            margin-right: 1rem;
+            width: 60px;
+            text-align: center;
+        }
+        
+        .topic-details {
+            flex: 1;
+        }
+        
+        .topic-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin: 0 0 0.3rem 0;
+        }
+        
+        .topic-description {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            margin: 0;
+            line-height: 1.4;
+        }
+        
+        .topic-status {
+            display: inline-block;
+            padding: 0.4rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-left: 1rem;
+        }
+        
+        .status-available {
+            background: #27ae60;
+            color: white;
+        }
+        
+        .status-coming-soon {
+            background: #f39c12;
+            color: white;
+        }
+        
+        .topic-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 20px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            margin-left: 1rem;
+        }
+        
+        .topic-btn:hover {
+            transform: scale(1.05);
+        }
+        
+        .topic-btn:disabled {
+            background: #bdc3c7;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .back-btn {
+            position: fixed;
+            top: 2rem;
+            left: 2rem;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            padding: 1rem;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            z-index: 100;
+        }
+        
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+        
+        .progress-info {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
+            text-align: center;
+        }
+        
+        .progress-info h3 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+        
+        .progress-info p {
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        @media (max-width: 768px) {
+            .topic-card {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .topic-info {
+                flex-direction: column;
+                margin-bottom: 1rem;
+            }
+            
+            .topic-icon {
+                margin-right: 0;
+                margin-bottom: 0.5rem;
+            }
+            
+            .topic-status, .topic-btn {
+                margin-left: 0;
+                margin-top: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="sixth-container">
+        <button class="back-btn" onclick="goBack()">←</button>
+        
+        <div class="sixth-header">
+            <div class="breadcrumb">
+                <a href="../../index.html">🏠 Accueil</a> → 
+                <a href="../index.html">🧮 Mathématiques</a> → 
+                <span>📚 6ème</span>
+            </div>
+            <h1 class="sixth-title">📚 Mathématiques 6ème</h1>
+            <p class="sixth-subtitle">Maîtrisez les fondamentaux des mathématiques</p>
+            
+            <div class="progress-info">
+                <h3>🎯 Votre Progression</h3>
+                <p>20 chapitres disponibles • Programme complet de 6ème • Métacognition intégrée</p>
+            </div>
+        </div>
+        
+        <div class="topics-grid">
+            <!-- 1. Addition et soustraction -->
+            <div class="topic-card available" data-topic="addition-soustraction">
+                <div class="topic-info">
+                    <div class="topic-icon">➕</div>
+                    <div class="topic-details">
+                        <h2 class="topic-title">Addition et soustraction</h2>
+                        <p class="topic-description">Chargement...</p>
+                    </div>
+                </div>
+                <span class="topic-status status-available">✅ Disponible</span>
+                <a href="../../cours.html?subject=mathematiques&level=6ieme&topic=addition-soustraction" class="topic-btn">Commencer</a>
+            </div>
+            
+            <!-- 2. Multiplication -->
+            <div class="topic-card available" data-topic="multiplication">
+                <div class="topic-info">
+                    <div class="topic-icon">✖️</div>
+                    <div class="topic-details">
+                        <h2 class="topic-title">Multiplication</h2>
+                        <p class="topic-description">Chargement...</p>
+                    </div>
+                </div>
+                <span class="topic-status status-available">✅ Disponible</span>
+                <a href="../../cours.html?subject=mathematiques&level=6ieme&topic=multiplication" class="topic-btn">Commencer</a>
+            </div>
+            
+            <!-- 3. Division -->
+            <div class="topic-card available" data-topic="division">
+                <div class="topic-info">
+                    <div class="topic-icon">➗</div>
+                    <div class="topic-details">
+                        <h2 class="topic-title">Division</h2>
+                        <p class="topic-description">Chargement...</p>
+                    </div>
+                </div>
+                <span class="topic-status status-available">✅ Disponible</span>
+                <a href="../../cours.html?subject=mathematiques&level=6ieme&topic=division" class="topic-btn">Commencer</a>
+            </div>
+            
+            <!-- 4. Fractions -->
+            <div class="topic-card available" data-topic="fractions">
+                <div class="topic-info">
+                    <div class="topic-icon">🍰</div>
+                    <div class="topic-details">
+                        <h2 class="topic-title">Fractions</h2>
+                        <p class="topic-description">Chargement...</p>
+                    </div>
+                </div>
+                <span class="topic-status status-available">✅ Disponible</span>
+                <a href="../../test-basique.html" class="topic-btn">Commencer</a>
+            </div>
+            
+            <!-- 5. Figures planes -->
+            <div class="topic-card available" data-topic="figures-planes">
+                <div class="topic-info">
+                    <div class="topic-icon">🔷</div>
+                    <div class="topic-details">
+                        <h2 class="topic-title">Les figures planes</h2>
+                        <p class="topic-description">Chargement...</p>
+                    </div>
+                </div>
+                <span class="topic-status status-available">✅ Disponible</span>
+                <a href="../../cours.html?subject=mathematiques&level=6ieme&topic=figures-planes" class="topic-btn">Commencer</a>
+            </div>
+            
+            <!-- 6. Périmètre -->
+            <div class="topic-card available" data-topic="perimetre">
+                <div class="topic-info">
+                    <div class="topic-icon">📏</div>
+                    <div class="topic-details">
+                        <h2 class="topic-title">Périmètre</h2>
+                        <p class="topic-description">Chargement...</p>
+                    </div>
+                </div>
+                <span class="topic-status status-available">✅ Disponible</span>
+                <a href="../../cours.html?subject=mathematiques&level=6ieme&topic=perimetre" class="topic-btn">Commencer</a>
+            </div>
+            
+            <!-- 7. Proportionnalité -->
+            <div class="topic-card available" data-topic="proportionnalite">
+                <div class="topic-info">
+                    <div class="topic-icon">⚖️</div>
+                    <div class="topic-details">
+                        <h2 class="topic-title">Proportionnalité simple</h2>
+                        <p class="topic-description">Chargement...</p>
+                    </div>
+                </div>
+                <span class="topic-status status-available">✅ Disponible</span>
+                <a href="../../cours.html?subject=mathematiques&level=6ieme&topic=proportionnalite" class="topic-btn">Commencer</a>
+            </div>
+            
+            <!-- 8. Algèbre -->
+            <div class="topic-card available" data-topic="algebre">
+                <div class="topic-info">
+                    <div class="topic-icon">📊</div>
+                    <div class="topic-details">
+                        <h2 class="topic-title">Algèbre (initiation)</h2>
+                        <p class="topic-description">Chargement...</p>
+                    </div>
+                </div>
+                <span class="topic-status status-available">✅ Disponible</span>
+                <a href="../../cours.html?subject=mathematiques&level=6ieme&topic=algebre" class="topic-btn">Commencer</a>
+            </div>
+            
+            <!-- 9. Nombres entiers naturels -->
+            <div class="topic-card available" data-topic="nombres-entiers">
+                <div class="topic-info">
+                    <div class="topic-icon">🔢</div>
+                    <div class="topic-details">
+                        <h2 class="topic-title">Nombres entiers naturels</h2>
+                        <p class="topic-description">Chargement...</p>
+                    </div>
+                </div>
+                <span class="topic-status status-available">✅ Disponible</span>
+                <a href="../../cours.html?subject=mathematiques&level=6ieme&topic=nombres-entiers" class="topic-btn">Commencer</a>
+            </div>
+
+            <!-- 10. Nombres décimaux -->
+            <div class="topic-card available" data-topic="nombres-decimaux">
+                <div class="topic-info">
+                    <div class="topic-icon">🔢</div>
+                    <div class="topic-details">
+                        <h2 class="topic-title">Nombres décimaux</h2>
+                        <p class="topic-description">Chargement...</p>
+                    </div>
+                </div>
+                <span class="topic-status status-available">✅ Disponible</span>
+                <a href="../../cours.html?subject=mathematiques&level=6ieme&topic=nombres-decimaux" class="topic-btn">Commencer</a>
+            </div>
+
+            <!-- 11. Fractions simples -->
+            <div class="topic-card available" data-topic="fractions-simples">
+                <div class="topic-info">
+                    <div class="topic-icon">🍰</div>
+                    <div class="topic-details">
+                        <h2 class="topic-title">Les fractions simples</h2>
+                        <p class="topic-description">Chargement...</p>
+                    </div>
+                </div>
+                <span class="topic-status status-available">✅ Disponible</span>
+                <a href="../../cours.html?subject=mathematiques&level=6ieme&topic=fractions-simples" class="topic-btn">Commencer</a>
+            </div>
+
+            <!-- 12. Symétrie axiale -->
+            <div class="topic-card available" data-topic="symetrie-axiale">
+                <div class="topic-info">
+                    <div class="topic-icon">🪞</div>
+                    <div class="topic-details">
+                        <h2 class="topic-title">Symétrie axiale</h2>
+                        <p class="topic-description">Chargement...</p>
+                    </div>
+                </div>
+                <span class="topic-status status-available">✅ Disponible</span>
+                <a href="../../cours.html?subject=mathematiques&level=6ieme&topic=symetrie-axiale" class="topic-btn">Commencer</a>
+            </div>
+
+            <!-- 13. Aires des figures -->
+            <div class="topic-card available" data-topic="aires-figures">
+                <div class="topic-info">
+                    <div class="topic-icon">📐</div>
+                    <div class="topic-details">
+                        <h2 class="topic-title">Aires des figures</h2>
+                        <p class="topic-description">Chargement...</p>
+                    </div>
+                </div>
+                <span class="topic-status status-available">✅ Disponible</span>
+                <a href="../../cours.html?subject=mathematiques&level=6ieme&topic=aires-figures" class="topic-btn">Commencer</a>
+            </div>
+
+            <!-- 14. Constructions géométriques -->
+            <div class="topic-card available" data-topic="constructions-geometriques">
+                <div class="topic-info">
+                    <div class="topic-icon">📐</div>
+                    <div class="topic-details">
+                        <h2 class="topic-title">Constructions géométriques</h2>
+                        <p class="topic-description">Chargement...</p>
+                    </div>
+                </div>
+                <span class="topic-status status-available">✅ Disponible</span>
+                <a href="../../cours.html?subject=mathematiques&level=6ieme&topic=constructions-geometriques" class="topic-btn">Commencer</a>
+            </div>
+
+            <!-- 15. Unités de longueur -->
+            <div class="topic-card available" data-topic="unites-longueur">
+                <div class="topic-info">
+                    <div class="topic-icon">📏</div>
+                    <div class="topic-details">
+                        <h2 class="topic-title">Les unités de longueur</h2>
+                        <p class="topic-description">Chargement...</p>
+                    </div>
+                </div>
+                <span class="topic-status status-available">✅ Disponible</span>
+                <a href="../../cours.html?subject=mathematiques&level=6ieme&topic=unites-longueur" class="topic-btn">Commencer</a>
+            </div>
+
+            <!-- 16. Unités de masse et capacité -->
+            <div class="topic-card available" data-topic="unites-masse-capacite">
+                <div class="topic-info">
+                    <div class="topic-icon">⚖️</div>
+                    <div class="topic-details">
+                        <h2 class="topic-title">Les unités de masse et capacité</h2>
+                        <p class="topic-description">Chargement...</p>
+                    </div>
+                </div>
+                <span class="topic-status status-available">✅ Disponible</span>
+                <a href="../../cours.html?subject=mathematiques&level=6ieme&topic=unites-masse-capacite" class="topic-btn">Commencer</a>
+            </div>
+
+            <!-- 17. Durées -->
+            <div class="topic-card available" data-topic="durees">
+                <div class="topic-info">
+                    <div class="topic-icon">⏰</div>
+                    <div class="topic-details">
+                        <h2 class="topic-title">Les durées</h2>
+                        <p class="topic-description">Chargement...</p>
+                    </div>
+                </div>
+                <span class="topic-status status-available">✅ Disponible</span>
+                <a href="../../cours.html?subject=mathematiques&level=6ieme&topic=durees" class="topic-btn">Commencer</a>
+            </div>
+
+            <!-- 18. Lecture de tableaux -->
+            <div class="topic-card available" data-topic="lecture-tableaux">
+                <div class="topic-info">
+                    <div class="topic-icon">📊</div>
+                    <div class="topic-details">
+                        <h2 class="topic-title">Lecture de tableaux</h2>
+                        <p class="topic-description">Chargement...</p>
+                    </div>
+                </div>
+                <span class="topic-status status-available">✅ Disponible</span>
+                <a href="../../cours.html?subject=mathematiques&level=6ieme&topic=lecture-tableaux" class="topic-btn">Commencer</a>
+            </div>
+
+            <!-- 19. Graphiques -->
+            <div class="topic-card available" data-topic="graphiques">
+                <div class="topic-info">
+                    <div class="topic-icon">📈</div>
+                    <div class="topic-details">
+                        <h2 class="topic-title">Graphiques</h2>
+                        <p class="topic-description">Chargement...</p>
+                    </div>
+                </div>
+                <span class="topic-status status-available">✅ Disponible</span>
+                <a href="../../cours.html?subject=mathematiques&level=6ieme&topic=graphiques" class="topic-btn">Commencer</a>
+            </div>
+
+            <!-- 20. Moyennes -->
+            <div class="topic-card available" data-topic="moyenne">
+                <div class="topic-info">
+                    <div class="topic-icon">📊</div>
+                    <div class="topic-details">
+                        <h2 class="topic-title">Moyennes</h2>
+                        <p class="topic-description">Chargement...</p>
+                    </div>
+                </div>
+                <span class="topic-status status-available">✅ Disponible</span>
+                <a href="../../cours.html?subject=mathematiques&level=6ieme&topic=moyenne" class="topic-btn">Commencer</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ❌ JAVASCRIPT TEMPORAIREMENT DÉSACTIVÉ POUR DIAGNOSTIC
+        /*
+        function goBack() {
+            window.history.back();
+        }
+
+        // Conversion des noms de topics en camelCase pour les modules
+        function toCamelCase(str) {
+            return str.replace(/-([a-z])/g, (match, letter) => letter.toUpperCase());
+        }
+
+        // Chargement dynamique des descriptions depuis les fichiers JS
+        async function loadTopicDescriptions() {
+            const topics = [
+                'addition-soustraction',
+                'multiplication', 
+                'division',
+                'fractions',
+                'figures-planes',
+                'perimetre',
+                'proportionnalite',
+                'algebre',
+                'nombres-entiers',
+                'nombres-decimaux',
+                'fractions-simples',
+                'symetrie-axiale',
+                'aires-figures',
+                'constructions-geometriques',
+                'unites-longueur',
+                'unites-masse-capacite',
+                'durees',
+                'lecture-tableaux',
+                'graphiques',
+                'moyenne'
+            ];
+
+            for (const topic of topics) {
+                try {
+                    const module = await import(`../../../data/mathematiques/6ieme/${topic}.js`);
+                    
+                    // Essayer d'abord la nouvelle structure (4 phases)
+                    let description = 'Description non disponible';
+                    
+                    if (module.default && module.default.description) {
+                        description = module.default.description;
+                    } 
+                    // Fallback vers l'ancienne structure
+                    else {
+                        const topicCamelCase = toCamelCase(topic);
+                        const dataKey = `${topicCamelCase}6eme`;
+                        
+                        if (module[dataKey] && module[dataKey].competences && module[dataKey].competences[0]) {
+                            description = module[dataKey].competences[0].objectif;
+                        }
+                    }
+                    
+                    const topicCard = document.querySelector(`[data-topic="${topic}"]`);
+                    if (topicCard) {
+                        const descriptionElement = topicCard.querySelector('.topic-description');
+                        if (descriptionElement) {
+                            descriptionElement.textContent = description;
+                        }
+                    }
+                } catch (error) {
+                    console.error(`Erreur lors du chargement de ${topic}:`, error);
+                    // Garder "Chargement..." en cas d'erreur
+                    const topicCard = document.querySelector(`[data-topic="${topic}"]`);
+                    if (topicCard) {
+                        const descriptionElement = topicCard.querySelector('.topic-description');
+                        if (descriptionElement) {
+                            descriptionElement.textContent = 'Description non disponible';
+                        }
+                    }
+                }
+            }
+        }
+
+        
+        console.log('🔧 JavaScript simplifié pour diagnostic - les liens devraient maintenant fonctionner');
+    </script>
+</body>
+</html>

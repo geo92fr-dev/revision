@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔬 Sciences - FunRevis V2</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔬</text></svg>">
+    
+    <!-- Intégration des styles CSS -->
+    <link rel="stylesheet" href="../../styles/base.css">
+    <link rel="stylesheet" href="../../styles/educational.css">
+    <link rel="stylesheet" href="../../styles/components.css">
+    <link rel="stylesheet" href="../../styles/modern.css">
+    <link rel="stylesheet" href="../../styles/v2-custom.css">
+</head>
+<body>
+    <div class="course-container">
+        <div class="course-header">
+            <div class="breadcrumb">
+                <a href="../../index.html">🏠 Accueil</a> › 
+                <span>Sciences</span>
+            </div>
+            <h1 class="course-title">🔬 Sciences</h1>
+            <p class="course-subtitle">Découvrez les sciences à travers des expériences fascinantes</p>
+        </div>
+        
+        <div class="course-content">
+            <div class="subjects-grid">
+                <a href="../page_de_cours_v2.html?subject=sciences&level=6ieme&topic=corps-humain" class="subject-card">
+                    <div class="subject-icon">🫀</div>
+                    <div class="subject-title">6ème - Corps Humain</div>
+                    <div class="subject-description">Anatomie et fonctionnement du corps</div>
+                </a>
+                
+                <a href="../page_de_cours_v2.html?subject=sciences&level=6ieme&topic=animaux" class="subject-card">
+                    <div class="subject-icon">🦋</div>
+                    <div class="subject-title">6ème - Animaux</div>
+                    <div class="subject-description">Classification et comportement</div>
+                </a>
+                
+                <a href="../page_de_cours_v2.html?subject=sciences&level=5ieme&topic=electricite" class="subject-card">
+                    <div class="subject-icon">⚡</div>
+                    <div class="subject-title">5ème - Électricité</div>
+                    <div class="subject-description">Circuits et phénomènes électriques</div>
+                </a>
+                
+                <a href="../page_de_cours_v2.html?subject=sciences&level=4ieme&topic=chimie" class="subject-card">
+                    <div class="subject-icon">🧪</div>
+                    <div class="subject-title">4ème - Chimie</div>
+                    <div class="subject-description">Réactions et transformations</div>
+                </a>
+            </div>
+        </div>
+        
+        <div class="course-navigation">
+            <a href="../../index.html" class="btn btn-secondary">← Retour à l'accueil</a>
+            <a href="../page_de_cours_v2.html?subject=sciences&level=6ieme&topic=corps-humain" class="btn btn-primary">Commencer →</a>
+        </div>
+    </div>
+    
+    <script>
+        console.log('🔬 Page Sciences V2 chargée');
+        
+        // Animation des cartes au chargement
+        setTimeout(() => {
+            const cards = document.querySelectorAll('.subject-card');
+            cards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 150);
+            });
+        }, 300);
+    </script>
+</body>
+</html>
