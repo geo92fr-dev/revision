@@ -229,13 +229,13 @@
 <body>
     <div class="container">
         <div class="breadcrumb">
-            <a href="../../index.html" id="breadcrumbHomeLink">🏠 Accueil</a> › 
-            <a href="../mathematiques/index.html" id="breadcrumbSubjectLink">Mathématiques</a> › 
-            <a href="../mathematiques/index.html?level=6ieme" id="breadcrumbLevelLink">6ème</a> › 
-            <span id="breadcrumbTopic">Addition soustraction</span>
+            <a href="../../index.html">🏠 Accueil</a> › 
+            <span>Mathématiques</span> › 
+            <span>6ème</span> › 
+            <span>Addition soustraction</span>
         </div>
         
-        <h1 id="mainTitle">Addition et soustraction - 6ème</h1>
+        <h1>Addition et soustraction - 6ème</h1>
         
         <!-- Système de sections collapsibles -->
         <div class="sections-container">
@@ -395,65 +395,9 @@
     <script>
         console.log('🚀 Page avec sections collapsibles chargée');
         
-        let courseData = null;
-        let metacognitionAnswers = {};
-        let quizAnswers = {};
-        let preEvaluationScore = 0;
-        let exerciseScore = 0;
-        
-        // Fonction principale de chargement
-        async function loadCourse() {
-            console.log('🚀 Chargement du cours...');
-            
-            // Récupération des paramètres URL
-            const urlParams = new URLSearchParams(window.location.search);
-            const subject = urlParams.get('subject') || 'mathematiques';
-            const level = urlParams.get('level') || '6ieme';
-            const topic = urlParams.get('topic') || 'addition-soustraction';
-            
-            // Mise à jour du breadcrumb
-            updateBreadcrumb(subject, level, topic);
-            
-            // Mise à jour du titre
-            const mainTitle = document.getElementById('mainTitle');
-            if (mainTitle) {
-                mainTitle.textContent = `${topic.replace('-', ' ')} - ${level}`;
-            }
-            
-            // Utiliser le contenu par défaut
-            displayFallbackContent(subject, level, topic);
-            
-            console.log('✅ Cours chargé');
-        }
-        
-        function displayFallbackContent(subject, level, topic) {
-            console.log('📋 Utilisation du contenu par défaut');
-            // Le contenu par défaut est déjà dans le HTML
-        }
-        
-        function updateBreadcrumb(subject, level, topic) {
-            console.log('🔗 Mise à jour du breadcrumb:', subject, level, topic);
-            
-            // Mettre à jour les textes
-            const subjectLink = document.getElementById('breadcrumbSubjectLink');
-            const levelLink = document.getElementById('breadcrumbLevelLink');
-            const topicSpan = document.getElementById('breadcrumbTopic');
-            
-            if (subjectLink) {
-                subjectLink.textContent = subject.charAt(0).toUpperCase() + subject.slice(1);
-                subjectLink.href = `../${subject}/index.html`;
-            }
-            
-            if (levelLink) {
-                levelLink.textContent = level.toUpperCase();
-                levelLink.href = `../${subject}/index.html?level=${level}`;
-            }
-            
-            if (topicSpan) {
-                topicSpan.textContent = topic.replace('-', ' ');
-            }
-        }
-        
+        // Variables globales
+        let preEvaluationAnswers = {};
+        let exerciseAnswers = {};
         
         // Fonction pour basculer les sections
         function toggleSection(sectionId) {

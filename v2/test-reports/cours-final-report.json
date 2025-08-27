@@ -1,0 +1,347 @@
+{
+  "timestamp": "2025-08-27T09:37:08.162Z",
+  "file": "cours.html",
+  "overall": {
+    "score": 39,
+    "total": 39,
+    "percentage": 100,
+    "status": "🏆 EXCELLENT",
+    "recommendation": "Le fichier cours.html est parfaitement validé et prêt pour la production."
+  },
+  "validation": {
+    "timestamp": "2025-08-27T09:37:08.119Z",
+    "file": "cours.html",
+    "score": 33,
+    "total": 33,
+    "percentage": 100,
+    "status": "✅ SUCCÈS",
+    "results": [
+      {
+        "message": "✅ Fichier cours.html existe",
+        "passed": true
+      },
+      {
+        "message": "✅ Taille fichier acceptable: 21KB",
+        "passed": true
+      },
+      {
+        "message": "✅ Structure HTML valide",
+        "passed": true
+      },
+      {
+        "message": "✅ Titre principal présent",
+        "passed": true
+      },
+      {
+        "message": "✅ Breadcrumb présent",
+        "passed": true
+      },
+      {
+        "message": "✅ Container principal présent",
+        "passed": true
+      },
+      {
+        "message": "✅ Sections collapsibles présentes (6)",
+        "passed": true
+      },
+      {
+        "message": "✅ Navigation présente",
+        "passed": true
+      },
+      {
+        "message": "✅ Lien accueil breadcrumb OK",
+        "passed": true
+      },
+      {
+        "message": "✅ Lien matière breadcrumb OK",
+        "passed": true
+      },
+      {
+        "message": "✅ Lien niveau breadcrumb OK",
+        "passed": true
+      },
+      {
+        "message": "✅ Section pre-evaluation présente",
+        "passed": true
+      },
+      {
+        "message": "✅ Section cours présente",
+        "passed": true
+      },
+      {
+        "message": "✅ Section exercices présente",
+        "passed": true
+      },
+      {
+        "message": "✅ Section quiz présente",
+        "passed": true
+      },
+      {
+        "message": "✅ Section reflexion présente",
+        "passed": true
+      },
+      {
+        "message": "✅ Section ressources présente",
+        "passed": true
+      },
+      {
+        "message": "✅ Fonction toggleSection présente",
+        "passed": true
+      },
+      {
+        "message": "✅ Fonction loadCourse présente",
+        "passed": true
+      },
+      {
+        "message": "✅ Fonction validatePreEvaluation présente",
+        "passed": true
+      },
+      {
+        "message": "✅ Fonction updateBreadcrumb présente",
+        "passed": true
+      },
+      {
+        "message": "✅ Style .collapsible-section présent",
+        "passed": true
+      },
+      {
+        "message": "✅ Style .exercise-item présent",
+        "passed": true
+      },
+      {
+        "message": "✅ Style .feedback présent",
+        "passed": true
+      },
+      {
+        "message": "✅ Champs de saisie présents (4)",
+        "passed": true
+      },
+      {
+        "message": "✅ Boutons validation présents (4)",
+        "passed": true
+      },
+      {
+        "message": "✅ Attribut lang présent",
+        "passed": true
+      },
+      {
+        "message": "✅ Meta viewport présent",
+        "passed": true
+      },
+      {
+        "message": "✅ Titre de page présent",
+        "passed": true
+      },
+      {
+        "message": "✅ CSS inline présent (performance)",
+        "passed": true
+      },
+      {
+        "message": "✅ JavaScript inline (performance)",
+        "passed": true
+      },
+      {
+        "message": "✅ Système chargement données présent",
+        "passed": true
+      },
+      {
+        "message": "✅ Contenu de fallback présent",
+        "passed": true
+      }
+    ]
+  },
+  "integration": {
+    "timestamp": "2025-08-27T09:37:08.157Z",
+    "type": "integration",
+    "file": "cours.html",
+    "score": 6,
+    "total": 6,
+    "percentage": 100,
+    "status": "✅ SUCCÈS",
+    "results": [
+      {
+        "message": "✅ Système de sections collapsibles fonctionne",
+        "passed": true
+      },
+      {
+        "message": "✅ Champs de saisie fonctionnels",
+        "passed": true
+      },
+      {
+        "message": "✅ Navigation breadcrumb valide (3 liens)",
+        "passed": true
+      },
+      {
+        "message": "✅ Système de chargement de données complet",
+        "passed": true
+      },
+      {
+        "message": "✅ Système de scoring présent",
+        "passed": true
+      },
+      {
+        "message": "✅ Design responsive détecté",
+        "passed": true
+      }
+    ]
+  },
+  "failures": [],
+  "successes": [
+    {
+      "message": "✅ Fichier cours.html existe",
+      "passed": true
+    },
+    {
+      "message": "✅ Taille fichier acceptable: 21KB",
+      "passed": true
+    },
+    {
+      "message": "✅ Structure HTML valide",
+      "passed": true
+    },
+    {
+      "message": "✅ Titre principal présent",
+      "passed": true
+    },
+    {
+      "message": "✅ Breadcrumb présent",
+      "passed": true
+    },
+    {
+      "message": "✅ Container principal présent",
+      "passed": true
+    },
+    {
+      "message": "✅ Sections collapsibles présentes (6)",
+      "passed": true
+    },
+    {
+      "message": "✅ Navigation présente",
+      "passed": true
+    },
+    {
+      "message": "✅ Lien accueil breadcrumb OK",
+      "passed": true
+    },
+    {
+      "message": "✅ Lien matière breadcrumb OK",
+      "passed": true
+    },
+    {
+      "message": "✅ Lien niveau breadcrumb OK",
+      "passed": true
+    },
+    {
+      "message": "✅ Section pre-evaluation présente",
+      "passed": true
+    },
+    {
+      "message": "✅ Section cours présente",
+      "passed": true
+    },
+    {
+      "message": "✅ Section exercices présente",
+      "passed": true
+    },
+    {
+      "message": "✅ Section quiz présente",
+      "passed": true
+    },
+    {
+      "message": "✅ Section reflexion présente",
+      "passed": true
+    },
+    {
+      "message": "✅ Section ressources présente",
+      "passed": true
+    },
+    {
+      "message": "✅ Fonction toggleSection présente",
+      "passed": true
+    },
+    {
+      "message": "✅ Fonction loadCourse présente",
+      "passed": true
+    },
+    {
+      "message": "✅ Fonction validatePreEvaluation présente",
+      "passed": true
+    },
+    {
+      "message": "✅ Fonction updateBreadcrumb présente",
+      "passed": true
+    },
+    {
+      "message": "✅ Style .collapsible-section présent",
+      "passed": true
+    },
+    {
+      "message": "✅ Style .exercise-item présent",
+      "passed": true
+    },
+    {
+      "message": "✅ Style .feedback présent",
+      "passed": true
+    },
+    {
+      "message": "✅ Champs de saisie présents (4)",
+      "passed": true
+    },
+    {
+      "message": "✅ Boutons validation présents (4)",
+      "passed": true
+    },
+    {
+      "message": "✅ Attribut lang présent",
+      "passed": true
+    },
+    {
+      "message": "✅ Meta viewport présent",
+      "passed": true
+    },
+    {
+      "message": "✅ Titre de page présent",
+      "passed": true
+    },
+    {
+      "message": "✅ CSS inline présent (performance)",
+      "passed": true
+    },
+    {
+      "message": "✅ JavaScript inline (performance)",
+      "passed": true
+    },
+    {
+      "message": "✅ Système chargement données présent",
+      "passed": true
+    },
+    {
+      "message": "✅ Contenu de fallback présent",
+      "passed": true
+    },
+    {
+      "message": "✅ Système de sections collapsibles fonctionne",
+      "passed": true
+    },
+    {
+      "message": "✅ Champs de saisie fonctionnels",
+      "passed": true
+    },
+    {
+      "message": "✅ Navigation breadcrumb valide (3 liens)",
+      "passed": true
+    },
+    {
+      "message": "✅ Système de chargement de données complet",
+      "passed": true
+    },
+    {
+      "message": "✅ Système de scoring présent",
+      "passed": true
+    },
+    {
+      "message": "✅ Design responsive détecté",
+      "passed": true
+    }
+  ]
+}

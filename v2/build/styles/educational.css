@@ -1,0 +1,516 @@
+/* Modern Educational Platform Styles */
+
+/* 1. Course Layout using CSS Grid */
+.course-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-sm);
+  max-inline-size: 1200px;
+  margin-inline: auto;
+  padding: var(--space-md);
+  
+  @media (width > 768px) {
+    padding: var(--space-lg);
+    gap: var(--space-md);
+  }
+}
+
+/* 2. Modern Phase Sections */
+.phase-section {
+  container: phase / inline-size;
+  background: var(--color-surface);
+  border: 1px solid var(--color-outline);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  transition: box-shadow 0.3s var(--ease-out);
+  
+  &:hover {
+    box-shadow: var(--shadow-lg);
+  }
+}
+
+.phase-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-md);
+  background: linear-gradient(
+    135deg,
+    var(--color-surface-variant),
+    color-mix(in oklch, var(--color-surface-variant) 95%, var(--color-primary) 5%)
+  );
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--color-text);
+  border: none;
+  inline-size: 100%;
+  text-align: left;
+  
+  &:hover {
+    background: linear-gradient(
+      135deg,
+      color-mix(in oklch, var(--color-surface-variant) 90%, var(--color-primary) 10%),
+      color-mix(in oklch, var(--color-surface-variant) 85%, var(--color-primary) 15%)
+    );
+  }
+  
+  &:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: -2px;
+  }
+  
+  & .phase-icon {
+    font-size: var(--font-size-lg);
+    transition: transform 0.3s var(--ease-out);
+  }
+  
+  &.expanded .phase-icon {
+    transform: rotate(90deg);
+  }
+}
+
+.phase-content {
+  display: none;
+  padding: var(--space-md);
+  background: var(--color-surface);
+  
+  &.expanded {
+    display: block;
+    animation: fade-in 0.3s var(--ease-out);
+  }
+}
+
+/* 3. Modern Card Components */
+.lesson-card,
+.exercise-card,
+.quiz-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-outline);
+  border-radius: var(--radius-lg);
+  padding: var(--space-md);
+  margin-block-end: var(--space-md);
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s var(--ease-out);
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
+}
+
+.explanation-card {
+  border-inline-start: 4px solid var(--color-lesson);
+  background: var(--color-lesson-light);
+  
+  & h4 {
+    color: var(--color-lesson-dark);
+  }
+}
+
+.example-card {
+  border-inline-start: 4px solid var(--color-success);
+  background: var(--color-success-light);
+  
+  & h4 {
+    color: var(--color-success-dark);
+  }
+}
+
+.steps-card {
+  border-inline-start: 4px solid var(--color-warning);
+  background: var(--color-warning-light);
+  
+  & h4 {
+    color: var(--color-warning-dark);
+  }
+}
+
+/* 4. Modern Step System */
+.steps-container {
+  display: grid;
+  gap: var(--space-sm);
+}
+
+.step-item {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--space-sm);
+  align-items: flex-start;
+  padding: var(--space-sm);
+  background: var(--color-surface-variant);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-outline);
+  transition: all 0.3s var(--ease-out);
+  
+  &:hover {
+    border-color: var(--color-primary);
+    background: color-mix(in oklch, var(--color-surface-variant) 90%, var(--color-primary) 10%);
+  }
+  
+  &.active {
+    border-color: var(--color-primary);
+    background: var(--color-primary-light);
+  }
+}
+
+.step-number {
+  display: grid;
+  place-items: center;
+  inline-size: 32px;
+  block-size: 32px;
+  background: var(--color-primary);
+  color: var(--color-text-inverse);
+  border-radius: 50%;
+  font-weight: 700;
+  font-size: var(--font-size-sm);
+}
+
+.step-content {
+  display: grid;
+  gap: var(--space-2xs);
+}
+
+.step-title {
+  font-weight: 600;
+  color: var(--color-text);
+  font-size: var(--font-size-sm);
+}
+
+.step-explanation {
+  color: var(--color-text-variant);
+  font-size: var(--font-size-sm);
+  line-height: 1.5;
+}
+
+.step-example {
+  color: var(--color-text-variant);
+  font-size: var(--font-size-xs);
+  font-style: italic;
+}
+
+/* 5. Modern Alert System */
+.alert {
+  --alert-bg: var(--color-primary-light);
+  --alert-color: var(--color-primary-dark);
+  --alert-border: var(--color-primary);
+  
+  padding: var(--space-md);
+  border-radius: var(--radius-lg);
+  background: var(--alert-bg);
+  color: var(--alert-color);
+  border-inline-start: 4px solid var(--alert-border);
+  margin-block-end: var(--space-md);
+  
+  &.alert-success {
+    --alert-bg: var(--color-success-light);
+    --alert-color: var(--color-success-dark);
+    --alert-border: var(--color-success);
+  }
+  
+  &.alert-warning {
+    --alert-bg: var(--color-warning-light);
+    --alert-color: var(--color-warning-dark);
+    --alert-border: var(--color-warning);
+  }
+  
+  &.alert-error {
+    --alert-bg: var(--color-error-light);
+    --alert-color: var(--color-error-dark);
+    --alert-border: var(--color-error);
+  }
+  
+  & h4 {
+    font-weight: 600;
+    margin-block-end: var(--space-2xs);
+    color: inherit;
+  }
+}
+
+/* 6. Modern Exercise System */
+.exercise-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-block-end: var(--space-sm);
+  
+  @container (width < 480px) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-2xs);
+  }
+}
+
+.exercise-level {
+  padding: var(--space-2xs) var(--space-sm);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  
+  &.débutant {
+    background: var(--color-success-light);
+    color: var(--color-success-dark);
+  }
+  
+  &.intermédiaire {
+    background: var(--color-warning-light);
+    color: var(--color-warning-dark);
+  }
+  
+  &.avancé {
+    background: var(--color-error-light);
+    color: var(--color-error-dark);
+  }
+}
+
+.exercise-points {
+  background: var(--color-primary);
+  color: var(--color-text-inverse);
+  padding: var(--space-2xs) var(--space-sm);
+  border-radius: var(--radius-lg);
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+}
+
+/* 7. Modern Input System */
+.exercise-input {
+  padding: var(--space-sm);
+  border: 2px solid var(--color-outline);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-size: var(--font-size-base);
+  inline-size: clamp(120px, 30%, 200px);
+  transition: border-color 0.3s var(--ease-out);
+  
+  &:focus {
+    outline: none;
+    border-color: var(--color-primary);
+  }
+  
+  &:invalid {
+    border-color: var(--color-error);
+  }
+}
+
+/* 8. Modern Quiz System */
+.quiz-options {
+  display: grid;
+  gap: var(--space-sm);
+  margin-block: var(--space-md);
+}
+
+.quiz-option {
+  padding: var(--space-sm);
+  border: 2px solid var(--color-outline);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s var(--ease-out);
+  text-align: left;
+  
+  &:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--color-primary);
+  }
+  
+  &:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+  
+  &.correct {
+    background: var(--color-success-light);
+    border-color: var(--color-success);
+    color: var(--color-success-dark);
+  }
+  
+  &.incorrect {
+    background: var(--color-error-light);
+    border-color: var(--color-error);
+    color: var(--color-error-dark);
+  }
+}
+
+/* 9. Modern Progress System */
+.progress-container {
+  margin-block-end: var(--space-md);
+}
+
+.progress-bar {
+  inline-size: 100%;
+  block-size: 8px;
+  background: var(--color-surface-variant);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  
+  & .progress-fill {
+    block-size: 100%;
+    background: linear-gradient(
+      90deg,
+      var(--color-primary),
+      var(--color-primary-light)
+    );
+    transition: inline-size 0.3s var(--ease-out);
+    border-radius: inherit;
+  }
+}
+
+/* 10. Modern Challenge System */
+.challenge-highlight {
+  background: linear-gradient(
+    135deg,
+    var(--color-warning-light),
+    color-mix(in oklch, var(--color-warning-light) 80%, var(--color-warning) 20%)
+  );
+  border: 2px solid var(--color-warning);
+  border-radius: var(--radius-xl);
+  padding: var(--space-lg);
+  margin-block: var(--space-lg);
+  box-shadow: var(--shadow-lg);
+  animation: pulse 2s infinite;
+  
+  & h4 {
+    color: var(--color-warning-dark);
+    font-size: var(--font-size-xl);
+    text-align: center;
+    margin-block-end: var(--space-md);
+  }
+}
+
+/* 11. Modern Button Variants */
+.btn-challenge {
+  --btn-bg: var(--color-warning);
+  --btn-color: var(--color-text);
+  
+  padding: var(--space-md) var(--space-xl);
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  box-shadow: var(--shadow-lg);
+  
+  &:hover:not(:disabled) {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-xl);
+  }
+}
+
+/* 12. Modern Info Grid */
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+  gap: var(--space-md);
+  margin-block: var(--space-md);
+}
+
+.info-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-outline);
+  border-radius: var(--radius-lg);
+  padding: var(--space-md);
+  box-shadow: var(--shadow-sm);
+  
+  &.utilite-card {
+    border-inline-start: 4px solid var(--color-success);
+  }
+  
+  &.funfact-card {
+    border-inline-start: 4px solid var(--color-primary);
+  }
+  
+  & h4 {
+    color: var(--color-text);
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    margin-block-end: var(--space-2xs);
+  }
+  
+  & p {
+    color: var(--color-text-variant);
+    font-size: var(--font-size-sm);
+    line-height: 1.6;
+  }
+}
+
+/* 13. Canvas and Interactive Elements */
+.exercise-canvas {
+  border: 2px solid var(--color-outline);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  margin-block: var(--space-sm);
+}
+
+/* 14. Modern Responsive Utilities */
+@container (width < 480px) {
+  .exercise-header,
+  .quiz-options {
+    gap: var(--space-2xs);
+  }
+  
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@container (width > 768px) {
+  .quiz-options {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* 15. Modern Accessibility Enhancements */
+@media (prefers-reduced-motion: reduce) {
+  .challenge-highlight {
+    animation: none;
+  }
+  
+  .step-item,
+  .quiz-option,
+  .btn {
+    transition: none;
+  }
+}
+
+/* Focus management for interactive elements */
+.interactive-element {
+  &:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+}
+
+/* Modern skip link amélioré */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--color-primary);
+  color: var(--color-text-inverse);
+  padding: var(--space-2xs) var(--space-sm);
+  border-radius: var(--radius-lg);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: var(--font-size-sm);
+  z-index: 9999;
+  box-shadow: var(--shadow-lg);
+  border: 2px solid transparent;
+  transition: all 0.3s var(--ease-out);
+  white-space: nowrap;
+  
+  &:focus {
+    top: var(--space-sm);
+    transform: translateX(-50%) scale(1.02);
+    border-color: var(--color-text-inverse);
+    box-shadow: var(--shadow-xl);
+    outline: none;
+  }
+  
+  &:hover:focus {
+    background: var(--color-primary-dark);
+  }
+}

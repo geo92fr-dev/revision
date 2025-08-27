@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>📐 Mathématiques - FunRevis V2</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📐</text></svg>">
+    <title>🔬 Sciences - FunRevis V2</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔬</text></svg>">
     
     <!-- Intégration des styles CSS -->
     <link rel="stylesheet" href="../../styles/base.css">
@@ -20,17 +20,17 @@
         <div class="page-header">
             <div class="breadcrumb">
                 <a href="../../index.html">🏠 Accueil</a> → 
-                <span>📐 Mathématiques</span>
+                <span>🔬 Sciences</span>
             </div>
-            <h1 class="page-title">📐 Mathématiques</h1>
-            <p class="page-subtitle">Explorez les concepts mathématiques de manière interactive</p>
+            <h1 class="page-title">🔬 Sciences</h1>
+            <p class="page-subtitle">Découvrez les sciences à travers des expériences</p>
         </div>
         
         <div class="subjects-grid">
-            <a href="6ieme/index.html" class="subject-card">
+            <a href="#" class="subject-card" style="opacity: 0.6; cursor: not-allowed;">
                 <div class="subject-icon">📚</div>
                 <div class="subject-title">6ème</div>
-                <div class="subject-description">Programme complet de sixième</div>
+                <div class="subject-description">Bientôt disponible</div>
             </a>
             
             <a href="#" class="subject-card" style="opacity: 0.6; cursor: not-allowed;">
@@ -54,7 +54,7 @@
     </div>
 
     <script>
-        console.log('📐 Page Mathématiques V2 chargée');
+        console.log('🔬 Page Sciences V2 chargée');
         
         // Animation des cartes
         document.addEventListener('DOMContentLoaded', function() {
@@ -66,7 +66,7 @@
                 
                 setTimeout(() => {
                     card.style.transition = 'all 0.5s ease';
-                    card.style.opacity = card.style.opacity === '0.6' ? '0.6' : '1';
+                    card.style.opacity = '0.6';
                     card.style.transform = 'translateY(0)';
                 }, index * 100);
             });

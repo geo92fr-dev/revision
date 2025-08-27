@@ -19,7 +19,7 @@
       },
       {
         "source": "/cours/**",
-        "destination": "/pages/page_de_cours.html"
+        "destination": "/pages/cours.html"
       }
     ],
     "headers": [

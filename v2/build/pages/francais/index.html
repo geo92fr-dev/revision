@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📝 Français - FunRevis V2</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📝</text></svg>">
+    
+    <!-- Intégration des styles CSS -->
+    <link rel="stylesheet" href="../../styles/base.css">
+    <link rel="stylesheet" href="../../styles/educational.css">
+    <link rel="stylesheet" href="../../styles/components.css">
+    <link rel="stylesheet" href="../../styles/modern.css">
+    <link rel="stylesheet" href="../../styles/v2-custom.css">
+</head>
+<body>
+    <button class="back-btn" onclick="window.history.back()">←</button>
+    
+    <div class="page-container">
+        <div class="page-header">
+            <div class="breadcrumb">
+                <a href="../../index.html">🏠 Accueil</a> → 
+                <span>📝 Français</span>
+            </div>
+            <h1 class="page-title">📝 Français</h1>
+            <p class="page-subtitle">Maîtrisez la langue française avec nos exercices interactifs</p>
+        </div>
+        
+        <div class="subjects-grid">
+            <a href="#" class="subject-card" style="opacity: 0.6; cursor: not-allowed;">
+                <div class="subject-icon">📚</div>
+                <div class="subject-title">6ème</div>
+                <div class="subject-description">Bientôt disponible</div>
+            </a>
+            
+            <a href="#" class="subject-card" style="opacity: 0.6; cursor: not-allowed;">
+                <div class="subject-icon">📚</div>
+                <div class="subject-title">5ème</div>
+                <div class="subject-description">Bientôt disponible</div>
+            </a>
+            
+            <a href="#" class="subject-card" style="opacity: 0.6; cursor: not-allowed;">
+                <div class="subject-icon">📚</div>
+                <div class="subject-title">4ème</div>
+                <div class="subject-description">Bientôt disponible</div>
+            </a>
+            
+            <a href="#" class="subject-card" style="opacity: 0.6; cursor: not-allowed;">
+                <div class="subject-icon">📚</div>
+                <div class="subject-title">3ème</div>
+                <div class="subject-description">Bientôt disponible</div>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        console.log('📝 Page Français V2 chargée');
+        
+        // Animation des cartes
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.subject-card');
+            
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    card.style.transition = 'all 0.5s ease';
+                    card.style.opacity = '0.6';
+                    card.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+        });
+    </script>
+</body>
+</html>
+                    <div class="subject-icon">📚</div>
+                    <div class="subject-title">6ème - Grammaire</div>
+                    <div class="subject-description">Les bases de la grammaire française</div>
+                </a>
+                
+                <a href="../page_de_cours_v2.html?subject=francais&level=6ieme&topic=conjugaison" class="subject-card">
+                    <div class="subject-icon">⚡</div>
+                    <div class="subject-title">6ème - Conjugaison</div>
+                    <div class="subject-description">Maîtriser les temps et modes</div>
+                </a>
+                
+                <a href="../page_de_cours_v2.html?subject=francais&level=5ieme&topic=litterature" class="subject-card">
+                    <div class="subject-icon">📖</div>
+                    <div class="subject-title">5ème - Littérature</div>
+                    <div class="subject-description">Découvrir les grands auteurs</div>
+                </a>
+                
+                <a href="../page_de_cours_v2.html?subject=francais&level=4ieme&topic=redaction" class="subject-card">
+                    <div class="subject-icon">✍️</div>
+                    <div class="subject-title">4ème - Rédaction</div>
+                    <div class="subject-description">Améliorer son expression écrite</div>
+                </a>
+            </div>
+        </div>
+        
+        <div class="course-navigation">
+            <a href="../../index.html" class="btn btn-secondary">← Retour à l'accueil</a>
+            <a href="../page_de_cours_v2.html?subject=francais&level=6ieme&topic=grammaire" class="btn btn-primary">Commencer →</a>
+        </div>
+    </div>
+    
+    <script>
+        console.log('📝 Page Français V2 chargée');
+        
+        // Animation des cartes au chargement
+        setTimeout(() => {
+            const cards = document.querySelectorAll('.subject-card');
+            cards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 150);
+            });
+        }, 300);
+    </script>
+</body>
+</html>

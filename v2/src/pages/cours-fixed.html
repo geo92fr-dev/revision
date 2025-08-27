@@ -395,7 +395,10 @@
     <script>
         console.log('🚀 Page avec sections collapsibles chargée');
         
+        // Variables globales
         let courseData = null;
+        let preEvaluationAnswers = {};
+        let exerciseAnswers = {};
         let metacognitionAnswers = {};
         let quizAnswers = {};
         let preEvaluationScore = 0;
@@ -453,7 +456,6 @@
                 topicSpan.textContent = topic.replace('-', ' ');
             }
         }
-        
         
         // Fonction pour basculer les sections
         function toggleSection(sectionId) {

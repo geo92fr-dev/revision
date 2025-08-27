@@ -70,20 +70,33 @@ export class ModuleLoader {
      * Chargement spécialisé pour les mathématiques
      */
     async _loadMathematiques(level, topic) {
+        console.log(`🔢 Chargement mathématiques: ${level}/${topic}`);
+        
         if (level === '6ieme') {
-            // Utiliser l'index centralisé pour 6ème
+            // Essayer d'abord le chargement direct pour éviter les problèmes d'index
             try {
-                const mathsIndex = await import(`../data/mathematiques/6ieme/index.js`);
+                const result = await this._loadDirectFile('mathematiques', level, topic);
+                if (result) {
+                    console.log(`✅ Chargement direct réussi pour maths/${level}/${topic}`);
+                    return result;
+                }
+            } catch (directError) {
+                console.warn(`⚠️ Chargement direct échoué, essai via index:`, directError);
                 
-                if (mathsIndex.mathematiques6eme && mathsIndex.mathematiques6eme[topic]) {
-                    return mathsIndex.mathematiques6eme[topic];
+                // Fallback vers l'index si le direct échoue
+                try {
+                    const mathsIndex = await import(`../data/mathematiques/6ieme/index.js`);
+                    
+                    if (mathsIndex.mathematiques6eme && mathsIndex.mathematiques6eme[topic]) {
+                        console.log(`✅ Chargement via index réussi pour maths/${level}/${topic}`);
+                        return mathsIndex.mathematiques6eme[topic];
+                    }
+                } catch (indexError) {
+                    console.error(`❌ Échec chargement via index:`, indexError);
                 }
                 
-                // Fallback vers chargement direct
-                return await this._loadDirectFile('mathematiques', level, topic);
-            } catch (error) {
-                console.warn(`⚠️ Fallback vers chargement direct pour maths/${level}/${topic}`);
-                return await this._loadDirectFile('mathematiques', level, topic);
+                // Re-lancer l'erreur directe si tout échoue
+                throw directError;
             }
         }
         
@@ -274,6 +287,13 @@ export class ModuleLoader {
      */
     async _loadSciences(level, topic) {
         return await this._loadDirectFile('sciences', level, topic);
+    }
+
+    /**
+     * Convertit une chaîne en camelCase
+     */
+    _toCamelCase(str) {
+        return str.replace(/-([a-z])/g, (g) => g[1].toUpperCase());
     }
 
     /**

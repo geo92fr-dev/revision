@@ -1,0 +1,35 @@
+{
+  "timestamp": "2025-08-27T09:37:08.157Z",
+  "type": "integration",
+  "file": "cours.html",
+  "score": 6,
+  "total": 6,
+  "percentage": 100,
+  "status": "✅ SUCCÈS",
+  "results": [
+    {
+      "message": "✅ Système de sections collapsibles fonctionne",
+      "passed": true
+    },
+    {
+      "message": "✅ Champs de saisie fonctionnels",
+      "passed": true
+    },
+    {
+      "message": "✅ Navigation breadcrumb valide (3 liens)",
+      "passed": true
+    },
+    {
+      "message": "✅ Système de chargement de données complet",
+      "passed": true
+    },
+    {
+      "message": "✅ Système de scoring présent",
+      "passed": true
+    },
+    {
+      "message": "✅ Design responsive détecté",
+      "passed": true
+    }
+  ]
+}

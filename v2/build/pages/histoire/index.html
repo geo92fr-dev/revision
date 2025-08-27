@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🏛️ Histoire - FunRevis V2</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏛️</text></svg>">
+    
+    <!-- Intégration des styles CSS -->
+    <link rel="stylesheet" href="../../styles/base.css">
+    <link rel="stylesheet" href="../../styles/educational.css">
+    <link rel="stylesheet" href="../../styles/components.css">
+    <link rel="stylesheet" href="../../styles/modern.css">
+    <link rel="stylesheet" href="../../styles/v2-custom.css">
+</head>
+<body>
+    <div class="course-container">
+        <div class="course-header">
+            <div class="breadcrumb">
+                <a href="../../index.html">🏠 Accueil</a> › 
+                <span>Histoire</span>
+            </div>
+            <h1 class="course-title">🏛️ Histoire</h1>
+            <p class="course-subtitle">Voyagez à travers les époques et civilisations</p>
+        </div>
+        
+        <div class="course-content">
+            <div class="subjects-grid">
+                <a href="../page_de_cours_v2.html?subject=histoire&level=6ieme&topic=prehistoire" class="subject-card">
+                    <div class="subject-icon">🦕</div>
+                    <div class="subject-title">6ème - Préhistoire</div>
+                    <div class="subject-description">L'évolution de l'humanité</div>
+                </a>
+                
+                <a href="../page_de_cours_v2.html?subject=histoire&level=6ieme&topic=antiquite" class="subject-card">
+                    <div class="subject-icon">🏛️</div>
+                    <div class="subject-title">6ème - Antiquité</div>
+                    <div class="subject-description">Égypte, Grèce et Rome antiques</div>
+                </a>
+                
+                <a href="../page_de_cours_v2.html?subject=histoire&level=5ieme&topic=moyen-age" class="subject-card">
+                    <div class="subject-icon">🏰</div>
+                    <div class="subject-title">5ème - Moyen Âge</div>
+                    <div class="subject-description">Châteaux, chevaliers et féodalité</div>
+                </a>
+                
+                <a href="../page_de_cours_v2.html?subject=histoire&level=4ieme&topic=renaissance" class="subject-card">
+                    <div class="subject-icon">🎨</div>
+                    <div class="subject-title">4ème - Renaissance</div>
+                    <div class="subject-description">Arts, sciences et découvertes</div>
+                </a>
+            </div>
+        </div>
+        
+        <div class="course-navigation">
+            <a href="../../index.html" class="btn btn-secondary">← Retour à l'accueil</a>
+            <a href="../page_de_cours_v2.html?subject=histoire&level=6ieme&topic=prehistoire" class="btn btn-primary">Commencer →</a>
+        </div>
+    </div>
+    
+    <script>
+        console.log('🏛️ Page Histoire V2 chargée');
+        
+        // Animation des cartes au chargement
+        setTimeout(() => {
+            const cards = document.querySelectorAll('.subject-card');
+            cards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 150);
+            });
+        }, 300);
+    </script>
+</body>
+</html>

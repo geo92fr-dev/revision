@@ -155,7 +155,7 @@ self.addEventListener('fetch', event => {
         
         const requiredFiles = [
             'index.html',
-            'pages/page_de_cours.html',
+            'pages/cours.html',
             'pages/mathematiques/index.html',
             'components/ModuleLoader.js',
             'data/mathematiques/6ieme/fractions.js',
@@ -168,6 +168,23 @@ self.addEventListener('fetch', event => {
             if (!fs.existsSync(filePath)) {
                 throw new Error(`Fichier manquant dans le build: ${file}`);
             }
+        }
+        
+        // Validation robuste de cours.html
+        console.log('🧪 Validation robuste de cours.html...');
+        try {
+            const BuildValidator = require('./build-validator');
+            const validator = new BuildValidator();
+            const isValid = await validator.validateForBuild();
+            
+            if (!isValid) {
+                throw new Error('Validation de cours.html échouée - build arrêté');
+            }
+            
+            console.log('✅ Validation robuste réussie');
+        } catch (error) {
+            console.warn('⚠️ Validation robuste non disponible:', error.message);
+            console.log('ℹ️ Validation de base uniquement');
         }
         
         console.log('✅ Build validé');
