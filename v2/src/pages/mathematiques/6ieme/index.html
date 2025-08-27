@@ -20,9 +20,8 @@
         .sixth-title {
             font-size: 3rem;
             font-weight: 700;
-            color: white;
+            color: #ffffff;
             margin-bottom: 1rem;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
         }
         
         .sixth-subtitle {
@@ -36,7 +35,6 @@
             padding: 1rem 2rem;
             border-radius: 25px;
             margin-bottom: 2rem;
-            backdrop-filter: blur(10px);
         }
         
         .breadcrumb a {
@@ -177,24 +175,6 @@
             transform: scale(1.1);
         }
         
-        .progress-info {
-            background: rgba(255, 255, 255, 0.2);
-            padding: 1.5rem;
-            border-radius: 15px;
-            margin-bottom: 2rem;
-            backdrop-filter: blur(10px);
-            text-align: center;
-        }
-        
-        .progress-info h3 {
-            color: white;
-            margin-bottom: 1rem;
-        }
-        
-        .progress-info p {
-            color: rgba(255, 255, 255, 0.9);
-        }
-        
         @media (max-width: 768px) {
             .topic-card {
                 flex-direction: column;
@@ -224,17 +204,12 @@
         
         <div class="sixth-header">
             <div class="breadcrumb">
-                <a href="../../index.html">🏠 Accueil</a> → 
-                <a href="../index.html">🧮 Mathématiques</a> → 
+                <a href="../../../index.html">🏠 Accueil</a> → 
+                <a href="../index.html">📐 Mathématiques</a> → 
                 <span>📚 6ème</span>
             </div>
-            <h1 class="sixth-title">📚 Mathématiques 6ème</h1>
-            <p class="sixth-subtitle">Maîtrisez les fondamentaux des mathématiques</p>
-            
-            <div class="progress-info">
-                <h3>🎯 Votre Progression</h3>
-                <p>20 chapitres disponibles • Programme complet de 6ème • Métacognition intégrée</p>
-            </div>
+            <h1 class="sixth-title">Mathématiques 6ème</h1>
+            <p class="sixth-subtitle">📚 Maîtrisez les fondamentaux des mathématiques</p>
         </div>
         
         <div class="topics-grid">
@@ -501,8 +476,6 @@
     </div>
 
     <script>
-        // ❌ JAVASCRIPT TEMPORAIREMENT DÉSACTIVÉ POUR DIAGNOSTIC
-        /*
         function goBack() {
             window.history.back();
         }
@@ -578,8 +551,10 @@
             }
         }
 
+        // Charger les descriptions au chargement de la page
+        document.addEventListener('DOMContentLoaded', loadTopicDescriptions);
         
-        console.log('🔧 JavaScript simplifié pour diagnostic - les liens devraient maintenant fonctionner');
+        console.log('✅ JavaScript réactivé - chargement des descriptions depuis les modules .js');
     </script>
 </body>
 </html>

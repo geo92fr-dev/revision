@@ -1,13 +1,362 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FunRevis - Accueil</title>
+    <link rel="stylesheet" href="src/styles/index.css">
+    <link rel="stylesheet" href="src/styles/modern.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .header {
+            text-align: center;
+            padding: 2rem 1rem;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            margin: 0;
+            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            margin: 1rem 0 0 0;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        .subjects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .subject-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .subject-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
+        }
+
+        .subject-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .subject-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #2d3748;
+        }
+
+        .subject-description {
+            color: #4a5568;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .levels-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .level-badge {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .quick-access {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .quick-access h2 {
+            color: #2d3748;
+            margin-bottom: 1rem;
+        }
+
+        .quick-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .quick-link {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+            border-radius: 12px;
+            text-decoration: none;
+            color: #2d3748;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .quick-link:hover {
+            border-color: #667eea;
+            transform: translateX(4px);
+        }
+
+        .quick-link-icon {
+            font-size: 1.5rem;
+            margin-right: 1rem;
+        }
+
+        .quick-link-text {
+            flex: 1;
+        }
+
+        .quick-link-title {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .quick-link-desc {
+            font-size: 0.9rem;
+            color: #4a5568;
+        }
+
+        .info-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 1rem;
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #2d3748;
+        }
+
+        .feature-desc {
+            font-size: 0.9rem;
+            color: #4a5568;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🚀 FunRevis</h1>
+        <p>Plateforme d'apprentissage modulaire et interactive</p>
+    </div>
+
+    <div class="container">
+        <!-- Section d'accès rapide -->
+        <div class="quick-access">
+            <h2>⚡ Accès rapide</h2>
+            <div class="quick-links" id="quickLinks">
+                <!-- Liens générés dynamiquement -->
+            </div>
+        </div>
+
+        <!-- Grille des matières -->
+        <div class="subjects-grid">
+            <div class="subject-card" onclick="navigateToSubject('mathematiques')">
+                <div class="subject-icon">📐</div>
+                <div class="subject-title">Mathématiques</div>
+                <div class="subject-description">
+                    Nombres, géométrie, calculs et résolution de problèmes avec une approche progressive et ludique.
+                </div>
+                <div class="levels-list">
+                    <span class="level-badge">6ème</span>
+                    <span class="level-badge">5ème</span>
+                </div>
+            </div>
+
+            <div class="subject-card" onclick="navigateToSubject('francais')">
+                <div class="subject-icon">📝</div>
+                <div class="subject-title">Français</div>
+                <div class="subject-description">
+                    Grammaire, orthographe, vocabulaire et expression écrite pour maîtriser la langue française.
+                </div>
+                <div class="levels-list">
+                    <span class="level-badge">6ème</span>
+                </div>
+            </div>
+
+            <div class="subject-card" onclick="navigateToSubject('sciences')">
+                <div class="subject-icon">🧬</div>
+                <div class="subject-title">Sciences</div>
+                <div class="subject-description">
+                    Découverte du monde scientifique : corps humain, environnement et expérimentations.
+                </div>
+                <div class="levels-list">
+                    <span class="level-badge">6ème</span>
+                </div>
+            </div>
+
+            <div class="subject-card" onclick="navigateToSubject('histoire')">
+                <div class="subject-icon">🏛️</div>
+                <div class="subject-title">Histoire</div>
+                <div class="subject-description">
+                    Voyage à travers les époques : de l'Antiquité à nos jours, comprendre le passé pour mieux vivre le présent.
+                </div>
+                <div class="levels-list">
+                    <span class="level-badge">6ème</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Informations sur la plateforme -->
+        <div class="info-section">
+            <h2>🎯 Pourquoi FunRevis ?</h2>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">🧠</div>
+                    <div class="feature-title">Apprentissage en 4 phases</div>
+                    <div class="feature-desc">Pré-évaluation, cours, exercices et métacognition</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🎮</div>
+                    <div class="feature-title">Interactivité</div>
+                    <div class="feature-desc">Exercices interactifs et quiz adaptatifs</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">📊</div>
+                    <div class="feature-title">Suivi des progrès</div>
+                    <div class="feature-desc">Tableau de bord personnalisé</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🔄</div>
+                    <div class="feature-title">Adaptatif</div>
+                    <div class="feature-desc">Contenu ajusté selon votre niveau</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { navigationManager } from './src/components/NavigationManager.js';
+
+        // Courses populaires pour l'accès rapide
+        const popularCourses = [
+            {
+                subject: 'mathematiques',
+                level: '6ieme',
+                topic: 'fractions',
+                title: 'Les Fractions',
+                description: 'Comprendre et manipuler les fractions',
+                icon: '🍕'
+            },
+            {
+                subject: 'mathematiques',
+                level: '6ieme', 
+                topic: 'nombres-entiers',
+                title: 'Nombres Entiers',
+                description: 'Maîtriser les nombres entiers naturels',
+                icon: '🔢'
+            },
+            {
+                subject: 'mathematiques',
+                level: '6ieme',
+                topic: 'geometrie-avancee',
+                title: 'Géométrie',
+                description: 'Formes, angles et constructions',
+                icon: '📐'
+            },
+            {
+                subject: 'mathematiques',
+                level: '6ieme',
+                topic: 'proportionnalite',
+                title: 'Proportionnalité',
+                description: 'Tableaux et calculs proportionnels',
+                icon: '⚖️'
+            }
+        ];
+
+        // Générer les liens d'accès rapide
+        function generateQuickLinks() {
+            const container = document.getElementById('quickLinks');
+            
+            popularCourses.forEach(course => {
+                const url = navigationManager.generateCourseUrl(
+                    course.subject, 
+                    course.level, 
+                    course.topic,
+                    'src/pages/page_de_cours.html'
+                );
+                
+                const linkHTML = `
+                    <a href="${url}" class="quick-link">
+                        <div class="quick-link-icon">${course.icon}</div>
+                        <div class="quick-link-text">
+                            <div class="quick-link-title">${course.title}</div>
+                            <div class="quick-link-desc">${course.description}</div>
+                        </div>
+                    </a>
+                `;
+                
+                container.insertAdjacentHTML('beforeend', linkHTML);
+            });
+        }
+
+        // Navigation vers une matière
+        window.navigateToSubject = function(subject) {
+            // Pour l'instant, rediriger vers la première matière disponible
+            if (subject === 'mathematiques') {
+                window.location.href = 'src/pages/mathematiques/6ieme/index.html';
+            } else {
+                alert(`${subject} sera bientôt disponible !`);
+            }
+        };
+
+        // Initialiser la page
+        document.addEventListener('DOMContentLoaded', () => {
+            generateQuickLinks();
+        });
+    </script>
+</body>
 </html>

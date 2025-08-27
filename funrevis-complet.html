@@ -1,0 +1,2245 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FunRevis - Plateforme d'apprentissage complète</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 2rem;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .main-content {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+        }
+
+        .navigation {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .nav-card {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-decoration: none;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .nav-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .module-card {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 10px;
+            padding: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .module-card:hover {
+            background: #e9ecef;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .module-card.active {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .module-card h4 {
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .module-card p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .module-progress {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #28a745;
+            color: white;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .lesson-area {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 2rem;
+            margin-top: 2rem;
+            min-height: 500px;
+        }
+
+        .phase-tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid #e9ecef;
+        }
+
+        .phase-tab {
+            padding: 1rem 1.5rem;
+            background: #f8f9fa;
+            border: none;
+            border-radius: 10px 10px 0 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .phase-tab.active {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .phase-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            margin-top: 1rem;
+        }
+
+        .cours-section {
+            background: #e3f2fd;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            border-left: 4px solid #2196f3;
+        }
+
+        .exercice-item {
+            background: white;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .exercice-item:hover {
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .question {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .options {
+            display: grid;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .option {
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            padding: 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .option:hover {
+            background: #e9ecef;
+            border-color: #667eea;
+        }
+
+        .option.selected {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        .option.correct {
+            background: #28a745;
+            color: white;
+            border-color: #28a745;
+        }
+
+        .option.incorrect {
+            background: #dc3545;
+            color: white;
+            border-color: #dc3545;
+        }
+
+        .explication {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+
+        .aide {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            color: #856404;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            font-style: italic;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            margin: 0.5rem;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+        }
+
+        .score-display {
+            background: linear-gradient(135deg, #28a745, #20c997);
+            color: white;
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: 600;
+            margin: 1rem 0;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .properties-list {
+            background: white;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+
+        .properties-list li {
+            margin: 0.5rem 0;
+            padding-left: 1rem;
+        }
+
+        .examples-section {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 1rem;
+            margin: 0.5rem 0;
+        }
+
+        .input-field:focus {
+            border-color: #667eea;
+            outline: none;
+        }
+
+        .metacognition-section {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+        }
+
+        .auto-evaluation {
+            background: #e3f2fd;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+
+        .criteria-item {
+            display: flex;
+            align-items: center;
+            margin: 0.5rem 0;
+        }
+
+        .criteria-item input {
+            margin-right: 0.5rem;
+        }
+
+        .section-content {
+            margin: 0.5rem 0;
+        }
+
+        .section-content p {
+            margin: 0.3rem 0;
+            padding-left: 0.5rem;
+        }
+
+        .section-content p strong {
+            color: #667eea;
+            display: block;
+            margin-top: 0.8rem;
+            margin-bottom: 0.3rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .modules-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .phase-tabs {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎓 FunRevis</h1>
+            <p>Plateforme d'apprentissage interactive - Mathématiques 6ème</p>
+        </div>
+
+        <div class="main-content">
+            <!-- Navigation principale -->
+            <div id="main-nav" class="navigation">
+                <div class="nav-card" onclick="showMathModules()">
+                    <h3>📚 Mathématiques 6ème</h3>
+                    <p>22 modules complets avec cours et exercices</p>
+                </div>
+                <div class="nav-card" onclick="showProgress()">
+                    <h3>📊 Suivi des Progrès</h3>
+                    <p>Visualisez votre progression détaillée</p>
+                </div>
+            </div>
+
+            <!-- Section des modules de mathématiques -->
+            <div id="math-modules" class="hidden">
+                <h2>📚 Modules de Mathématiques 6ème</h2>
+                <button class="btn" onclick="showMainNav()">← Retour</button>
+                
+                <div class="modules-grid" id="modules-container">
+                    <!-- Les modules seront générés dynamiquement -->
+                </div>
+            </div>
+
+            <!-- Zone d'apprentissage -->
+            <div id="lesson-area" class="lesson-area hidden">
+                <div id="lesson-header">
+                    <button class="btn" onclick="showMathModules()">← Retour aux modules</button>
+                    <h2 id="module-title">Module de Mathématiques</h2>
+                </div>
+                
+                <!-- Onglets des phases -->
+                <div class="phase-tabs" id="phase-tabs">
+                    <!-- Générés dynamiquement -->
+                </div>
+                
+                <div id="lesson-content" class="phase-content">
+                    <!-- Le contenu sera inséré ici -->
+                </div>
+                
+                <div class="score-display hidden" id="score-display">Score: 0/0</div>
+            </div>
+
+            <!-- Section Progrès -->
+            <div id="progress-section" class="hidden">
+                <h2>📊 Suivi des Progrès</h2>
+                <button class="btn" onclick="showMainNav()">← Retour</button>
+                <div id="progress-content">
+                    <!-- Contenu généré dynamiquement -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Données complètes des modules avec contenu pédagogique riche
+        const modulesData = {
+            'nombres-entiers': {
+                titre: "Nombres entiers naturels",
+                description: "Comprendre et manipuler les nombres entiers naturels",
+                emoji: "🔢",
+                phase1: {
+                    titre: "🧠 Que sais-je déjà ?",
+                    objectif: "Activer les connaissances préalables sur les nombres entiers",
+                    consignes: "Cette phase permet d'identifier ce que tu sais déjà sur les nombres entiers naturels. Ne t'inquiète pas si tu ne connais pas toutes les réponses !",
+                    exercices: [
+                        {
+                            type: "qcm",
+                            question: "Qu'est-ce qu'un nombre entier naturel ?",
+                            options: [
+                                "Un nombre positif sans virgule comme 0, 1, 2, 3...",
+                                "Un nombre avec une virgule comme 2,5 ou 3,14", 
+                                "Un nombre négatif comme -5 ou -12",
+                                "Une fraction comme 1/2 ou 3/4"
+                            ],
+                            correct: 0,
+                            explication: "Les nombres entiers naturels sont les nombres positifs sans virgule : 0, 1, 2, 3, 4, 5... Ils permettent de compter des objets entiers."
+                        },
+                        {
+                            type: "qcm",
+                            question: "Dans le nombre 2 547, quel chiffre est dans la position des centaines ?",
+                            options: ["2", "5", "4", "7"],
+                            correct: 1,
+                            explication: "Dans 2 547 : 2 est le chiffre des milliers, 5 est le chiffre des centaines, 4 est le chiffre des dizaines, 7 est le chiffre des unités."
+                        },
+                        {
+                            type: "exercice",
+                            question: "Écris en chiffres : deux mille trois cent quarante-cinq",
+                            reponse: "2345",
+                            aide: "Décompose le nombre : deux mille = 2000, trois cent = 300, quarante = 40, cinq = 5. Donc 2000 + 300 + 40 + 5 = 2345"
+                        },
+                        {
+                            type: "qcm",
+                            question: "Quel est le plus grand de ces nombres ?",
+                            options: ["999", "1 000", "1 001", "1 010"],
+                            correct: 3,
+                            explication: "Pour comparer des nombres, on regarde d'abord le nombre de chiffres, puis on compare chiffre par chiffre de gauche à droite."
+                        }
+                    ]
+                },
+                phase2: {
+                    titre: "📚 J'apprends",
+                    objectif: "Découvrir les propriétés et la représentation des nombres entiers naturels",
+                    cours: {
+                        introduction: "Les nombres entiers naturels sont partout autour de nous ! Ils nous permettent de compter, mesurer, classer et ordonner. Découvrons leurs secrets...",
+                        definition: "Les nombres entiers naturels sont les nombres que l'on utilise pour compter : 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12... Cette suite continue à l'infini !",
+                        sections: [
+                            {
+                                titre: "🎯 Qu'est-ce qu'un nombre entier naturel ?",
+                                contenu: [
+                                    "• Ce sont les nombres de comptage : 0, 1, 2, 3, 4, 5...",
+                                    "• Ils n'ont jamais de virgule (pas de partie décimale)",
+                                    "• Ils sont tous positifs ou nuls (jamais négatifs)",
+                                    "• Le plus petit nombre entier naturel est 0",
+                                    "• Il n'y a pas de plus grand nombre entier naturel (ils sont infinis)"
+                                ]
+                            },
+                            {
+                                titre: "🔢 Les chiffres et les nombres",
+                                contenu: [
+                                    "• Un CHIFFRE est un symbole : 0, 1, 2, 3, 4, 5, 6, 7, 8, 9",
+                                    "• Un NOMBRE peut être écrit avec un ou plusieurs chiffres",
+                                    "• Exemple : dans le nombre 1 847, il y a 4 chiffres : 1, 8, 4, 7",
+                                    "• La position d'un chiffre dans un nombre détermine sa valeur"
+                                ]
+                            },
+                            {
+                                titre: "📊 La valeur positionnelle",
+                                contenu: [
+                                    "• Dans notre système décimal, chaque position a une valeur 10 fois plus grande que la position à sa droite",
+                                    "• De droite à gauche : unités, dizaines, centaines, milliers, dizaines de milliers...",
+                                    "• Exemple avec 3 456 :",
+                                    "  - 6 est dans la position des unités : 6 × 1 = 6",
+                                    "  - 5 est dans la position des dizaines : 5 × 10 = 50", 
+                                    "  - 4 est dans la position des centaines : 4 × 100 = 400",
+                                    "  - 3 est dans la position des milliers : 3 × 1000 = 3000",
+                                    "• Donc 3 456 = 3000 + 400 + 50 + 6"
+                                ]
+                            },
+                            {
+                                titre: "✍️ Écriture en lettres",
+                                contenu: [
+                                    "• Les nombres s'écrivent aussi en lettres",
+                                    "• Règles importantes :",
+                                    "  - On met des traits d'union entre les dizaines et les unités : vingt-cinq",
+                                    "  - 'Cent' prend un 's' quand il est multiplié : deux cents, mais deux cent cinq",
+                                    "  - 'Mille' est invariable : deux mille, trois mille",
+                                    "• Exemples :",
+                                    "  - 75 : soixante-quinze",
+                                    "  - 200 : deux cents",
+                                    "  - 205 : deux cent cinq",
+                                    "  - 1 000 : mille",
+                                    "  - 2 847 : deux mille huit cent quarante-sept"
+                                ]
+                            },
+                            {
+                                titre: "🎯 Comparer et ordonner",
+                                contenu: [
+                                    "• Pour comparer deux nombres :",
+                                    "  1. On compare d'abord le nombre de chiffres",
+                                    "  2. Si le nombre de chiffres est égal, on compare chiffre par chiffre de gauche à droite",
+                                    "• Symboles de comparaison :",
+                                    "  - < signifie 'plus petit que'",
+                                    "  - > signifie 'plus grand que'", 
+                                    "  - = signifie 'égal à'",
+                                    "• Exemple : 1 234 < 1 245 car 3 < 4 (à la position des dizaines)"
+                                ]
+                            }
+                        ],
+                        proprietes: [
+                            "Ils sont tous positifs ou nuls (≥ 0)",
+                            "Ils n'ont pas de partie décimale",
+                            "Ils sont ordonnés : chaque nombre a un suivant unique",
+                            "On peut les représenter sur une demi-droite graduée",
+                            "Entre deux nombres entiers consécutifs, il n'y a pas d'autre nombre entier",
+                            "L'ensemble des nombres entiers naturels est infini"
+                        ],
+                        exemples: [
+                            "📊 Comptage : 15 élèves dans une classe, 24 cahiers sur une table",
+                            "📅 Calendrier : années 2025, 1998, 476 après J.-C.",
+                            "🗺️ Distances : 150 km entre deux villes, 3 km pour un jogging",
+                            "💰 Monnaie : 25 euros, 8 pièces de 2 euros",
+                            "🏠 Adresses : numéro 42 rue des Écoles, appartement 15",
+                            "📱 Technologie : 1 024 Go de stockage, 60 images par seconde"
+                        ],
+                        applications: "Les nombres entiers naturels sont utilisés partout : en sciences pour compter les atomes, en informatique pour les données, en sport pour les scores, en cuisine pour les portions..."
+                    },
+                    exercices: [
+                        {
+                            type: "exercice",
+                            question: "Décompose le nombre 5 847 selon sa valeur positionnelle",
+                            reponse: "5000 + 800 + 40 + 7",
+                            aide: "5 milliers + 8 centaines + 4 dizaines + 7 unités"
+                        },
+                        {
+                            type: "qcm",
+                            question: "Dans le nombre 30 506, que représente le chiffre 0 dans la position des centaines ?",
+                            options: [
+                                "Qu'il n'y a pas de centaines",
+                                "Qu'il y a 0 centaine", 
+                                "Que le nombre est faux",
+                                "Les réponses A et B sont correctes"
+                            ],
+                            correct: 3,
+                            explication: "Le 0 indique qu'il n'y a aucune centaine, ce qui revient au même que dire qu'il y a 0 centaine."
+                        }
+                    ]
+                },
+                phase3: {
+                    titre: "✏️ Je m'entraîne",
+                    objectif: "Pratiquer la lecture, l'écriture et la comparaison des nombres entiers naturels",
+                    consignes: "Maintenant que tu connais la théorie, entraîne-toi avec ces exercices variés !",
+                    exercices: [
+                        {
+                            type: "exercice",
+                            question: "Écris en lettres le nombre 1 847",
+                            reponse: "mille huit cent quarante-sept",
+                            aide: "1000 = mille, 800 = huit cent (pas de 's' car suivi d'un autre nombre), 40 = quarante, 7 = sept. Attention aux traits d'union !"
+                        },
+                        {
+                            type: "exercice", 
+                            question: "Quel est le plus grand nombre que l'on peut écrire avec les chiffres 3, 7, 1, 9 (chaque chiffre utilisé une seule fois) ?",
+                            reponse: "9731",
+                            aide: "Pour avoir le plus grand nombre, place les chiffres dans l'ordre décroissant : 9, puis 7, puis 3, puis 1"
+                        },
+                        {
+                            type: "exercice",
+                            question: "Quel est le plus petit nombre que l'on peut écrire avec les chiffres 5, 0, 8, 2 ?",
+                            reponse: "2058",
+                            aide: "Attention ! On ne peut pas commencer par 0. Le plus petit chiffre non nul est 2, puis on arrange le reste : 0, 5, 8"
+                        },
+                        {
+                            type: "qcm",
+                            question: "Range dans l'ordre croissant : 1 205, 1 025, 1 520, 1 250",
+                            options: [
+                                "1 025, 1 205, 1 250, 1 520",
+                                "1 025, 1 205, 1 520, 1 250",
+                                "1 205, 1 025, 1 250, 1 520",
+                                "1 520, 1 250, 1 205, 1 025"
+                            ],
+                            correct: 0,
+                            explication: "On compare chiffre par chiffre : 1 025 < 1 205 < 1 250 < 1 520"
+                        },
+                        {
+                            type: "exercice",
+                            question: "Complète avec <, > ou = : 2 856 ... 2 865",
+                            reponse: "<",
+                            aide: "Compare chiffre par chiffre de gauche à droite. Les milliers sont égaux (2=2), les centaines sont égales (8=8), les dizaines : 5 < 6, donc 2 856 < 2 865"
+                        },
+                        {
+                            type: "exercice",
+                            question: "Écris en chiffres : quatre-vingt-douze mille trois cent six",
+                            reponse: "92306",
+                            aide: "quatre-vingt-douze mille = 92 000, trois cent = 300, six = 6. Donc 92 000 + 300 + 6 = 92 306"
+                        },
+                        {
+                            type: "qcm",
+                            question: "Combien y a-t-il de nombres entiers naturels entre 15 et 23 (15 et 23 non compris) ?",
+                            options: ["6", "7", "8", "9"],
+                            correct: 1,
+                            explication: "Entre 15 et 23 : 16, 17, 18, 19, 20, 21, 22. Cela fait 7 nombres."
+                        },
+                        {
+                            type: "exercice",
+                            question: "Dans le nombre 506 290, quelle est la valeur du chiffre 6 ?",
+                            reponse: "6000",
+                            aide: "Le chiffre 6 est dans la position des milliers, sa valeur est donc 6 × 1000 = 6000"
+                        }
+                    ]
+                },
+                phase4: {
+                    titre: "🎯 Je réfléchis sur mes apprentissages",
+                    objectif: "Développer une réflexion métacognitive sur la compréhension des nombres entiers naturels",
+                    consignes: "Cette phase t'aide à réfléchir sur tes apprentissages et à identifier tes stratégies de réussite.",
+                    questions: [
+                        "Quelles stratégies utilises-tu pour comparer deux grands nombres à 6 chiffres ?",
+                        "Comment peux-tu vérifier que tu as bien écrit un nombre en lettres ?",
+                        "Dans quelles situations de la vie quotidienne utilises-tu les nombres entiers naturels ?",
+                        "Quelle est la différence entre un chiffre et un nombre ? Peux-tu donner des exemples ?",
+                        "Comment expliques-tu à un camarade la méthode pour ranger des nombres dans l'ordre croissant ?",
+                        "Quelles erreurs fais-tu le plus souvent avec les nombres entiers ? Comment peux-tu les éviter ?",
+                        "À quoi sert la valeur positionnelle ? Pourquoi est-ce important de la comprendre ?",
+                        "Comment utilises-tu les nombres entiers en dehors des mathématiques ?"
+                    ],
+                    activites: [
+                        {
+                            type: "auto-evaluation",
+                            criteres: [
+                                "Je sais lire et écrire les nombres entiers en chiffres jusqu'à 1 million",
+                                "Je sais lire et écrire les nombres entiers en lettres en respectant l'orthographe",
+                                "Je sais comparer et ranger les nombres entiers dans l'ordre croissant ou décroissant",
+                                "Je comprends la valeur de chaque chiffre selon sa position dans un nombre",
+                                "Je sais décomposer un nombre selon sa valeur positionnelle",
+                                "Je peux expliquer la différence entre un chiffre et un nombre",
+                                "Je reconnais les situations où utiliser les nombres entiers naturels"
+                            ]
+                        },
+                        {
+                            type: "reflexion",
+                            questions: [
+                                "Quel exercice as-tu trouvé le plus difficile ? Pourquoi ?",
+                                "Quelle méthode préfères-tu pour comparer des nombres ?",
+                                "As-tu trouvé des astuces pour retenir l'écriture en lettres ?"
+                            ]
+                        }
+                    ]
+                }
+            },
+            
+            'fractions': {
+                titre: "Fractions",
+                description: "Comprendre et manipuler les fractions simples",
+                emoji: "🍕",
+                phase1: {
+                    titre: "🧠 Que sais-je déjà ?",
+                    objectif: "Activer les connaissances sur les partages et les parts",
+                    consignes: "Les fractions parlent de partage ! Voyons ce que tu sais déjà sur ce sujet important.",
+                    exercices: [
+                        {
+                            type: "qcm",
+                            question: "Si je partage une pizza en 4 parts égales et que je mange 1 part, quelle fraction ai-je mangée ?",
+                            options: ["1/4", "1/3", "4/1", "3/4"],
+                            correct: 0,
+                            explication: "J'ai mangé 1 part sur 4 parts égales, donc 1/4 de la pizza. Le numérateur (1) représente les parts prises, le dénominateur (4) le nombre total de parts."
+                        },
+                        {
+                            type: "qcm",
+                            question: "Dans une classe de 20 élèves, 5 portent des lunettes. Quelle fraction d'élèves porte des lunettes ?",
+                            options: ["5/20", "20/5", "5/25", "15/20"],
+                            correct: 0,
+                            explication: "5 élèves sur 20 portent des lunettes, donc la fraction est 5/20."
+                        },
+                        {
+                            type: "qcm",
+                            question: "Que représente le trait horizontal dans une fraction ?",
+                            options: ["Une addition", "Une division", "Une multiplication", "Une soustraction"],
+                            correct: 1,
+                            explication: "Le trait de fraction représente une division : a/b signifie a divisé par b."
+                        }
+                    ]
+                },
+                phase2: {
+                    titre: "📚 J'apprends",
+                    objectif: "Comprendre les fractions, leur signification et leurs représentations",
+                    cours: {
+                        introduction: "Les fractions sont partout ! Quand tu coupes un gâteau en parts, quand tu calcules une réduction en magasin, quand tu mesures une durée... Découvrons ce monde fascinant !",
+                        definition: "Une fraction représente une partie d'un tout. Elle s'écrit sous la forme a/b où 'a' est le numérateur (parts prises) et 'b' est le dénominateur (total de parts égales).",
+                        sections: [
+                            {
+                                titre: "🎯 Qu'est-ce qu'une fraction ?",
+                                contenu: [
+                                    "• Une fraction exprime un rapport entre une partie et un tout",
+                                    "• Elle se note a/b (se lit 'a sur b')",
+                                    "• Le numérateur (a) : nombre de parts prises",
+                                    "• Le dénominateur (b) : nombre total de parts égales",
+                                    "• Exemple : 3/5 signifie '3 parts sur 5 parts égales'"
+                                ]
+                            },
+                            {
+                                titre: "🔤 Vocabulaire essentiel",
+                                contenu: [
+                                    "• NUMÉRATEUR : le nombre du haut (combien on prend)",
+                                    "• DÉNOMINATEUR : le nombre du bas (en combien on partage)",
+                                    "• TRAIT DE FRACTION : la barre horizontale (signifie 'divisé par')",
+                                    "• FRACTION PROPRE : numérateur < dénominateur (< 1)",
+                                    "• FRACTION IMPROPRE : numérateur ≥ dénominateur (≥ 1)",
+                                    "• FRACTION DÉCIMALE : dénominateur = 10, 100, 1000..."
+                                ]
+                            },
+                            {
+                                titre: "🎨 Représentations des fractions",
+                                contenu: [
+                                    "1️⃣ REPRÉSENTATION GRAPHIQUE :",
+                                    "• Disques, rectangles, bandes divisés en parts égales",
+                                    "• On colorie ou hachure les parts prises",
+                                    "• Exemple : 2/3 = disque divisé en 3, 2 parts coloriées",
+                                    "",
+                                    "2️⃣ REPRÉSENTATION SUR LA DROITE NUMÉRIQUE :",
+                                    "• Chaque fraction correspond à un point sur la droite",
+                                    "• Entre 0 et 1, puis 1 et 2, etc.",
+                                    "• Exemple : 1/2 se place au milieu entre 0 et 1",
+                                    "",
+                                    "3️⃣ REPRÉSENTATION DÉCIMALE :",
+                                    "• Certaines fractions s'écrivent avec une virgule",
+                                    "• 1/2 = 0,5  ;  1/4 = 0,25  ;  3/4 = 0,75"
+                                ]
+                            },
+                            {
+                                titre: "⚖️ Fractions égales (équivalentes)",
+                                contenu: [
+                                    "• Différentes fractions peuvent représenter la même quantité",
+                                    "• Exemple : 1/2 = 2/4 = 3/6 = 4/8 = 50/100",
+                                    "• Pour obtenir une fraction égale :",
+                                    "  - On multiplie numérateur ET dénominateur par le même nombre",
+                                    "  - Ou on divise numérateur ET dénominateur par le même nombre",
+                                    "• Exemple : 2/3 = (2×4)/(3×4) = 8/12"
+                                ]
+                            },
+                            {
+                                titre: "🔢 Fractions et nombres entiers",
+                                contenu: [
+                                    "• Tout nombre entier peut s'écrire en fraction :",
+                                    "  - 1 = 1/1 = 2/2 = 3/3 = 10/10",
+                                    "  - 2 = 2/1 = 4/2 = 6/3 = 20/10",
+                                    "  - 5 = 5/1 = 10/2 = 15/3",
+                                    "• Une fraction avec numérateur = dénominateur vaut 1",
+                                    "• Si numérateur = 0, la fraction vaut 0",
+                                    "• Le dénominateur ne peut JAMAIS être 0 !"
+                                ]
+                            }
+                        ],
+                        proprietes: [
+                            "Le numérateur indique combien de parts on prend",
+                            "Le dénominateur indique en combien de parts égales on divise le tout", 
+                            "Une fraction peut représenter un nombre plus petit, égal ou plus grand que 1",
+                            "Deux fractions sont égales si elles représentent la même quantité",
+                            "Pour multiplier numérateur et dénominateur par le même nombre, la fraction ne change pas",
+                            "Le trait de fraction signifie 'divisé par'",
+                            "Le dénominateur ne peut jamais être égal à zéro"
+                        ],
+                        exemples: [
+                            "🍕 Cuisine : 3/4 de pizza, 1/2 litre de lait, 2/3 de tasse de farine",
+                            "⏰ Temps : 1/4 d'heure = 15 minutes, 3/4 d'heure = 45 minutes",
+                            "💰 Réductions : 1/2 prix = 50% de réduction, 1/3 de réduction",
+                            "📐 Mesures : 1/2 mètre = 50 cm, 3/4 de kg = 750 g",
+                            "🎵 Musique : 1/4 de soupir, 1/2 temps, 3/4 de mesure",
+                            "🏃 Sport : 3/4 du parcours, 2/3 du temps de course"
+                        ],
+                        applications: "Les fractions sont essentielles en cuisine (recettes), en musique (rythmes), en sport (performances), en architecture (proportions), en commerce (réductions)..."
+                    },
+                    exercices: [
+                        {
+                            type: "qcm",
+                            question: "Dans la fraction 7/9, quel est le numérateur et quel est le dénominateur ?",
+                            options: [
+                                "Numérateur : 7, Dénominateur : 9",
+                                "Numérateur : 9, Dénominateur : 7",
+                                "Numérateur : 7, Dénominateur : 16",
+                                "Numérateur : 16, Dénominateur : 7"
+                            ],
+                            correct: 0,
+                            explication: "Dans une fraction a/b, 'a' (le nombre du haut) est le numérateur et 'b' (le nombre du bas) est le dénominateur."
+                        },
+                        {
+                            type: "exercice",
+                            question: "Quelle fraction représente la partie grisée si un rectangle est divisé en 8 parts égales et que 5 parts sont grisées ?",
+                            reponse: "5/8",
+                            aide: "Numérateur = parties grisées (5), Dénominateur = total des parties (8)"
+                        }
+                    ]
+                },
+                phase3: {
+                    titre: "✏️ Je m'entraîne",
+                    objectif: "Pratiquer la lecture, l'écriture et la représentation des fractions",
+                    consignes: "Maintenant, entraîne-toi avec ces exercices pour bien maîtriser les fractions !",
+                    exercices: [
+                        {
+                            type: "exercice",
+                            question: "Écris la fraction qui représente 3 parts sur 7 parts égales",
+                            reponse: "3/7",
+                            aide: "Numérateur = parts prises (3), dénominateur = total de parts (7)"
+                        },
+                        {
+                            type: "qcm",
+                            question: "Quelle fraction est égale à 1/2 ?",
+                            options: ["2/4", "1/3", "3/4", "1/4"],
+                            correct: 0,
+                            explication: "2/4 = 1/2 car si on divise le numérateur et le dénominateur par 2, on obtient 1/2. C'est une fraction équivalente."
+                        },
+                        {
+                            type: "qcm",
+                            question: "Parmi ces fractions, laquelle est plus grande que 1 ?",
+                            options: ["3/4", "7/8", "5/3", "2/5"],
+                            correct: 2,
+                            explication: "5/3 est plus grand que 1 car le numérateur (5) est plus grand que le dénominateur (3). Cela représente plus qu'un tout complet."
+                        },
+                        {
+                            type: "exercice",
+                            question: "Dans une boîte de 12 chocolats, j'en mange 8. Quelle fraction ai-je mangée ?",
+                            reponse: "8/12",
+                            aide: "J'ai mangé 8 chocolats sur 12 au total, donc 8/12"
+                        },
+                        {
+                            type: "qcm",
+                            question: "Quelle fraction représente un gâteau entier ?",
+                            options: ["1/1", "2/2", "5/5", "Toutes ces réponses"],
+                            correct: 3,
+                            explication: "Toutes ces fractions valent 1 car le numérateur égale le dénominateur. Elles représentent toutes un tout complet."
+                        },
+                        {
+                            type: "exercice",
+                            question: "Complète : 2/3 = ?/6",
+                            reponse: "4",
+                            aide: "Pour passer de 3 à 6, on multiplie par 2. Donc il faut aussi multiplier 2 par 2 : 2×2 = 4"
+                        },
+                        {
+                            type: "qcm",
+                            question: "Quelle fraction est la plus petite ?",
+                            options: ["2/3", "3/4", "1/2", "5/6"],
+                            correct: 2,
+                            explication: "1/2 = 0,5 est la plus petite. Pour comparer : 2/3 ≈ 0,67 ; 3/4 = 0,75 ; 5/6 ≈ 0,83"
+                        },
+                        {
+                            type: "exercice",
+                            question: "Si 1/4 d'heure représente 15 minutes, combien de minutes représentent 3/4 d'heure ?",
+                            reponse: "45",
+                            aide: "Si 1/4 d'heure = 15 minutes, alors 3/4 d'heure = 3 × 15 = 45 minutes"
+                        }
+                    ]
+                },
+                phase4: {
+                    titre: "🎯 Je réfléchis sur mes apprentissages",
+                    objectif: "Réfléchir sur la compréhension des fractions et leurs applications",
+                    consignes: "Les fractions sont un concept important ! Prends le temps de réfléchir à ce que tu as appris.",
+                    questions: [
+                        "Comment expliques-tu ce qu'est une fraction à quelqu'un qui ne connaît pas ce concept ?",
+                        "Quand utilises-tu des fractions dans la vie quotidienne ? Peux-tu donner 5 exemples concrets ?",
+                        "Comment peux-tu vérifier qu'une fraction est correcte dans un problème de partage ?",
+                        "Quelle différence fais-tu entre 1/2 et 2/4 ? Sont-elles égales ? Pourquoi ?",
+                        "Comment fais-tu pour comparer deux fractions ? Quelle est ta stratégie ?",
+                        "Quelles erreurs fais-tu le plus souvent avec les fractions ? Comment peux-tu les éviter ?",
+                        "À ton avis, pourquoi est-il important de comprendre les fractions ?",
+                        "Comment les fractions t'aident-elles à mieux comprendre la division ?"
+                    ],
+                    activites: [
+                        {
+                            type: "auto-evaluation",
+                            criteres: [
+                                "Je comprends ce qu'est une fraction et ce qu'elle représente",
+                                "Je sais identifier le numérateur et le dénominateur d'une fraction",
+                                "Je sais représenter une fraction par un dessin ou un schéma",
+                                "Je reconnais les fractions équivalentes simples (1/2 = 2/4)",
+                                "Je sais comparer des fractions simples avec 1",
+                                "Je peux donner des exemples d'utilisation des fractions dans la vie courante",
+                                "Je comprends le lien entre fractions et division",
+                                "Je sais résoudre des problèmes simples avec des fractions"
+                            ]
+                        },
+                        {
+                            type: "reflexion",
+                            questions: [
+                                "Quel type d'exercice sur les fractions préfères-tu ? Pourquoi ?",
+                                "As-tu trouvé difficile de comprendre que 1/2 = 2/4 ? Comment l'expliques-tu maintenant ?",
+                                "Quelle méthode utilises-tu pour retenir qu'est-ce que le numérateur et le dénominateur ?"
+                            ]
+                        },
+                        {
+                            type: "projet",
+                            description: "Crée une recette de cuisine en utilisant des fractions (1/2 tasse de farine, 1/4 de litre de lait, etc.) et explique pourquoi les fractions sont utiles en cuisine."
+                        }
+                    ]
+                }
+            },
+
+            'nombres-decimaux': {
+                titre: "Nombres décimaux",
+                description: "Découvrir et manipuler les nombres décimaux",
+                emoji: "🎯",
+                phase1: {
+                    titre: "🧠 Que sais-je déjà ?",
+                    objectif: "Activer les connaissances sur les nombres avec virgule",
+                    exercices: [
+                        {
+                            type: "qcm",
+                            question: "Quel est le plus grand nombre décimal ?",
+                            options: ["1,45", "1,5", "1,055", "1,6"],
+                            correct: 3,
+                            explication: "1,6 est le plus grand car 1,6 > 1,5 > 1,45 > 1,055. Pour comparer, on regarde d'abord la partie entière, puis les dixièmes, puis les centièmes..."
+                        },
+                        {
+                            type: "qcm",
+                            question: "Dans le nombre 12,47, que représente le chiffre 7 ?",
+                            options: ["7 dixièmes", "7 centièmes", "7 millièmes", "7 unités"],
+                            correct: 1,
+                            explication: "Le 7 est en position des centièmes dans 12,47"
+                        }
+                    ]
+                },
+                phase2: {
+                    titre: "📚 J'apprends",
+                    objectif: "Comprendre les nombres décimaux et leur écriture",
+                    cours: {
+                        introduction: "Les nombres décimaux nous entourent : prix (12,50 €), mesures (1,75 m), température (18,5°C)... Ils permettent d'exprimer des quantités plus précises que les nombres entiers !",
+                        definition: "Un nombre décimal est un nombre qui peut avoir une partie entière et une partie décimale, séparées par une virgule. Il permet d'exprimer des quantités non entières avec précision.",
+                        sections: [
+                            {
+                                titre: "🔍 Structure d'un nombre décimal",
+                                contenu: [
+                                    "• Partie entière : à gauche de la virgule (unités, dizaines, centaines...)",
+                                    "• Virgule : sépare la partie entière de la partie décimale",
+                                    "• Partie décimale : à droite de la virgule (dixièmes, centièmes, millièmes...)",
+                                    "• Exemple avec 145,327 :",
+                                    "  - Partie entière : 145",
+                                    "  - Partie décimale : 327 (3 dixièmes, 2 centièmes, 7 millièmes)"
+                                ]
+                            },
+                            {
+                                titre: "📊 Valeur positionnelle décimale",
+                                contenu: [
+                                    "• À droite de la virgule, chaque position vaut 10 fois moins que la précédente",
+                                    "• Ordre des positions décimales :",
+                                    "  - 1er rang : dixièmes (0,1)",
+                                    "  - 2e rang : centièmes (0,01)", 
+                                    "  - 3e rang : millièmes (0,001)",
+                                    "  - 4e rang : dix-millièmes (0,0001)...",
+                                    "• Exemple avec 7,438 :",
+                                    "  - 4 dixièmes = 4 × 0,1 = 0,4",
+                                    "  - 3 centièmes = 3 × 0,01 = 0,03",
+                                    "  - 8 millièmes = 8 × 0,001 = 0,008",
+                                    "• Donc 7,438 = 7 + 0,4 + 0,03 + 0,008"
+                                ]
+                            },
+                            {
+                                titre: "✏️ Écriture et lecture",
+                                contenu: [
+                                    "• Écriture décimale : avec la virgule (12,5)",
+                                    "• Écriture fractionnaire : avec des dixièmes, centièmes... (12,5 = 125/10)",
+                                    "• Lecture : 'douze virgule cinq' ou 'douze unités et cinq dixièmes'",
+                                    "• Attention aux zéros :",
+                                    "  - 12,50 = 12,5 (zéros à droite inutiles)",
+                                    "  - 12,05 ≠ 12,5 (zéro entre chiffres significatif)"
+                                ]
+                            },
+                            {
+                                titre: "⚖️ Comparaison de nombres décimaux",
+                                contenu: [
+                                    "• Méthode pour comparer :",
+                                    "  1. Comparer les parties entières",
+                                    "  2. Si égales, comparer les dixièmes",
+                                    "  3. Si égaux, comparer les centièmes, etc.",
+                                    "• Exemples :",
+                                    "  - 12,7 > 12,65 (car 7 dixièmes > 6 dixièmes)",
+                                    "  - 8,40 = 8,4 (zéros à droite)",
+                                    "  - 0,9 > 0,789 (car 9 dixièmes > 7 dixièmes)"
+                                ]
+                            }
+                        ],
+                        proprietes: [
+                            "La partie entière est à gauche de la virgule",
+                            "La partie décimale est à droite de la virgule",
+                            "Chaque position décimale a une valeur : dixièmes, centièmes, millièmes...",
+                            "Les zéros à droite de la partie décimale ne changent pas la valeur",
+                            "Pour comparer, on examine chiffre par chiffre de gauche à droite",
+                            "Un nombre entier peut s'écrire avec une virgule : 5 = 5,0 = 5,00"
+                        ],
+                        exemples: [
+                            "💰 Prix : 15,99 € ; 3,50 € ; 125,00 €",
+                            "📏 Mesures : 1,75 m ; 2,5 km ; 0,5 kg",
+                            "🌡️ Température : 18,5°C ; 37,2°C ; -5,8°C",
+                            "⏱️ Temps : 12,5 secondes ; 1,25 minute",
+                            "📊 Notes : 15,5/20 ; 12,75/20 ; 18,25/20",
+                            "⛽ Carburant : 1,45 € le litre ; 35,8 litres"
+                        ]
+                    },
+                    exercices: [
+                        {
+                            type: "exercice",
+                            question: "Dans le nombre 56,789, quelle est la valeur du chiffre 8 ?",
+                            reponse: "0,08",
+                            aide: "Le 8 est en position des centièmes, donc sa valeur est 8 centièmes = 0,08"
+                        }
+                    ]
+                },
+                phase3: {
+                    titre: "✏️ Je m'entraîne",
+                    objectif: "Pratiquer la lecture, l'écriture et la comparaison des nombres décimaux",
+                    exercices: [
+                        {
+                            type: "exercice",
+                            question: "Écris en chiffres : trois unités et quatre dixièmes",
+                            reponse: "3,4",
+                            aide: "3 unités = 3, 4 dixièmes = 0,4, donc 3 + 0,4 = 3,4"
+                        },
+                        {
+                            type: "qcm",
+                            question: "Range dans l'ordre croissant : 2,8 ; 2,75 ; 2,9 ; 2,05",
+                            options: [
+                                "2,05 ; 2,75 ; 2,8 ; 2,9",
+                                "2,9 ; 2,8 ; 2,75 ; 2,05",
+                                "2,75 ; 2,05 ; 2,8 ; 2,9",
+                                "2,05 ; 2,8 ; 2,75 ; 2,9"
+                            ],
+                            correct: 0,
+                            explication: "On compare les dixièmes : 0 < 7 < 8 < 9, donc 2,05 < 2,75 < 2,8 < 2,9"
+                        }
+                    ]
+                },
+                phase4: {
+                    titre: "🎯 Je réfléchis sur mes apprentissages",
+                    objectif: "Réfléchir sur la compréhension des nombres décimaux",
+                    questions: [
+                        "Comment différencies-tu un nombre entier d'un nombre décimal ?",
+                        "Dans quelles situations utilises-tu des nombres décimaux ?",
+                        "Pourquoi la virgule est-elle importante dans un nombre décimal ?"
+                    ],
+                    activites: [
+                        {
+                            type: "auto-evaluation",
+                            criteres: [
+                                "Je reconnais un nombre décimal",
+                                "Je sais lire et écrire des nombres décimaux",
+                                "Je comprends la valeur positionnelle des chiffres après la virgule",
+                                "Je sais comparer des nombres décimaux"
+                            ]
+                        }
+                    ]
+                }
+            },
+
+            'addition-soustraction': {
+                titre: "Addition et soustraction",
+                description: "Maîtriser les opérations de base",
+                emoji: "➕➖",
+                phase1: {
+                    titre: "🧠 Que sais-je déjà ?",
+                    objectif: "Réviser les connaissances sur l'addition et la soustraction",
+                    exercices: [
+                        {
+                            type: "exercice",
+                            question: "Calcule : 245 + 138",
+                            reponse: "383",
+                            aide: "Pose l'addition en colonnes : unités sous unités, dizaines sous dizaines..."
+                        },
+                        {
+                            type: "qcm",
+                            question: "Dans une soustraction, comment appelle-t-on le résultat ?",
+                            options: ["La somme", "La différence", "Le produit", "Le quotient"],
+                            correct: 1,
+                            explication: "Le résultat d'une soustraction s'appelle la différence."
+                        }
+                    ]
+                },
+                phase2: {
+                    titre: "📚 J'apprends",
+                    objectif: "Comprendre les techniques d'addition et de soustraction",
+                    cours: {
+                        definition: "L'addition permet de réunir des quantités. La soustraction permet de retirer une quantité ou de calculer un écart.",
+                        proprietes: [
+                            "Addition : a + b = somme",
+                            "Soustraction : a - b = différence",
+                            "L'addition est commutative : a + b = b + a",
+                            "La soustraction n'est pas commutative : a - b ≠ b - a"
+                        ],
+                        sections: [
+                            {
+                                titre: "➕ L'addition",
+                                contenu: [
+                                    "• Permet de réunir, ajouter, augmenter",
+                                    "• Propriété de commutativité : 7 + 3 = 3 + 7",
+                                    "• Technique : poser en colonnes, commencer par les unités",
+                                    "• Avec retenue si la somme dépasse 9"
+                                ]
+                            },
+                            {
+                                titre: "➖ La soustraction", 
+                                contenu: [
+                                    "• Permet de retirer, diminuer, calculer un écart",
+                                    "• Attention : 8 - 3 ≠ 3 - 8",
+                                    "• Technique : poser en colonnes, parfois avec emprunt"
+                                ]
+                            }
+                        ]
+                    }
+                },
+                phase3: {
+                    titre: "✏️ Je m'entraîne",
+                    objectif: "Pratiquer les calculs d'addition et de soustraction",
+                    exercices: [
+                        {
+                            type: "exercice",
+                            question: "Calcule : 456 - 189",
+                            reponse: "267",
+                            aide: "Attention aux emprunts ! 6-9 impossible, emprunte 1 dizaine"
+                        },
+                        {
+                            type: "exercice",
+                            question: "Calcule : 1 247 + 856",
+                            reponse: "2103",
+                            aide: "Pose l'addition : 7+6=13, je pose 3 et retiens 1..."
+                        }
+                    ]
+                },
+                phase4: {
+                    titre: "🎯 Je réfléchis sur mes apprentissages",
+                    objectif: "Réfléchir sur l'usage des opérations",
+                    questions: [
+                        "Quand utilises-tu l'addition et la soustraction au quotidien ?",
+                        "Comment fais-tu pour vérifier tes calculs ?",
+                        "Quelle différence y a-t-il entre addition et soustraction ?"
+                    ],
+                    activites: [
+                        {
+                            type: "auto-evaluation",
+                            criteres: [
+                                "Je sais poser une addition en colonnes",
+                                "Je sais gérer les retenues",
+                                "Je sais poser une soustraction avec emprunt",
+                                "Je sais vérifier mes calculs"
+                            ]
+                        }
+                    ]
+                }
+            },
+
+            'multiplication': {
+                titre: "Multiplication",
+                description: "Comprendre et calculer des multiplications",
+                emoji: "✖️",
+                phase1: {
+                    titre: "🧠 Que sais-je déjà ?",
+                    objectif: "Réviser les tables de multiplication",
+                    exercices: [
+                        {
+                            type: "qcm",
+                            question: "Combien font 7 × 8 ?",
+                            options: ["54", "56", "64", "48"],
+                            correct: 1,
+                            explication: "7 × 8 = 56. C'est important de connaître les tables !"
+                        },
+                        {
+                            type: "exercice",
+                            question: "Calcule : 6 × 9",
+                            reponse: "54",
+                            aide: "Tables de 6 ou de 9 : 6 × 9 = 9 × 6 = 54"
+                        }
+                    ]
+                },
+                phase2: {
+                    titre: "📚 J'apprends",
+                    objectif: "Maîtriser la multiplication",
+                    cours: {
+                        definition: "La multiplication permet de calculer rapidement des additions répétées. Elle représente aussi l'aire d'un rectangle.",
+                        proprietes: [
+                            "a × b = produit",
+                            "La multiplication est commutative : a × b = b × a",
+                            "Tables de multiplication de 1 à 10",
+                            "Multiplier par 10, 100, 1000 : on ajoute des zéros"
+                        ],
+                        sections: [
+                            {
+                                titre: "🔢 Tables de multiplication",
+                                contenu: [
+                                    "• À connaître par cœur de 1 à 10",
+                                    "• Stratégies pour retenir : 9×6 = 54 (5+4=9)",
+                                    "• Propriété de commutativité : 7×8 = 8×7"
+                                ]
+                            }
+                        ]
+                    }
+                },
+                phase3: {
+                    titre: "✏️ Je m'entraîne",
+                    objectif: "Pratiquer la multiplication",
+                    exercices: [
+                        {
+                            type: "exercice",
+                            question: "Calcule : 25 × 4",
+                            reponse: "100",
+                            aide: "25 × 4 = 25 × 2 × 2 = 50 × 2 = 100"
+                        },
+                        {
+                            type: "qcm",
+                            question: "Que vaut 123 × 10 ?",
+                            options: ["123", "1230", "12300", "133"],
+                            correct: 1,
+                            explication: "Multiplier par 10, on ajoute un zéro : 123 × 10 = 1230"
+                        }
+                    ]
+                },
+                phase4: {
+                    titre: "🎯 Je réfléchis sur mes apprentissages",
+                    objectif: "Comprendre l'utilité de la multiplication",
+                    questions: [
+                        "À quoi sert la multiplication dans la vie ?",
+                        "Comment retiens-tu les tables de multiplication ?",
+                        "Quel lien y a-t-il entre multiplication et addition ?"
+                    ],
+                    activites: [
+                        {
+                            type: "auto-evaluation",
+                            criteres: [
+                                "Je connais mes tables de multiplication",
+                                "Je sais poser une multiplication",
+                                "Je comprends le lien avec l'addition répétée",
+                                "Je sais multiplier par 10, 100, 1000"
+                            ]
+                        }
+                    ]
+                }
+            },
+
+            'division': {
+                titre: "Division euclidienne",
+                description: "Découvrir la division euclidienne",
+                emoji: "➗",
+                phase1: {
+                    titre: "🧠 Que sais-je déjà ?",
+                    objectif: "Réviser les connaissances sur la division",
+                    exercices: [
+                        {
+                            type: "qcm",
+                            question: "Dans la division 15 ÷ 3 = 5, comment appelle-t-on le nombre 5 ?",
+                            options: ["Le dividende", "Le diviseur", "Le quotient", "Le reste"],
+                            correct: 2,
+                            explication: "Dans une division, le résultat s'appelle le quotient."
+                        }
+                    ]
+                },
+                phase2: {
+                    titre: "📚 J'apprends",
+                    objectif: "Comprendre la division euclidienne",
+                    cours: {
+                        introduction: "La division permet de partager équitablement ou de regrouper. C'est l'opération inverse de la multiplication !",
+                        definition: "La division euclidienne permet de partager équitablement ou de grouper. Elle donne un quotient et parfois un reste.",
+                        sections: [
+                            {
+                                titre: "🎯 Vocabulaire de la division",
+                                contenu: [
+                                    "• DIVIDENDE : le nombre que l'on divise",
+                                    "• DIVISEUR : le nombre par lequel on divise",
+                                    "• QUOTIENT : le résultat de la division",
+                                    "• RESTE : ce qui reste quand la division n'est pas exacte",
+                                    "• Exemple : 17 ÷ 3 = 5 reste 2"
+                                ]
+                            },
+                            {
+                                titre: "🔍 Deux sens de la division",
+                                contenu: [
+                                    "1️⃣ PARTAGE : diviser en parts égales",
+                                    "• 20 bonbons à partager entre 4 enfants = 20 ÷ 4 = 5 bonbons chacun",
+                                    "",
+                                    "2️⃣ GROUPEMENT : faire des groupes de même taille",
+                                    "• 20 bonbons en paquets de 4 = 20 ÷ 4 = 5 paquets"
+                                ]
+                            }
+                        ],
+                        proprietes: [
+                            "dividende ÷ diviseur = quotient (reste)",
+                            "Vérification : quotient × diviseur + reste = dividende",
+                            "Le reste est toujours plus petit que le diviseur",
+                            "Si le reste = 0, la division est exacte"
+                        ],
+                        exemples: [
+                            "📚 Partage : 24 livres pour 6 élèves = 4 livres par élève",
+                            "🍫 Groupement : 30 chocolats en boîtes de 6 = 5 boîtes",
+                            "⏰ Conversion : 125 minutes ÷ 60 = 2 heures et 5 minutes"
+                        ]
+                    }
+                },
+                phase3: {
+                    titre: "✏️ Je m'entraîne",
+                    objectif: "Pratiquer la division euclidienne",
+                    exercices: [
+                        {
+                            type: "exercice",
+                            question: "Calcule : 84 ÷ 7",
+                            reponse: "12",
+                            aide: "Cherche combien de fois 7 va dans 84. 7 × 12 = 84"
+                        },
+                        {
+                            type: "exercice",
+                            question: "Dans la division 45 ÷ 6, quel est le quotient et le reste ?",
+                            reponse: "7 reste 3",
+                            aide: "45 ÷ 6 = 7 reste 3, car 7 × 6 + 3 = 42 + 3 = 45"
+                        }
+                    ]
+                },
+                phase4: {
+                    titre: "🎯 Je réfléchis sur mes apprentissages",
+                    objectif: "Comprendre l'utilité de la division",
+                    questions: [
+                        "Dans quelles situations utilises-tu la division ?",
+                        "Comment vérifies-tu qu'une division est correcte ?",
+                        "Quel lien y a-t-il entre division et multiplication ?"
+                    ],
+                    activites: [
+                        {
+                            type: "auto-evaluation",
+                            criteres: [
+                                "Je comprends le vocabulaire de la division",
+                                "Je sais faire des divisions simples",
+                                "Je sais vérifier mes divisions",
+                                "Je reconnais les situations de partage et de groupement"
+                            ]
+                        }
+                    ]
+                }
+            },
+
+            'geometrie': {
+                titre: "Géométrie plane",
+                description: "Figures planes et constructions simples",
+                emoji: "📐",
+                phase1: {
+                    titre: "🧠 Que sais-je déjà ?",
+                    objectif: "Réviser les connaissances en géométrie",
+                    exercices: [
+                        {
+                            type: "qcm",
+                            question: "Combien de côtés a un triangle ?",
+                            options: ["2", "3", "4", "5"],
+                            correct: 1,
+                            explication: "Un triangle a toujours 3 côtés et 3 sommets."
+                        }
+                    ]
+                },
+                phase2: {
+                    titre: "📚 J'apprends",
+                    objectif: "Découvrir les figures géométriques de base",
+                    cours: {
+                        introduction: "La géométrie nous entoure ! Les formes des bâtiments, des objets, de la nature... Apprenons à les reconnaître et les construire !",
+                        definition: "La géométrie plane étudie les figures à deux dimensions : leurs propriétés, leurs constructions et leurs mesures.",
+                        sections: [
+                            {
+                                titre: "📍 Points, droites, segments",
+                                contenu: [
+                                    "• POINT : position dans l'espace (noté A, B, C...)",
+                                    "• DROITE : ligne infinie dans les deux sens",
+                                    "• SEGMENT : portion de droite entre deux points",
+                                    "• DEMI-DROITE : portion de droite limitée d'un côté"
+                                ]
+                            },
+                            {
+                                titre: "🔺 Les triangles",
+                                contenu: [
+                                    "• Figure à 3 côtés et 3 sommets",
+                                    "• Triangle équilatéral : 3 côtés égaux",
+                                    "• Triangle isocèle : 2 côtés égaux",
+                                    "• Triangle rectangle : 1 angle droit (90°)"
+                                ]
+                            },
+                            {
+                                titre: "⬜ Les quadrilatères",
+                                contenu: [
+                                    "• CARRÉ : 4 côtés égaux, 4 angles droits",
+                                    "• RECTANGLE : 4 angles droits, côtés opposés égaux",
+                                    "• LOSANGE : 4 côtés égaux",
+                                    "• PARALLÉLOGRAMME : côtés opposés parallèles et égaux"
+                                ]
+                            }
+                        ],
+                        proprietes: [
+                            "Point, droite, segment sont les bases de la géométrie",
+                            "Les figures planes ont des propriétés spécifiques",
+                            "On utilise des instruments : règle, équerre, compas",
+                            "La construction doit être précise et soignée"
+                        ],
+                        exemples: [
+                            "🏠 Architecture : formes des fenêtres, toits triangulaires",
+                            "🎨 Art : compositions géométriques, mosaïques",
+                            "🌟 Nature : flocons de neige, nids d'abeilles hexagonaux",
+                            "📱 Technologie : écrans rectangulaires, logos triangulaires"
+                        ]
+                    }
+                },
+                phase3: {
+                    titre: "✏️ Je m'entraîne",
+                    objectif: "Reconnaître et construire des figures",
+                    exercices: [
+                        {
+                            type: "qcm",
+                            question: "Quelle figure a 4 côtés égaux et 4 angles droits ?",
+                            options: ["Rectangle", "Losange", "Carré", "Triangle"],
+                            correct: 2,
+                            explication: "Le carré a 4 côtés égaux ET 4 angles droits."
+                        }
+                    ]
+                },
+                phase4: {
+                    titre: "🎯 Je réfléchis sur mes apprentissages",
+                    objectif: "Comprendre l'importance de la géométrie",
+                    questions: [
+                        "Où vois-tu de la géométrie autour de toi ?",
+                        "Pourquoi est-il important d'être précis en géométrie ?",
+                        "Quels instruments utilises-tu pour construire ?"
+                    ],
+                    activites: [
+                        {
+                            type: "auto-evaluation",
+                            criteres: [
+                                "Je reconnais les figures géométriques de base",
+                                "Je connais les propriétés des triangles et quadrilatères",
+                                "Je sais utiliser les instruments de géométrie",
+                                "Je peux construire des figures simples"
+                            ]
+                        }
+                    ]
+                }
+            },
+
+            'proportionnalite': {
+                titre: "Proportionnalité",
+                description: "Découvrir les relations de proportionnalité",
+                emoji: "⚖️",
+                phase1: {
+                    titre: "🧠 Que sais-je déjà ?",
+                    objectif: "Réviser les situations de proportionnalité",
+                    exercices: [
+                        {
+                            type: "qcm",
+                            question: "Si 2 kg de pommes coûtent 4 €, combien coûtent 4 kg ?",
+                            options: ["6 €", "8 €", "10 €", "12 €"],
+                            correct: 1,
+                            explication: "Si 2 kg = 4 €, alors 4 kg = 2 × 4 € = 8 €"
+                        }
+                    ]
+                },
+                phase2: {
+                    titre: "📚 J'apprends",
+                    objectif: "Comprendre la proportionnalité",
+                    cours: {
+                        introduction: "La proportionnalité est partout : vitesse et distance, prix et quantité, recettes de cuisine... Apprenons à la reconnaître !",
+                        definition: "Deux grandeurs sont proportionnelles si l'une s'obtient en multipliant l'autre par un nombre constant (coefficient de proportionnalité).",
+                        sections: [
+                            {
+                                titre: "🎯 Reconnaître la proportionnalité",
+                                contenu: [
+                                    "• Si on multiplie une quantité par 2, l'autre aussi",
+                                    "• Si on multiplie une quantité par 3, l'autre aussi",
+                                    "• Le rapport reste constant",
+                                    "• Exemple : 1 kg = 2 €, 2 kg = 4 €, 3 kg = 6 €"
+                                ]
+                            },
+                            {
+                                titre: "📊 Tableaux de proportionnalité",
+                                contenu: [
+                                    "• Organiser les données en tableau",
+                                    "• Vérifier si les rapports sont égaux",
+                                    "• Trouver le coefficient de proportionnalité",
+                                    "• Compléter le tableau"
+                                ]
+                            }
+                        ],
+                        proprietes: [
+                            "Coefficient de proportionnalité constant",
+                            "Tableaux de proportionnalité",
+                            "Règle de trois pour résoudre des problèmes",
+                            "Représentation graphique : droite passant par l'origine"
+                        ],
+                        exemples: [
+                            "🛒 Achats : prix proportionnel au poids",
+                            "🚗 Vitesse : distance proportionnelle au temps",
+                            "👨‍🍳 Cuisine : ingrédients proportionnels au nombre de personnes",
+                            "💰 Change : euros proportionnels aux dollars"
+                        ]
+                    }
+                },
+                phase3: {
+                    titre: "✏️ Je m'entraîne",
+                    objectif: "Résoudre des problèmes de proportionnalité",
+                    exercices: [
+                        {
+                            type: "exercice",
+                            question: "Si 3 croissants coûtent 4,50 €, combien coûtent 5 croissants ?",
+                            reponse: "7,50",
+                            aide: "3 croissants = 4,50 €, donc 1 croissant = 1,50 €, donc 5 croissants = 5 × 1,50 = 7,50 €"
+                        }
+                    ]
+                },
+                phase4: {
+                    titre: "🎯 Je réfléchis sur mes apprentissages",
+                    objectif: "Comprendre l'utilité de la proportionnalité",
+                    questions: [
+                        "Où utilises-tu la proportionnalité dans la vie ?",
+                        "Comment reconnais-tu une situation de proportionnalité ?",
+                        "Quelle méthode préfères-tu pour résoudre ces problèmes ?"
+                    ],
+                    activites: [
+                        {
+                            type: "auto-evaluation",
+                            criteres: [
+                                "Je reconnais une situation de proportionnalité",
+                                "Je sais compléter un tableau de proportionnalité",
+                                "Je peux résoudre des problèmes avec la règle de trois",
+                                "Je comprends le coefficient de proportionnalité"
+                            ]
+                        }
+                    ]
+                }
+            },
+
+            'angles': {
+                titre: "Les angles",
+                description: "Découvrir les angles et leurs mesures",
+                emoji: "📐",
+                phase2: {
+                    titre: "📚 J'apprends",
+                    objectif: "Comprendre les angles et leurs types",
+                    cours: {
+                        definition: "Un angle est formé par deux demi-droites qui ont la même origine. On mesure les angles en degrés.",
+                        proprietes: [
+                            "Angle droit : 90°",
+                            "Angle plat : 180°", 
+                            "Angle aigu : moins de 90°",
+                            "Angle obtus : entre 90° et 180°"
+                        ]
+                    }
+                }
+            },
+
+            'symetrie': {
+                titre: "Symétrie axiale",
+                description: "Comprendre la symétrie par rapport à un axe",
+                emoji: "🪞",
+                phase2: {
+                    titre: "📚 J'apprends",
+                    objectif: "Découvrir la symétrie axiale",
+                    cours: {
+                        definition: "Deux figures sont symétriques par rapport à un axe si elles se superposent par pliage le long de cet axe.",
+                        proprietes: [
+                            "L'axe de symétrie est perpendiculaire au segment qui joint un point et son symétrique",
+                            "Il passe par le milieu de ce segment",
+                            "Les distances sont conservées"
+                        ]
+                    }
+                }
+            },
+
+            'perimetre-aire': {
+                titre: "Périmètres et aires",
+                description: "Calculer périmètres et aires de figures simples",
+                emoji: "📏",
+                phase2: {
+                    titre: "📚 J'apprends",
+                    objectif: "Calculer périmètres et aires",
+                    cours: {
+                        definition: "Le périmètre est la longueur du contour d'une figure. L'aire est la mesure de sa surface.",
+                        proprietes: [
+                            "Périmètre du carré : 4 × côté",
+                            "Périmètre du rectangle : 2 × (longueur + largeur)",
+                            "Aire du carré : côté × côté",
+                            "Aire du rectangle : longueur × largeur"
+                        ]
+                    }
+                }
+            },
+
+            'volumes': {
+                titre: "Volumes",
+                description: "Découvrir les solides et leurs volumes",
+                emoji: "📦",
+                phase2: {
+                    titre: "📚 J'apprends",
+                    objectif: "Comprendre les volumes des solides",
+                    cours: {
+                        definition: "Le volume mesure l'espace occupé par un solide. Il s'exprime en unités cubes.",
+                        proprietes: [
+                            "Volume du cube : arête³",
+                            "Volume du pavé : longueur × largeur × hauteur",
+                            "Unités : cm³, dm³ = L, m³"
+                        ]
+                    }
+                }
+            },
+
+            'cercle': {
+                titre: "Le cercle",
+                description: "Propriétés et construction du cercle",
+                emoji: "⭕",
+                phase2: {
+                    titre: "📚 J'apprends",
+                    objectif: "Découvrir le cercle et ses propriétés",
+                    cours: {
+                        definition: "Un cercle est l'ensemble de tous les points situés à égale distance d'un point appelé centre.",
+                        proprietes: [
+                            "Rayon : distance du centre à un point du cercle",
+                            "Diamètre : 2 × rayon",
+                            "Construction au compas",
+                            "Périmètre ≈ 3,14 × diamètre"
+                        ]
+                    }
+                }
+            },
+
+            'unites-longueur': {
+                titre: "Unités de longueur",
+                description: "Mesurer et convertir des longueurs",
+                emoji: "📏",
+                phase2: {
+                    titre: "📚 J'apprends",
+                    objectif: "Maîtriser les conversions de longueurs",
+                    cours: {
+                        definition: "Pour mesurer des longueurs, on utilise le mètre et ses multiples et sous-multiples.",
+                        proprietes: [
+                            "km, hm, dam, m, dm, cm, mm",
+                            "Chaque unité vaut 10 fois la suivante",
+                            "Conversions : × 10 ou ÷ 10"
+                        ]
+                    }
+                }
+            },
+
+            'unites-masse': {
+                titre: "Unités de masse",
+                description: "Mesurer et convertir des masses",
+                emoji: "⚖️",
+                phase2: {
+                    titre: "📚 J'apprends",
+                    objectif: "Maîtriser les conversions de masses",
+                    cours: {
+                        definition: "Pour mesurer des masses, on utilise le gramme et ses multiples et sous-multiples.",
+                        proprietes: [
+                            "t, q, kg, hg, dag, g, dg, cg, mg",
+                            "1 kg = 1000 g",
+                            "1 t = 1000 kg"
+                        ]
+                    }
+                }
+            },
+
+            'pourcentages': {
+                titre: "Pourcentages",
+                description: "Comprendre et calculer des pourcentages",
+                emoji: "%",
+                phase2: {
+                    titre: "📚 J'apprends",
+                    objectif: "Comprendre les pourcentages",
+                    cours: {
+                        definition: "Un pourcentage exprime une proportion sur 100. 25% signifie 25 sur 100.",
+                        proprietes: [
+                            "25% = 25/100 = 0,25",
+                            "50% = 1/2 = 0,5",
+                            "100% = le tout complet"
+                        ]
+                    }
+                }
+            },
+
+            'problemes': {
+                titre: "Résolution de problèmes",
+                description: "Méthodes pour résoudre des problèmes mathématiques",
+                emoji: "🧩",
+                phase2: {
+                    titre: "📚 J'apprends",
+                    objectif: "Développer une méthode de résolution",
+                    cours: {
+                        definition: "Résoudre un problème nécessite une méthode : comprendre, analyser, calculer, vérifier.",
+                        proprietes: [
+                            "1. Lire et comprendre l'énoncé",
+                            "2. Identifier les données et la question",
+                            "3. Choisir l'opération appropriée",
+                            "4. Effectuer les calculs",
+                            "5. Vérifier et rédiger la réponse"
+                        ]
+                    }
+                }
+            }
+        };
+
+        // Variables globales
+        let currentModule = '';
+        let currentPhase = 'phase1';
+        let currentExercise = 0;
+        let score = 0;
+        let totalExercises = 0;
+        let userAnswers = {};
+
+        // Gestion de l'URL pour le chargement direct de modules
+        function handleURLParameters() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const moduleParam = urlParams.get('module');
+            
+            if (moduleParam && moduleParam.startsWith('mathematiques-6ieme-')) {
+                const moduleName = moduleParam.replace('mathematiques-6ieme-', '');
+                if (modulesData[moduleName]) {
+                    showMathModules();
+                    setTimeout(() => loadModule(moduleName), 100);
+                }
+            }
+        }
+
+        // Navigation
+        function showMainNav() {
+            hideAllSections();
+            document.getElementById('main-nav').classList.remove('hidden');
+        }
+
+        function showMathModules() {
+            hideAllSections();
+            document.getElementById('math-modules').classList.remove('hidden');
+            generateModulesGrid();
+        }
+
+        function showProgress() {
+            hideAllSections();
+            document.getElementById('progress-section').classList.remove('hidden');
+            updateProgressDisplay();
+        }
+
+        function hideAllSections() {
+            const sections = ['main-nav', 'math-modules', 'lesson-area', 'progress-section'];
+            sections.forEach(id => {
+                document.getElementById(id).classList.add('hidden');
+            });
+        }
+
+        // Génération de la grille des modules
+        function generateModulesGrid() {
+            const container = document.getElementById('modules-container');
+            const progress = JSON.parse(localStorage.getItem('funrevis-progress') || '{}');
+            
+            let html = '';
+            for (const [key, module] of Object.entries(modulesData)) {
+                const moduleProgress = progress[key];
+                const progressBadge = moduleProgress ? 
+                    `<div class="module-progress">${Math.round((moduleProgress.score / moduleProgress.total) * 100)}%</div>` : '';
+                
+                html += `
+                    <div class="module-card" onclick="loadModule('${key}')">
+                        ${progressBadge}
+                        <h4>${module.emoji} ${module.titre}</h4>
+                        <p>${module.description}</p>
+                    </div>
+                `;
+            }
+            container.innerHTML = html;
+        }
+
+        // Chargement d'un module
+        function loadModule(moduleName) {
+            if (!modulesData[moduleName]) {
+                alert('Module non disponible');
+                return;
+            }
+
+            currentModule = moduleName;
+            currentPhase = 'phase1';
+            currentExercise = 0;
+            score = 0;
+            userAnswers = {};
+
+            hideAllSections();
+            document.getElementById('lesson-area').classList.remove('hidden');
+            
+            const moduleTitle = document.getElementById('module-title');
+            moduleTitle.textContent = `${modulesData[moduleName].emoji} ${modulesData[moduleName].titre}`;
+            
+            generatePhaseTabs();
+            loadPhase('phase1');
+        }
+
+        // Génération des onglets de phases
+        function generatePhaseTabs() {
+            const module = modulesData[currentModule];
+            const tabsContainer = document.getElementById('phase-tabs');
+            
+            let html = '';
+            const phases = ['phase1', 'phase2', 'phase3', 'phase4'];
+            
+            phases.forEach(phaseKey => {
+                if (module[phaseKey]) {
+                    const phase = module[phaseKey];
+                    const activeClass = phaseKey === currentPhase ? 'active' : '';
+                    html += `
+                        <button class="phase-tab ${activeClass}" onclick="loadPhase('${phaseKey}')" data-phase="${phaseKey}">
+                            ${phase.titre}
+                        </button>
+                    `;
+                }
+            });
+            
+            tabsContainer.innerHTML = html;
+        }
+
+        // Chargement d'une phase
+        function loadPhase(phaseKey) {
+            currentPhase = phaseKey;
+            const module = modulesData[currentModule];
+            const phase = module[phaseKey];
+            
+            if (!phase) {
+                console.log('Phase non trouvée:', phaseKey);
+                return;
+            }
+
+            console.log('Chargement de la phase:', phaseKey, phase.titre);
+
+            // Mettre à jour les onglets
+            document.querySelectorAll('.phase-tab').forEach(tab => {
+                tab.classList.remove('active');
+                if (tab.getAttribute('data-phase') === phaseKey) {
+                    tab.classList.add('active');
+                }
+            });
+
+            const content = document.getElementById('lesson-content');
+            
+            if (phaseKey === 'phase2' && phase.cours) {
+                // Phase d'apprentissage avec cours
+                content.innerHTML = generateCourseContent(phase);
+            } else if (phase.exercices && phaseKey !== 'phase4') {
+                // Phase avec exercices (mais pas phase 4)
+                content.innerHTML = generateExerciseContent(phase);
+            } else if (phaseKey === 'phase4') {
+                // Phase métacognitive
+                content.innerHTML = generateMetacognitionContent(phase);
+            } else {
+                // Phase générique
+                content.innerHTML = generateGenericPhaseContent(phase);
+            }
+        }
+
+        // Génération du contenu de cours
+        function generateCourseContent(phase) {
+            const cours = phase.cours;
+            let html = `
+                <h3>${phase.titre}</h3>
+                <p><strong>Objectif :</strong> ${phase.objectif}</p>
+            `;
+
+            if (phase.consignes) {
+                html += `<div class="aide"><strong>Consignes :</strong> ${phase.consignes}</div>`;
+            }
+
+            if (cours.introduction) {
+                html += `
+                    <div class="cours-section">
+                        <h4>🌟 Introduction</h4>
+                        <p>${cours.introduction}</p>
+                    </div>
+                `;
+            }
+                
+            html += `
+                <div class="cours-section">
+                    <h4>📖 Définition</h4>
+                    <p>${cours.definition}</p>
+                </div>
+            `;
+
+            // Afficher les sections détaillées si elles existent
+            if (cours.sections) {
+                cours.sections.forEach(section => {
+                    html += `
+                        <div class="cours-section">
+                            <h4>${section.titre}</h4>
+                            <div class="section-content">
+                                ${section.contenu.map(item => {
+                                    if (item.startsWith('•')) {
+                                        return `<p>${item}</p>`;
+                                    } else {
+                                        return `<p><strong>${item}</strong></p>`;
+                                    }
+                                }).join('')}
+                            </div>
+                        </div>
+                    `;
+                });
+            }
+
+            if (cours.proprietes) {
+                html += `
+                    <div class="properties-list">
+                        <h4>🔑 Propriétés importantes</h4>
+                        <ul>
+                            ${cours.proprietes.map(prop => `<li>${prop}</li>`).join('')}
+                        </ul>
+                    </div>
+                `;
+            }
+
+            if (cours.exemples) {
+                html += `
+                    <div class="examples-section">
+                        <h4>💡 Exemples d'application</h4>
+                        <ul>
+                            ${cours.exemples.map(ex => `<li>${ex}</li>`).join('')}
+                        </ul>
+                    </div>
+                `;
+            }
+
+            if (cours.applications) {
+                html += `
+                    <div class="examples-section">
+                        <h4>🌍 Applications dans la vie</h4>
+                        <p>${cours.applications}</p>
+                    </div>
+                `;
+            }
+
+            if (phase.exercices) {
+                html += `<h4>📝 Exercices d'application</h4>`;
+                html += generateExercises(phase.exercices);
+            }
+
+            return html;
+        }
+
+        // Génération du contenu d'exercices
+        function generateExerciseContent(phase) {
+            let html = `
+                <h3>${phase.titre}</h3>
+                <p><strong>Objectif :</strong> ${phase.objectif}</p>
+            `;
+            
+            if (phase.consignes) {
+                html += `<div class="aide"><strong>Consignes :</strong> ${phase.consignes}</div>`;
+            }
+            
+            html += generateExercises(phase.exercices);
+            return html;
+        }
+
+        // Génération du contenu générique pour les phases
+        function generateGenericPhaseContent(phase) {
+            let html = `
+                <h3>${phase.titre}</h3>
+                <p><strong>Objectif :</strong> ${phase.objectif}</p>
+            `;
+
+            if (phase.consignes) {
+                html += `<div class="aide"><strong>Consignes :</strong> ${phase.consignes}</div>`;
+            }
+
+            if (phase.exercices) {
+                html += generateExercises(phase.exercices);
+            }
+
+            return html;
+        }
+
+        // Génération des exercices
+        function generateExercises(exercices) {
+            let html = '';
+            
+            exercices.forEach((exercice, index) => {
+                html += `
+                    <div class="exercice-item" id="exercice-${index}">
+                        <div class="question">
+                            Exercice ${index + 1}: ${exercice.question}
+                        </div>
+                `;
+
+                if (exercice.type === 'qcm') {
+                    html += `
+                        <div class="options">
+                            ${exercice.options.map((option, optIndex) => `
+                                <div class="option" onclick="selectOption(${index}, ${optIndex})">
+                                    ${option}
+                                </div>
+                            `).join('')}
+                        </div>
+                    `;
+                } else if (exercice.type === 'exercice') {
+                    html += `
+                        <input type="text" class="input-field" id="input-${index}" placeholder="Votre réponse...">
+                        <button class="btn" onclick="checkAnswer(${index})">Vérifier</button>
+                    `;
+                }
+
+                if (exercice.aide) {
+                    html += `<div class="aide hidden" id="aide-${index}">💡 ${exercice.aide}</div>`;
+                }
+
+                html += `
+                        <div class="explication hidden" id="explication-${index}"></div>
+                    </div>
+                `;
+            });
+
+            return html;
+        }
+
+        // Génération du contenu métacognitif
+        function generateMetacognitionContent(phase) {
+            let html = `
+                <h3>${phase.titre}</h3>
+                <p><strong>Objectif :</strong> ${phase.objectif}</p>
+            `;
+
+            if (phase.consignes) {
+                html += `<div class="aide"><strong>Consignes :</strong> ${phase.consignes}</div>`;
+            }
+                
+            html += `
+                <div class="metacognition-section">
+                    <h4>🤔 Questions de réflexion</h4>
+                    <ul>
+                        ${phase.questions.map(q => `<li>${q}</li>`).join('')}
+                    </ul>
+                </div>
+            `;
+
+            if (phase.activites) {
+                phase.activites.forEach(activite => {
+                    if (activite.type === 'auto-evaluation') {
+                        html += `
+                            <div class="auto-evaluation">
+                                <h4>📊 Auto-évaluation</h4>
+                                <p>Coche les compétences que tu penses maîtriser :</p>
+                                ${activite.criteres.map((critere, index) => `
+                                    <div class="criteria-item">
+                                        <input type="checkbox" id="criteria-${index}">
+                                        <label for="criteria-${index}">${critere}</label>
+                                    </div>
+                                `).join('')}
+                                <button class="btn" onclick="saveAutoEvaluation()">Sauvegarder mon évaluation</button>
+                            </div>
+                        `;
+                    } else if (activite.type === 'reflexion') {
+                        html += `
+                            <div class="metacognition-section">
+                                <h4>💭 Questions supplémentaires</h4>
+                                <ul>
+                                    ${activite.questions.map(q => `<li>${q}</li>`).join('')}
+                                </ul>
+                            </div>
+                        `;
+                    } else if (activite.type === 'projet') {
+                        html += `
+                            <div class="examples-section">
+                                <h4>🎯 Projet à réaliser</h4>
+                                <p>${activite.description}</p>
+                            </div>
+                        `;
+                    }
+                });
+            }
+
+            return html;
+        }
+
+        // Sélection d'option pour QCM
+        function selectOption(exerciceIndex, optionIndex) {
+            const module = modulesData[currentModule];
+            const phase = module[currentPhase];
+            const exercice = phase.exercices[exerciceIndex];
+            
+            // Désélectionner toutes les options de cet exercice
+            const exerciceElement = document.getElementById(`exercice-${exerciceIndex}`);
+            const options = exerciceElement.querySelectorAll('.option');
+            
+            options.forEach((option, index) => {
+                option.classList.remove('selected', 'correct', 'incorrect');
+                if (index === exercice.correct) {
+                    option.classList.add('correct');
+                } else if (index === optionIndex && index !== exercice.correct) {
+                    option.classList.add('incorrect');
+                } else if (index === optionIndex) {
+                    option.classList.add('selected');
+                }
+            });
+
+            // Afficher l'explication
+            const explicationDiv = document.getElementById(`explication-${exerciceIndex}`);
+            explicationDiv.textContent = exercice.explication;
+            explicationDiv.classList.remove('hidden');
+
+            // Sauvegarder la réponse
+            userAnswers[`${currentPhase}-${exerciceIndex}`] = {
+                selected: optionIndex,
+                correct: optionIndex === exercice.correct
+            };
+
+            if (optionIndex === exercice.correct) {
+                score++;
+            }
+        }
+
+        // Vérification de réponse pour exercices libres
+        function checkAnswer(exerciceIndex) {
+            const input = document.getElementById(`input-${exerciceIndex}`);
+            const userAnswer = input.value.trim().toLowerCase();
+            
+            const module = modulesData[currentModule];
+            const phase = module[currentPhase];
+            const exercice = phase.exercices[exerciceIndex];
+            const correctAnswer = exercice.reponse.toLowerCase();
+
+            const explicationDiv = document.getElementById(`explication-${exerciceIndex}`);
+            
+            if (userAnswer === correctAnswer) {
+                explicationDiv.innerHTML = `✅ Correct ! ${exercice.explication || ''}`;
+                explicationDiv.style.background = '#d4edda';
+                explicationDiv.style.color = '#155724';
+                score++;
+                userAnswers[`${currentPhase}-${exerciceIndex}`] = { correct: true };
+            } else {
+                explicationDiv.innerHTML = `❌ Incorrect. La bonne réponse est : ${exercice.reponse}. ${exercice.explication || ''}`;
+                explicationDiv.style.background = '#f8d7da';
+                explicationDiv.style.color = '#721c24';
+                userAnswers[`${currentPhase}-${exerciceIndex}`] = { correct: false };
+                
+                // Afficher l'aide si disponible
+                if (exercice.aide) {
+                    document.getElementById(`aide-${exerciceIndex}`).classList.remove('hidden');
+                }
+            }
+            
+            explicationDiv.classList.remove('hidden');
+        }
+
+        // Sauvegarde de l'auto-évaluation
+        function saveAutoEvaluation() {
+            const checkboxes = document.querySelectorAll('[id^="criteria-"]');
+            const evaluation = Array.from(checkboxes).map(cb => cb.checked);
+            
+            // Sauvegarder dans le localStorage
+            const progress = JSON.parse(localStorage.getItem('funrevis-progress') || '{}');
+            if (!progress[currentModule]) {
+                progress[currentModule] = {};
+            }
+            progress[currentModule].autoEvaluation = evaluation;
+            localStorage.setItem('funrevis-progress', JSON.stringify(progress));
+            
+            alert('Auto-évaluation sauvegardée !');
+        }
+
+        // Sauvegarde des progrès
+        function saveProgress() {
+            const progress = JSON.parse(localStorage.getItem('funrevis-progress') || '{}');
+            const totalQuestions = Object.keys(userAnswers).length;
+            const correctAnswers = Object.values(userAnswers).filter(answer => answer.correct).length;
+            
+            progress[currentModule] = {
+                score: correctAnswers,
+                total: totalQuestions,
+                date: new Date().toISOString(),
+                phases: Object.keys(modulesData[currentModule]).filter(key => key.startsWith('phase'))
+            };
+            
+            localStorage.setItem('funrevis-progress', JSON.stringify(progress));
+        }
+
+        // Affichage des progrès
+        function updateProgressDisplay() {
+            const progress = JSON.parse(localStorage.getItem('funrevis-progress') || '{}');
+            const progressDiv = document.getElementById('progress-content');
+            
+            if (Object.keys(progress).length === 0) {
+                progressDiv.innerHTML = '<p>Aucun progrès enregistré. Commencez par faire des exercices !</p>';
+                return;
+            }
+
+            let html = '<h3>📊 Vos résultats par module :</h3><div class="modules-grid">';
+            
+            for (const [module, data] of Object.entries(progress)) {
+                const moduleInfo = modulesData[module];
+                const percentage = data.total > 0 ? Math.round((data.score / data.total) * 100) : 0;
+                const emoji = moduleInfo ? moduleInfo.emoji : '📚';
+                const titre = moduleInfo ? moduleInfo.titre : module;
+                
+                html += `
+                    <div class="module-card">
+                        <h4>${emoji} ${titre}</h4>
+                        <p>Score: ${data.score}/${data.total} (${percentage}%)</p>
+                        <p>Date: ${new Date(data.date).toLocaleDateString()}</p>
+                        ${data.autoEvaluation ? '<p>✅ Auto-évaluation complétée</p>' : ''}
+                    </div>
+                `;
+            }
+            
+            html += '</div>';
+            progressDiv.innerHTML = html;
+        }
+
+        // Initialisation
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('FunRevis application complète démarrée');
+            handleURLParameters();
+            
+            // Sauvegarder automatiquement les progrès lors de la fermeture
+            window.addEventListener('beforeunload', saveProgress);
+        });
+    </script>
+</body>
+</html>

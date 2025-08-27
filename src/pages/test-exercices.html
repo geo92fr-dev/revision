@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🧪 Test du Système d'Exercices</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #667eea;
+            margin-bottom: 30px;
+        }
+        
+        .test-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            border-radius: 12px;
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+        }
+        
+        .test-result {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr auto;
+            gap: 15px;
+            align-items: center;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 8px;
+            background: white;
+            border: 1px solid #e9ecef;
+        }
+        
+        .test-result.success {
+            border-left: 4px solid #28a745;
+        }
+        
+        .test-result.error {
+            border-left: 4px solid #dc3545;
+        }
+        
+        .type-original {
+            font-weight: bold;
+            color: #495057;
+        }
+        
+        .type-normalized {
+            color: #667eea;
+        }
+        
+        .type-title {
+            color: #6c757d;
+            font-style: italic;
+        }
+        
+        .type-status {
+            font-size: 1.2em;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .stat-card {
+            text-align: center;
+            padding: 20px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        
+        .stat-number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .stat-label {
+            color: #6c757d;
+            margin-top: 5px;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: #e9ecef;
+            border-radius: 5px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #28a745, #20c997);
+            transition: width 0.3s ease;
+        }
+        
+        button {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: transform 0.2s ease;
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+        }
+        
+        .console-output {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Consolas', monospace;
+            white-space: pre-wrap;
+            max-height: 400px;
+            overflow-y: auto;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 Test de Robustesse du Système d'Exercices</h1>
+        
+        <div class="test-section">
+            <h2>📊 Statistiques</h2>
+            <div class="stats">
+                <div class="stat-card">
+                    <div class="stat-number" id="total-types">-</div>
+                    <div class="stat-label">Types testés</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="success-count">-</div>
+                    <div class="stat-label">Succès</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="error-count">-</div>
+                    <div class="stat-label">Erreurs</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="success-rate">-</div>
+                    <div class="stat-label">Taux de réussite</div>
+                </div>
+            </div>
+            
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill" style="width: 0%"></div>
+            </div>
+            
+            <button onclick="lancerTest()">🚀 Lancer le Test</button>
+        </div>
+        
+        <div class="test-section">
+            <h2>🔍 Résultats Détaillés</h2>
+            <div id="test-results"></div>
+        </div>
+        
+        <div class="test-section">
+            <h2>📝 Console</h2>
+            <div class="console-output" id="console-output"></div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { normalizeExerciceType, getExerciceRenderer, validateExerciceType, TOUS_LES_TYPES } from '../utils/exercice-types-complet.js';
+        
+        // Types trouvés dans l'analyse des modules
+        const TYPES_A_TESTER = [
+            'débutant', 'intermédiaire', 'avancé', 'saisie', 'calcul', 'rectangle', 'droite', 'tableau',
+            'qcm', 'exercice', 'auto-evaluation', 'conversion', 'conversion_masse', 'conversion_capacite',
+            'comparaison', 'probleme', 'decomposition', 'estimation', 'application', 'classement',
+            'lecture', 'placement', 'construction', 'reconnaissance', 'verification', 'mesure',
+            'representation', 'visuel', 'lecture_heure', 'lecture_simple', 'lecture_tableau', 
+            'lecture_barres', 'association', 'addition', 'soustraction', 'tableau_notes',
+            'tableau_horaires', 'tableau_double_entree', 'calcul_tableau', 'observation',
+            'graphique_barres', 'graphique_courbes', 'graphique_secteurs', 'pictogramme',
+            'interpretation', 'composition', 'vrai-faux', 'entrainement', 'activation',
+            'objectif', 'facilite', 'difficulte', 'utilite', 'strategie', 'comprehension',
+            'analyse', 'synthese', 'choix_unite'
+        ];
+        
+        // Rediriger console.log vers notre interface
+        const originalLog = console.log;
+        const consoleOutput = document.getElementById('console-output');
+        
+        console.log = function(...args) {
+            originalLog.apply(console, args);
+            consoleOutput.textContent += args.join(' ') + '\n';
+            consoleOutput.scrollTop = consoleOutput.scrollHeight;
+        };
+        
+        window.lancerTest = function() {
+            // Reset
+            consoleOutput.textContent = '';
+            document.getElementById('test-results').innerHTML = '';
+            
+            console.log('🧪 DÉBUT DU TEST DE ROBUSTESSE');
+            console.log('===============================');
+            
+            let testsReussis = 0;
+            let testsEchoues = 0;
+            const resultatsHTML = [];
+            
+            TYPES_A_TESTER.forEach((type, index) => {
+                try {
+                    const normalizedType = normalizeExerciceType(type);
+                    const renderer = getExerciceRenderer(type);
+                    const validation = validateExerciceType(type);
+                    
+                    const isSuccess = normalizedType && renderer && validation.isValid;
+                    
+                    if (isSuccess) {
+                        testsReussis++;
+                        console.log(`✅ ${type} → ${normalizedType} (${validation.title})`);
+                        
+                        resultatsHTML.push(`
+                            <div class="test-result success">
+                                <div class="type-original">${type}</div>
+                                <div class="type-normalized">${normalizedType}</div>
+                                <div class="type-title">${validation.title}</div>
+                                <div class="type-status">✅</div>
+                            </div>
+                        `);
+                    } else {
+                        testsEchoues++;
+                        console.log(`❌ ${type} → ÉCHEC`);
+                        
+                        resultatsHTML.push(`
+                            <div class="test-result error">
+                                <div class="type-original">${type}</div>
+                                <div class="type-normalized">${normalizedType || 'AUCUN'}</div>
+                                <div class="type-title">ÉCHEC</div>
+                                <div class="type-status">❌</div>
+                            </div>
+                        `);
+                    }
+                } catch (error) {
+                    testsEchoues++;
+                    console.log(`💥 ${type} → ERREUR: ${error.message}`);
+                    
+                    resultatsHTML.push(`
+                        <div class="test-result error">
+                            <div class="type-original">${type}</div>
+                            <div class="type-normalized">ERREUR</div>
+                            <div class="type-title">${error.message}</div>
+                            <div class="type-status">💥</div>
+                        </div>
+                    `);
+                }
+                
+                // Mise à jour progressive de l'interface
+                const progress = ((index + 1) / TYPES_A_TESTER.length) * 100;
+                document.getElementById('progress-fill').style.width = progress + '%';
+            });
+            
+            // Afficher les résultats
+            document.getElementById('test-results').innerHTML = resultatsHTML.join('');
+            
+            const tauxReussite = ((testsReussis / (testsReussis + testsEchoues)) * 100).toFixed(1);
+            
+            // Mettre à jour les statistiques
+            document.getElementById('total-types').textContent = TYPES_A_TESTER.length;
+            document.getElementById('success-count').textContent = testsReussis;
+            document.getElementById('error-count').textContent = testsEchoues;
+            document.getElementById('success-rate').textContent = tauxReussite + '%';
+            
+            console.log('\n📊 RÉSULTATS FINAUX');
+            console.log('==================');
+            console.log(`✅ Tests réussis: ${testsReussis}`);
+            console.log(`❌ Tests échoués: ${testsEchoues}`);
+            console.log(`📈 Taux de réussite: ${tauxReussite}%`);
+            console.log(`🎯 Types reconnus: ${Object.keys(TOUS_LES_TYPES).length}`);
+            console.log('\n🏆 TEST TERMINÉ!');
+        };
+        
+        // Informations initiales
+        console.log(`🎯 Système chargé avec ${Object.keys(TOUS_LES_TYPES).length} types reconnus`);
+        console.log(`📝 ${TYPES_A_TESTER.length} types à tester`);
+        console.log('▶️ Cliquez sur "Lancer le Test" pour commencer');
+    </script>
+</body>
+</html>

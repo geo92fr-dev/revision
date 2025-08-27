@@ -14,304 +14,63 @@
     <link rel="stylesheet" href="../../styles/v2-custom.css">
 </head>
 <body>
-    <div class="course-container">
-        <div class="course-header">
+    <button class="back-btn" onclick="window.history.back()">←</button>
+    
+    <div class="page-container">
+        <div class="page-header">
             <div class="breadcrumb">
-                <a href="../../index.html">🏠 Accueil</a> › 
-                <span>Mathématiques</span>
+                <a href="../../index.html">🏠 Accueil</a> → 
+                <span>📐 Mathématiques</span>
             </div>
-            <h1 class="course-title">📐 Mathématiques</h1>
-            <p class="course-subtitle">Explorez les concepts mathématiques de manière interactive</p>
+            <h1 class="page-title">📐 Mathématiques</h1>
+            <p class="page-subtitle">Explorez les concepts mathématiques de manière interactive</p>
         </div>
         
-        <div class="course-content">
-            <div class="subjects-grid">
-                <a href="6ieme/index.html" class="subject-card">
-                    <div class="subject-icon">🔢</div>
-                    <div class="subject-title">6ème - Fractions</div>
-                    <div class="subject-description">Comprendre et calculer avec les fractions</div>
-                </a>
-                
-                <a href="6ieme/index.html" class="subject-card">
-                    <div class="subject-icon">📐</div>
-                    <div class="subject-title">6ème - Géométrie</div>
-                    <div class="subject-description">Formes, angles et constructions</div>
-                </a>
-                
-                <a href="6ieme/index.html" class="subject-card">
-                    <div class="subject-icon">📊</div>
-                    <div class="subject-title">5ème - Équations</div>
-                    <div class="subject-description">Résoudre des équations simples</div>
-                </a>
-                
-                <a href="6ieme/index.html" class="subject-card">
-                    <div class="subject-icon">📈</div>
-                    <div class="subject-title">4ème - Fonctions</div>
-                    <div class="subject-description">Introduction aux fonctions linéaires</div>
-                </a>
-            </div>
-        </div>
-        
-        <div class="course-navigation">
-            <a href="../../index.html" class="btn btn-secondary">← Retour à l'accueil</a>
-            <a href="6ieme/index.html" class="btn btn-primary">Commencer →</a>
+        <div class="subjects-grid">
+            <a href="6ieme/index.html" class="subject-card">
+                <div class="subject-icon">📚</div>
+                <div class="subject-title">6ème</div>
+                <div class="subject-description">Programme complet de sixième</div>
+            </a>
+            
+            <a href="#" class="subject-card" style="opacity: 0.6; cursor: not-allowed;">
+                <div class="subject-icon">📚</div>
+                <div class="subject-title">5ème</div>
+                <div class="subject-description">Bientôt disponible</div>
+            </a>
+            
+            <a href="#" class="subject-card" style="opacity: 0.6; cursor: not-allowed;">
+                <div class="subject-icon">📚</div>
+                <div class="subject-title">4ème</div>
+                <div class="subject-description">Bientôt disponible</div>
+            </a>
+            
+            <a href="#" class="subject-card" style="opacity: 0.6; cursor: not-allowed;">
+                <div class="subject-icon">📚</div>
+                <div class="subject-title">3ème</div>
+                <div class="subject-description">Bientôt disponible</div>
+            </a>
         </div>
     </div>
-    
+
     <script>
         console.log('📐 Page Mathématiques V2 chargée');
         
-        // Animation des cartes au chargement
-        setTimeout(() => {
+        // Animation des cartes
+        document.addEventListener('DOMContentLoaded', function() {
             const cards = document.querySelectorAll('.subject-card');
+            
             cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                
                 setTimeout(() => {
-                    card.style.opacity = '1';
+                    card.style.transition = 'all 0.5s ease';
+                    card.style.opacity = card.style.opacity === '0.6' ? '0.6' : '1';
                     card.style.transform = 'translateY(0)';
-                }, index * 150);
+                }, index * 100);
             });
-        }, 300);
-    </script>
-</body>
-</html>
-        
-        .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 3rem 2rem;
-            text-align: center;
-        }
-        
-        .header h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-        
-        .header p {
-            font-size: 1.3rem;
-            opacity: 0.9;
-        }
-        
-        .breadcrumb {
-            padding: 1rem 2rem;
-            background: #f8fafc;
-            border-bottom: 1px solid #e5e7eb;
-        }
-        
-        .breadcrumb a {
-            color: #667eea;
-            text-decoration: none;
-        }
-        
-        .breadcrumb a:hover {
-            text-decoration: underline;
-        }
-        
-        .levels-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            padding: 2rem;
-        }
-        
-        .level-card {
-            background: white;
-            border-radius: 15px;
-            padding: 2rem;
-            border: 2px solid #e5e7eb;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            color: inherit;
-        }
-        
-        .level-card:hover {
-            transform: translateY(-5px);
-            border-color: #667eea;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-        }
-        
-        .level-icon {
-            font-size: 3rem;
-            text-align: center;
-            margin-bottom: 1rem;
-        }
-        
-        .level-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #2d3748;
-            text-align: center;
-            margin-bottom: 1rem;
-        }
-        
-        .level-description {
-            color: #6b7280;
-            text-align: center;
-            margin-bottom: 1.5rem;
-        }
-        
-        .topics-preview {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            justify-content: center;
-        }
-        
-        .topic-tag {
-            background: #f0f9ff;
-            color: #0369a1;
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 500;
-        }
-        
-        .back-button {
-            position: fixed;
-            top: 2rem;
-            left: 2rem;
-            background: rgba(255, 255, 255, 0.9);
-            border: none;
-            border-radius: 50px;
-            padding: 1rem 1.5rem;
-            font-weight: 600;
-            color: #667eea;
-            text-decoration: none;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-            transition: all 0.3s ease;
-        }
-        
-        .back-button:hover {
-            background: white;
-            transform: translateY(-2px);
-        }
-        
-        @media (max-width: 768px) {
-            .header h1 {
-                font-size: 2rem;
-            }
-            
-            .levels-grid {
-                grid-template-columns: 1fr;
-                padding: 1rem;
-            }
-            
-            .back-button {
-                position: static;
-                margin: 1rem;
-                display: inline-block;
-            }
-        }
-    </style>
-</head>
-<body>
-    <a href="../../index.html" class="back-button">← Accueil</a>
-    
-    <div class="container">
-        <div class="header">
-            <h1>📐 Mathématiques</h1>
-            <p>Explorez les concepts mathématiques de manière interactive</p>
-        </div>
-        
-        <div class="breadcrumb">
-            <a href="../../index.html">🏠 Accueil</a> › <strong>Mathématiques</strong>
-        </div>
-        
-        <div class="levels-grid" id="levelsGrid">
-            <!-- Contenu généré dynamiquement -->
-        </div>
-    </div>
-
-    <script type="module">
-        // Configuration des niveaux de mathématiques
-        const MATH_LEVELS = [
-            {
-                id: '6ieme',
-                title: 'Sixième',
-                icon: '🎯',
-                description: 'Découverte des bases : fractions, nombres entiers, géométrie',
-                topics: ['Fractions', 'Nombres entiers', 'Géométrie', 'Proportionnalité']
-            },
-            {
-                id: '5ieme',
-                title: 'Cinquième',
-                icon: '📊',
-                description: 'Approfondissement : nombres relatifs, expressions littérales',
-                topics: ['Nombres relatifs', 'Expressions', 'Statistiques', 'Géométrie']
-            },
-            {
-                id: '4ieme',
-                title: 'Quatrième',
-                icon: '📈',
-                description: 'Progression : équations, fonctions, théorème de Pythagore',
-                topics: ['Équations', 'Fonctions', 'Pythagore', 'Probabilités']
-            },
-            {
-                id: '3ieme',
-                title: 'Troisième',
-                icon: '🎓',
-                description: 'Préparation au brevet : fonctions, trigonométrie, PGCD',
-                topics: ['Fonctions', 'Trigonométrie', 'PGCD', 'Sections']
-            },
-            {
-                id: 'seconde',
-                title: 'Seconde',
-                icon: '🔬',
-                description: 'Lycée : fonctions de référence, vecteurs, statistiques',
-                topics: ['Fonctions', 'Vecteurs', 'Statistiques', 'Probabilités']
-            },
-            {
-                id: 'premiere',
-                title: 'Première',
-                icon: '⚡',
-                description: 'Spécialisation : dérivées, suites, produit scalaire',
-                topics: ['Dérivées', 'Suites', 'Produit scalaire', 'Probabilités']
-            }
-        ];
-
-        class MathematicsIndex {
-            constructor() {
-                this.init();
-            }
-            
-            init() {
-                console.log('📐 Initialisation de l\'index Mathématiques');
-                this.renderLevels();
-                this.setupAnalytics();
-            }
-            
-            renderLevels() {
-                const levelsGrid = document.getElementById('levelsGrid');
-                
-                levelsGrid.innerHTML = MATH_LEVELS.map(level => `
-                    <a href="${level.id}/index.html" class="level-card" data-level="${level.id}">
-                        <div class="level-icon">${level.icon}</div>
-                        <div class="level-title">${level.title}</div>
-                        <div class="level-description">${level.description}</div>
-                        <div class="topics-preview">
-                            ${level.topics.map(topic => `
-                                <span class="topic-tag">${topic}</span>
-                            `).join('')}
-                        </div>
-                    </a>
-                `).join('');
-                
-                console.log(`✅ ${MATH_LEVELS.length} niveaux de mathématiques affichés`);
-            }
-            
-            setupAnalytics() {
-                // Tracking des clics sur les niveaux
-                document.querySelectorAll('.level-card').forEach(card => {
-                    card.addEventListener('click', (e) => {
-                        const level = e.currentTarget.dataset.level;
-                        console.log(`📊 Navigation vers niveau: ${level}`);
-                    });
-                });
-            }
-        }
-        
-        // Initialisation
-        new MathematicsIndex();
+        });
     </script>
 </body>
 </html>

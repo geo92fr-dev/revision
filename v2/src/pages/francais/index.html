@@ -14,19 +14,66 @@
     <link rel="stylesheet" href="../../styles/v2-custom.css">
 </head>
 <body>
-    <div class="course-container">
-        <div class="course-header">
+    <button class="back-btn" onclick="window.history.back()">←</button>
+    
+    <div class="page-container">
+        <div class="page-header">
             <div class="breadcrumb">
-                <a href="../../index.html">🏠 Accueil</a> › 
-                <span>Français</span>
+                <a href="../../index.html">🏠 Accueil</a> → 
+                <span>📝 Français</span>
             </div>
-            <h1 class="course-title">📝 Français</h1>
-            <p class="course-subtitle">Maîtrisez la langue française avec nos exercices interactifs</p>
+            <h1 class="page-title">📝 Français</h1>
+            <p class="page-subtitle">Maîtrisez la langue française avec nos exercices interactifs</p>
         </div>
         
-        <div class="course-content">
-            <div class="subjects-grid">
-                <a href="../page_de_cours_v2.html?subject=francais&level=6ieme&topic=grammaire" class="subject-card">
+        <div class="subjects-grid">
+            <a href="#" class="subject-card" style="opacity: 0.6; cursor: not-allowed;">
+                <div class="subject-icon">📚</div>
+                <div class="subject-title">6ème</div>
+                <div class="subject-description">Bientôt disponible</div>
+            </a>
+            
+            <a href="#" class="subject-card" style="opacity: 0.6; cursor: not-allowed;">
+                <div class="subject-icon">📚</div>
+                <div class="subject-title">5ème</div>
+                <div class="subject-description">Bientôt disponible</div>
+            </a>
+            
+            <a href="#" class="subject-card" style="opacity: 0.6; cursor: not-allowed;">
+                <div class="subject-icon">📚</div>
+                <div class="subject-title">4ème</div>
+                <div class="subject-description">Bientôt disponible</div>
+            </a>
+            
+            <a href="#" class="subject-card" style="opacity: 0.6; cursor: not-allowed;">
+                <div class="subject-icon">📚</div>
+                <div class="subject-title">3ème</div>
+                <div class="subject-description">Bientôt disponible</div>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        console.log('📝 Page Français V2 chargée');
+        
+        // Animation des cartes
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.subject-card');
+            
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    card.style.transition = 'all 0.5s ease';
+                    card.style.opacity = '0.6';
+                    card.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+        });
+    </script>
+</body>
+</html>
                     <div class="subject-icon">📚</div>
                     <div class="subject-title">6ème - Grammaire</div>
                     <div class="subject-description">Les bases de la grammaire française</div>

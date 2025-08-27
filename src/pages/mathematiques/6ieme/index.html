@@ -578,6 +578,79 @@
 
         // Charger les descriptions au chargement de la page
         document.addEventListener('DOMContentLoaded', loadTopicDescriptions);
+        
+        // 🚀 NOUVELLE ARCHITECTURE MODULAIRE - Code additionnel
+        import { navigationManager } from '../../../components/NavigationManager.js';
+        import { moduleLoader } from '../../../components/ModuleLoader.js';
+
+        // Amélioration des cartes avec la nouvelle architecture
+        function enhanceModuleCards() {
+            const moduleCards = document.querySelectorAll('.topic-card');
+            
+            moduleCards.forEach(card => {
+                const topic = card.getAttribute('data-topic');
+                if (topic) {
+                    // Mise à jour du lien avec NavigationManager
+                    const courseUrl = navigationManager.generateCourseUrl(
+                        'mathematiques', 
+                        '6ieme', 
+                        topic,
+                        '../page_de_cours.html'
+                    );
+                    
+                    card.addEventListener('click', () => {
+                        window.location.href = courseUrl;
+                    });
+                }
+            });
+        }
+
+        // Vérification de disponibilité avec ModuleLoader
+        async function checkAndUpdateAvailability() {
+            const moduleCards = document.querySelectorAll('.topic-card');
+            
+            for (const card of moduleCards) {
+                const topic = card.getAttribute('data-topic');
+                if (topic) {
+                    try {
+                        const moduleData = await moduleLoader.loadModule('mathematiques', '6ieme', topic);
+                        const isValid = moduleLoader.validateModuleData(moduleData);
+                        
+                        if (isValid) {
+                            card.classList.add('module-available');
+                            const statusElement = card.querySelector('.topic-status');
+                            if (statusElement) {
+                                statusElement.textContent = 'Disponible';
+                                statusElement.style.color = '#10b981';
+                            }
+                        }
+                    } catch (error) {
+                        console.log(`Module ${topic} non disponible:`, error.message);
+                        card.classList.add('module-coming-soon');
+                        const statusElement = card.querySelector('.topic-status');
+                        if (statusElement) {
+                            statusElement.textContent = 'En développement';
+                            statusElement.style.color = '#f59e0b';
+                        }
+                    }
+                }
+            }
+        }
+
+        // Initialisation améliorée
+        document.addEventListener('DOMContentLoaded', async () => {
+            // Fonctionnalités existantes
+            loadTopicDescriptions();
+            
+            // Nouvelles fonctionnalités modulaires
+            enhanceModuleCards();
+            await checkAndUpdateAvailability();
+            
+            // Exposer navigationManager globalement
+            window.navigationManager = navigationManager;
+            
+            console.log('✅ Page mathématiques 6ème initialisée avec architecture modulaire');
+        });
     </script>
 </body>
 </html>

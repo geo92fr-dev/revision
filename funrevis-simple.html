@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FunRevis - Plateforme d'apprentissage</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 2rem;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .main-content {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+        }
+
+        .navigation {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .nav-card {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-decoration: none;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .nav-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .nav-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .module-card {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 10px;
+            padding: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .module-card:hover {
+            background: #e9ecef;
+            transform: translateY(-2px);
+        }
+
+        .module-card.active {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .exercise-area {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 2rem;
+            margin-top: 2rem;
+            min-height: 400px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            margin: 0.5rem;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .exercise-content {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-top: 1rem;
+        }
+
+        .question {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .answers {
+            display: grid;
+            gap: 0.5rem;
+        }
+
+        .answer {
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            padding: 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .answer:hover {
+            background: #e9ecef;
+            border-color: #667eea;
+        }
+
+        .answer.selected {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        .answer.correct {
+            background: #28a745;
+            color: white;
+            border-color: #28a745;
+        }
+
+        .answer.incorrect {
+            background: #dc3545;
+            color: white;
+            border-color: #dc3545;
+        }
+
+        .explanation {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+
+        .score {
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎓 FunRevis</h1>
+            <p>Plateforme d'apprentissage interactive - Mathématiques 6ème</p>
+        </div>
+
+        <div class="main-content">
+            <!-- Navigation principale -->
+            <div id="main-nav" class="navigation">
+                <div class="nav-card" onclick="showMathModules()">
+                    <h3>📚 Mathématiques 6ème</h3>
+                    <p>Nombres, calculs, géométrie, statistiques</p>
+                </div>
+                <div class="nav-card" onclick="showQuiz()">
+                    <h3>🎯 Quiz Interactifs</h3>
+                    <p>Testez vos connaissances avec des quiz</p>
+                </div>
+                <div class="nav-card" onclick="showProgress()">
+                    <h3>📊 Suivi des Progrès</h3>
+                    <p>Visualisez votre progression</p>
+                </div>
+            </div>
+
+            <!-- Section des modules de mathématiques -->
+            <div id="math-modules" class="hidden">
+                <h2>📚 Modules de Mathématiques 6ème</h2>
+                <button class="btn" onclick="showMainNav()">← Retour</button>
+                
+                <div class="modules-grid">
+                    <div class="module-card" onclick="loadModule('nombres-entiers')">
+                        <h4>🔢 Nombres Entiers</h4>
+                        <p>Comparaison, ordre, opérations</p>
+                    </div>
+                    <div class="module-card" onclick="loadModule('fractions')">
+                        <h4>🍕 Fractions</h4>
+                        <p>Fractions simples, équivalences</p>
+                    </div>
+                    <div class="module-card" onclick="loadModule('nombres-decimaux')">
+                        <h4>🎯 Nombres Décimaux</h4>
+                        <p>Écriture, comparaison, calculs</p>
+                    </div>
+                    <div class="module-card" onclick="loadModule('geometrie')">
+                        <h4>📐 Géométrie</h4>
+                        <p>Figures, périmètres, aires</p>
+                    </div>
+                    <div class="module-card" onclick="loadModule('proportionnalite')">
+                        <h4>⚖️ Proportionnalité</h4>
+                        <p>Tableaux, graphiques, échelles</p>
+                    </div>
+                    <div class="module-card" onclick="loadModule('statistiques')">
+                        <h4>📊 Statistiques</h4>
+                        <p>Graphiques, moyennes, données</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Zone d'exercices -->
+            <div id="exercise-area" class="exercise-area hidden">
+                <div id="exercise-header">
+                    <button class="btn" onclick="showMathModules()">← Retour aux modules</button>
+                    <h2 id="module-title">Module de Mathématiques</h2>
+                </div>
+                
+                <div id="exercise-content" class="exercise-content">
+                    <!-- Le contenu des exercices sera inséré ici -->
+                </div>
+                
+                <div class="score" id="score-display">Score: 0/0</div>
+            </div>
+
+            <!-- Section Quiz -->
+            <div id="quiz-section" class="hidden">
+                <h2>🎯 Quiz Interactifs</h2>
+                <button class="btn" onclick="showMainNav()">← Retour</button>
+                <p>Choisissez un module pour commencer un quiz :</p>
+                
+                <div class="modules-grid">
+                    <div class="module-card" onclick="startQuiz('nombres-entiers')">
+                        <h4>Quiz Nombres Entiers</h4>
+                        <p>10 questions sur les nombres entiers</p>
+                    </div>
+                    <div class="module-card" onclick="startQuiz('fractions')">
+                        <h4>Quiz Fractions</h4>
+                        <p>10 questions sur les fractions</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section Progrès -->
+            <div id="progress-section" class="hidden">
+                <h2>📊 Suivi des Progrès</h2>
+                <button class="btn" onclick="showMainNav()">← Retour</button>
+                <div id="progress-content">
+                    <p>Vos résultats seront affichés ici après avoir complété des exercices.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Données des exercices (version simplifiée)
+        const exercisesData = {
+            'nombres-entiers': [
+                {
+                    question: "Quel est le plus grand nombre parmi ces nombres ?",
+                    answers: ["145", "150", "105", "160"],
+                    correct: 3,
+                    explanation: "160 est le plus grand car 160 > 150 > 145 > 105"
+                },
+                {
+                    question: "Quel est le résultat de 125 + 347 ?",
+                    answers: ["462", "472", "482", "492"],
+                    correct: 1,
+                    explanation: "125 + 347 = 472"
+                },
+                {
+                    question: "Comment s'écrit 2 milliers, 3 centaines et 5 unités ?",
+                    answers: ["2350", "2305", "2035", "2530"],
+                    correct: 1,
+                    explanation: "2 milliers = 2000, 3 centaines = 300, 5 unités = 5. Total : 2305"
+                }
+            ],
+            'fractions': [
+                {
+                    question: "Quelle fraction est égale à 1/2 ?",
+                    answers: ["2/4", "3/5", "1/3", "2/3"],
+                    correct: 0,
+                    explanation: "2/4 = 1/2 car 2 ÷ 4 = 0,5 et 1 ÷ 2 = 0,5"
+                },
+                {
+                    question: "Combien vaut 3/4 en décimal ?",
+                    answers: ["0,25", "0,75", "0,34", "0,43"],
+                    correct: 1,
+                    explanation: "3/4 = 3 ÷ 4 = 0,75"
+                }
+            ],
+            'nombres-decimaux': [
+                {
+                    question: "Quel est le plus grand nombre décimal ?",
+                    answers: ["1,45", "1,5", "1,055", "1,6"],
+                    correct: 3,
+                    explanation: "1,6 est le plus grand car 1,6 > 1,5 > 1,45 > 1,055"
+                }
+            ],
+            'geometrie': [
+                {
+                    question: "Combien de côtés a un hexagone ?",
+                    answers: ["5", "6", "7", "8"],
+                    correct: 1,
+                    explanation: "Un hexagone a 6 côtés (hexa = six en grec)"
+                }
+            ],
+            'proportionnalite': [
+                {
+                    question: "Si 3 pommes coûtent 2€, combien coûtent 6 pommes ?",
+                    answers: ["3€", "4€", "5€", "6€"],
+                    correct: 1,
+                    explanation: "Si 3 pommes = 2€, alors 6 pommes = 2 × 2€ = 4€"
+                }
+            ],
+            'statistiques': [
+                {
+                    question: "Quelle est la moyenne de 10, 15 et 20 ?",
+                    answers: ["12", "15", "18", "20"],
+                    correct: 1,
+                    explanation: "Moyenne = (10 + 15 + 20) ÷ 3 = 45 ÷ 3 = 15"
+                }
+            ]
+        };
+
+        let currentModule = '';
+        let currentExercise = 0;
+        let score = 0;
+        let answered = false;
+
+        // Gestion de l'URL pour le chargement direct de modules
+        function handleURLParameters() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const moduleParam = urlParams.get('module');
+            
+            if (moduleParam) {
+                // Exemple: mathematiques-6ieme-nombres-entiers
+                if (moduleParam.startsWith('mathematiques-6ieme-')) {
+                    const moduleName = moduleParam.replace('mathematiques-6ieme-', '');
+                    showMathModules();
+                    setTimeout(() => loadModule(moduleName), 100);
+                }
+            }
+        }
+
+        // Navigation
+        function showMainNav() {
+            hideAllSections();
+            document.getElementById('main-nav').classList.remove('hidden');
+        }
+
+        function showMathModules() {
+            hideAllSections();
+            document.getElementById('math-modules').classList.remove('hidden');
+        }
+
+        function showQuiz() {
+            hideAllSections();
+            document.getElementById('quiz-section').classList.remove('hidden');
+        }
+
+        function showProgress() {
+            hideAllSections();
+            document.getElementById('progress-section').classList.remove('hidden');
+            updateProgressDisplay();
+        }
+
+        function hideAllSections() {
+            const sections = ['main-nav', 'math-modules', 'exercise-area', 'quiz-section', 'progress-section'];
+            sections.forEach(id => {
+                document.getElementById(id).classList.add('hidden');
+            });
+        }
+
+        // Chargement des modules
+        function loadModule(moduleName) {
+            currentModule = moduleName;
+            currentExercise = 0;
+            score = 0;
+            answered = false;
+
+            hideAllSections();
+            document.getElementById('exercise-area').classList.remove('hidden');
+            
+            const moduleTitle = document.getElementById('module-title');
+            moduleTitle.textContent = `Module: ${moduleName.replace('-', ' ').toUpperCase()}`;
+            
+            if (exercisesData[moduleName]) {
+                loadExercise(moduleName, 0);
+            } else {
+                document.getElementById('exercise-content').innerHTML = `
+                    <div class="exercise-content">
+                        <h3>Module en cours de développement</h3>
+                        <p>Le module "${moduleName}" sera bientôt disponible.</p>
+                        <p>Pour l'instant, essayez les modules suivants :</p>
+                        <ul>
+                            <li>nombres-entiers</li>
+                            <li>fractions</li>
+                            <li>nombres-decimaux</li>
+                        </ul>
+                    </div>
+                `;
+            }
+        }
+
+        function loadExercise(moduleName, exerciseIndex) {
+            const exercises = exercisesData[moduleName];
+            if (!exercises || exerciseIndex >= exercises.length) {
+                showCompletionMessage();
+                return;
+            }
+
+            const exercise = exercises[exerciseIndex];
+            answered = false;
+
+            const content = `
+                <div class="question">
+                    Question ${exerciseIndex + 1}/${exercises.length}: ${exercise.question}
+                </div>
+                <div class="answers">
+                    ${exercise.answers.map((answer, index) => `
+                        <div class="answer" onclick="selectAnswer(${index})">
+                            ${answer}
+                        </div>
+                    `).join('')}
+                </div>
+                <div id="explanation" class="explanation hidden"></div>
+                <button id="next-btn" class="btn hidden" onclick="nextExercise()">Exercice suivant</button>
+            `;
+
+            document.getElementById('exercise-content').innerHTML = content;
+            updateScoreDisplay();
+        }
+
+        function selectAnswer(selectedIndex) {
+            if (answered) return;
+
+            const exercises = exercisesData[currentModule];
+            const exercise = exercises[currentExercise];
+            const answers = document.querySelectorAll('.answer');
+            
+            answered = true;
+
+            answers.forEach((answer, index) => {
+                if (index === exercise.correct) {
+                    answer.classList.add('correct');
+                } else if (index === selectedIndex && index !== exercise.correct) {
+                    answer.classList.add('incorrect');
+                } else if (index === selectedIndex) {
+                    answer.classList.add('selected');
+                }
+            });
+
+            if (selectedIndex === exercise.correct) {
+                score++;
+            }
+
+            // Afficher l'explication
+            const explanationDiv = document.getElementById('explanation');
+            explanationDiv.textContent = exercise.explanation;
+            explanationDiv.classList.remove('hidden');
+
+            // Afficher le bouton suivant
+            document.getElementById('next-btn').classList.remove('hidden');
+            
+            updateScoreDisplay();
+        }
+
+        function nextExercise() {
+            currentExercise++;
+            loadExercise(currentModule, currentExercise);
+        }
+
+        function updateScoreDisplay() {
+            const exercises = exercisesData[currentModule];
+            const total = exercises ? exercises.length : 0;
+            document.getElementById('score-display').textContent = `Score: ${score}/${total}`;
+        }
+
+        function showCompletionMessage() {
+            const exercises = exercisesData[currentModule];
+            const total = exercises.length;
+            const percentage = Math.round((score / total) * 100);
+
+            const content = `
+                <div class="exercise-content">
+                    <h3>🎉 Module terminé !</h3>
+                    <p>Votre score final : ${score}/${total} (${percentage}%)</p>
+                    <div class="score">
+                        ${percentage >= 80 ? '🎯 Excellent travail !' : 
+                          percentage >= 60 ? '👍 Bon travail !' : 
+                          '💪 Continuez vos efforts !'}
+                    </div>
+                    <button class="btn" onclick="loadModule('${currentModule}')">🔄 Recommencer</button>
+                    <button class="btn" onclick="showMathModules()">📚 Autres modules</button>
+                </div>
+            `;
+
+            document.getElementById('exercise-content').innerHTML = content;
+            
+            // Sauvegarder le progrès
+            saveProgress(currentModule, score, total);
+        }
+
+        function startQuiz(moduleName) {
+            loadModule(moduleName);
+        }
+
+        function saveProgress(module, score, total) {
+            const progress = JSON.parse(localStorage.getItem('funrevis-progress') || '{}');
+            progress[module] = { score, total, date: new Date().toISOString() };
+            localStorage.setItem('funrevis-progress', JSON.stringify(progress));
+        }
+
+        function updateProgressDisplay() {
+            const progress = JSON.parse(localStorage.getItem('funrevis-progress') || '{}');
+            const progressDiv = document.getElementById('progress-content');
+            
+            if (Object.keys(progress).length === 0) {
+                progressDiv.innerHTML = '<p>Aucun progrès enregistré. Commencez par faire des exercices !</p>';
+                return;
+            }
+
+            let html = '<h3>Vos résultats :</h3>';
+            for (const [module, data] of Object.entries(progress)) {
+                const percentage = Math.round((data.score / data.total) * 100);
+                html += `
+                    <div class="module-card">
+                        <h4>${module.replace('-', ' ').toUpperCase()}</h4>
+                        <p>Score: ${data.score}/${data.total} (${percentage}%)</p>
+                        <p>Date: ${new Date(data.date).toLocaleDateString()}</p>
+                    </div>
+                `;
+            }
+            progressDiv.innerHTML = html;
+        }
+
+        // Initialisation
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('FunRevis application démarrée');
+            handleURLParameters();
+        });
+    </script>
+</body>
+</html>

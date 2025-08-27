@@ -25,6 +25,21 @@ function App() {
     return () => unsubscribe()
   }, [])
 
+  // Gestion des paramètres URL pour le chargement direct de modules
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search)
+    const moduleParam = urlParams.get('module')
+    
+    if (moduleParam) {
+      // Si un module est spécifié dans l'URL, on va directement aux révisions
+      // et on simule un utilisateur connecté pour bypasser l'authentification
+      if (!user) {
+        setUser({ email: 'demo@funrevis.com', uid: 'demo-user' })
+      }
+      setCurrentView('revisions')
+    }
+  }, [user])
+
   const [currentQuizSubject, setCurrentQuizSubject] = useState('');
   const [currentQuizLevel, setCurrentQuizLevel] = useState('');
 

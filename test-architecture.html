@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Architecture Modulaire - FunRevis</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: #f7fafc;
+        }
+        
+        .test-section {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 1rem 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .test-result {
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            margin: 0.5rem 0;
+            font-family: monospace;
+        }
+        
+        .success { background: #d1fae5; color: #065f46; }
+        .error { background: #fee2e2; color: #991b1b; }
+        .info { background: #dbeafe; color: #1e40af; }
+        
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            margin: 0.5rem;
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+        
+        .module-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .module-test {
+            padding: 1rem;
+            border-radius: 8px;
+            border: 2px solid #e5e7eb;
+            text-align: center;
+        }
+        
+        .module-test.loading { border-color: #3b82f6; background: #eff6ff; }
+        .module-test.success { border-color: #10b981; background: #ecfdf5; }
+        .module-test.error { border-color: #ef4444; background: #fef2f2; }
+    </style>
+</head>
+<body>
+    <h1>🧪 Test Architecture Modulaire FunRevis</h1>
+    
+    <div class="test-section">
+        <h2>📦 Test des Composants Modulaires</h2>
+        <button onclick="testComponents()">Tester les Composants</button>
+        <div id="componentsResults"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>🔢 Test Modules Mathématiques 6ème</h2>
+        <button onclick="testMathModules()">Tester tous les Modules</button>
+        <div id="modulesGrid" class="module-grid"></div>
+        <div id="modulesResults"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>🧭 Test Navigation</h2>
+        <button onclick="testNavigation()">Tester la Navigation</button>
+        <div id="navigationResults"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>🎯 Test Complet</h2>
+        <button onclick="runAllTests()">Lancer tous les Tests</button>
+        <div id="allTestsResults"></div>
+    </div>
+
+    <script type="module">
+        import { moduleLoader } from './src/components/ModuleLoader.js';
+        import { courseRenderer } from './src/components/CourseRenderer.js';
+        import { navigationManager } from './src/components/NavigationManager.js';
+
+        // Liste des modules à tester
+        const mathModules = [
+            'nombres-entiers', 'nombres-decimaux', 'fractions', 'addition-soustraction',
+            'multiplication', 'division', 'proportionnalite', 'pourcentages',
+            'figures-planes', 'perimetre', 'aires-figures', 'geometrie-avancee',
+            'unites-longueur', 'unites-masse-capacite', 'durees', 'lecture-tableaux',
+            'graphiques', 'moyenne', 'algebre', 'symetrie-axiale',
+            'constructions-geometriques', 'fractions-simples'
+        ];
+
+        // Test des composants
+        window.testComponents = async function() {
+            const results = document.getElementById('componentsResults');
+            results.innerHTML = '<div class="test-result info">🔄 Test des composants en cours...</div>';
+            
+            const tests = [
+                { name: 'ModuleLoader', component: moduleLoader, method: 'getCacheStats' },
+                { name: 'CourseRenderer', component: courseRenderer, method: 'getStatus' },
+                { name: 'NavigationManager', component: navigationManager, method: 'getCurrentNavInfo' }
+            ];
+            
+            let html = '';
+            for (const test of tests) {
+                try {
+                    const result = test.component[test.method]();
+                    html += `<div class="test-result success">✅ ${test.name}: OK</div>`;
+                } catch (error) {
+                    html += `<div class="test-result error">❌ ${test.name}: ${error.message}</div>`;
+                }
+            }
+            
+            results.innerHTML = html;
+        };
+
+        // Test des modules mathématiques
+        window.testMathModules = async function() {
+            const grid = document.getElementById('modulesGrid');
+            const results = document.getElementById('modulesResults');
+            
+            results.innerHTML = '<div class="test-result info">🔄 Test des modules en cours...</div>';
+            
+            // Initialiser la grille
+            grid.innerHTML = mathModules.map(module => `
+                <div class="module-test loading" id="test-${module}">
+                    <div><strong>${module}</strong></div>
+                    <div>⏳ Test...</div>
+                </div>
+            `).join('');
+            
+            let successCount = 0;
+            let errorCount = 0;
+            
+            for (const module of mathModules) {
+                const testDiv = document.getElementById(`test-${module}`);
+                try {
+                    const data = await moduleLoader.loadModule('mathematiques', '6ieme', module);
+                    const isValid = moduleLoader.validateModuleData(data);
+                    
+                    if (isValid) {
+                        testDiv.className = 'module-test success';
+                        testDiv.innerHTML = `
+                            <div><strong>${module}</strong></div>
+                            <div>✅ OK</div>
+                        `;
+                        successCount++;
+                    } else {
+                        testDiv.className = 'module-test error';
+                        testDiv.innerHTML = `
+                            <div><strong>${module}</strong></div>
+                            <div>⚠️ Invalide</div>
+                        `;
+                        errorCount++;
+                    }
+                } catch (error) {
+                    testDiv.className = 'module-test error';
+                    testDiv.innerHTML = `
+                        <div><strong>${module}</strong></div>
+                        <div>❌ Erreur</div>
+                    `;
+                    errorCount++;
+                }
+            }
+            
+            results.innerHTML = `
+                <div class="test-result ${errorCount === 0 ? 'success' : 'info'}">
+                    📊 Résultats: ${successCount} réussis, ${errorCount} échecs sur ${mathModules.length} modules
+                </div>
+            `;
+        };
+
+        // Test de navigation
+        window.testNavigation = async function() {
+            const results = document.getElementById('navigationResults');
+            results.innerHTML = '<div class="test-result info">🔄 Test de navigation en cours...</div>';
+            
+            const tests = [
+                {
+                    name: 'Génération URL',
+                    test: () => {
+                        const url = navigationManager.generateCourseUrl('mathematiques', '6ieme', 'fractions');
+                        return url.includes('subject=mathematiques') && url.includes('level=6ieme') && url.includes('topic=fractions');
+                    }
+                },
+                {
+                    name: 'Format nom matière',
+                    test: () => navigationManager.formatSubjectName('mathematiques') === 'Mathématiques'
+                },
+                {
+                    name: 'Format niveau',
+                    test: () => navigationManager.formatLevelName('6ieme') === '6ème'
+                },
+                {
+                    name: 'Breadcrumb generation',
+                    test: () => {
+                        const breadcrumb = navigationManager.generateBreadcrumb();
+                        return typeof breadcrumb === 'string';
+                    }
+                }
+            ];
+            
+            let html = '';
+            let allPassed = true;
+            
+            for (const test of tests) {
+                try {
+                    const passed = test.test();
+                    if (passed) {
+                        html += `<div class="test-result success">✅ ${test.name}: Réussi</div>`;
+                    } else {
+                        html += `<div class="test-result error">❌ ${test.name}: Échec</div>`;
+                        allPassed = false;
+                    }
+                } catch (error) {
+                    html += `<div class="test-result error">❌ ${test.name}: ${error.message}</div>`;
+                    allPassed = false;
+                }
+            }
+            
+            html += `<div class="test-result ${allPassed ? 'success' : 'error'}">
+                ${allPassed ? '🎉 Tous les tests de navigation réussis !' : '⚠️ Certains tests ont échoué'}
+            </div>`;
+            
+            results.innerHTML = html;
+        };
+
+        // Lancer tous les tests
+        window.runAllTests = async function() {
+            const results = document.getElementById('allTestsResults');
+            results.innerHTML = '<div class="test-result info">🔄 Lancement de tous les tests...</div>';
+            
+            await testComponents();
+            await testMathModules();
+            await testNavigation();
+            
+            results.innerHTML = '<div class="test-result success">🎉 Tous les tests terminés ! Consultez les sections ci-dessus.</div>';
+        };
+
+        // Exposer globalement pour utilisation depuis la console
+        window.moduleLoader = moduleLoader;
+        window.courseRenderer = courseRenderer;
+        window.navigationManager = navigationManager;
+        
+        console.log('🧪 Page de test prête ! Utilisez les boutons ou les fonctions window.testX() depuis la console.');
+    </script>
+</body>
+</html>

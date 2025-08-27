@@ -35,6 +35,40 @@
     border-left: 4px solid #9f7aea;
 }
 
+/* En-tête des exercices avec type */
+.exercise-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+    padding: 8px 12px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 8px;
+    border: 1px solid rgba(102, 126, 234, 0.2);
+}
+
+.exercise-type-icon {
+    font-size: 1.2em;
+    min-width: 24px;
+}
+
+.exercise-type-title {
+    font-weight: 600;
+    color: #2d3748;
+    font-size: 0.9em;
+}
+
+/* Debug info pour développement */
+.exercise-debug {
+    margin-top: 8px;
+    padding: 4px 8px;
+    background: #f7fafc;
+    border-left: 3px solid #e2e8f0;
+    font-size: 0.8em;
+    color: #718096;
+    font-family: monospace;
+}
+
 /* Exercices interactifs */
 .exercice-interactif {
     margin-top: 15px;
@@ -42,6 +76,80 @@
     background: rgba(255, 255, 255, 0.7);
     border-radius: 12px;
     border: 2px dashed rgba(0, 0, 0, 0.1);
+}
+
+.exercise-interactive {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 12px;
+    padding: 16px;
+    border: 1px solid rgba(102, 126, 234, 0.2);
+}
+
+/* Styles spécifiques par type d'exercice */
+.qcm-exercise .qcm-choices {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.qcm-choice {
+    padding: 12px 16px;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    background: white;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: left;
+}
+
+.qcm-choice:hover {
+    border-color: #667eea;
+    background: #f7fafc;
+    transform: translateX(4px);
+}
+
+.qcm-choice.selected {
+    border-color: #667eea;
+    background: #edf2f7;
+}
+
+.vrai-faux-exercise .true-false-buttons {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+}
+
+.tf-choice {
+    padding: 12px 24px;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    background: white;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    min-width: 100px;
+}
+
+.tf-choice:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.tf-choice[data-choice="vrai"]:hover {
+    border-color: #48bb78;
+    color: #48bb78;
+}
+
+.tf-choice[data-choice="faux"]:hover {
+    border-color: #f56565;
+    color: #f56565;
+}
+
+.tableau-exercise .tableau-container {
+    background: #f8f9fa;
+    padding: 16px;
+    border-radius: 8px;
+    border: 1px solid #e9ecef;
 }
 
 .rectangle-grid {

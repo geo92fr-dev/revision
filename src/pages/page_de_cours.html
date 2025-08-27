@@ -1181,6 +1181,11 @@
     </div>
 
     <script type="module">
+        // 🚀 Imports modulaires
+        import { moduleLoader } from '../components/ModuleLoader.js';
+        import { courseRenderer } from '../components/CourseRenderer.js';
+        import { navigationManager } from '../components/NavigationManager.js';
+        
         // Variables globales
         let courseData = null;
         let preTestAnswers = {};
@@ -1199,7 +1204,7 @@
         let challengeTimer;
         let timeLeft = 30;
 
-        // Fonction pour charger un cours à partir d'un paramètre URL
+        // 🎯 Fonction principale de chargement de cours (VERSION MODULAIRE)
         async function loadCourse() {
             try {
                 console.log('🚀 Démarrage du chargement du cours...');
@@ -1213,13 +1218,64 @@
                 console.log('📋 Paramètres URL:', { subject, level, topic });
                 
                 if (subject && level && topic) {
-                    // Système avec paramètres structurés
-                    await loadCourseByParams(subject, level, topic);
+                    console.log('🎯 Paramètres structurés détectés:', { subject, level, topic });
+
+                    // 🚀 Utilisation du ModuleLoader modulaire
+                    console.log('📦 Chargement du module via ModuleLoader...');
+                    const rawModuleData = await moduleLoader.loadModule(subject, level, topic);
+                    
+                    // Validation des données
+                    if (!moduleLoader.validateModuleData(rawModuleData)) {
+                        throw new Error('Données de module invalides');
+                    }
+                    
+                    // Normalisation des données
+                    const normalizedData = moduleLoader.normalizeModuleData(rawModuleData);
+                    console.log('🔄 Données normalisées:', normalizedData);
+                    
+                    // 🎨 Rendu avec le CourseRenderer modulaire
+                    console.log('🎭 Rendu du cours via CourseRenderer...');
+                    await courseRenderer.renderCourse(normalizedData);
+                    
+                    // Stocker les données pour les composants
+                    courseData = normalizedData;
+                    
+                    console.log('✅ Cours chargé avec succès via l\'architecture modulaire!');
                 } else {
-                    // Par défaut, charger les fractions
+                    // Par défaut, charger les fractions avec l'architecture modulaire
                     console.log('⚠️ Paramètres manquants, chargement par défaut des fractions');
-                    await loadCourseByParams('mathematiques', '6ieme', 'fractions');
+                    
+                    const rawModuleData = await moduleLoader.loadModule('mathematiques', '6ieme', 'fractions');
+                    const normalizedData = moduleLoader.normalizeModuleData(rawModuleData);
+                    await courseRenderer.renderCourse(normalizedData);
+                    courseData = normalizedData;
                 }
+
+                // Exposer les fonctions pour les composants existants
+                window.renderPreEvaluation = renderPreEvaluation;
+                window.renderCoursSection = renderCoursSection;
+                window.renderExercices = renderExercices;
+                window.renderMetacognition = renderMetacognition;
+
+                // 🧭 Initialiser la navigation
+                navigationManager.initializeNavigation();
+                
+                // Ajouter les boutons de navigation
+                const navigationHTML = navigationManager.generateNavigationButtons();
+                const breadcrumbHTML = navigationManager.generateBreadcrumb();
+                
+                // Injecter la navigation au début du contenu
+                const mainTitle = document.getElementById('mainTitle');
+                if (mainTitle && breadcrumbHTML) {
+                    mainTitle.insertAdjacentHTML('beforebegin', breadcrumbHTML);
+                }
+                
+                if (mainTitle && navigationHTML) {
+                    mainTitle.insertAdjacentHTML('afterend', navigationHTML);
+                }
+
+                // Exposer navigationManager globalement
+                window.navigationManager = navigationManager;
                 
                 console.log('📚 Données de cours chargées:', courseData);
                 
@@ -2288,44 +2344,205 @@
             }
 
             renderExerciceInteractif(exercice, index) {
-                switch(exercice.typeExercice) {
-                    case 'rectangle':
+                // Normalisation du type d'exercice pour plus de robustesse
+                const typeExercice = this.normalizeExerciceType(exercice.typeExercice);
+                
+                // Configuration de rendu basée sur le type
+                const config = this.getExerciceRenderer(typeExercice);
+                
+                // Rendu selon le template
+                switch(config.template) {
+                    case 'canvas-rectangle':
                         return `
                             <div class="exercise-interactive rectangle-exercise">
+                                <div class="exercise-header">
+                                    <span class="exercise-type-icon">${config.icon}</span>
+                                    <span class="exercise-type-title">${config.title}</span>
+                                </div>
                                 <canvas id="canvas_${index}" width="300" height="200" style="border: 2px solid #667eea; border-radius: 8px; cursor: pointer;"></canvas>
-                                <p class="exercise-instruction">Clique sur les parties à colorier pour représenter la fraction.</p>
+                                <p class="exercise-instruction">${config.placeholder}</p>
                             </div>
                         `;
-                    case 'droite':
+                    case 'canvas-line':
                         return `
                             <div class="exercise-interactive droite-exercise">
+                                <div class="exercise-header">
+                                    <span class="exercise-type-icon">${config.icon}</span>
+                                    <span class="exercise-type-title">${config.title}</span>
+                                </div>
                                 <canvas id="canvas_${index}" width="400" height="100" style="border: 2px solid #667eea; border-radius: 8px; cursor: pointer;"></canvas>
-                                <p class="exercise-instruction">Clique sur la droite graduée pour placer la fraction.</p>
+                                <p class="exercise-instruction">${config.placeholder}</p>
                             </div>
                         `;
-                    case 'calcul':
+                    case 'input-number':
                         return `
                             <div class="exercise-interactive calcul-exercise">
-                                <input type="number" id="input_${index}" placeholder="Votre réponse" class="exercise-input">
+                                <div class="exercise-header">
+                                    <span class="exercise-type-icon">${config.icon}</span>
+                                    <span class="exercise-type-title">${config.title}</span>
+                                </div>
+                                <input type="number" id="input_${index}" placeholder="${config.placeholder}" class="exercise-input">
+                                ${exercice.methode ? `
                                 <div class="calcul-hint">
                                     <small>💡 Méthode suggérée : ${exercice.methode}</small>
                                 </div>
+                                ` : ''}
                             </div>
                         `;
-                    case 'Exercices d\'entraînement':
-                    case 'exercices':
-                    case 'entrainement':
+                    case 'input-text':
+                        return `
+                            <div class="exercise-interactive saisie-exercise">
+                                <div class="exercise-header">
+                                    <span class="exercise-type-icon">${config.icon}</span>
+                                    <span class="exercise-type-title">${config.title}</span>
+                                </div>
+                                <input type="text" id="input_${index}" placeholder="${config.placeholder}" class="exercise-input">
+                            </div>
+                        `;
+                    case 'choice-buttons':
+                        return `
+                            <div class="exercise-interactive qcm-exercise">
+                                <div class="exercise-header">
+                                    <span class="exercise-type-icon">${config.icon}</span>
+                                    <span class="exercise-type-title">${config.title}</span>
+                                </div>
+                                <div class="qcm-choices">
+                                    ${exercice.choix ? exercice.choix.map((choix, i) => `
+                                        <button class="qcm-choice" data-choice="${choix}" data-index="${i}">
+                                            ${choix}
+                                        </button>
+                                    `).join('') : ''}
+                                </div>
+                            </div>
+                        `;
+                    case 'true-false':
+                        return `
+                            <div class="exercise-interactive vrai-faux-exercise">
+                                <div class="exercise-header">
+                                    <span class="exercise-type-icon">${config.icon}</span>
+                                    <span class="exercise-type-title">${config.title}</span>
+                                </div>
+                                <div class="true-false-buttons">
+                                    <button class="tf-choice" data-choice="vrai">✅ Vrai</button>
+                                    <button class="tf-choice" data-choice="faux">❌ Faux</button>
+                                </div>
+                            </div>
+                        `;
+                    case 'table-fill':
+                        return `
+                            <div class="exercise-interactive tableau-exercise">
+                                <div class="exercise-header">
+                                    <span class="exercise-type-icon">${config.icon}</span>
+                                    <span class="exercise-type-title">${config.title}</span>
+                                </div>
+                                <div class="tableau-container">
+                                    <p class="exercise-instruction">${config.placeholder}</p>
+                                    <input type="text" id="input_${index}" placeholder="Complétez le tableau" class="exercise-input">
+                                </div>
+                            </div>
+                        `;
+                    case 'training':
                         return `
                             <div class="exercise-interactive training-exercise">
+                                <div class="exercise-header">
+                                    <span class="exercise-type-icon">${config.icon}</span>
+                                    <span class="exercise-type-title">${config.title}</span>
+                                </div>
                                 <div class="exercise-content">
                                     <p class="exercise-description">${exercice.description || exercice.enonce || 'Exercice d\'entraînement'}</p>
-                                    <input type="text" id="input_${index}" placeholder="Votre réponse" class="exercise-input">
+                                    <input type="text" id="input_${index}" placeholder="${config.placeholder}" class="exercise-input">
                                 </div>
                             </div>
                         `;
                     default:
-                        return '<p>Type d\'exercice non reconnu.</p>';
+                        // Fallback robuste - toujours fournir quelque chose d'utilisable
+                        return `
+                            <div class="exercise-interactive default-exercise">
+                                <div class="exercise-header">
+                                    <span class="exercise-type-icon">📝</span>
+                                    <span class="exercise-type-title">Exercice standard</span>
+                                </div>
+                                <div class="exercise-content">
+                                    <p class="exercise-description">${exercice.question || exercice.enonce || 'Exercice'}</p>
+                                    <input type="text" id="input_${index}" placeholder="Votre réponse" class="exercise-input">
+                                </div>
+                                ${typeExercice ? `<p class="exercise-debug">Type: ${typeExercice}</p>` : ''}
+                            </div>
+                        `;
                 }
+            }
+            
+            // Fonction de normalisation des types d'exercices
+            normalizeExerciceType(type) {
+                if (!type) return 'saisie';
+                
+                // Mappings pour compatibilité avec anciens types
+                const typeMapping = {
+                    'exercices': 'entrainement',
+                    'entrainement': 'entrainement', 
+                    'Exercices d\'entraînement': 'entrainement',
+                    'input': 'saisie',
+                    'text': 'saisie',
+                    'number': 'calcul'
+                };
+                
+                return typeMapping[type] || type;
+            }
+            
+            // Configuration des rendus d'exercices  
+            getExerciceRenderer(typeExercice) {
+                const renderers = {
+                    'saisie': {
+                        icon: '✏️',
+                        title: 'Exercice de saisie',
+                        template: 'input-text',
+                        placeholder: 'Tapez votre réponse'
+                    },
+                    'calcul': {
+                        icon: '🧮',
+                        title: 'Calcul numérique',
+                        template: 'input-number',
+                        placeholder: 'Entrez le résultat'
+                    },
+                    'qcm': {
+                        icon: '☑️',
+                        title: 'Question à choix multiples',
+                        template: 'choice-buttons',
+                        placeholder: null
+                    },
+                    'vrai-faux': {
+                        icon: '❓',
+                        title: 'Vrai ou Faux',
+                        template: 'true-false',
+                        placeholder: null
+                    },
+                    'rectangle': {
+                        icon: '🟦',
+                        title: 'Exercice rectangulaire',
+                        template: 'canvas-rectangle',
+                        placeholder: 'Cliquez sur les zones à colorier'
+                    },
+                    'droite': {
+                        icon: '📏',
+                        title: 'Droite graduée',
+                        template: 'canvas-line',
+                        placeholder: 'Cliquez pour placer le point'
+                    },
+                    'tableau': {
+                        icon: '📊',
+                        title: 'Tableau à compléter',
+                        template: 'table-fill',
+                        placeholder: 'Complétez les cases vides'
+                    },
+                    'entrainement': {
+                        icon: '💪',
+                        title: 'Exercice d\'entraînement',
+                        template: 'training',
+                        placeholder: 'Exercice libre'
+                    }
+                };
+                
+                return renderers[typeExercice] || renderers['saisie'];
             }
 
             getExerciceIcon(type) {
@@ -4059,6 +4276,14 @@
                 console.error('❌ Erreur lors de l\'initialisation:', error);
             });
         });
+    </script>
+    <script type="module">
+        import { TYPES_EXERCICES, normalizeExerciceType, getExerciceRenderer } from '../utils/exercice-types-complet.js';
+        
+        // Exposer les fonctions globalement pour compatibilité
+        window.normalizeExerciceType = normalizeExerciceType;
+        window.getExerciceRenderer = getExerciceRenderer;
+        window.TYPES_EXERCICES = TYPES_EXERCICES;
     </script>
 </main>
 </body>

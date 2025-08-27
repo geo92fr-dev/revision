@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🧪 Validation Déploiement - FunRevis</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        h1 {
+            color: #2d3748;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .test-section {
+            background: #f7fafc;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-left: 4px solid #4299e1;
+        }
+        
+        .test-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .test-card {
+            background: white;
+            border-radius: 8px;
+            padding: 1rem;
+            border: 2px solid #e5e7eb;
+            transition: all 0.3s ease;
+        }
+        
+        .test-card.loading { border-color: #3b82f6; background: #eff6ff; }
+        .test-card.success { border-color: #10b981; background: #ecfdf5; }
+        .test-card.error { border-color: #ef4444; background: #fef2f2; }
+        .test-card.warning { border-color: #f59e0b; background: #fffbeb; }
+        
+        .test-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .test-status {
+            font-size: 0.9rem;
+            color: #6b7280;
+        }
+        
+        .test-url {
+            font-size: 0.8rem;
+            font-family: monospace;
+            color: #374151;
+            background: #f3f4f6;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            margin-top: 0.5rem;
+            word-break: break-all;
+        }
+        
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            margin: 0.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+        
+        button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .stat-card {
+            background: white;
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 0.25rem;
+        }
+        
+        .stat-label {
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+        
+        .verdict {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .verdict.success {
+            border-left: 4px solid #10b981;
+            background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+        }
+        
+        .verdict.error {
+            border-left: 4px solid #ef4444;
+            background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+        }
+        
+        .log-area {
+            background: #1f2937;
+            color: #f9fafb;
+            padding: 1rem;
+            border-radius: 8px;
+            font-family: monospace;
+            max-height: 300px;
+            overflow-y: auto;
+            margin: 1rem 0;
+            white-space: pre-line;
+        }
+        
+        .quick-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+        
+        .quick-link {
+            background: #4299e1;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+        
+        .quick-link:hover {
+            background: #3182ce;
+            transform: translateY(-1px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 Validation du Déploiement FunRevis</h1>
+        
+        <div class="test-section">
+            <h2>🎯 Contrôles de Base</h2>
+            <div class="quick-links">
+                <a href="index.html" target="_blank" class="quick-link">🏠 Page d'accueil</a>
+                <a href="src/pages/mathematiques/6ieme/index.html" target="_blank" class="quick-link">📚 Maths 6ème</a>
+                <a href="src/pages/page_de_cours.html?subject=mathematiques&level=6ieme&topic=fractions" target="_blank" class="quick-link">🍕 Cours Fractions</a>
+                <a href="test-architecture.html" target="_blank" class="quick-link">🧪 Tests Architecture</a>
+            </div>
+            <button onclick="runQuickCheck()">✅ Vérification Rapide</button>
+            <button onclick="runFullValidation()">🔍 Validation Complète</button>
+            <button onclick="clearResults()">🧹 Effacer</button>
+        </div>
+        
+        <div class="test-section" style="display: none;" id="statsSection">
+            <h2>📊 Statistiques</h2>
+            <div class="stats" id="statsGrid">
+                <!-- Stats générées dynamiquement -->
+            </div>
+        </div>
+        
+        <div class="test-section" style="display: none;" id="resultsSection">
+            <h2>🧪 Résultats des Tests</h2>
+            <div class="test-grid" id="testGrid">
+                <!-- Résultats générés dynamiquement -->
+            </div>
+        </div>
+        
+        <div id="verdictSection" style="display: none;">
+            <!-- Verdict généré dynamiquement -->
+        </div>
+        
+        <div class="test-section" style="display: none;" id="logSection">
+            <h2>📝 Logs détaillés</h2>
+            <div class="log-area" id="logArea"></div>
+        </div>
+    </div>
+
+    <script type="module">
+        // Configuration
+        const TESTS = [
+            {
+                name: 'Page d\'accueil',
+                url: '/index.html',
+                category: 'Pages',
+                critical: true
+            },
+            {
+                name: 'Index Maths 6ème',
+                url: '/src/pages/mathematiques/6ieme/index.html',
+                category: 'Pages',
+                critical: true
+            },
+            {
+                name: 'Page de cours - Template',
+                url: '/src/pages/page_de_cours.html',
+                category: 'Pages',
+                critical: true
+            },
+            {
+                name: 'Cours Fractions',
+                url: '/src/pages/page_de_cours.html?subject=mathematiques&level=6ieme&topic=fractions',
+                category: 'Cours',
+                critical: true
+            },
+            {
+                name: 'Cours Nombres entiers',
+                url: '/src/pages/page_de_cours.html?subject=mathematiques&level=6ieme&topic=nombres-entiers',
+                category: 'Cours',
+                critical: true
+            },
+            {
+                name: 'ModuleLoader.js',
+                url: '/src/components/ModuleLoader.js',
+                category: 'Composants',
+                critical: true
+            },
+            {
+                name: 'CourseRenderer.js',
+                url: '/src/components/CourseRenderer.js',
+                category: 'Composants',
+                critical: true
+            },
+            {
+                name: 'NavigationManager.js',
+                url: '/src/components/NavigationManager.js',
+                category: 'Composants',
+                critical: true
+            },
+            {
+                name: 'Module Fractions Data',
+                url: '/src/data/mathematiques/6ieme/fractions.js',
+                category: 'Données',
+                critical: false
+            },
+            {
+                name: 'Module Nombres entiers Data',
+                url: '/src/data/mathematiques/6ieme/nombres-entiers.js',
+                category: 'Données',
+                critical: false
+            }
+        ];
+
+        let testResults = [];
+        let isRunning = false;
+
+        // Fonction de log
+        function log(message, type = 'info') {
+            const logArea = document.getElementById('logArea');
+            const timestamp = new Date().toLocaleTimeString();
+            const prefix = type === 'error' ? '❌' : type === 'success' ? '✅' : type === 'warning' ? '⚠️' : 'ℹ️';
+            logArea.textContent += `[${timestamp}] ${prefix} ${message}\n`;
+            logArea.scrollTop = logArea.scrollHeight;
+            console.log(`${prefix} ${message}`);
+        }
+
+        // Test d'une URL
+        async function testUrl(test) {
+            const baseUrl = window.location.origin;
+            const fullUrl = baseUrl + test.url;
+            
+            try {
+                log(`Test: ${test.name} (${test.url})`, 'info');
+                
+                const response = await fetch(fullUrl);
+                const result = {
+                    ...test,
+                    status: response.ok ? 'success' : 'error',
+                    httpCode: response.status,
+                    error: response.ok ? null : `HTTP ${response.status} ${response.statusText}`
+                };
+                
+                if (response.ok) {
+                    log(`  ✅ ${test.name} - OK`, 'success');
+                } else {
+                    log(`  ❌ ${test.name} - ${result.error}`, 'error');
+                }
+                
+                return result;
+            } catch (error) {
+                log(`  ❌ ${test.name} - Erreur réseau: ${error.message}`, 'error');
+                return {
+                    ...test,
+                    status: 'error',
+                    error: error.message
+                };
+            }
+        }
+
+        // Vérification rapide
+        window.runQuickCheck = async function() {
+            if (isRunning) return;
+            isRunning = true;
+            
+            const quickTests = TESTS.filter(t => t.critical && t.category === 'Pages');
+            await runTests(quickTests, 'Vérification rapide');
+        };
+
+        // Validation complète
+        window.runFullValidation = async function() {
+            if (isRunning) return;
+            isRunning = true;
+            
+            await runTests(TESTS, 'Validation complète');
+        };
+
+        // Exécution des tests
+        async function runTests(tests, title) {
+            log(`🚀 Début de: ${title}`, 'info');
+            
+            // Afficher les sections
+            document.getElementById('logSection').style.display = 'block';
+            document.getElementById('resultsSection').style.display = 'block';
+            document.getElementById('statsSection').style.display = 'block';
+            
+            // Réinitialiser les résultats
+            testResults = [];
+            updateTestGrid([]);
+            
+            // Exécuter les tests
+            for (let i = 0; i < tests.length; i++) {
+                const test = tests[i];
+                updateTestCard(test, 'loading', 'Test en cours...');
+                
+                const result = await testUrl(test);
+                testResults.push(result);
+                
+                updateTestCard(result, result.status, 
+                    result.status === 'success' ? 'OK' : result.error
+                );
+                
+                // Mettre à jour les stats
+                updateStats();
+            }
+            
+            // Générer le verdict final
+            generateVerdict();
+            
+            log(`✅ ${title} terminée`, 'success');
+            isRunning = false;
+        }
+
+        // Mettre à jour la grille des tests
+        function updateTestGrid(results) {
+            const grid = document.getElementById('testGrid');
+            grid.innerHTML = '';
+            
+            TESTS.forEach(test => {
+                const result = results.find(r => r.name === test.name);
+                const card = createTestCard(test, result);
+                grid.appendChild(card);
+            });
+        }
+
+        // Créer une carte de test
+        function createTestCard(test, result) {
+            const card = document.createElement('div');
+            card.className = 'test-card';
+            card.id = `test-${test.name.replace(/\s+/g, '-')}`;
+            
+            const status = result ? result.status : 'pending';
+            const message = result ? (result.status === 'success' ? 'OK' : result.error) : 'En attente';
+            
+            card.innerHTML = `
+                <div class="test-title">${test.name}</div>
+                <div class="test-status">${message}</div>
+                <div class="test-url">${test.url}</div>
+            `;
+            
+            return card;
+        }
+
+        // Mettre à jour une carte de test
+        function updateTestCard(test, status, message) {
+            const card = document.getElementById(`test-${test.name.replace(/\s+/g, '-')}`);
+            if (card) {
+                card.className = `test-card ${status}`;
+                card.querySelector('.test-status').textContent = message;
+            }
+        }
+
+        // Mettre à jour les statistiques
+        function updateStats() {
+            const total = testResults.length;
+            const successes = testResults.filter(r => r.status === 'success').length;
+            const errors = testResults.filter(r => r.status === 'error').length;
+            const criticalErrors = testResults.filter(r => r.status === 'error' && r.critical).length;
+            const successRate = total > 0 ? Math.round((successes / total) * 100) : 0;
+            
+            const statsGrid = document.getElementById('statsGrid');
+            statsGrid.innerHTML = `
+                <div class="stat-card">
+                    <div class="stat-number" style="color: #3b82f6">${total}</div>
+                    <div class="stat-label">Tests Total</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" style="color: #10b981">${successes}</div>
+                    <div class="stat-label">Réussites</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" style="color: #ef4444">${errors}</div>
+                    <div class="stat-label">Échecs</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" style="color: #f59e0b">${criticalErrors}</div>
+                    <div class="stat-label">Critiques</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" style="color: #8b5cf6">${successRate}%</div>
+                    <div class="stat-label">Taux Réussite</div>
+                </div>
+            `;
+        }
+
+        // Générer le verdict
+        function generateVerdict() {
+            const criticalErrors = testResults.filter(r => r.status === 'error' && r.critical).length;
+            const verdictSection = document.getElementById('verdictSection');
+            
+            verdictSection.style.display = 'block';
+            
+            if (criticalErrors === 0) {
+                verdictSection.innerHTML = `
+                    <div class="verdict success">
+                        <h2>🎉 DÉPLOIEMENT VALIDÉ</h2>
+                        <p>L'application FunRevis est prête pour la production !</p>
+                        <p>Tous les composants critiques fonctionnent correctement.</p>
+                    </div>
+                `;
+                log('🎉 VERDICT: Déploiement validé - Application prête !', 'success');
+            } else {
+                verdictSection.innerHTML = `
+                    <div class="verdict error">
+                        <h2>⚠️ DÉPLOIEMENT À CORRIGER</h2>
+                        <p>${criticalErrors} erreur(s) critique(s) détectée(s)</p>
+                        <p>Corrigez les erreurs critiques avant le déploiement en production.</p>
+                    </div>
+                `;
+                log(`⚠️ VERDICT: ${criticalErrors} erreur(s) critique(s) - Corrections nécessaires`, 'error');
+            }
+        }
+
+        // Effacer les résultats
+        window.clearResults = function() {
+            testResults = [];
+            document.getElementById('logArea').textContent = '';
+            document.getElementById('statsSection').style.display = 'none';
+            document.getElementById('resultsSection').style.display = 'none';
+            document.getElementById('verdictSection').style.display = 'none';
+            document.getElementById('logSection').style.display = 'none';
+            log('🧹 Résultats effacés', 'info');
+        };
+
+        // Initialisation
+        log('🧪 Page de validation prête !', 'info');
+        updateTestGrid([]);
+    </script>
+</body>
+</html>
