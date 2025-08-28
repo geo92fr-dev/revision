@@ -13,8 +13,7 @@ export const anglais5eme = [
         astuce: "Past simple = action terminée ; past continuous = action en cours dans le passé.",
         ressources: [
           { type: "vidéo", titre: "Past Tenses", url: "https://www.youtube.com/watch?v=past123" }
-        ],
-        quizId: "QUIZ_5_PAST_TENSES"
+        ]
       },
       {
         id: "5GI-TS-2",
@@ -24,8 +23,7 @@ export const anglais5eme = [
         astuce: "Will = prédiction/promesse ; going to = intention/évidence.",
         ressources: [
           { type: "exercice", titre: "Future Forms", url: "https://www.englishpage.com/" }
-        ],
-        quizId: "QUIZ_5_FUTURE"
+        ]
       },
       {
         id: "5GI-TS-3",
@@ -35,8 +33,7 @@ export const anglais5eme = [
         astuce: "Court (+er/est) vs long (more/most) ; exceptions : good/better/best.",
         ressources: [
           { type: "fiches", titre: "Comparisons", url: "https://www.grammarly.com/" }
-        ],
-        quizId: "QUIZ_5_COMPARATIVES"
+        ]
       }
     ]
   },
@@ -53,8 +50,7 @@ export const anglais5eme = [
         astuce: "Groupe les moyens de transport par environnement (air, land, sea).",
         ressources: [
           { type: "vocabulaire", titre: "Travel Words", url: "https://www.vocabulary.com/" }
-        ],
-        quizId: "QUIZ_5_TRAVEL"
+        ]
       },
       {
         id: "5VE-TF-2",
@@ -64,8 +60,7 @@ export const anglais5eme = [
         astuce: "Apprends par catégories : starter, main course, dessert, drinks.",
         ressources: [
           { type: "dialogues", titre: "Restaurant English", url: "https://www.esl-lab.com/" }
-        ],
-        quizId: "QUIZ_5_FOOD"
+        ]
       },
       {
         id: "5VE-TF-3",
@@ -75,8 +70,7 @@ export const anglais5eme = [
         astuce: "Structures : be interested in + ing ; enjoy + ing ; be good at + ing.",
         ressources: [
           { type: "jeu", titre: "Hobbies Vocabulary", url: "https://www.eslgamesplus.com/" }
-        ],
-        quizId: "QUIZ_5_HOBBIES"
+        ]
       }
     ]
   }

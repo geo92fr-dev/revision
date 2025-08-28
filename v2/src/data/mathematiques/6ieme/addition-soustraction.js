@@ -81,8 +81,7 @@ const data = {
     ressources: [
       { type: "video", titre: "Addition et soustraction", url: "https://www.youtube.com/watch?v=addition" },
       { type: "jeu", titre: "Calcul mental", url: "https://www.logicieleducatif.fr/" }
-    ],
-    quizId: "QUIZ_6_ADDITION_SOUSTRACTION"
+    ]
   }]
 };
 

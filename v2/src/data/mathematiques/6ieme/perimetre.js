@@ -113,8 +113,7 @@ const data = {
       ressources: [
         { type: "video", titre: "Calcul de perimetres", url: "https://www.youtube.com/watch?v=perimetre" },
         { type: "exercice", titre: "Perimetres varies", url: "https://www.sesamath.net/" }
-      ],
-      quizId: "QUIZ_6_PERIMETRE_POLYGONES"
+      ]
     },
     {
       // COMPETENCE SIMPLE
@@ -125,8 +124,7 @@ const data = {
       astuce: "Retiens que π ≈ 3,14 et que diametre = 2 × rayon",
       ressources: [
         { type: "video", titre: "Circonference du cercle", url: "https://www.geogebra.org/" }
-      ],
-      quizId: "QUIZ_6_PERIMETRE_CERCLE"
+      ]
     },
     {
       // COMPETENCE SIMPLE
@@ -137,8 +135,7 @@ const data = {
       astuce: "Lis bien l'enonce pour identifier la forme et les dimensions de la figure",
       ressources: [
         { type: "exercice", titre: "Problemes concrets", url: "https://www.maths-et-tiques.fr/" }
-      ],
-      quizId: "QUIZ_6_PROBLEMES_PERIMETRE"
+      ]
     }
   ]
 };

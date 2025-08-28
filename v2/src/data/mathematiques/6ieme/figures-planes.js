@@ -113,8 +113,7 @@ const data = {
       ressources: [
         { type: "video", titre: "Types de triangles", url: "https://www.youtube.com/watch?v=triangles" },
         { type: "jeu", titre: "Construction de triangles", url: "https://www.geogebra.org/" }
-      ],
-      quizId: "QUIZ_6_TRIANGLES"
+      ]
     },
     {
       // COMPETENCE SIMPLE
@@ -125,8 +124,7 @@ const data = {
       astuce: "Carre = rectangle + losange (4 cotes egaux ET 4 angles droits)",
       ressources: [
         { type: "fiches", titre: "Proprietes des quadrilateres", url: "https://www.maths-et-tiques.fr/" }
-      ],
-      quizId: "QUIZ_6_QUADRILATERES"
+      ]
     },
     {
       // COMPETENCE SIMPLE
@@ -137,8 +135,7 @@ const data = {
       astuce: "Diametre = 2 × rayon, et le diametre est la plus grande corde du cercle",
       ressources: [
         { type: "jeu", titre: "Elements du cercle", url: "https://www.geogebra.org/" }
-      ],
-      quizId: "QUIZ_6_CERCLE"
+      ]
     },
     {
       // COMPETENCE SIMPLE
@@ -149,8 +146,7 @@ const data = {
       astuce: "Toujours tracer les traits de construction en pointilles et les laisser visibles",
       ressources: [
         { type: "video", titre: "Constructions geometriques", url: "https://www.youtube.com/watch?v=construction" }
-      ],
-      quizId: "QUIZ_6_CONSTRUCTION"
+      ]
     }
   ]
 };

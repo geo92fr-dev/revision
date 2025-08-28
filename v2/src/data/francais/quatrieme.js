@@ -16,8 +16,7 @@ export const francais4eme = [
         ressources: [
           { type: "vidéo", titre: "Théâtre de Molière", url: "https://www.youtube.com/watch?v=mol123" },
           { type: "extraits", titre: "Scènes célèbres", url: "https://www.theatre-classique.fr/" }
-        ],
-        quizId: "QUIZ_4_THEATRE_CLASSIQUE"
+        ]
       },
       {
         id: "4LC-LC-2",
@@ -29,8 +28,7 @@ export const francais4eme = [
           "Lyrique = 'je' + sentiments ; engagée = critique sociale/politique + 'nous'.",
         ressources: [
           { type: "anthologie", titre: "Poèmes lyriques", url: "https://www.assistancescolaire.com/" }
-        ],
-        quizId: "QUIZ_4_POESIE_LYRIQUE"
+        ]
       },
       {
         id: "4LC-LC-3",
@@ -42,8 +40,7 @@ export const francais4eme = [
           "Lettre littéraire = vraie ou fictive, révèle caractère + époque + style personnel.",
         ressources: [
           { type: "extraits", titre: "Lettres célèbres", url: "https://www.francaisfacile.com/" }
-        ],
-        quizId: "QUIZ_4_EPISTOLAIRE"
+        ]
       }
     ]
   },
@@ -62,8 +59,7 @@ export const francais4eme = [
           "Qui = sujet de la relative ; que = COD ; dont = complément du nom ('de qui/de quoi').",
         ressources: [
           { type: "exercice", titre: "Pronoms relatifs", url: "https://www.francaisfacile.com/" }
-        ],
-        quizId: "QUIZ_4_RELATIVES"
+        ]
       },
       {
         id: "4GR-PS-2",
@@ -75,8 +71,7 @@ export const francais4eme = [
           "Complétive complète le verbe ; circonstancielle précise les circonstances (temps, cause...).",
         ressources: [
           { type: "fiches", titre: "Subordonnées conjonctives", url: "https://www.assistancescolaire.com/" }
-        ],
-        quizId: "QUIZ_4_CONJONCTIVES"
+        ]
       },
       {
         id: "4GR-PS-3",
@@ -88,8 +83,7 @@ export const francais4eme = [
           "Puisque = cause évidente ; parce que = cause expliquée ; car = justification.",
         ressources: [
           { type: "exercice", titre: "Connecteurs logiques", url: "https://www.ortholud.com/" }
-        ],
-        quizId: "QUIZ_4_TEMPS_CAUSE"
+        ]
       }
     ]
   },
@@ -108,8 +102,7 @@ export const francais4eme = [
           "Plan : introduction (thèse) → arguments (d'abord, ensuite, enfin) → conclusion.",
         ressources: [
           { type: "modèles", titre: "Plans argumentatifs", url: "https://www.assistancescolaire.com/" }
-        ],
-        quizId: "QUIZ_4_ARGUMENTATION"
+        ]
       },
       {
         id: "4EE-AD-2",
@@ -121,8 +114,7 @@ export const francais4eme = [
           "Histoire simple + personnages typés + situation exemplaire = leçon universelle.",
         ressources: [
           { type: "exemples", titre: "Fables de La Fontaine", url: "https://www.francaisfacile.com/" }
-        ],
-        quizId: "QUIZ_4_APOLOGUE"
+        ]
       },
       {
         id: "4EE-AD-3",
@@ -134,8 +126,7 @@ export const francais4eme = [
           "Garde les idées principales, supprime les détails, reste neutre, utilise tes mots.",
         ressources: [
           { type: "méthodes", titre: "Techniques résumé", url: "https://www.reseau-canope.fr/" }
-        ],
-        quizId: "QUIZ_4_SYNTHESE"
+        ]
       }
     ]
   },
@@ -154,8 +145,7 @@ export const francais4eme = [
           "Introduction → plan annoncé → développement structuré → conclusion + ouverture.",
         ressources: [
           { type: "conseils", titre: "Techniques d'exposé", url: "https://www.assistancescolaire.com/" }
-        ],
-        quizId: "QUIZ_4_EXPOSE"
+        ]
       },
       {
         id: "4OR-PD-2",
@@ -167,8 +157,7 @@ export const francais4eme = [
           "Écoute les autres, note les arguments, réponds précisément, reste poli et factuel.",
         ressources: [
           { type: "vidéo", titre: "Techniques de débat", url: "https://www.youtube.com/watch?v=deb123" }
-        ],
-        quizId: "QUIZ_4_DEBAT"
+        ]
       },
       {
         id: "4OR-PD-3",
@@ -180,8 +169,7 @@ export const francais4eme = [
           "Comprends le texte d'abord, repère les émotions, varie ton/rythme, articule.",
         ressources: [
           { type: "audio", titre: "Lectures d'acteurs", url: "https://www.radiofrance.fr/" }
-        ],
-        quizId: "QUIZ_4_LECTURE_EXPRESSIVE"
+        ]
       }
     ]
   },
@@ -200,8 +188,7 @@ export const francais4eme = [
           "Lumières = raison contre obscurantisme, critique du pouvoir, foi dans le progrès.",
         ressources: [
           { type: "fiches", titre: "Philosophes des Lumières", url: "https://www.reseau-canope.fr/" }
-        ],
-        quizId: "QUIZ_4_LUMIERES"
+        ]
       },
       {
         id: "4HL-CM-2",
@@ -213,8 +200,7 @@ export const francais4eme = [
           "Contexte politique/social/culturel → thèmes littéraires → formes nouvelles.",
         ressources: [
           { type: "chronologie", titre: "Littérature et histoire", url: "https://www.assistancescolaire.com/" }
-        ],
-        quizId: "QUIZ_4_CONTEXTE_HISTORIQUE"
+        ]
       },
       {
         id: "4HL-CM-3",
@@ -226,8 +212,7 @@ export const francais4eme = [
           "Chaque époque renouvelle les genres selon ses valeurs et ses goûts.",
         ressources: [
           { type: "comparaisons", titre: "Évolution littéraire", url: "https://www.francaisfacile.com/" }
-        ],
-        quizId: "QUIZ_4_EVOLUTION_GENRES"
+        ]
       }
     ]
   },
@@ -246,8 +231,7 @@ export const francais4eme = [
           "1) Comprendre le sens 2) Repérer les procédés 3) Expliquer leur effet.",
         ressources: [
           { type: "méthodes", titre: "Analyse littéraire", url: "https://www.assistancescolaire.com/" }
-        ],
-        quizId: "QUIZ_4_COMMENTAIRE"
+        ]
       },
       {
         id: "4ME-AL-2",
@@ -259,8 +243,7 @@ export const francais4eme = [
           "Question → problématique → plan dialectique → arguments + exemples littéraires.",
         ressources: [
           { type: "modèles", titre: "Méthode dissertation", url: "https://www.francaisfacile.com/" }
-        ],
-        quizId: "QUIZ_4_DISSERTATION"
+        ]
       },
       {
         id: "4ME-AL-3",
@@ -272,8 +255,7 @@ export const francais4eme = [
           "Plan type : auteur/contexte → résumé → analyse (personnages, thèmes) → avis argumenté.",
         ressources: [
           { type: "modèles", titre: "Fiches de lecture", url: "https://www.reseau-canope.fr/" }
-        ],
-        quizId: "QUIZ_4_FICHE_LECTURE"
+        ]
       }
     ]
   }

@@ -52,15 +52,6 @@ const data = {
         }
       ],
 
-      miniQuiz: [
-        {
-          question: "Quelle fraction represente 2 parts sur 5 ?",
-          choix: ["2/3", "5/2", "2/5", "1/2"],
-          reponse: "2/5",
-          points: 20
-        }
-      ],
-
       preEvaluation: {
         questions: [
           {
@@ -168,8 +159,7 @@ const data = {
       ressources: [
         { type: "video", titre: "Decouvrir les fractions", url: "https://www.youtube.com/watch?v=QY1G1Yr4gkI" },
         { type: "jeu", titre: "Fraction – parts de pizza", url: "https://www.logicieleducatif.fr/" }
-      ],
-      quizId: "QUIZ_6_FR_BASE"
+      ]
     },
     {
       id: "6NC-FR-2",
@@ -179,8 +169,7 @@ const data = {
       astuce: "Divise par le plus grand facteur commun (PGCD) pour simplifier rapidement.",
       ressources: [
         { type: "exercice", titre: "Simplifier des fractions", url: "https://www.sesamath.net/" }
-      ],
-      quizId: "QUIZ_6_FR_EQUIV"
+      ]
     },
     {
       id: "6NC-FR-3",
@@ -190,8 +179,7 @@ const data = {
       astuce: "Cherche un denominateur 10, 100, 1000… pour ecrire en decimal facilement.",
       ressources: [
         { type: "video", titre: "Fractions ↔ decimaux", url: "https://www.youtube.com/watch?v=Omc8Nxnz3tE" }
-      ],
-      quizId: "QUIZ_6_FR_DEC"
+      ]
     }
   ]
 };

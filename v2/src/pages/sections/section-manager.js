@@ -1,4 +1,5 @@
-// Gestionnaire des sections modulaires
+// Gestionnaire des sections modulaires - Version propre sans quiz
+// Dernière mise à jour: 28/08/2025 - Ajout de normalizeSubject()
 class SectionManager {
     constructor() {
         this.sections = [];
@@ -6,7 +7,6 @@ class SectionManager {
         this.answers = {
             preEvaluation: {},
             exercises: {},
-            quiz: {},
             metacognition: {}
         };
         this.scores = {
@@ -19,7 +19,7 @@ class SectionManager {
     async loadSections() {
         console.log('🔧 Chargement des sections modulaires...');
         
-        const sectionNames = ['pre-evaluation', 'cours', 'exercices', 'quiz', 'reflexion', 'ressources'];
+        const sectionNames = ['pre-evaluation', 'cours', 'exercices', 'reflexion', 'ressources'];
         const container = document.querySelector('.sections-container');
         
         if (!container) {
@@ -27,10 +27,8 @@ class SectionManager {
             return;
         }
 
-        // Vider le container des placeholders
         container.innerHTML = '';
 
-        // Charger chaque section
         for (const sectionName of sectionNames) {
             try {
                 const response = await fetch(`sections/${sectionName}.html`);
@@ -49,131 +47,88 @@ class SectionManager {
         }
     }
 
-    // Basculer une section
-    toggleSection(sectionId) {
-        const sectionContent = document.getElementById(sectionId);
-        const sectionHeader = sectionContent.previousElementSibling;
-        
-        if (!sectionContent || !sectionHeader) return;
-
-        const isActive = sectionContent.classList.contains('active');
-        
-        if (isActive) {
-            sectionContent.classList.remove('active');
-            sectionHeader.classList.remove('active');
-        } else {
-            sectionContent.classList.add('active');
-            sectionHeader.classList.add('active');
-        }
+    // Normaliser le nom de la matière (gérer les alias)
+    normalizeSubject(subject) {
+        const aliases = {
+            'maths': 'mathematiques',
+            'math': 'mathematiques',
+            'français': 'francais',
+            'sciences': 'sciences',
+            'anglais': 'anglais'
+        };
+        return aliases[subject.toLowerCase()] || subject;
     }
 
-    // Charger les données du cours
+    // Normaliser le niveau (gérer les alias de niveaux)
+    normalizeLevel(level) {
+        const levelAliases = {
+            '6eme': '6ieme',
+            '5eme': '5ieme',
+            '4eme': '4ieme',
+            '3eme': '3ieme',
+            '2nde': '2nde',
+            '1ere': '1ere',
+            'terminale': 'terminale'
+        };
+        return levelAliases[level.toLowerCase()] || level;
+    }
+
+    // Charger les données de cours
     async loadCourseData(subject, level, topic) {
-        return new Promise((resolve, reject) => {
-            const timestamp = new Date().getTime();
+        try {
+            const normalizedSubject = this.normalizeSubject(subject);
+            const normalizedLevel = this.normalizeLevel(level);
+            console.log(`🔄 Normalisation: "${subject}" → "${normalizedSubject}"`);
+            console.log(`🔄 Normalisation niveau: "${level}" → "${normalizedLevel}"`);
+            // Utiliser un chemin relatif depuis pages/cours.html vers data/
+            const dataPath = `../data/${normalizedSubject}/${normalizedLevel}/${topic}.js`;
+            console.log('📖 Chargement des données:', dataPath);
+            console.log('🌐 URL complète:', window.location.origin + window.location.pathname.replace('/pages/cours.html', '') + '/' + dataPath);
+            
+            const response = await fetch(dataPath);
+            if (!response.ok) {
+                throw new Error(`Données non trouvées: ${dataPath}`);
+            }
+            
+            const scriptText = await response.text();
             const script = document.createElement('script');
-            script.src = `../data/${subject}/${level}/${topic}.js?v=${timestamp}`;
-            
-            script.onload = () => {
-                setTimeout(() => {
-                    if (window.data && window.data.competences && window.data.competences[0]) {
-                        this.courseData = window.data;
-                        const competence = window.data.competences[0];
-                        this.populateAllSections(competence);
-                        resolve(window.data);
-                    } else {
-                        reject('Données non trouvées');
-                    }
-                }, 100);
-            };
-            
-            script.onerror = () => reject('Erreur de chargement du script');
+            script.textContent = scriptText;
             document.head.appendChild(script);
-        });
+            
+            this.courseData = window.data || data;
+            
+            if (!this.courseData) {
+                throw new Error('Données de cours non trouvées dans le script');
+            }
+            
+            console.log('✅ Données de cours chargées:', this.courseData);
+            return this.courseData;
+            
+        } catch (error) {
+            console.error('❌ Erreur chargement données:', error);
+            throw error;
+        }
     }
 
-    // Peupler toutes les sections avec les données
+    // Remplir toutes les sections avec les données
     populateAllSections(competence) {
-        console.log('🔄 Peuplement de toutes les sections...');
+        console.log('📝 Remplissage des sections avec:', competence);
         
-        // Titre principal
-        const title = document.getElementById('mainTitle') || document.querySelector('h1');
-        if (title) title.textContent = competence.titre;
-
-        // En-tête du cours
-        const courseTitle = document.getElementById('courseTitle');
-        if (courseTitle) courseTitle.textContent = competence.titre;
-        
-        const courseSubtitle = document.getElementById('courseSubtitle');
-        if (courseSubtitle && this.courseData) {
-            // Créer un subtitle informatif avec les métadonnées du cours
-            const subtitle = `${this.courseData.niveau} • ${this.courseData.chapitre} • ${this.courseData.sousChapitre}`;
-            courseSubtitle.textContent = subtitle;
-        }
-        
-        const courseObjective = document.getElementById('courseObjective');
-        if (courseObjective && competence.objectif) {
-            courseObjective.textContent = `🎯 ${competence.objectif}`;
-        }
-
-        // Pré-évaluation
-        if (competence.preEvaluation) {
-            this.populatePreEvaluation(competence.preEvaluation);
-        }
-
-        // Cours
+        this.populatePreEvaluation(competence.preEvaluation);
         this.populateCours(competence);
-
-        // Exercices
-        if (competence.exercices) {
-            this.populateExercices(competence.exercices);
-        }
-
-        // Quiz
-        if (competence.quiz) {
-            this.populateQuiz(competence.quiz);
-        }
-
-        // Réflexion
-        if (competence.metacognition) {
-            this.populateReflexion(competence.metacognition);
-        }
-
-        // Ressources
-        if (competence.ressources) {
-            this.populateRessources(competence.ressources);
-        }
+        this.populateExercices(competence.exercices);
+        this.populateReflexion(competence.metacognition);
+        this.populateRessources(competence);
     }
 
+    // Remplir la section pré-évaluation
     populatePreEvaluation(preEvaluation) {
         const container = document.getElementById('preEvaluationContent');
-        if (!container) return;
+        if (!container || !preEvaluation) return;
 
-        // Gérer les deux formats: tableau direct ou objet avec propriété questions
-        let questions = Array.isArray(preEvaluation) ? preEvaluation : (preEvaluation.questions || []);
-        
         let html = '';
-        questions.forEach((question, index) => {
-            // Gérer les questions avec choix multiples (format division) ou réponse libre (format addition-soustraction)
-            if (question.choix && Array.isArray(question.choix)) {
-                // Format avec choix multiples
-                html += `
-                    <div class="exercise-item">
-                        <div class="exercise-question">${question.question}</div>
-                        <div class="exercise-choices">
-                            ${question.choix.map((choix, choixIndex) => `
-                                <label class="choice-label">
-                                    <input type="radio" name="preeval-${index}" value="${choix}" 
-                                           onchange="window.sectionManager.validatePreEvaluationChoice(${index}, '${question.reponse}', '${choix}', this)">
-                                    <span>${choix}</span>
-                                </label>
-                            `).join('')}
-                        </div>
-                        <div class="feedback" id="preeval-feedback-${index}" style="display: none;"></div>
-                    </div>
-                `;
-            } else {
-                // Format avec réponse libre
+        if (preEvaluation.questions) {
+            preEvaluation.questions.forEach((question, index) => {
                 html += `
                     <div class="exercise-item">
                         <div class="exercise-question">${question.question}</div>
@@ -184,31 +139,29 @@ class SectionManager {
                         <div class="feedback" id="preeval-feedback-${index}" style="display: none;"></div>
                     </div>
                 `;
-            }
-        });
+            });
+        }
         container.innerHTML = html;
     }
 
+    // Remplir la section cours
     populateCours(competence) {
         const container = document.getElementById('coursContent');
         if (!container) return;
 
         let html = '';
-        
-        // L'objectif est maintenant affiché dans l'en-tête, pas besoin de le dupliquer ici
-        // Le titre est déjà présent dans le template, pas besoin de le dupliquer
-        
         if (competence.cours) {
-            html += `
-                <div class="course-section">
+            html = `
+                <div class="course-content">
+                    <h3>${competence.titre}</h3>
                     <div>${competence.cours}</div>
                 </div>
             `;
         }
-
         container.innerHTML = html;
     }
 
+    // Remplir la section exercices
     populateExercices(exercices) {
         const container = document.getElementById('exercicesContent');
         if (!container) return;
@@ -233,58 +186,33 @@ class SectionManager {
         container.innerHTML = html;
     }
 
-    populateQuiz(quiz) {
-        const container = document.getElementById('quizContent');
-        if (!container) return;
-
-        let html = '';
-        quiz.forEach((question, index) => {
-            html += `
-                <div class="exercise-item">
-                    <div class="exercise-question">${question.question}</div>
-                    <div class="exercise-input">
-                        <input type="text" class="answer-input" id="quiz-${index}" placeholder="Votre réponse">
-                        <button class="validate-btn" onclick="window.sectionManager.validateQuiz(${index}, '${question.reponse}', ${question.points || 10})">Valider</button>
-                    </div>
-                    <div class="feedback" id="quiz-feedback-${index}" style="display: none;"></div>
-                </div>
-            `;
-        });
-        container.innerHTML = html;
-    }
-
+    // Remplir la section réflexion
     populateReflexion(metacognition) {
         const container = document.getElementById('reflexionContent');
         if (!container) return;
 
         let html = '';
-        if (metacognition.questions) {
+        if (metacognition && metacognition.questions) {
             metacognition.questions.forEach((question, index) => {
                 html += `
-                    <div class="metacognition-question">
-                        <h4>${question.question}</h4>
+                    <div class="metacognition-item">
+                        <div class="metacognition-question">${question.question}</div>
                         <div class="metacognition-options">
                 `;
                 
-                question.options.forEach((option, optIndex) => {
-                    html += `
-                        <div class="metacognition-option" onclick="window.sectionManager.selectMetacognitionOption(${index}, ${optIndex}, '${option}', this)">
-                            ${option}
-                        </div>
-                    `;
-                });
+                if (question.options) {
+                    question.options.forEach((option, optIndex) => {
+                        html += `
+                            <div class="metacognition-option" onclick="window.sectionManager.selectMetacognitionOption(${index}, ${optIndex}, '${option}', this)">
+                                ${option}
+                            </div>
+                        `;
+                    });
+                }
                 
                 html += `
                         </div>
-                    </div>
-                `;
-            });
-        } else if (Array.isArray(metacognition)) {
-            // Format tableau simple
-            metacognition.forEach((question, index) => {
-                html += `
-                    <div class="course-section">
-                        <p><strong>${index + 1}.</strong> ${question}</p>
+                        <div class="feedback" id="metacognition-feedback-${index}" style="display: none;"></div>
                     </div>
                 `;
             });
@@ -292,181 +220,140 @@ class SectionManager {
         container.innerHTML = html;
     }
 
-    populateRessources(ressources) {
+    // Remplir la section ressources
+    populateRessources(competence) {
         const container = document.getElementById('ressourcesContent');
         if (!container) return;
 
-        let html = '<div class="resources-grid">';
-        ressources.forEach(ressource => {
-            if (typeof ressource === 'string') {
-                html += `
-                    <div class="resource-card">
-                        <h4>📖 ${ressource}</h4>
-                        <p>Type : ressource</p>
-                    </div>
-                `;
-            } else {
-                const emoji = ressource.type === 'vidéo' ? '🎬' : 
-                            ressource.type === 'jeu' ? '🎮' : 
-                            ressource.type === 'pdf' ? '📄' : '🔗';
-                
-                html += `
-                    <div class="resource-card">
-                        <h4>${emoji} ${ressource.titre}</h4>
-                        <p>Type : ${ressource.type}</p>
-                        <a href="${ressource.url}" target="_blank" class="resource-link">
-                            Accéder à la ressource →
-                        </a>
-                    </div>
-                `;
-            }
-        });
-        html += '</div>';
+        let html = `
+            <div class="resources-content">
+                <h3>📚 Ressources complémentaires</h3>
+                <p>Voici des ressources pour approfondir vos connaissances sur : <strong>${competence.titre}</strong></p>
+                <ul>
+                    <li>📖 Manuel de référence</li>
+                    <li>🎥 Vidéos explicatives</li>
+                    <li>✏️ Exercices supplémentaires</li>
+                    <li>🔗 Liens utiles</li>
+                </ul>
+            </div>
+        `;
         container.innerHTML = html;
     }
 
-    // Méthodes de validation
-    validatePreEvaluation(questionIndex, correctAnswer) {
-        const input = document.getElementById(`preeval-${questionIndex}`);
-        const feedback = document.getElementById(`preeval-feedback-${questionIndex}`);
-        const userAnswer = input.value.trim().toLowerCase();
-        const correct = userAnswer === correctAnswer.toLowerCase();
+    // Valider une réponse de pré-évaluation
+    validatePreEvaluation(index, correctAnswer) {
+        const input = document.getElementById(`preeval-${index}`);
+        const feedback = document.getElementById(`preeval-feedback-${index}`);
         
-        this.answers.preEvaluation[questionIndex] = {
-            userAnswer: input.value,
-            correct: correct,
-            correctAnswer: correctAnswer
-        };
+        if (!input || !feedback) return;
         
-        this.showFeedback(feedback, correct, correctAnswer, input.value);
-        this.updateProgress();
+        const userAnswer = input.value.trim();
+        const isCorrect = userAnswer.toLowerCase() === correctAnswer.toLowerCase();
+        
+        feedback.style.display = 'block';
+        
+        if (isCorrect) {
+            feedback.innerHTML = `
+                <div style="color: #38a169; background: #f0fff4; padding: 1rem; border-radius: 8px;">
+                    ✅ <strong>Correct !</strong>
+                </div>
+            `;
+            this.answers.preEvaluation[index] = { correct: true, answer: userAnswer };
+        } else {
+            feedback.innerHTML = `
+                <div style="color: #e53e3e; background: #fff5f5; padding: 1rem; border-radius: 8px;">
+                    ❌ <strong>Incorrect.</strong> La bonne réponse est : <strong>${correctAnswer}</strong>
+                </div>
+            `;
+            this.answers.preEvaluation[index] = { correct: false, answer: userAnswer };
+        }
     }
 
-    validatePreEvaluationChoice(questionIndex, correctAnswer, selectedChoice, element) {
-        const feedback = document.getElementById(`preeval-feedback-${questionIndex}`);
-        const correct = selectedChoice.toLowerCase() === correctAnswer.toLowerCase();
+    // Valider un exercice
+    validateExercise(index, correctAnswer, points = 10) {
+        const input = document.getElementById(`exercise-${index}`);
+        const feedback = document.getElementById(`exercise-feedback-${index}`);
         
-        this.answers.preEvaluation[questionIndex] = {
-            userAnswer: selectedChoice,
-            correct: correct,
-            correctAnswer: correctAnswer
-        };
+        if (!input || !feedback) return;
         
-        // Désactiver tous les choix pour cette question
-        const radioButtons = document.querySelectorAll(`input[name="preeval-${questionIndex}"]`);
-        radioButtons.forEach(radio => radio.disabled = true);
+        const userAnswer = input.value.trim();
+        const isCorrect = userAnswer.toLowerCase() === correctAnswer.toLowerCase();
         
-        this.showFeedback(feedback, correct, correctAnswer, selectedChoice);
-        this.updateProgress();
+        feedback.style.display = 'block';
+        
+        if (isCorrect) {
+            feedback.innerHTML = `
+                <div style="color: #38a169; background: #f0fff4; padding: 1rem; border-radius: 8px;">
+                    ✅ <strong>Correct !</strong> (+${points} points)
+                </div>
+            `;
+            this.answers.exercises[index] = { correct: true, answer: userAnswer, points };
+            this.scores.exercises += points;
+        } else {
+            feedback.innerHTML = `
+                <div style="color: #e53e3e; background: #fff5f5; padding: 1rem; border-radius: 8px;">
+                    ❌ <strong>Incorrect.</strong> La bonne réponse est : <strong>${correctAnswer}</strong>
+                </div>
+            `;
+            this.answers.exercises[index] = { correct: false, answer: userAnswer, points: 0 };
+        }
     }
 
-    validateExercise(questionIndex, correctAnswer, points = 10) {
-        const input = document.getElementById(`exercise-${questionIndex}`);
-        const feedback = document.getElementById(`exercise-feedback-${questionIndex}`);
-        const userAnswer = input.value.trim().toLowerCase();
-        const correct = userAnswer === correctAnswer.toLowerCase();
+    // Sélectionner une option de métacognition
+    selectMetacognitionOption(questionIndex, optionIndex, optionText, element) {
+        const siblings = element.parentNode.querySelectorAll('.metacognition-option');
+        siblings.forEach(sibling => sibling.classList.remove('selected'));
         
-        this.answers.exercises[questionIndex] = {
-            userAnswer: input.value,
-            correct: correct,
-            correctAnswer: correctAnswer,
-            points: correct ? points : 0
-        };
-        
-        this.showFeedback(feedback, correct, correctAnswer, input.value);
-        this.updateProgress();
-    }
-
-    validateQuiz(questionIndex, correctAnswer, points = 10) {
-        const input = document.getElementById(`quiz-${questionIndex}`);
-        const feedback = document.getElementById(`quiz-feedback-${questionIndex}`);
-        const userAnswer = input.value.trim().toLowerCase();
-        const correct = userAnswer === correctAnswer.toLowerCase();
-        
-        this.answers.quiz[questionIndex] = {
-            userAnswer: input.value,
-            correct: correct,
-            correctAnswer: correctAnswer,
-            points: correct ? points : 0
-        };
-        
-        this.showFeedback(feedback, correct, correctAnswer, input.value);
-    }
-
-    selectMetacognitionOption(questionIndex, optionIndex, option, element) {
-        // Déselectionner toutes les options de cette question
-        const allOptions = element.parentElement.querySelectorAll('.metacognition-option');
-        allOptions.forEach(opt => opt.classList.remove('selected'));
-        
-        // Sélectionner l'option cliquée
         element.classList.add('selected');
         
-        // Sauvegarder la réponse
         this.answers.metacognition[questionIndex] = {
-            questionIndex: questionIndex,
-            optionIndex: optionIndex,
-            option: option
+            selectedOption: optionIndex,
+            optionText: optionText
         };
-    }
-
-    showFeedback(feedbackElement, correct, correctAnswer, userAnswer) {
-        feedbackElement.style.display = 'block';
         
-        if (correct) {
-            feedbackElement.innerHTML = `
-                <div style="color: #38a169; background: #f0fff4; padding: 1rem; border-radius: 8px; border-left: 4px solid #38a169;">
-                    ✅ <strong>Correct !</strong> Bravo !
-                </div>
-            `;
-        } else {
-            feedbackElement.innerHTML = `
-                <div style="color: #e53e3e; background: #fff5f5; padding: 1rem; border-radius: 8px; border-left: 4px solid #e53e3e;">
-                    ❌ <strong>Incorrect.</strong> La bonne réponse est : <strong>${correctAnswer}</strong>
-                    <br><small>Votre réponse : ${userAnswer}</small>
+        const feedback = document.getElementById(`metacognition-feedback-${questionIndex}`);
+        if (feedback) {
+            feedback.style.display = 'block';
+            feedback.innerHTML = `
+                <div style="color: #2b6cb0; background: #ebf4ff; padding: 0.8rem; border-radius: 6px;">
+                    💭 Réflexion enregistrée : "${optionText}"
                 </div>
             `;
         }
     }
 
-    updateProgress() {
-        // Calculer le progrès pour la pré-évaluation
-        const preEvalTotal = Object.keys(this.answers.preEvaluation).length;
-        const preEvalCorrect = Object.values(this.answers.preEvaluation).filter(a => a.correct).length;
+    // Basculer l'affichage d'une section
+    toggleSection(sectionId) {
+        document.querySelectorAll('.section-content').forEach(section => {
+            section.style.display = 'none';
+        });
         
-        // Calculer le progrès pour les exercices
-        const exerciseTotal = Object.keys(this.answers.exercises).length;
-        const exerciseCorrect = Object.values(this.answers.exercises).filter(a => a.correct).length;
+        document.querySelectorAll('.tab-button').forEach(button => {
+            button.classList.remove('active');
+        });
         
-        // Mettre à jour les scores
-        if (preEvalTotal > 0) {
-            this.scores.preEvaluation = Math.round((preEvalCorrect / preEvalTotal) * 100);
-            const progressBar = document.getElementById('preEvaluationProgress');
-            const scoreDisplay = document.getElementById('preEvaluationScore');
-            const scoreText = document.getElementById('preEvaluationScoreText');
-            
-            if (progressBar) progressBar.style.width = `${this.scores.preEvaluation}%`;
-            if (scoreDisplay) scoreDisplay.style.display = 'block';
-            if (scoreText) scoreText.textContent = `Score: ${preEvalCorrect}/${preEvalTotal} (${this.scores.preEvaluation}%)`;
+        const targetSection = document.getElementById(sectionId);
+        if (targetSection) {
+            targetSection.style.display = 'block';
         }
         
-        if (exerciseTotal > 0) {
-            this.scores.exercises = Math.round((exerciseCorrect / exerciseTotal) * 100);
-            const exerciseProgressBar = document.getElementById('exercicesProgress');
-            const exerciseScoreDisplay = document.getElementById('exercicesScore');
-            const exerciseScoreText = document.getElementById('exercicesScoreText');
-            
-            if (exerciseProgressBar) exerciseProgressBar.style.width = `${this.scores.exercises}%`;
-            if (exerciseScoreDisplay) exerciseScoreDisplay.style.display = 'block';
-            if (exerciseScoreText) exerciseScoreText.textContent = `Score: ${exerciseCorrect}/${exerciseTotal} (${this.scores.exercises}%)`;
+        const activeButton = document.querySelector(`[onclick*="${sectionId}"]`);
+        if (activeButton) {
+            activeButton.classList.add('active');
         }
     }
 }
 
-// Fonction globale pour la compatibilité
+// Fonction globale pour basculer les sections
 function toggleSection(sectionId) {
     if (window.sectionManager) {
         window.sectionManager.toggleSection(sectionId);
     } else {
         console.error('SectionManager non initialisé');
     }
+}
+
+// Export pour les modules ES6 si nécessaire
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = SectionManager;
 }

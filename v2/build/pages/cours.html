@@ -3,7 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🎓 Cours avec Sections Collapsibles - FunRevis V2</title>
+    <title>FunRevis V2 - Cours Modulaire</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>">
+    
+    <!-- CSS des sections modulaires -->
+    <link rel="stylesheet" href="sections/sections.css">
     
     <style>
         * {
@@ -13,469 +17,335 @@
         }
         
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: #333;
-            min-height: 100vh;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             line-height: 1.6;
-            padding: 2rem;
+            color: #2d3748;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
         }
         
         .container {
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
-            background: white;
-            border-radius: 12px;
             padding: 2rem;
+            background: white;
+            min-height: 100vh;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
         
         .breadcrumb {
             color: #666;
             margin-bottom: 1rem;
-            font-size: 0.9rem;
+            font-size: 1rem;
+            padding: 0.8rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
         }
         
         .breadcrumb a {
-            color: #667eea;
-            text-decoration: none;
+            color: #007bff !important;
+            text-decoration: underline !important;
+            font-weight: 700 !important;
+            transition: all 0.3s ease;
+            padding: 0.3rem 0.6rem;
+            border-radius: 4px;
+            background: #fff;
+            border: 1px solid #e9ecef;
         }
         
-        h1 {
-            color: #2c3e50;
+        .breadcrumb a:hover {
+            background: #007bff;
+            color: white !important;
+            transform: translateY(-1px);
+        }
+        
+        .course-header {
+            text-align: center;
             margin-bottom: 2rem;
-        }
-        
-        /* Système de sections collapsibles */
-        .sections-container {
-            margin: 2rem 0;
-        }
-        
-        .collapsible-section {
-            margin-bottom: 1rem;
-            border: 2px solid #e2e8f0;
-            border-radius: 12px;
-            background: white;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            overflow: hidden;
-        }
-        
-        .section-header {
+            padding: 2rem;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 1rem 1.5rem;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-        }
-        
-        .section-header:hover {
-            background: linear-gradient(135deg, #5a6fd8 0%, #6a4c93 100%);
-        }
-        
-        .section-header.active {
-            background: linear-gradient(135deg, #5a6fd8 0%, #6a4c93 100%);
-        }
-        
-        .section-toggle {
-            font-size: 1.5rem;
-            transition: transform 0.3s ease;
-        }
-        
-        .section-header.active .section-toggle {
-            transform: rotate(180deg);
-        }
-        
-        .section-content {
-            padding: 0;
-            max-height: 0;
-            overflow: hidden;
-            transition: all 0.4s ease;
-            background: #f8f9ff;
-        }
-        
-        .section-content.active {
-            padding: 2rem;
-            max-height: 1000px;
-        }
-        
-        .section-inner {
-            opacity: 0;
-            transition: opacity 0.3s ease 0.1s;
-        }
-        
-        .section-content.active .section-inner {
-            opacity: 1;
-        }
-        
-        /* Styles pour les exercices avec validation */
-        .exercise-item {
-            background: white;
-            padding: 1.5rem;
             border-radius: 12px;
-            margin: 1rem 0;
-            border-left: 4px solid #667eea;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 20px rgba(102, 126, 234, 0.3);
         }
         
-        .exercise-question {
-            font-size: 1.1rem;
-            font-weight: 600;
+        .course-title {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+        
+        .course-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
             margin-bottom: 1rem;
-            color: #2d3748;
         }
         
-        .exercise-input {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin: 1rem 0;
-        }
-        
-        .answer-input {
-            padding: 0.8rem;
-            border: 2px solid #e2e8f0;
-            border-radius: 8px;
-            font-size: 1rem;
-            min-width: 150px;
-        }
-        
-        .answer-input:focus {
-            outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-        }
-        
-        .validate-btn {
-            padding: 0.8rem 1.5rem;
-            background: #667eea;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-        
-        .validate-btn:hover {
-            background: #5a6fd8;
-            transform: translateY(-2px);
-        }
-        
-        .feedback {
-            margin-top: 1rem;
+        .course-objective {
+            font-size: 1.1rem;
+            font-style: italic;
+            background: rgba(255, 255, 255, 0.1);
             padding: 1rem;
             border-radius: 8px;
-            font-weight: 600;
+            border-left: 4px solid #ffd700;
         }
         
-        .feedback.correct {
-            background: #d1fae5;
-            color: #047857;
-            border: 1px solid #34d399;
+        .sections-container {
+            margin-top: 2rem;
         }
         
-        .feedback.incorrect {
-            background: #fee2e2;
-            color: #dc2626;
-            border: 1px solid #f87171;
-        }
-        
-        .course-section {
-            background: #f8f9ff;
-            padding: 1.5rem;
+        .section-placeholder {
+            min-height: 200px;
+            padding: 2rem;
+            background: #f8f9fa;
             border-radius: 12px;
-            margin: 1rem 0;
-            border-left: 4px solid #667eea;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-style: italic;
         }
         
         .navigation {
             margin-top: 2rem;
             text-align: center;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 8px;
         }
         
         .btn {
             display: inline-block;
-            padding: 0.75rem 1.5rem;
+            padding: 0.8rem 1.5rem;
             margin: 0 0.5rem;
-            background: #667eea;
-            color: white;
-            text-decoration: none;
             border-radius: 8px;
+            text-decoration: none;
             font-weight: 600;
             transition: all 0.3s ease;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
             border: none;
             cursor: pointer;
         }
         
         .btn:hover {
-            background: #5a6fd8;
             transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(102, 126, 234, 0.4);
         }
         
         .btn-secondary {
-            background: #6b7280;
+            background: #6c757d;
         }
         
-        .btn-secondary:hover {
-            background: #4b5563;
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            color: #666;
+        }
+        
+        .error {
+            background: #fee;
+            color: #c33;
+            padding: 1rem;
+            border-radius: 8px;
+            border: 1px solid #fcc;
+            margin: 1rem 0;
+        }
+        
+        .debug-info {
+            background: #f0f0f0;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            font-family: monospace;
+            font-size: 0.9rem;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="breadcrumb">
-            <a href="../../index.html">🏠 Accueil</a> › 
-            <span>Mathématiques</span> › 
-            <span>6ème</span> › 
-            <span>Addition soustraction</span>
+        <!-- Fil d'Ariane -->
+        <nav class="breadcrumb">
+            <a href="../../index.html">🏠 Accueil</a> > 
+            <a href="#" id="subjectLink">Mathématiques</a> > 
+            <a href="#" id="levelLink">6ème</a> > 
+            <span id="topicSpan">Cours</span>
+        </nav>
+        
+        <!-- En-tête du cours -->
+        <div class="course-header">
+            <h1 class="course-title" id="courseTitle">📚 Chargement du cours...</h1>
+            <p class="course-subtitle" id="courseSubtitle">Veuillez patienter</p>
+            <div class="course-objective" id="courseObjective">
+                🎯 Objectif en cours de chargement...
+            </div>
         </div>
         
-        <h1>Addition et soustraction - 6ème</h1>
+        <!-- Informations de debug -->
+        <div class="debug-info" id="debugInfo">
+            🔍 Informations de debug:<br>
+            - URL: <span id="currentUrl"></span><br>
+            - Paramètres: <span id="urlParams"></span><br>
+            - État: <span id="loadingState">Initialisation...</span>
+        </div>
         
-        <!-- Système de sections collapsibles -->
+        <!-- Conteneur des sections -->
         <div class="sections-container">
             <!-- Section Pré-évaluation -->
-            <div class="collapsible-section">
-                <div class="section-header active" onclick="toggleSection('pre-evaluation')">
-                    <span>🧪 Pré-évaluation</span>
-                    <span class="section-toggle">▼</span>
-                </div>
-                <div class="section-content active" id="pre-evaluation">
-                    <div class="section-inner">
-                        <h3>🧪 Testez vos connaissances avant de commencer</h3>
-                        <p>Évaluez votre niveau actuel avec ces questions :</p>
-                        
-                        <div class="exercise-item">
-                            <div class="exercise-question">Combien font 25 + 15 ?</div>
-                            <div class="exercise-input">
-                                <input type="text" class="answer-input" id="preeval-0" placeholder="Votre réponse">
-                                <button class="validate-btn" onclick="validatePreEvaluation(0, '40')">Valider</button>
-                            </div>
-                            <div class="feedback" id="preeval-feedback-0" style="display: none;"></div>
-                        </div>
-                        
-                        <div class="exercise-item">
-                            <div class="exercise-question">Combien font 100 - 37 ?</div>
-                            <div class="exercise-input">
-                                <input type="text" class="answer-input" id="preeval-1" placeholder="Votre réponse">
-                                <button class="validate-btn" onclick="validatePreEvaluation(1, '63')">Valider</button>
-                            </div>
-                            <div class="feedback" id="preeval-feedback-1" style="display: none;"></div>
-                        </div>
-                    </div>
-                </div>
+            <div id="pre-evaluation-section" class="section-placeholder">
+                <div class="loading">📋 Chargement de la pré-évaluation...</div>
             </div>
             
             <!-- Section Cours -->
-            <div class="collapsible-section">
-                <div class="section-header" onclick="toggleSection('cours')">
-                    <span>📚 Cours</span>
-                    <span class="section-toggle">▼</span>
-                </div>
-                <div class="section-content" id="cours">
-                    <div class="section-inner">
-                        <h3>📚 Contenu du cours</h3>
-                        <div class="course-section">
-                            <h4>🎯 Objectif</h4>
-                            <p>Maîtriser l'addition et la soustraction des nombres entiers et décimaux.</p>
-                        </div>
-                        <div class="course-section">
-                            <h4>📖 Contenu du cours</h4>
-                            <p>L'addition et la soustraction sont les opérations de base en mathématiques. Pour les nombres décimaux, il faut bien aligner les virgules pour poser correctement l'opération.</p>
-                        </div>
-                    </div>
-                </div>
+            <div id="cours-section" class="section-placeholder">
+                <div class="loading">📖 Chargement du cours...</div>
             </div>
             
             <!-- Section Exercices -->
-            <div class="collapsible-section">
-                <div class="section-header" onclick="toggleSection('exercices')">
-                    <span>✏️ Exercices</span>
-                    <span class="section-toggle">▼</span>
-                </div>
-                <div class="section-content" id="exercices">
-                    <div class="section-inner">
-                        <h3>✏️ Exercices pratiques</h3>
-                        <p>Pratiquez avec ces exercices interactifs :</p>
-                        
-                        <div class="exercise-item">
-                            <div class="exercise-question">
-                                <span style="background: #667eea; color: white; padding: 0.3rem 0.8rem; border-radius: 12px; font-size: 0.8rem; margin-right: 0.5rem;">DÉBUTANT</span>
-                                Calcule 25 + 17
-                            </div>
-                            <div class="exercise-input">
-                                <input type="text" class="answer-input" id="exercise-0" placeholder="Votre réponse">
-                                <button class="validate-btn" onclick="validateExercise(0, '42', 10)">Valider</button>
-                            </div>
-                            <div class="feedback" id="exercise-feedback-0" style="display: none;"></div>
-                        </div>
-                        
-                        <div class="exercise-item">
-                            <div class="exercise-question">
-                                <span style="background: #667eea; color: white; padding: 0.3rem 0.8rem; border-radius: 12px; font-size: 0.8rem; margin-right: 0.5rem;">INTERMÉDIAIRE</span>
-                                Calcule 12,5 - 7,8
-                            </div>
-                            <div class="exercise-input">
-                                <input type="text" class="answer-input" id="exercise-1" placeholder="Votre réponse">
-                                <button class="validate-btn" onclick="validateExercise(1, '4,7', 15)">Valider</button>
-                            </div>
-                            <div class="feedback" id="exercise-feedback-1" style="display: none;"></div>
-                        </div>
-                    </div>
-                </div>
+            <div id="exercices-section" class="section-placeholder">
+                <div class="loading">💪 Chargement des exercices...</div>
             </div>
             
             <!-- Section Quiz -->
-            <div class="collapsible-section">
-                <div class="section-header" onclick="toggleSection('quiz')">
-                    <span>🎯 Quiz</span>
-                    <span class="section-toggle">▼</span>
-                </div>
-                <div class="section-content" id="quiz">
-                    <div class="section-inner">
-                        <h3>🎯 Quiz d'évaluation</h3>
-                        <p>Évaluez vos acquis avec ce quiz :</p>
-                        <div class="course-section">
-                            <p>Quiz avancé à venir... Pour l'instant, utilisez les exercices interactifs dans la section Exercices.</p>
-                        </div>
-                    </div>
-                </div>
+            <div id="quiz-section" class="section-placeholder">
+                <div class="loading">🎯 Chargement du quiz...</div>
             </div>
             
             <!-- Section Réflexion -->
-            <div class="collapsible-section">
-                <div class="section-header" onclick="toggleSection('reflexion')">
-                    <span>🤔 Réflexion</span>
-                    <span class="section-toggle">▼</span>
-                </div>
-                <div class="section-content" id="reflexion">
-                    <div class="section-inner">
-                        <h3>🤔 Métacognition</h3>
-                        <p>Réfléchissez sur votre apprentissage :</p>
-                        <div class="course-section">
-                            <h4>Penses-tu avoir atteint l'objectif ?</h4>
-                            <p>Questions de réflexion métacognitive à venir...</p>
-                        </div>
-                    </div>
-                </div>
+            <div id="reflexion-section" class="section-placeholder">
+                <div class="loading">🤔 Chargement de la réflexion...</div>
             </div>
             
             <!-- Section Ressources -->
-            <div class="collapsible-section">
-                <div class="section-header" onclick="toggleSection('ressources')">
-                    <span>📖 Ressources</span>
-                    <span class="section-toggle">▼</span>
-                </div>
-                <div class="section-content" id="ressources">
-                    <div class="section-inner">
-                        <h3>📖 Ressources complémentaires</h3>
-                        <p>Ressources supplémentaires pour approfondir :</p>
-                        <div class="course-section">
-                            <h4>🎬 Vidéos</h4>
-                            <p>• Addition et soustraction - Khan Academy</p>
-                            <h4>🎮 Jeux éducatifs</h4>
-                            <p>• Calcul mental interactif</p>
-                        </div>
-                    </div>
-                </div>
+            <div id="ressources-section" class="section-placeholder">
+                <div class="loading">📚 Chargement des ressources...</div>
             </div>
         </div>
         
+        <!-- Navigation -->
         <div class="navigation">
             <a href="javascript:history.back()" class="btn btn-secondary">← Retour</a>
             <a href="../../index.html" class="btn">🏠 Accueil</a>
         </div>
     </div>
-
+    
     <script>
-        console.log('🚀 Page avec sections collapsibles chargée');
+        // Affichage des informations de debug
+        document.getElementById('currentUrl').textContent = window.location.href;
         
-        // Variables globales
-        let preEvaluationAnswers = {};
-        let exerciseAnswers = {};
+        const urlParams = new URLSearchParams(window.location.search);
+        const subject = urlParams.get('subject') || 'mathematiques';
+        const level = urlParams.get('level') || '6ieme';
+        const topic = urlParams.get('topic') || 'addition-soustraction';
         
-        // Fonction pour basculer les sections
-        function toggleSection(sectionId) {
-            console.log('🔄 Basculement de la section:', sectionId);
-            
-            const sectionContent = document.getElementById(sectionId);
-            const sectionHeader = sectionContent.previousElementSibling;
-            
-            // Basculer l'état actif
-            const isActive = sectionContent.classList.contains('active');
-            
-            if (isActive) {
-                // Fermer la section
-                sectionContent.classList.remove('active');
-                sectionHeader.classList.remove('active');
-                console.log('📂 Section fermée:', sectionId);
-            } else {
-                // Ouvrir la section
-                sectionContent.classList.add('active');
-                sectionHeader.classList.add('active');
-                console.log('📂 Section ouverte:', sectionId);
+        document.getElementById('urlParams').textContent = `subject=${subject}, level=${level}, topic=${topic}`;
+        
+        // Variable globale pour le gestionnaire de sections
+        window.sectionManager = null;
+        
+        async function loadScript(src) {
+            return new Promise((resolve, reject) => {
+                const script = document.createElement('script');
+                script.src = src;
+                script.onload = resolve;
+                script.onerror = () => reject(new Error(`Impossible de charger ${src}`));
+                document.head.appendChild(script);
+            });
+        }
+
+        async function initializeCourse() {
+            try {
+                document.getElementById('loadingState').textContent = 'Vérification des fichiers...';
+                
+                // Vérifier si le fichier section-manager.js existe
+                const response = await fetch('sections/section-manager.js');
+                if (!response.ok) {
+                    throw new Error(`Fichier section-manager.js non trouvé (${response.status})`);
+                }
+                
+                document.getElementById('loadingState').textContent = 'Chargement du gestionnaire de sections...';
+                
+                // Charger le script section-manager.js
+                await loadScript('sections/section-manager.js');
+                
+                // Attendre un peu pour s'assurer que le script est bien exécuté
+                await new Promise(resolve => setTimeout(resolve, 100));
+                
+                document.getElementById('loadingState').textContent = 'Vérification de SectionManager...';
+                
+                // Vérifier que SectionManager est défini
+                if (typeof SectionManager === 'undefined') {
+                    throw new Error('SectionManager n\'est pas défini après le chargement du script');
+                }
+                
+                document.getElementById('loadingState').textContent = 'Initialisation du gestionnaire...';
+                
+                // Créer le gestionnaire de sections
+                window.sectionManager = new SectionManager();
+                
+                document.getElementById('loadingState').textContent = 'Chargement des données du cours...';
+                
+                // Charger les données du cours
+                await window.sectionManager.loadCourseData(subject, level, topic);
+                
+                document.getElementById('loadingState').textContent = 'Chargement des sections...';
+                
+                // Charger toutes les sections
+                await window.sectionManager.loadSections();
+                
+                // Peupler les sections avec les données
+                if (window.sectionManager.courseData && window.sectionManager.courseData.competences[0]) {
+                    window.sectionManager.populateAllSections(window.sectionManager.courseData.competences[0]);
+                }
+                
+                // Mettre à jour le fil d'Ariane
+                updateBreadcrumb(subject, level, topic);
+                
+                document.getElementById('loadingState').textContent = 'Cours chargé avec succès !';
+                
+                // Masquer les infos de debug après 3 secondes
+                setTimeout(() => {
+                    document.getElementById('debugInfo').style.display = 'none';
+                }, 3000);
+                
+                console.log('✅ Cours modulaire initialisé avec succès');
+                
+            } catch (error) {
+                console.error('❌ Erreur lors de l\'initialisation:', error);
+                document.getElementById('loadingState').textContent = 'Erreur: ' + error.message;
+                showError('Erreur lors de l\'initialisation: ' + error.message);
             }
         }
         
-        // Fonctions de validation
-        function validatePreEvaluation(index, correctAnswer) {
-            const input = document.getElementById(`preeval-${index}`);
-            const feedback = document.getElementById(`preeval-feedback-${index}`);
-            const userAnswer = input.value.trim();
-            
-            if (!userAnswer) {
-                alert('Veuillez saisir une réponse');
-                return;
-            }
-            
-            const isCorrect = userAnswer.toLowerCase() === correctAnswer.toLowerCase();
-            
-            feedback.style.display = 'block';
-            if (isCorrect) {
-                feedback.className = 'feedback correct';
-                feedback.innerHTML = '✅ Correct ! Bonne réponse.';
-                preEvaluationAnswers[index] = { correct: true, answer: userAnswer };
-            } else {
-                feedback.className = 'feedback incorrect';
-                feedback.innerHTML = `❌ Incorrect. La bonne réponse est : ${correctAnswer}`;
-                preEvaluationAnswers[index] = { correct: false, answer: userAnswer };
-            }
-            
-            input.disabled = true;
+        function showError(message) {
+            const container = document.querySelector('.sections-container');
+            container.innerHTML = `<div class="error">❌ ${message}</div>`;
         }
         
-        function validateExercise(index, correctAnswer, points) {
-            const input = document.getElementById(`exercise-${index}`);
-            const feedback = document.getElementById(`exercise-feedback-${index}`);
-            const userAnswer = input.value.trim();
+        function updateBreadcrumb(subject, level, topic) {
+            const subjectLink = document.getElementById('subjectLink');
+            const levelLink = document.getElementById('levelLink');
+            const topicSpan = document.getElementById('topicSpan');
             
-            if (!userAnswer) {
-                alert('Veuillez saisir une réponse');
-                return;
+            if (subjectLink) {
+                subjectLink.textContent = subject.charAt(0).toUpperCase() + subject.slice(1);
+                subjectLink.href = `../pages/${subject}/index.html`;
             }
             
-            const isCorrect = userAnswer.toLowerCase() === correctAnswer.toLowerCase();
-            
-            feedback.style.display = 'block';
-            if (isCorrect) {
-                feedback.className = 'feedback correct';
-                feedback.innerHTML = `✅ Correct ! +${points} points`;
-                exerciseAnswers[index] = { correct: true, answer: userAnswer, points: points };
-            } else {
-                feedback.className = 'feedback incorrect';
-                feedback.innerHTML = `❌ Incorrect. La bonne réponse est : ${correctAnswer}`;
-                exerciseAnswers[index] = { correct: false, answer: userAnswer, points: 0 };
+            if (levelLink) {
+                levelLink.textContent = level.toUpperCase();
+                levelLink.href = `../pages/${subject}/${level}/index.html`;
             }
             
-            input.disabled = true;
+            if (topicSpan) {
+                topicSpan.textContent = topic.replace('-', ' ');
+            }
         }
         
-        console.log('✅ JavaScript des sections collapsibles initialisé');
+        // Initialiser au chargement de la page
+        document.addEventListener('DOMContentLoaded', initializeCourse);
     </script>
 </body>
 </html>

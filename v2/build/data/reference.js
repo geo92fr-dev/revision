@@ -63,7 +63,7 @@
  *   ],
  *   
  *   // Éléments pédagogiques enrichis (optionnels)
- *   miniQuiz: [...],                   // Quiz rapides
+ *                   // Quiz rapides
  *   preEvaluation: {...},              // Évaluation diagnostique
  *   astuce: "Conseil pratique",        // Astuce mémorisation/méthode
  *   pieges: [...],                     // Erreurs fréquentes à éviter
@@ -82,7 +82,7 @@
  *     },
  *     // ... autres ressources
  *   ],
- *   quizId: "QUIZ_ID_UNIQUE"          // Identifiant unique du quiz
+ *          // Identifiant unique du quiz
  * }
  * 
  * 2. COMPÉTENCE SIMPLE (compétences suivantes) :
@@ -97,7 +97,7 @@
  *     { type: "vidéo", titre: "...", url: "..." },
  *     // ...
  *   ],
- *   quizId: "QUIZ_ID_UNIQUE"          // Identifiant unique du quiz
+ *          // Identifiant unique du quiz
  * }
  */
 
@@ -186,10 +186,6 @@ export const reference6eme = {
       ],
 
       // Éléments pédagogiques enrichis
-      miniQuiz: [
-        {
-          question: "Quelle fraction représente 2 parts sur 5 ?",
-          choix: ["2/3", "5/2", "2/5", "1/2"],
           reponse: "2/5",
           points: 20
         }
@@ -240,8 +236,7 @@ export const reference6eme = {
       ressources: [
         { type: "vidéo", titre: "Découvrir les fractions", url: "https://www.youtube.com/watch?v=QY1G1Yr4gkI" },
         { type: "jeu", titre: "Fraction – parts de pizza", url: "https://www.logicieleducatif.fr/" }
-      ],
-      quizId: "QUIZ_6_FR_BASE"
+      ]
     },
     {
       // COMPÉTENCE SIMPLE (compétences suivantes)
@@ -252,8 +247,7 @@ export const reference6eme = {
       astuce: "Divise par le plus grand facteur commun (PGCD) pour simplifier rapidement.",
       ressources: [
         { type: "exercice", titre: "Simplifier des fractions", url: "https://www.sesamath.net/" }
-      ],
-      quizId: "QUIZ_6_FR_EQUIV"
+      ]
     },
     {
       // COMPÉTENCE SIMPLE
@@ -264,8 +258,7 @@ export const reference6eme = {
       astuce: "Cherche un dénominateur 10, 100, 1000… pour écrire en décimal facilement.",
       ressources: [
         { type: "vidéo", titre: "Fractions ↔ décimaux", url: "https://www.youtube.com/watch?v=Omc8Nxnz3tE" }
-      ],
-      quizId: "QUIZ_6_FR_DEC"
+      ]
     }
   ]
 };

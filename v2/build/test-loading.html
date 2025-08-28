@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Test de chargement des fichiers corrigés</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .success { color: green; }
+        .error { color: red; }
+        .summary { 
+            background: #f0f0f0; 
+            padding: 15px; 
+            border-radius: 5px; 
+            margin-top: 20px; 
+        }
+    </style>
+</head>
+<body>
+    <h1>🧪 Test de chargement des fichiers JavaScript corrigés</h1>
+    <p>Cette page teste si tous les fichiers de données se chargent correctement dans le navigateur.</p>
+    
+    <div id="results"></div>
+    <div id="summary" class="summary" style="display: none;"></div>
+
+    <script>
+        const files = [
+            'data/mathematiques/6ieme/nombres-decimaux.js',
+            'data/mathematiques/6ieme/fractions-simples.js',
+            'data/mathematiques/6ieme/symetrie-axiale.js',
+            'data/mathematiques/6ieme/constructions-geometriques.js',
+            'data/mathematiques/6ieme/unites-masse-capacite.js',
+            'data/mathematiques/6ieme/unites-longueur.js',
+            'data/mathematiques/6ieme/durees.js',
+            'data/mathematiques/6ieme/lecture-tableaux.js',
+            'data/mathematiques/6ieme/graphiques.js'
+        ];
+
+        const results = document.getElementById('results');
+        const summary = document.getElementById('summary');
+        let loadedCount = 0;
+        let errorCount = 0;
+        let totalCount = files.length;
+
+        console.log('🚀 Début du test de chargement...');
+
+        files.forEach((file, index) => {
+            const script = document.createElement('script');
+            script.src = file;
+            
+            script.onload = () => {
+                loadedCount++;
+                console.log(`✅ ${file} chargé avec succès`);
+                results.innerHTML += `<p class="success">✅ ${file} chargé avec succès</p>`;
+                
+                // Vérifier si window.data est défini
+                if (window.data) {
+                    results.innerHTML += `<p style="color: blue; margin-left: 20px;">📊 Données disponibles: ${Object.keys(window.data).length} propriétés</p>`;
+                }
+                
+                checkComplete();
+            };
+            
+            script.onerror = (error) => {
+                errorCount++;
+                console.error(`❌ Erreur lors du chargement de ${file}:`, error);
+                results.innerHTML += `<p class="error">❌ Erreur lors du chargement de ${file}</p>`;
+                checkComplete();
+            };
+            
+            document.head.appendChild(script);
+        });
+
+        function checkComplete() {
+            if (loadedCount + errorCount === totalCount) {
+                const successRate = ((loadedCount / totalCount) * 100).toFixed(1);
+                
+                summary.style.display = 'block';
+                summary.innerHTML = `
+                    <h2>📊 Résultats du test</h2>
+                    <p><strong>Fichiers chargés avec succès:</strong> ${loadedCount}/${totalCount} (${successRate}%)</p>
+                    <p><strong>Erreurs:</strong> ${errorCount}</p>
+                    ${loadedCount === totalCount ? 
+                        '<p class="success"><strong>🎉 Tous les fichiers ont été chargés avec succès !</strong></p>' :
+                        '<p class="error"><strong>⚠️ Certains fichiers n\'ont pas pu être chargés.</strong></p>'
+                    }
+                `;
+                
+                console.log(`📊 Test terminé: ${loadedCount}/${totalCount} fichiers chargés (${successRate}%)`);
+            }
+        }
+    </script>
+</body>
+</html>

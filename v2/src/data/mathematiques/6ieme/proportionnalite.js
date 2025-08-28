@@ -65,24 +65,18 @@ const data = {
         }
       ],
 
-      miniQuiz: [
-        {
-          question: "Quel est le coefficient de proportionnalite qui permet de passer de la ligne du haut a la ligne du bas ?",
-          tableau: {
-            ligne1: [4, 8, 12],
-            ligne2: [2, 4, 6]
-          },
-          choix: [
+      preEvaluation: {
+        questions: [
+          {
+            question: "Dans un tableau de proportionnalite avec ligne1: [1, 2, 3] et ligne2: [2, 4, 6], quel est le coefficient de proportionnalite ?",
+            choix: [
             {"option": "0,5", "estCorrect": true, "feedback": "Bravo ! On divise par 2 ou on multiplie par 0,5."},
             {"option": "2", "estCorrect": false, "feedback": "Non, 2 est le coefficient pour passer de la ligne du bas a celle du haut."},
             {"option": "4", "estCorrect": false, "feedback": "Non, 4 est juste le premier nombre de la ligne du haut."},
             {"option": "0,25", "estCorrect": false, "feedback": "Non, 0,25 serait pour diviser par 4."}
-          ]
-        }
-      ],
-
-      preEvaluation: {
-        questions: [
+            ],
+            reponse: "2"
+          },
           {
             question: "Si 2 stylos coûtent 4€, combien coûtent 4 stylos ?",
             choix: ["4€", "8€", "12€"],

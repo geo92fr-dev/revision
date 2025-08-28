@@ -221,7 +221,6 @@ export class CourseRenderer {
             titre: phase3Data.titre,
             objectif: phase3Data.objectif,
             exercices: phase3Data.exercices || [],
-            miniQuiz: phase3Data.miniQuiz || [],
             defi: phase3Data.defi
         };
 

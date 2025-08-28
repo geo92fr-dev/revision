@@ -16,8 +16,7 @@ export const anglais6eme = [
         ressources: [
           { type: "vidéo", titre: "Present Simple", url: "https://www.youtube.com/watch?v=present123" },
           { type: "exercice", titre: "Present Simple Practice", url: "https://www.englishgrammar.org/" }
-        ],
-        quizId: "QUIZ_6_PRESENT_SIMPLE"
+        ]
       },
       {
         id: "6GB-FS-2",
@@ -29,8 +28,7 @@ export const anglais6eme = [
           "'a' devant consonne, 'an' devant voyelle, 'the' pour ce qui est connu/unique.",
         ressources: [
           { type: "fiches", titre: "Articles Usage", url: "https://www.grammarly.com/" }
-        ],
-        quizId: "QUIZ_6_ARTICLES"
+        ]
       },
       {
         id: "6GB-FS-3",
@@ -42,8 +40,7 @@ export const anglais6eme = [
           "Pluriel général +s ; possessif : 's pour singulier, s' pour pluriel.",
         ressources: [
           { type: "exercice", titre: "Plurals & Possessives", url: "https://www.englishpage.com/" }
-        ],
-        quizId: "QUIZ_6_PLURALS_POSSESSIVES"
+        ]
       }
     ]
   },
@@ -63,8 +60,7 @@ export const anglais6eme = [
         ressources: [
           { type: "vocabulaire", titre: "Family Tree", url: "https://www.vocabulary.com/" },
           { type: "jeu", titre: "Family Games", url: "https://www.eslgamesplus.com/" }
-        ],
-        quizId: "QUIZ_6_FAMILY_FRIENDS"
+        ]
       },
       {
         id: "6VO-ET-2",
@@ -76,8 +72,7 @@ export const anglais6eme = [
           "Associe vocabulary + time expressions (at, in, on) pour parler du temps.",
         ressources: [
           { type: "fiches", titre: "School Vocabulary", url: "https://www.englishclub.com/" }
-        ],
-        quizId: "QUIZ_6_SCHOOL_ROUTINE"
+        ]
       },
       {
         id: "6VO-ET-3",
@@ -89,8 +84,7 @@ export const anglais6eme = [
           "Nombres composés avec trait d'union ; adjectifs AVANT le nom en anglais.",
         ressources: [
           { type: "jeu", titre: "Numbers & Colors", url: "https://www.games4esl.com/" }
-        ],
-        quizId: "QUIZ_6_NUMBERS_COLORS"
+        ]
       }
     ]
   },
@@ -109,8 +103,7 @@ export const anglais6eme = [
           "Contexte formel/informel : Hi vs Good morning ; Thanks vs Thank you.",
         ressources: [
           { type: "dialogues", titre: "Polite Conversations", url: "https://www.esl-lab.com/" }
-        ],
-        quizId: "QUIZ_6_GREETINGS"
+        ]
       },
       {
         id: "6CO-BI-2",
@@ -122,8 +115,7 @@ export const anglais6eme = [
           "Question words + auxiliary (do/does) + sujet + verbe infinitif.",
         ressources: [
           { type: "vidéo", titre: "Question Formation", url: "https://www.youtube.com/watch?v=quest123" }
-        ],
-        quizId: "QUIZ_6_QUESTIONS"
+        ]
       },
       {
         id: "6CO-BI-3",
@@ -135,8 +127,7 @@ export const anglais6eme = [
           "Like/love/hate + nom OU + verb+ing (I like reading).",
         ressources: [
           { type: "exercice", titre: "Likes & Dislikes", url: "https://www.englishpage.com/" }
-        ],
-        quizId: "QUIZ_6_LIKES_DISLIKES"
+        ]
       }
     ]
   },
@@ -155,8 +146,7 @@ export const anglais6eme = [
           "Repère les mots-clés (verbes d'action) et observe les gestes du professeur.",
         ressources: [
           { type: "audio", titre: "Classroom Instructions", url: "https://www.esl-lab.com/" }
-        ],
-        quizId: "QUIZ_6_INSTRUCTIONS"
+        ]
       },
       {
         id: "6LS-BS-2",
@@ -168,8 +158,7 @@ export const anglais6eme = [
           "Imite les modèles audio, exagère au début, travaille les sons difficiles.",
         ressources: [
           { type: "phonétique", titre: "English Sounds", url: "https://www.sounds-pronunciation.com/" }
-        ],
-        quizId: "QUIZ_6_PRONUNCIATION"
+        ]
       },
       {
         id: "6LS-BS-3",
@@ -181,8 +170,7 @@ export const anglais6eme = [
           "Prépare tes réponses types, n'aie pas peur des erreurs, communique !",
         ressources: [
           { type: "dialogues", titre: "Simple Conversations", url: "https://www.esl-lab.com/" }
-        ],
-        quizId: "QUIZ_6_CONVERSATIONS"
+        ]
       }
     ]
   },
@@ -201,8 +189,7 @@ export const anglais6eme = [
           "Devine par le contexte, utilise les images, cherche les mots connus.",
         ressources: [
           { type: "textes", titre: "Easy Reading", url: "https://www.englishclub.com/reading/" }
-        ],
-        quizId: "QUIZ_6_READING"
+        ]
       },
       {
         id: "6RW-TS-2",
@@ -214,8 +201,7 @@ export const anglais6eme = [
           "Structure simple : Sujet + Verbe + Complément. Une idée par phrase.",
         ressources: [
           { type: "modèles", titre: "Sentence Patterns", url: "https://www.englishpage.com/" }
-        ],
-        quizId: "QUIZ_6_WRITING"
+        ]
       },
       {
         id: "6RW-TS-3",
@@ -227,8 +213,7 @@ export const anglais6eme = [
           "And = addition ; but = opposition ; because = cause. Commence simple !",
         ressources: [
           { type: "fiches", titre: "Text Connectors", url: "https://www.grammarly.com/" }
-        ],
-        quizId: "QUIZ_6_TEXT_ORGANIZATION"
+        ]
       }
     ]
   },
@@ -247,8 +232,7 @@ export const anglais6eme = [
           "Associe pays + capitale + drapeau + symbole (rose, chardon, poireau).",
         ressources: [
           { type: "cartes", titre: "UK Geography", url: "https://www.bbc.co.uk/education/" }
-        ],
-        quizId: "QUIZ_6_UK_IRELAND"
+        ]
       },
       {
         id: "6CC-EW-2",
@@ -260,8 +244,7 @@ export const anglais6eme = [
           "USA = United States of America ; capitale ≠ plus grande ville (NYC).",
         ressources: [
           { type: "vidéo", titre: "American Symbols", url: "https://www.youtube.com/watch?v=usa123" }
-        ],
-        quizId: "QUIZ_6_USA_BASICS"
+        ]
       },
       {
         id: "6CC-EW-3",
@@ -273,8 +256,7 @@ export const anglais6eme = [
           "Associe fête + date + traditions + pays (Thanksgiving = USA uniquement).",
         ressources: [
           { type: "fiches", titre: "British Festivals", url: "https://www.englishclub.com/culture/" }
-        ],
-        quizId: "QUIZ_6_FESTIVALS"
+        ]
       }
     ]
   }

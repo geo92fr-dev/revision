@@ -1,0 +1,130 @@
+{
+  "timestamp": "2025-08-28T11:13:28.777Z",
+  "duration": 120,
+  "config": {
+    "name": "FunRevis V2 - Suite de tests unifiée",
+    "version": "1.0.0",
+    "description": "Tests centralisés pour le système FunRevis V2",
+    "author": "Assistant AI",
+    "created": "2025-01-28"
+  },
+  "summary": {
+    "total": 12,
+    "passed": 12,
+    "failed": 0,
+    "warnings": 0,
+    "criticalFailures": 0
+  },
+  "categories": {
+    "structure": {
+      "total": 5,
+      "passed": 5,
+      "failed": 0,
+      "warnings": 0,
+      "details": [
+        {
+          "name": "Fichier existe: ../src/index.html",
+          "status": "passed",
+          "message": "Fichier trouvé"
+        },
+        {
+          "name": "Fichier existe: ../src/pages/cours.html",
+          "status": "passed",
+          "message": "Fichier trouvé"
+        },
+        {
+          "name": "Fichier existe: ../src/pages/sections/section-manager.js",
+          "status": "passed",
+          "message": "Fichier trouvé"
+        },
+        {
+          "name": "Fichier existe: ../src/data/mathematiques/6ieme",
+          "status": "passed",
+          "message": "Fichier trouvé"
+        },
+        {
+          "name": "Fichier existe: ../src/data/mathematiques/5ieme",
+          "status": "passed",
+          "message": "Fichier trouvé"
+        }
+      ]
+    },
+    "syntax": {
+      "total": 1,
+      "passed": 1,
+      "failed": 0,
+      "warnings": 0,
+      "details": [
+        {
+          "name": "Syntaxe section-manager.js",
+          "status": "passed",
+          "message": "Syntaxe JavaScript valide"
+        }
+      ]
+    },
+    "data": {
+      "total": 2,
+      "passed": 2,
+      "failed": 0,
+      "warnings": 0,
+      "details": [
+        {
+          "name": "Données niveau: 5ieme",
+          "status": "passed",
+          "message": "Répertoire 5ieme trouvé"
+        },
+        {
+          "name": "Données niveau: 6ieme",
+          "status": "passed",
+          "message": "Répertoire 6ieme trouvé"
+        }
+      ]
+    },
+    "architecture": {
+      "total": 2,
+      "passed": 2,
+      "failed": 0,
+      "warnings": 0,
+      "details": [
+        {
+          "name": "Integration SectionManager",
+          "status": "passed",
+          "message": "cours.html utilise section-manager.js"
+        },
+        {
+          "name": "Architecture modulaire",
+          "status": "passed",
+          "message": "Architecture modulaire détectée"
+        }
+      ]
+    },
+    "performance": {
+      "total": 1,
+      "passed": 1,
+      "failed": 0,
+      "warnings": 0,
+      "details": [
+        {
+          "name": "Temps de réponse système",
+          "status": "passed",
+          "message": "Durée: 111ms (< 1000ms)"
+        }
+      ]
+    },
+    "integration": {
+      "total": 1,
+      "passed": 1,
+      "failed": 0,
+      "warnings": 0,
+      "details": [
+        {
+          "name": "Intégration système complète",
+          "status": "passed",
+          "message": "Tous les composants essentiels sont présents"
+        }
+      ]
+    }
+  },
+  "errors": [],
+  "recommendations": []
+}

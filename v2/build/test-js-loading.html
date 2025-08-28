@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Chargement JS - FunRevis V2</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .test-item { margin: 10px 0; padding: 10px; border: 1px solid #ddd; border-radius: 5px; }
+        .success { background-color: #d4edda; border-color: #c3e6cb; }
+        .error { background-color: #f8d7da; border-color: #f5c6cb; }
+        .loading { background-color: #fff3cd; border-color: #ffeaa7; }
+        h1 { color: #333; }
+        .summary { margin: 20px 0; padding: 15px; background-color: #e9ecef; border-radius: 5px; }
+        .url-link { font-size: 0.9em; color: #6c757d; }
+    </style>
+</head>
+<body>
+    <h1>🧪 Test Chargement JS - Mathématiques 6ème</h1>
+    <p>Test automatique du chargement de tous les fichiers JS via cours.html</p>
+    
+    <div class="summary" id="summary">
+        <strong>Initialisation des tests...</strong>
+    </div>
+    
+    <div id="test-container">
+        <!-- Les tests apparaîtront ici -->
+    </div>
+
+    <script>
+        class JSLoaderTester {
+            constructor() {
+                this.baseUrl = window.location.origin;
+                this.topics = [
+                    'addition-soustraction', 'aires-figures', 'algebre', 'constructions-geometriques',
+                    'division', 'durees', 'figures-planes', 'fractions-simples', 'fractions',
+                    'graphiques', 'lecture-tableaux', 'moyenne', 'multiplication', 'nombres-decimaux',
+                    'nombres-entiers', 'perimetre', 'pourcentages', 'proportionnalite', 'symetrie-axiale',
+                    'unites-longueur', 'unites-masse-capacite'
+                ];
+                this.results = {
+                    total: 0,
+                    passed: 0,
+                    failed: 0,
+                    details: []
+                };
+            }
+
+            // Créer un élément de test dans le DOM
+            createTestElement(topic) {
+                const div = document.createElement('div');
+                div.className = 'test-item loading';
+                div.id = `test-${topic}`;
+                
+                const url = `${this.baseUrl}/pages/cours.html?subject=mathematiques&level=6ieme&topic=${topic}`;
+                
+                div.innerHTML = `
+                    <strong>📦 ${topic}</strong>
+                    <div class="url-link">🌐 ${url}</div>
+                    <div id="status-${topic}">⏳ Test en cours...</div>
+                `;
+                
+                document.getElementById('test-container').appendChild(div);
+                return div;
+            }
+
+            // Tester le chargement d'un topic
+            async testTopicLoading(topic) {
+                const testElement = this.createTestElement(topic);
+                const statusElement = document.getElementById(`status-${topic}`);
+                
+                try {
+                    const url = `${this.baseUrl}/pages/cours.html?subject=mathematiques&level=6ieme&topic=${topic}`;
+                    
+                    // Créer un iframe pour tester le chargement
+                    const iframe = document.createElement('iframe');
+                    iframe.style.display = 'none';
+                    iframe.src = url;
+                    document.body.appendChild(iframe);
+
+                    // Promesse pour attendre le chargement
+                    const loadPromise = new Promise((resolve, reject) => {
+                        const timeout = setTimeout(() => {
+                            reject(new Error('Timeout - Page trop lente à charger'));
+                        }, 10000);
+
+                        iframe.onload = () => {
+                            clearTimeout(timeout);
+                            
+                            try {
+                                // Vérifier que window.data est défini dans l'iframe
+                                const iframeWindow = iframe.contentWindow;
+                                const hasData = iframeWindow && 
+                                              typeof iframeWindow.data !== 'undefined' && 
+                                              iframeWindow.data !== null;
+                                
+                                if (hasData) {
+                                    resolve({
+                                        success: true,
+                                        data: iframeWindow.data,
+                                        topic: iframeWindow.data.competences ? 
+                                               iframeWindow.data.competences[0]?.titre : 'Non défini'
+                                    });
+                                } else {
+                                    reject(new Error('window.data non défini ou vide'));
+                                }
+                            } catch (error) {
+                                reject(error);
+                            }
+                        };
+
+                        iframe.onerror = () => {
+                            clearTimeout(timeout);
+                            reject(new Error('Erreur de chargement de la page'));
+                        };
+                    });
+
+                    const result = await loadPromise;
+                    
+                    // Succès
+                    testElement.className = 'test-item success';
+                    statusElement.innerHTML = `✅ Chargé avec succès<br><small>Données: ${result.topic}</small>`;
+                    
+                    this.results.passed++;
+                    this.results.details.push({
+                        topic: topic,
+                        success: true,
+                        data: result.topic
+                    });
+                    
+                    // Nettoyer l'iframe
+                    document.body.removeChild(iframe);
+                    
+                } catch (error) {
+                    // Échec
+                    testElement.className = 'test-item error';
+                    statusElement.innerHTML = `❌ Échec: ${error.message}`;
+                    
+                    this.results.failed++;
+                    this.results.details.push({
+                        topic: topic,
+                        success: false,
+                        error: error.message
+                    });
+                    
+                    // Nettoyer l'iframe si il existe
+                    const iframes = document.querySelectorAll('iframe');
+                    iframes.forEach(iframe => {
+                        if (iframe.src.includes(topic)) {
+                            document.body.removeChild(iframe);
+                        }
+                    });
+                }
+            }
+
+            // Mettre à jour le résumé
+            updateSummary() {
+                const summary = document.getElementById('summary');
+                const total = this.results.total;
+                const passed = this.results.passed;
+                const failed = this.results.failed;
+                const remaining = total - passed - failed;
+                
+                if (remaining > 0) {
+                    summary.innerHTML = `
+                        <strong>Tests en cours...</strong><br>
+                        📊 Total: ${total} | ✅ Réussis: ${passed} | ❌ Échecs: ${failed} | ⏳ Restants: ${remaining}
+                    `;
+                } else {
+                    const successRate = Math.round((passed / total) * 100);
+                    const status = failed === 0 ? '🎉 TOUS LES TESTS RÉUSSIS !' : 
+                                                  `⚠️ ${failed} fichier(s) en échec`;
+                    
+                    summary.innerHTML = `
+                        <strong>${status}</strong><br>
+                        📊 Total: ${total} | ✅ Réussis: ${passed} | ❌ Échecs: ${failed}<br>
+                        📈 Taux de réussite: ${successRate}%
+                    `;
+                }
+            }
+
+            // Lancer tous les tests
+            async runAllTests() {
+                this.results.total = this.topics.length;
+                
+                console.log('🧪 Démarrage des tests de chargement JS...');
+                
+                // Lancer les tests un par un pour éviter la surcharge
+                for (const topic of this.topics) {
+                    await this.testTopicLoading(topic);
+                    this.updateSummary();
+                    
+                    // Petit délai entre les tests
+                    await new Promise(resolve => setTimeout(resolve, 500));
+                }
+                
+                console.log('📊 Résultats finaux:', this.results);
+            }
+        }
+
+        // Démarrer les tests quand la page est chargée
+        document.addEventListener('DOMContentLoaded', () => {
+            const tester = new JSLoaderTester();
+            tester.runAllTests();
+        });
+    </script>
+</body>
+</html>

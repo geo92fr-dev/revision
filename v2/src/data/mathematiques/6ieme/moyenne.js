@@ -21,18 +21,18 @@ const moyenne6eme = {
           contenu: "Tom a eu les notes suivantes : 12, 15, 8, 16, 14. Comment calculer sa moyenne ?"
         }
       ],
-      exercices: [],
-      miniQuiz: [
+      exercices: [
         {
-          question: "Pour calculer une moyenne, on doit :",
-          choix: [
-            "Additionner toutes les valeurs",
-            "Diviser la somme par le nombre de valeurs", 
-            "Prendre la valeur du milieu",
-            "Prendre la plus grande valeur"
-          ],
-          reponse: "Diviser la somme par le nombre de valeurs",
-          points: 10
+          enonce: "Calculer la moyenne des notes suivantes : 12, 15, 8, 16, 14",
+          reponse: "13",
+          explication: "Somme = 12+15+8+16+14 = 65. Moyenne = 65÷5 = 13",
+          difficulte: 1
+        },
+        {
+          enonce: "Un élève a une moyenne de 14 sur 4 contrôles. Quelle note doit-il avoir au 5e contrôle pour avoir 15 de moyenne générale ?",
+          reponse: "19",
+          explication: "Pour 15 de moyenne sur 5 notes: total = 15×5 = 75. Total actuel = 14×4 = 56. Note nécessaire = 75-56 = 19",
+          difficulte: 2
         }
       ]
     }

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Debug Forcé</title>
+</head>
+<body>
+    <h1>Test avec Cache Bust</h1>
+    <div id="output"></div>
+    
+    <script>
+        console.log('🚀 Script exécuté !');
+        document.getElementById('output').innerHTML = '<p style="color: green;">✅ JavaScript fonctionne !</p>';
+        
+        // Test des paramètres URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const topic = urlParams.get('topic') || 'pas-de-topic';
+        console.log('Topic:', topic);
+        
+        document.getElementById('output').innerHTML += `<p>Topic: ${topic}</p>`;
+        
+        // Test du chargement avec cache bust
+        const timestamp = new Date().getTime();
+        const script = document.createElement('script');
+        script.src = `/data/mathematiques/6ieme/addition-soustraction.js?v=${timestamp}`;
+        console.log('🔄 Chargement script avec URL:', script.src);
+        
+        script.onload = function() {
+            console.log('✅ Script chargé avec cache bust');
+            document.getElementById('output').innerHTML += '<p style="color: green;">✅ Script external chargé (cache bust)</p>';
+            
+            // Attendre un peu
+            setTimeout(() => {
+                console.log('🔍 Vérification window.data:', window.data);
+                console.log('🔍 Vérification window.additionSoustraction6eme:', window.additionSoustraction6eme);
+                
+                document.getElementById('output').innerHTML += `<p>window.data existe: ${window.data ? '✅ OUI' : '❌ NON'}</p>`;
+                document.getElementById('output').innerHTML += `<p>window.additionSoustraction6eme existe: ${window.additionSoustraction6eme ? '✅ OUI' : '❌ NON'}</p>`;
+                
+                if (window.data) {
+                    document.getElementById('output').innerHTML += `<p style="color: green;">🎉 DONNÉES TROUVÉES ! Titre: ${window.data.competences?.[0]?.titre}</p>`;
+                    document.getElementById('output').innerHTML += `<p style="color: blue;">📚 Cours: ${window.data.competences?.[0]?.cours?.substring(0, 100)}...</p>`;
+                }
+            }, 200);
+        };
+        
+        script.onerror = function(e) {
+            console.log('❌ Erreur script:', e);
+            document.getElementById('output').innerHTML += '<p style="color: red;">❌ Erreur chargement script</p>';
+        };
+        
+        document.head.appendChild(script);
+    </script>
+</body>
+</html>

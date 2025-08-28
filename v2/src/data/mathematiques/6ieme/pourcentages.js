@@ -58,8 +58,7 @@ const data = {
       description: "Calculer des pourcentages simples de quantites.",
       ressources: [
         { type: "video", titre: "Les pourcentages", url: "https://www.youtube.com/watch?v=example" }
-      ],
-      quizId: "QUIZ_6_POURCENTAGES"
+      ]
     }
   ]
 };

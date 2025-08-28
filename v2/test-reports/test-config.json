@@ -1,0 +1,118 @@
+{
+  "testSuite": {
+    "name": "FunRevis V2 - Suite de tests unifiée",
+    "version": "1.0.0",
+    "description": "Tests centralisés pour le système FunRevis V2",
+    "author": "Assistant AI",
+    "created": "2025-01-28"
+  },
+  
+  "environment": {
+    "nodeVersion": ">=14.0.0",
+    "platform": ["win32", "linux", "darwin"],
+    "workingDirectory": "../src"
+  },
+  
+  "testCategories": {
+    "structure": {
+      "name": "Tests de structure",
+      "description": "Vérification de l'existence et de l'organisation des fichiers",
+      "critical": true,
+      "requiredFiles": [
+        "src/index.html",
+        "src/pages/cours.html",
+        "src/pages/sections/section-manager.js",
+        "src/data/mathematiques/6ieme",
+        "src/data/mathematiques/5ieme"
+      ],
+      "optionalFiles": [
+        "src/pages/sections/sections.css",
+        "src/data/francais",
+        "src/data/sciences"
+      ]
+    },
+    
+    "syntax": {
+      "name": "Tests de syntaxe",
+      "description": "Validation de la syntaxe JavaScript et HTML",
+      "critical": true,
+      "extensions": [".js", ".html"],
+      "excludePatterns": [
+        "node_modules/**",
+        "build/**",
+        "dist/**",
+        ".git/**"
+      ]
+    },
+    
+    "data": {
+      "name": "Tests des données",
+      "description": "Validation de la structure et du contenu des données de cours",
+      "critical": true,
+      "dataStructure": {
+        "required": ["competences", "niveau"],
+        "competenceFields": ["id", "titre", "objectif", "cours"],
+        "optionalFields": ["exercices", "ressources", "metacognition"]
+      }
+    },
+    
+    "architecture": {
+      "name": "Tests d'architecture",
+      "description": "Vérification de l'architecture modulaire et des dépendances",
+      "critical": true,
+      "checks": [
+        "sectionManagerExists",
+        "coursHTMLUsesSectionManager",
+        "modularSectionsExist",
+        "cssConsistency"
+      ]
+    },
+    
+    "performance": {
+      "name": "Tests de performance",
+      "description": "Simulation et vérification des performances",
+      "critical": false,
+      "thresholds": {
+        "pageLoad": 1000,
+        "dataLoad": 500,
+        "rendering": 200,
+        "userInteraction": 100
+      }
+    },
+    
+    "integration": {
+      "name": "Tests d'intégration",
+      "description": "Tests de fonctionnement global du système",
+      "critical": false,
+      "scenarios": [
+        "loadHomePage",
+        "navigateToCourse",
+        "loadCourseData",
+        "renderSections"
+      ]
+    }
+  },
+  
+  "reporting": {
+    "formats": ["json", "html", "console"],
+    "outputDirectory": "./",
+    "includeDetails": true,
+    "generateTimestamp": true,
+    "archiveOldReports": true,
+    "maxArchiveSize": 10
+  },
+  
+  "thresholds": {
+    "minimumPassRate": 80,
+    "warningPassRate": 60,
+    "criticalTestFailureThreshold": 0,
+    "maxExecutionTime": 30000
+  },
+  
+  "notifications": {
+    "onSuccess": "console",
+    "onFailure": "console",
+    "onWarning": "console",
+    "includeDetails": true
+  }
+}

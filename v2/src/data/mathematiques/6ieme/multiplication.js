@@ -52,18 +52,6 @@ const data = {
         }
       ],
 
-      miniQuiz: [
-        {
-          question: "L'ordre de grandeur de 4,8 × 9,9 est :",
-          choix: [
-            {"option": "40", "estCorrect": false, "feedback": "Non, 4,8 est proche de 5 et 9,9 est proche de 10."},
-            {"option": "50", "estCorrect": true, "feedback": "Bravo ! C'est bien 5 × 10 = 50."},
-            {"option": "500", "estCorrect": false, "feedback": "Non, cela serait 50 × 10. Il faut bien regarder les ordres de grandeur."},
-            {"option": "15", "estCorrect": false, "feedback": "Non, ce serait une addition, pas une multiplication."}
-          ]
-        }
-      ],
-
       preEvaluation: {
         questions: [
           {
@@ -144,27 +132,7 @@ const data = {
             ]
           }
         ]
-      },
-
-      // Maintien de la compatibilite avec l'ancien format
-      description: "Maitriser la multiplication des nombres entiers et decimaux, estimer des ordres de grandeur.",
-      ressources: [
-        { type: "video", titre: "Tables de multiplication", url: "https://www.youtube.com/watch?v=multiplication" },
-        { type: "jeu", titre: "Multiplication interactive", url: "https://www.logicieleducatif.fr/" }
-      ],
-      quizId: "QUIZ_6_MULTIPLICATION"
-    },
-    {
-      // COMPETENCE SIMPLE
-      id: "6NC-MUL-2",
-      titre: "Tables de multiplication",
-      description: "Memoriser et utiliser les tables de multiplication de 1 a 10 pour des calculs rapides.",
-      exemple: "Ex. : 7 × 8 = 56, 9 × 6 = 54",
-      astuce: "Apprends d'abord les tables de 2, 5 et 10, puis les autres progressivement",
-      ressources: [
-        { type: "jeu", titre: "Tables en chanson", url: "https://www.youtube.com/watch?v=tables" }
-      ],
-      quizId: "QUIZ_6_TABLES"
+      }
     }
   ]
 };

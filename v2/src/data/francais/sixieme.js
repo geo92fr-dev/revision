@@ -16,8 +16,7 @@ export const francais6eme = [
         ressources: [
           { type: "vidéo", titre: "Structure du récit", url: "https://www.youtube.com/watch?v=abc123" },
           { type: "fiches", titre: "Éléments du récit", url: "https://www.reseau-canope.fr/" }
-        ],
-        quizId: "QUIZ_6_RECIT_SIMPLE"
+        ]
       },
       {
         id: "6LC-TN-2",
@@ -29,8 +28,7 @@ export const francais6eme = [
           "1ère personne = personnage raconte ; 3ème personne = narrateur extérieur.",
         ressources: [
           { type: "exercice", titre: "Points de vue narratifs", url: "https://www.francaisfacile.com/" }
-        ],
-        quizId: "QUIZ_6_NARRATEUR"
+        ]
       },
       {
         id: "6LC-TN-3",
@@ -42,8 +40,7 @@ export const francais6eme = [
           "Début stable → problème → actions → solution → nouvelle situation.",
         ressources: [
           { type: "vidéo", titre: "Schéma narratif", url: "https://www.youtube.com/watch?v=def456" }
-        ],
-        quizId: "QUIZ_6_SCHEMA_NARRATIF"
+        ]
       }
     ]
   },
@@ -62,8 +59,7 @@ export const francais6eme = [
           "Lis d'abord silencieusement, repère la ponctuation, puis lis à voix haute.",
         ressources: [
           { type: "audio", titre: "Récitations célèbres", url: "https://www.radiofrance.fr/" }
-        ],
-        quizId: "QUIZ_6_LECTURE_POEME"
+        ]
       },
       {
         id: "6LC-P-2",
@@ -75,8 +71,7 @@ export const francais6eme = [
           "Vers = une ligne ; strophe = un paragraphe ; rime = même son final.",
         ressources: [
           { type: "fiches", titre: "Lexique poétique", url: "https://www.assistancescolaire.com/" }
-        ],
-        quizId: "QUIZ_6_VOCAB_POESIE"
+        ]
       },
       {
         id: "6LC-P-3",
@@ -88,8 +83,7 @@ export const francais6eme = [
           "Cherche les mots 'comme', 'tel que', 'pareil à' pour les comparaisons.",
         ressources: [
           { type: "exercice", titre: "Images poétiques", url: "https://www.francaisfacile.com/" }
-        ],
-        quizId: "QUIZ_6_IMAGES_POESIE"
+        ]
       }
     ]
   },
@@ -108,8 +102,7 @@ export const francais6eme = [
           "Le nom désigne ; le déterminant l'accompagne (le, la, un, cette...).",
         ressources: [
           { type: "exercice", titre: "Noms et déterminants", url: "https://www.ortholud.com/" }
-        ],
-        quizId: "QUIZ_6_NOMS_DET"
+        ]
       },
       {
         id: "6GR-CM-2",
@@ -121,8 +114,7 @@ export const francais6eme = [
           "Le verbe exprime l'action ou l'état ; il change selon le temps.",
         ressources: [
           { type: "vidéo", titre: "Les temps simples", url: "https://www.youtube.com/watch?v=ghi789" }
-        ],
-        quizId: "QUIZ_6_VERBES_TEMPS"
+        ]
       },
       {
         id: "6GR-CM-3",
@@ -134,8 +126,7 @@ export const francais6eme = [
           "L'adjectif précise le nom : couleur, taille, caractère... Il s'accorde !",
         ressources: [
           { type: "exercice", titre: "Accords adjectifs", url: "https://www.francaisfacile.com/" }
-        ],
-        quizId: "QUIZ_6_ADJECTIFS"
+        ]
       }
     ]
   },
@@ -154,8 +145,7 @@ export const francais6eme = [
           "Trouve d'abord le sujet (qui fait l'action ?), puis accorde le verbe.",
         ressources: [
           { type: "exercice", titre: "Accords sujet-verbe", url: "https://www.ortholud.com/" }
-        ],
-        quizId: "QUIZ_6_ACCORD_SV"
+        ]
       },
       {
         id: "6OR-RB-2",
@@ -167,8 +157,7 @@ export const francais6eme = [
           "Général : +s ; -eau/-eu → +x ; -al → -aux ; mémorise les exceptions.",
         ressources: [
           { type: "fiches", titre: "Pluriels particuliers", url: "https://www.assistancescolaire.com/" }
-        ],
-        quizId: "QUIZ_6_PLURIEL"
+        ]
       },
       {
         id: "6OR-RB-3",
@@ -180,8 +169,7 @@ export const francais6eme = [
           "Remplace par 'avait' pour a/à ; par 'était' pour et/est.",
         ressources: [
           { type: "exercice", titre: "Homophones fréquents", url: "https://www.francaisfacile.com/" }
-        ],
-        quizId: "QUIZ_6_HOMOPHONES"
+        ]
       }
     ]
   },
@@ -200,8 +188,7 @@ export const francais6eme = [
           "D'abord, puis, ensuite, enfin... Utilise des connecteurs temporels !",
         ressources: [
           { type: "fiches", titre: "Connecteurs temporels", url: "https://www.reseau-canope.fr/" }
-        ],
-        quizId: "QUIZ_6_RECIT_ECRIT"
+        ]
       },
       {
         id: "6EE-TC-2",
@@ -213,8 +200,7 @@ export const francais6eme = [
           "Du général au particulier : d'abord l'ensemble, puis les détails.",
         ressources: [
           { type: "exercice", titre: "Vocabulaire descriptif", url: "https://www.francaisfacile.com/" }
-        ],
-        quizId: "QUIZ_6_DESCRIPTION"
+        ]
       },
       {
         id: "6EE-TC-3",
@@ -226,8 +212,7 @@ export const francais6eme = [
           "Date en haut à droite, 'Cher/Chère...', développement, 'Amicalement', signature.",
         ressources: [
           { type: "modèle", titre: "Modèles de lettres", url: "https://www.assistancescolaire.com/" }
-        ],
-        quizId: "QUIZ_6_LETTRE"
+        ]
       }
     ]
   },
@@ -246,8 +231,7 @@ export const francais6eme = [
           "Prépare 3 points : début (quoi/où), milieu (action), fin (résultat).",
         ressources: [
           { type: "vidéo", titre: "Techniques de récit oral", url: "https://www.youtube.com/watch?v=jkl012" }
-        ],
-        quizId: "QUIZ_6_ORAL_RECIT"
+        ]
       },
       {
         id: "6OR-EE-2",
@@ -259,8 +243,7 @@ export const francais6eme = [
           "Regarde qui parle, note les mots-clés, n'hésite pas à demander de répéter.",
         ressources: [
           { type: "exercice", titre: "Écoute active", url: "https://www.reseau-canope.fr/" }
-        ],
-        quizId: "QUIZ_6_ECOUTE"
+        ]
       },
       {
         id: "6OR-EE-3",
@@ -272,8 +255,7 @@ export const francais6eme = [
           "Comprends d'abord le sens, puis travaille le rythme et l'expression.",
         ressources: [
           { type: "audio", titre: "Exemples de récitations", url: "https://www.radiofrance.fr/" }
-        ],
-        quizId: "QUIZ_6_RECITATION"
+        ]
       }
     ]
   }

@@ -10,6 +10,7 @@ import { durees6eme } from './durees.js';
 import { figuresPlanes6eme } from './figures-planes.js';
 import { fractionsSimples6eme } from './fractions-simples.js';
 import { fractions6eme } from './fractions.js';
+import { geometrieAvancee6eme } from './geometrie-avancee.js';
 import { graphiques6eme } from './graphiques.js';
 import { lectureTableaux6eme } from './lecture-tableaux.js';
 import { moyenne6eme } from './moyenne.js';
@@ -34,6 +35,7 @@ export const mathematiques6eme = {
   'figures-planes': figuresPlanes6eme,
   'fractions-simples': fractionsSimples6eme,
   'fractions': fractions6eme,
+  'geometrie-avancee': geometrieAvancee6eme,
   'graphiques': graphiques6eme,
   'lecture-tableaux': lectureTableaux6eme,
   'moyenne': moyenne6eme,
@@ -59,6 +61,7 @@ export {
   figuresPlanes6eme,
   fractionsSimples6eme,
   fractions6eme,
+  geometrieAvancee6eme,
   graphiques6eme,
   lectureTableaux6eme,
   moyenne6eme,

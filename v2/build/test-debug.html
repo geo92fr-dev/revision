@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Debug</title>
+</head>
+<body>
+    <h1>Test de Debug</h1>
+    <div id="output"></div>
+    
+    <script>
+        console.log('🚀 Script exécuté !');
+        document.getElementById('output').innerHTML = '<p style="color: green;">✅ JavaScript fonctionne !</p>';
+        
+        // Test des paramètres URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const topic = urlParams.get('topic') || 'pas-de-topic';
+        console.log('Topic:', topic);
+        
+        document.getElementById('output').innerHTML += `<p>Topic: ${topic}</p>`;
+        
+        // Test du chargement d'un script externe
+        const script = document.createElement('script');
+        script.src = '/data/mathematiques/6ieme/addition-soustraction.js';
+        script.onload = function() {
+            console.log('✅ Script chargé');
+            document.getElementById('output').innerHTML += '<p style="color: green;">✅ Script external chargé</p>';
+            
+            // Attendre un peu pour que le script s'exécute
+            setTimeout(() => {
+                // Vérifier les variables globales plus précisément
+                console.log('Variables window avec data:', Object.keys(window).filter(k => k.includes('data')));
+                console.log('Variables window avec addition:', Object.keys(window).filter(k => k.includes('addition')));
+                console.log('window.data:', window.data);
+                console.log('window.additionSoustraction6eme:', window.additionSoustraction6eme);
+                
+                document.getElementById('output').innerHTML += `<p>Variables avec 'data': ${Object.keys(window).filter(k => k.includes('data')).join(', ')}</p>`;
+                document.getElementById('output').innerHTML += `<p>Variables avec 'addition': ${Object.keys(window).filter(k => k.includes('addition')).join(', ')}</p>`;
+                document.getElementById('output').innerHTML += `<p>window.data existe: ${window.data ? '✅ OUI' : '❌ NON'}</p>`;
+                document.getElementById('output').innerHTML += `<p>window.additionSoustraction6eme existe: ${window.additionSoustraction6eme ? '✅ OUI' : '❌ NON'}</p>`;
+                
+                if (window.data) {
+                    document.getElementById('output').innerHTML += `<p style="color: green;">🎉 DONNÉES TROUVÉES ! Titre: ${window.data.competences?.[0]?.titre}</p>`;
+                }
+            }, 100);
+        };
+        script.onerror = function(e) {
+            console.log('❌ Erreur script:', e);
+            document.getElementById('output').innerHTML += '<p style="color: red;">❌ Erreur chargement script</p>';
+        };
+        document.head.appendChild(script);
+    </script>
+</body>
+</html>

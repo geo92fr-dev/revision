@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Direct JS - FunRevis V2</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .test-item { margin: 10px 0; padding: 10px; border: 1px solid #ddd; border-radius: 5px; }
+        .success { background-color: #d4edda; border-color: #c3e6cb; }
+        .error { background-color: #f8d7da; border-color: #f5c6cb; }
+        .loading { background-color: #fff3cd; border-color: #ffeaa7; }
+        h1 { color: #333; }
+        .summary { margin: 20px 0; padding: 15px; background-color: #e9ecef; border-radius: 5px; }
+        pre { background: #f8f9fa; padding: 10px; border-radius: 3px; font-size: 0.9em; }
+    </style>
+</head>
+<body>
+    <h1>🧪 Test Direct JS - Mathématiques 6ème</h1>
+    <p>Test de chargement direct des fichiers JS (sans iframe)</p>
+    
+    <div class="summary" id="summary">
+        <strong>Initialisation des tests...</strong>
+    </div>
+    
+    <div id="test-container">
+        <!-- Les tests apparaîtront ici -->
+    </div>
+
+    <script>
+        class DirectJSTest {
+            constructor() {
+                this.topics = [
+                    'addition-soustraction', 'aires-figures', 'algebre', 'constructions-geometriques',
+                    'division', 'durees', 'figures-planes', 'fractions-simples', 'fractions',
+                    'graphiques', 'lecture-tableaux', 'moyenne', 'multiplication', 'nombres-decimaux',
+                    'nombres-entiers', 'perimetre', 'pourcentages', 'proportionnalite', 'symetrie-axiale',
+                    'unites-longueur', 'unites-masse-capacite'
+                ];
+                this.results = {
+                    total: 0,
+                    passed: 0,
+                    failed: 0,
+                    details: []
+                };
+            }
+
+            createTestElement(topic) {
+                const div = document.createElement('div');
+                div.className = 'test-item loading';
+                div.id = `test-${topic}`;
+                
+                div.innerHTML = `
+                    <strong>📦 ${topic}</strong>
+                    <div id="status-${topic}">⏳ Test en cours...</div>
+                    <pre id="log-${topic}" style="display: none;"></pre>
+                `;
+                
+                document.getElementById('test-container').appendChild(div);
+                return div;
+            }
+
+            async testJSFile(topic) {
+                const testElement = this.createTestElement(topic);
+                const statusElement = document.getElementById(`status-${topic}`);
+                const logElement = document.getElementById(`log-${topic}`);
+                
+                try {
+                    // Nettoyer window.data avant le test
+                    delete window.data;
+                    
+                    // Capturer les console.log
+                    const originalLog = console.log;
+                    const logs = [];
+                    console.log = (...args) => {
+                        logs.push(args.join(' '));
+                        originalLog(...args);
+                    };
+
+                    // Charger le script dynamiquement
+                    const script = document.createElement('script');
+                    script.src = `./data/mathematiques/6ieme/${topic}.js`;
+                    
+                    const loadPromise = new Promise((resolve, reject) => {
+                        const timeout = setTimeout(() => {
+                            reject(new Error('Timeout - Script trop lent à charger'));
+                        }, 5000);
+
+                        script.onload = () => {
+                            clearTimeout(timeout);
+                            console.log = originalLog; // Restaurer console.log
+                            
+                            // Vérifier que window.data est défini
+                            if (typeof window.data !== 'undefined' && window.data !== null) {
+                                const dataInfo = {
+                                    type: typeof window.data,
+                                    hasCompetences: !!window.data.competences,
+                                    titre: window.data.competences && window.data.competences[0] ? 
+                                           window.data.competences[0].titre : 'Non défini'
+                                };
+                                resolve(dataInfo);
+                            } else {
+                                reject(new Error('window.data non défini ou null'));
+                            }
+                        };
+
+                        script.onerror = () => {
+                            clearTimeout(timeout);
+                            console.log = originalLog;
+                            reject(new Error('Erreur de chargement du script'));
+                        };
+                    });
+
+                    document.head.appendChild(script);
+                    const result = await loadPromise;
+                    
+                    // Succès
+                    testElement.className = 'test-item success';
+                    statusElement.innerHTML = `✅ Chargé avec succès<br><small>Titre: ${result.titre}</small>`;
+                    
+                    if (logs.length > 0) {
+                        logElement.style.display = 'block';
+                        logElement.textContent = logs.join('\n');
+                    }
+                    
+                    this.results.passed++;
+                    this.results.details.push({
+                        topic: topic,
+                        success: true,
+                        data: result
+                    });
+                    
+                    // Nettoyer le script
+                    document.head.removeChild(script);
+                    
+                } catch (error) {
+                    // Échec
+                    testElement.className = 'test-item error';
+                    statusElement.innerHTML = `❌ Échec: ${error.message}`;
+                    
+                    this.results.failed++;
+                    this.results.details.push({
+                        topic: topic,
+                        success: false,
+                        error: error.message
+                    });
+                }
+            }
+
+            updateSummary() {
+                const summary = document.getElementById('summary');
+                const total = this.results.total;
+                const passed = this.results.passed;
+                const failed = this.results.failed;
+                const remaining = total - passed - failed;
+                
+                if (remaining > 0) {
+                    summary.innerHTML = `
+                        <strong>Tests en cours...</strong><br>
+                        📊 Total: ${total} | ✅ Réussis: ${passed} | ❌ Échecs: ${failed} | ⏳ Restants: ${remaining}
+                    `;
+                } else {
+                    const successRate = Math.round((passed / total) * 100);
+                    const status = failed === 0 ? '🎉 TOUS LES TESTS RÉUSSIS !' : 
+                                                  `⚠️ ${failed} fichier(s) en échec`;
+                    
+                    summary.innerHTML = `
+                        <strong>${status}</strong><br>
+                        📊 Total: ${total} | ✅ Réussis: ${passed} | ❌ Échecs: ${failed}<br>
+                        📈 Taux de réussite: ${successRate}%
+                    `;
+                }
+            }
+
+            async runAllTests() {
+                this.results.total = this.topics.length;
+                
+                console.log('🧪 Démarrage des tests directs JS...');
+                
+                // Lancer les tests un par un
+                for (const topic of this.topics) {
+                    await this.testJSFile(topic);
+                    this.updateSummary();
+                    
+                    // Petit délai entre les tests
+                    await new Promise(resolve => setTimeout(resolve, 300));
+                }
+                
+                console.log('📊 Résultats finaux:', this.results);
+            }
+        }
+
+        // Démarrer les tests quand la page est chargée
+        document.addEventListener('DOMContentLoaded', () => {
+            const tester = new DirectJSTest();
+            tester.runAllTests();
+        });
+    </script>
+</body>
+</html>

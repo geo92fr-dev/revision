@@ -52,18 +52,6 @@ const data = {
         }
       ],
 
-      miniQuiz: [
-        {
-          question: "Dans 25 ÷ 6, quel est le reste ?",
-          choix: [
-            {"option": "4", "estCorrect": false, "feedback": "Non, 25 ÷ 6 = 4. Il te reste quelque chose."},
-            {"option": "1", "estCorrect": true, "feedback": "Bravo ! 6 × 4 = 24, et il reste 1."},
-            {"option": "2", "estCorrect": false, "feedback": "Non, 6 × 3 = 18 et il reste 7. Le reste est toujours plus petit que le diviseur !"},
-            {"option": "3", "estCorrect": false, "feedback": "Non, 6 × 3 = 18. Il reste plus que ca."}
-          ]
-        }
-      ],
-
       preEvaluation: {
         questions: [
           {
@@ -147,27 +135,7 @@ const data = {
             ]
           }
         ]
-      },
-
-      // Maintien de la compatibilite avec l'ancien format
-      description: "Effectuer une division euclidienne et interpreter le resultat (dividende, diviseur, quotient, reste).",
-      ressources: [
-        { type: "video", titre: "Division euclidienne", url: "https://www.youtube.com/watch?v=division" },
-        { type: "exercice", titre: "Divisions pas a pas", url: "https://www.sesamath.net/" }
-      ],
-      quizId: "QUIZ_6_DIVISION_EUCLIDIENNE"
-    },
-    {
-      // COMPETENCE SIMPLE
-      id: "6NC-DIV-2",
-      titre: "Division decimale",
-      description: "Effectuer des divisions simples avec des nombres decimaux et comprendre la notion de division exacte.",
-      exemple: "Ex. : 12,5 ÷ 2,5 = 5",
-      astuce: "Pour diviser par un nombre decimal, multiplie les deux nombres par 10, 100... pour que le diviseur devienne entier",
-      ressources: [
-        { type: "video", titre: "Division de decimaux", url: "https://www.youtube.com/watch?v=div_decimaux" }
-      ],
-      quizId: "QUIZ_6_DIVISION_DECIMALE"
+      }
     }
   ]
 };

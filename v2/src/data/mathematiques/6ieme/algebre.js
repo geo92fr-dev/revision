@@ -60,18 +60,6 @@ const data = {
         }
       ],
 
-      miniQuiz: [
-        {
-          question: "Quel signe peut-on enlever dans '6 × b' ?",
-          choix: [
-            {"option": "Le plus (+)", "estCorrect": false, "feedback": "Non, il n'y a pas de '+' dans l'expression."},
-            {"option": "Le moins (-)", "estCorrect": false, "feedback": "Non, il n'y a pas de '-' dans l'expression."},
-            {"option": "Le signe '×' (fois)", "estCorrect": true, "feedback": "Bravo ! On peut l'enlever pour simplifier."},
-            {"option": "Le signe '=' (egal)", "estCorrect": false, "feedback": "Non, il n'y a pas de '='."}
-          ]
-        }
-      ],
-
       preEvaluation: {
         questions: [
           {
@@ -152,27 +140,7 @@ const data = {
             ]
           }
         ]
-      },
-
-      // Maintien de la compatibilite avec l'ancien format
-      description: "Utiliser des lettres pour representer des nombres et simplifier des expressions.",
-      ressources: [
-        { type: "video", titre: "Introduction a l'algebre", url: "https://www.youtube.com/watch?v=algebre" },
-        { type: "exercice", titre: "Expressions litterales", url: "https://www.sesamath.net/" }
-      ],
-      quizId: "QUIZ_6_ALGEBRE"
-    },
-    {
-      // COMPETENCE SIMPLE
-      id: "6NC-ALG-2",
-      titre: "Substitution et calcul",
-      description: "Remplacer une lettre par sa valeur numerique dans une expression litterale et effectuer le calcul.",
-      exemple: "Ex. : Si a = 3, alors 2a + 5 = 2 × 3 + 5 = 11",
-      astuce: "Remplace toujours la lettre par sa valeur entre parentheses pour eviter les erreurs",
-      ressources: [
-        { type: "exercice", titre: "Calculs avec substitution", url: "https://www.maths-et-tiques.fr/" }
-      ],
-      quizId: "QUIZ_6_SUBSTITUTION"
+      }
     }
   ]
 };

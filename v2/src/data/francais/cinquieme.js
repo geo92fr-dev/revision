@@ -16,8 +16,7 @@ export const francais5eme = [
         ressources: [
           { type: "vidéo", titre: "Héros médiévaux", url: "https://www.youtube.com/watch?v=med123" },
           { type: "fiches", titre: "Littérature courtoise", url: "https://www.reseau-canope.fr/" }
-        ],
-        quizId: "QUIZ_5_HEROS_MEDIEVAL"
+        ]
       },
       {
         id: "5LC-LM-2",
@@ -29,8 +28,7 @@ export const francais5eme = [
           "Schéma : héros part en quête → épreuves (physiques/morales) → révélation/échec.",
         ressources: [
           { type: "extraits", titre: "Chrétien de Troyes", url: "https://www.assistancescolaire.com/" }
-        ],
-        quizId: "QUIZ_5_ROMAN_CHEVALERIE"
+        ]
       },
       {
         id: "5LC-LM-3",
@@ -42,8 +40,7 @@ export const francais5eme = [
           "Compare avec le français moderne, devine par le contexte, aide-toi des notes.",
         ressources: [
           { type: "lexique", titre: "Français ancien-moderne", url: "https://www.francaisfacile.com/" }
-        ],
-        quizId: "QUIZ_5_FRANCAIS_ANCIEN"
+        ]
       }
     ]
   },
@@ -62,8 +59,7 @@ export const francais5eme = [
           "Nature = ce que c'est (nom, verbe...) ; Fonction = rôle dans la phrase (sujet, complément...).",
         ressources: [
           { type: "exercice", titre: "Analyse grammaticale", url: "https://www.francaisfacile.com/" }
-        ],
-        quizId: "QUIZ_5_FONCTIONS"
+        ]
       },
       {
         id: "5GR-AP-2",
@@ -75,8 +71,7 @@ export const francais5eme = [
           "Une proposition = un verbe conjugué ; 'que' introduit souvent une subordonnée.",
         ressources: [
           { type: "fiches", titre: "Phrases complexes", url: "https://www.assistancescolaire.com/" }
-        ],
-        quizId: "QUIZ_5_PROPOSITIONS"
+        ]
       },
       {
         id: "5GR-AP-3",
@@ -88,8 +83,7 @@ export const francais5eme = [
           "Actif : sujet fait l'action ; Passif : sujet subit l'action (auxiliaire être + participe passé).",
         ressources: [
           { type: "exercice", titre: "Voix active/passive", url: "https://www.ortholud.com/" }
-        ],
-        quizId: "QUIZ_5_VOIX"
+        ]
       }
     ]
   },
@@ -108,8 +102,7 @@ export const francais5eme = [
           "Être ou avoir + participe passé ; plus-que-parfait = action avant une autre action passée.",
         ressources: [
           { type: "vidéo", titre: "Temps composés", url: "https://www.youtube.com/watch?v=comp123" }
-        ],
-        quizId: "QUIZ_5_TEMPS_COMPOSES"
+        ]
       },
       {
         id: "5CO-TC-2",
@@ -121,8 +114,7 @@ export const francais5eme = [
           "Subjonctif exprime doute, émotion, volonté... Souvent après 'que'.",
         ressources: [
           { type: "fiches", titre: "Subjonctif présent", url: "https://www.francaisfacile.com/" }
-        ],
-        quizId: "QUIZ_5_SUBJONCTIF"
+        ]
       },
       {
         id: "5CO-TC-3",
@@ -134,8 +126,7 @@ export const francais5eme = [
           "Principale au présent → futur dans subordonnée ; principale au passé → conditionnel.",
         ressources: [
           { type: "exercice", titre: "Concordance temps", url: "https://www.assistancescolaire.com/" }
-        ],
-        quizId: "QUIZ_5_CONCORDANCE"
+        ]
       }
     ]
   },
@@ -154,8 +145,7 @@ export const francais5eme = [
           "Tiret pour chaque prise de parole, verbe de parole + façon de parler.",
         ressources: [
           { type: "fiches", titre: "Dialogue dans récit", url: "https://www.reseau-canope.fr/" }
-        ],
-        quizId: "QUIZ_5_DIALOGUE"
+        ]
       },
       {
         id: "5EE-TS-2",
@@ -167,8 +157,7 @@ export const francais5eme = [
           "Organise : aspect général → détails → caractère ; varie les expressions.",
         ressources: [
           { type: "exercice", titre: "Techniques descriptives", url: "https://www.francaisfacile.com/" }
-        ],
-        quizId: "QUIZ_5_PORTRAIT"
+        ]
       },
       {
         id: "5EE-TS-3",
@@ -180,8 +169,7 @@ export const francais5eme = [
           "Thèse + 2-3 arguments + exemples + conclusion qui reprend l'idée principale.",
         ressources: [
           { type: "modèle", titre: "Plan argumentatif", url: "https://www.assistancescolaire.com/" }
-        ],
-        quizId: "QUIZ_5_ARGUMENTATION"
+        ]
       }
     ]
   },
@@ -200,8 +188,7 @@ export const francais5eme = [
           "Décompose le mot : préfixe (avant) + radical (base) + suffixe (après).",
         ressources: [
           { type: "fiches", titre: "Morphologie lexicale", url: "https://www.francaisfacile.com/" }
-        ],
-        quizId: "QUIZ_5_FORMATION_MOTS"
+        ]
       },
       {
         id: "5VO-EL-2",
@@ -213,8 +200,7 @@ export const francais5eme = [
           "Groupe de mots autour d'un thème ; évite les répétitions en variant.",
         ressources: [
           { type: "exercice", titre: "Champs lexicaux", url: "https://www.ortholud.com/" }
-        ],
-        quizId: "QUIZ_5_CHAMPS_LEXICAUX"
+        ]
       },
       {
         id: "5VO-EL-3",
@@ -226,8 +212,7 @@ export const francais5eme = [
           "Comparaison = avec 'comme/tel que' ; métaphore = sans mot de comparaison.",
         ressources: [
           { type: "fiches", titre: "Figures de style", url: "https://www.assistancescolaire.com/" }
-        ],
-        quizId: "QUIZ_5_FIGURES_STYLE"
+        ]
       }
     ]
   },
@@ -246,8 +231,7 @@ export const francais5eme = [
           "Récit = raconte ; théâtre = représente ; poésie = évoque par les mots/sons.",
         ressources: [
           { type: "vidéo", titre: "Genres littéraires", url: "https://www.youtube.com/watch?v=genre123" }
-        ],
-        quizId: "QUIZ_5_GENRES"
+        ]
       },
       {
         id: "5CL-GR-2",
@@ -259,8 +243,7 @@ export const francais5eme = [
           "Associe auteur + époque + genre principal + œuvre célèbre.",
         ressources: [
           { type: "fiches", titre: "Auteurs patrimoniaux", url: "https://www.reseau-canope.fr/" }
-        ],
-        quizId: "QUIZ_5_AUTEURS"
+        ]
       },
       {
         id: "5CL-GR-3",
@@ -272,8 +255,7 @@ export const francais5eme = [
           "Mythe = récit fondateur d'une culture ; légende = histoire merveilleuse transmise.",
         ressources: [
           { type: "vidéo", titre: "Mythologie grecque", url: "https://www.youtube.com/watch?v=myth123" }
-        ],
-        quizId: "QUIZ_5_MYTHES"
+        ]
       }
     ]
   }

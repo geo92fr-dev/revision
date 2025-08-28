@@ -1,24 +1,24 @@
-// Les unités de longueur - 6ème
-export const unitesLongueur6eme = {
-  titre: "Les unités de longueur",
-  niveau: "6ème",
-  description: "Connaître et utiliser les unités de longueur et leurs conversions",
+// Les unites de longueur - 6eme
+const uniteslongueur6eme = {
+  titre: "Les unites de longueur",
+  niveau: "6eme",
+  description: "Connaitre et utiliser les unites de longueur et leurs conversions",
   
   phase1: {
-    titre: "🧠 Que sais-je déjà ?",
-    objectif: "Activer les connaissances préalables sur les mesures de longueur",
+    titre: "🧠 Que sais-je deja ?",
+    objectif: "Activer les connaissances prealables sur les mesures de longueur",
     exercices: [
       {
         type: "qcm",
-        question: "Quelle unité utilises-tu pour mesurer la longueur de ta règle ?",
+        question: "Quelle unite utilises-tu pour mesurer la longueur de ta regle ?",
         options: [
-          "Le mètre",
-          "Le centimètre", 
-          "Le kilomètre",
-          "Le millimètre"
+          "Le metre",
+          "Le centimetre", 
+          "Le kilometre",
+          "Le millimetre"
         ],
         correct: 1,
-        explication: "Pour mesurer des objets de la taille d'une règle, le centimètre est l'unité la plus adaptée"
+        explication: "Pour mesurer des objets de la taille d'une regle, le centimetre est l'unite la plus adaptee"
       },
       {
         type: "estimation",
@@ -30,21 +30,21 @@ export const unitesLongueur6eme = {
   
   phase2: {
     titre: "📚 J'apprends",
-    objectif: "Découvrir les unités de longueur et leurs relations",
+    objectif: "Decouvrir les unites de longueur et leurs relations",
     cours: {
-      unite_principale: "Le mètre (m) est l'unité principale de longueur",
+      unite_principale: "Le metre (m) est l'unite principale de longueur",
       echelle: {
-        "km": "kilomètre = 1000 m",
-        "hm": "hectomètre = 100 m", 
-        "dam": "décamètre = 10 m",
-        "m": "mètre = 1 m",
-        "dm": "décimètre = 0,1 m",
-        "cm": "centimètre = 0,01 m",
-        "mm": "millimètre = 0,001 m"
+        "km": "kilometre = 1000 m",
+        "hm": "hectometre = 100 m", 
+        "dam": "decametre = 10 m",
+        "m": "metre = 1 m",
+        "dm": "decimetre = 0,1 m",
+        "cm": "centimetre = 0,01 m",
+        "mm": "millimetre = 0,001 m"
       },
       conversions: {
-        "Pour passer à l'unité suivante": "× 10",
-        "Pour passer à l'unité précédente": "÷ 10",
+        "Pour passer a l'unite suivante": "× 10",
+        "Pour passer a l'unite precedente": "÷ 10",
         "Exemples": [
           "1 m = 10 dm = 100 cm = 1000 mm",
           "1 km = 1000 m",
@@ -53,8 +53,8 @@ export const unitesLongueur6eme = {
       },
       tableau_conversion: "km | hm | dam | m | dm | cm | mm",
       utilisations: {
-        "mm": "Épaisseur d'une feuille, diamètre d'un clou",
-        "cm": "Longueur d'une règle, hauteur d'un livre",
+        "mm": "Epaisseur d'une feuille, diametre d'un clou",
+        "cm": "Longueur d'une regle, hauteur d'un livre",
         "m": "Hauteur d'une personne, longueur d'une voiture",
         "km": "Distance entre deux villes"
       }
@@ -70,8 +70,8 @@ export const unitesLongueur6eme = {
   },
   
   phase3: {
-    titre: "✏️ Je m'entraîne",
-    objectif: "Pratiquer les conversions et l'utilisation des unités de longueur",
+    titre: "✏️ Je m'entraine",
+    objectif: "Pratiquer les conversions et l'utilisation des unites de longueur",
     exercices: [
       {
         type: "conversion",
@@ -99,43 +99,43 @@ export const unitesLongueur6eme = {
       },
       {
         type: "choix_unite",
-        question: "Quelle unité choisir pour exprimer : la distance Paris-Lyon, l'épaisseur d'un cheveu, la longueur d'un terrain de football ?",
+        question: "Quelle unite choisir pour exprimer : la distance Paris-Lyon, l'epaisseur d'un cheveu, la longueur d'un terrain de football ?",
         reponse: "km, µm (ou mm), m",
-        aide: "Choisis l'unité la plus adaptée à la grandeur mesurée"
+        aide: "Choisis l'unite la plus adaptee a la grandeur mesuree"
       },
       {
         type: "calcul",
-        question: "Un rectangle a une longueur de 12 cm et une largeur de 8,5 cm. Quel est son périmètre en mm ?",
+        question: "Un rectangle a une longueur de 12 cm et une largeur de 8,5 cm. Quel est son perimetre en mm ?",
         reponse: "410 mm",
-        aide: "Périmètre = 2 × (12 + 8,5) = 41 cm = 410 mm"
+        aide: "Perimetre = 2 × (12 + 8,5) = 41 cm = 410 mm"
       }
     ]
   },
   
   phase4: {
-    titre: "🎯 Je réfléchis sur mes apprentissages",
-    objectif: "Développer une réflexion métacognitive sur les unités de longueur",
+    titre: "🎯 Je reflechis sur mes apprentissages",
+    objectif: "Developper une reflexion metacognitive sur les unites de longueur",
     questions: [
-      "Comment choisis-tu l'unité la plus appropriée selon ce que tu mesures ?",
-      "Quelle méthode utilises-tu pour éviter les erreurs de conversion ?",
-      "Comment expliques-tu à un camarade la relation entre les différentes unités ?",
+      "Comment choisis-tu l'unite la plus appropriee selon ce que tu mesures ?",
+      "Quelle methode utilises-tu pour eviter les erreurs de conversion ?",
+      "Comment expliques-tu a un camarade la relation entre les differentes unites ?",
       "Dans quelles situations de la vie quotidienne utilises-tu ces conversions ?",
-      "Pourquoi est-il important d'avoir un système d'unités cohérent ?"
+      "Pourquoi est-il important d'avoir un systeme d'unites coherent ?"
     ],
     activites: [
       {
         type: "auto-evaluation",
         criteres: [
-          "Je connais les principales unités de longueur",
-          "Je sais convertir d'une unité à l'autre",
-          "Je sais choisir l'unité appropriée selon la situation",
+          "Je connais les principales unites de longueur",
+          "Je sais convertir d'une unite a l'autre",
+          "Je sais choisir l'unite appropriee selon la situation",
           "Je sais utiliser le tableau de conversion",
-          "Je sais résoudre des problèmes impliquant des mesures de longueur"
+          "Je sais resoudre des problemes impliquant des mesures de longueur"
         ]
       }
     ]
   }
 };
 
-// Export par défaut
-export default unitesLongueur6eme;
+// Assign to window for browser compatibility
+window.data = uniteslongueur6eme;

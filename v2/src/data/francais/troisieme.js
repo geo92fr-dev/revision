@@ -16,8 +16,7 @@ export const francais3eme = [
         ressources: [
           { type: "extraits", titre: "Romans du XXe", url: "https://www.assistancescolaire.com/" },
           { type: "vidéo", titre: "Nouveau roman", url: "https://www.youtube.com/watch?v=rom123" }
-        ],
-        quizId: "QUIZ_3_ROMAN_MODERNE"
+        ]
       },
       {
         id: "3LC-MC-2",
@@ -29,8 +28,7 @@ export const francais3eme = [
           "Théâtre moderne = rupture avec logique, communication impossible, dérision.",
         ressources: [
           { type: "extraits", titre: "Théâtre de l'absurde", url: "https://www.theatre-contemporain.net/" }
-        ],
-        quizId: "QUIZ_3_THEATRE_CONTEMPORAIN"
+        ]
       },
       {
         id: "3LC-MC-3",
@@ -42,8 +40,7 @@ export const francais3eme = [
           "Poésie moderne = liberté formelle + engagement social/politique + langage quotidien.",
         ressources: [
           { type: "anthologie", titre: "Poésie XXe siècle", url: "https://www.francaisfacile.com/" }
-        ],
-        quizId: "QUIZ_3_POESIE_ENGAGEE"
+        ]
       }
     ]
   },
@@ -62,8 +59,7 @@ export const francais3eme = [
           "Repère d'abord les verbes conjugués, puis les liens entre propositions.",
         ressources: [
           { type: "exercices", titre: "Analyse syntaxique", url: "https://www.francaisfacile.com/" }
-        ],
-        quizId: "QUIZ_3_ANALYSE_LOGIQUE"
+        ]
       },
       {
         id: "3GR-SC-2",
@@ -75,8 +71,7 @@ export const francais3eme = [
           "Repère qui parle, à qui, quand, comment (indices de subjectivité).",
         ressources: [
           { type: "fiches", titre: "Énonciation", url: "https://www.assistancescolaire.com/" }
-        ],
-        quizId: "QUIZ_3_ENONCIATION"
+        ]
       },
       {
         id: "3GR-SC-3",
@@ -88,8 +83,7 @@ export const francais3eme = [
           "Direct = guillemets ; indirect = 'que' + transformation ; indirect libre = fusion.",
         ressources: [
           { type: "exercices", titre: "Discours rapporté", url: "https://www.ortholud.com/" }
-        ],
-        quizId: "QUIZ_3_DISCOURS_RAPPORTE"
+        ]
       }
     ]
   },
@@ -108,8 +102,7 @@ export const francais3eme = [
           "Introduction (accroche, sujet, problématique, plan) → développement → conclusion.",
         ressources: [
           { type: "méthodes", titre: "Dissertation complète", url: "https://www.assistancescolaire.com/" }
-        ],
-        quizId: "QUIZ_3_DISSERTATION"
+        ]
       },
       {
         id: "3EE-PL-2",
@@ -121,8 +114,7 @@ export const francais3eme = [
           "Démarche : comprendre → analyser (fond/forme) → interpréter → structurer.",
         ressources: [
           { type: "exemples", titre: "Commentaires types", url: "https://www.francaisfacile.com/" }
-        ],
-        quizId: "QUIZ_3_COMMENTAIRE"
+        ]
       },
       {
         id: "3EE-PL-3",
@@ -134,8 +126,7 @@ export const francais3eme = [
           "Respecte les codes du genre demandé, adapte style et registre à la situation.",
         ressources: [
           { type: "modèles", titre: "Écritures créatives", url: "https://www.reseau-canope.fr/" }
-        ],
-        quizId: "QUIZ_3_ECRITURE_INVENTION"
+        ]
       }
     ]
   },
@@ -154,8 +145,7 @@ export const francais3eme = [
           "Structure : contexte → démarche → résultats → bilan personnel + anticipation questions.",
         ressources: [
           { type: "conseils", titre: "Oral de stage", url: "https://www.assistancescolaire.com/" }
-        ],
-        quizId: "QUIZ_3_ORAL_PROJET"
+        ]
       },
       {
         id: "3OR-EB-2",
@@ -167,8 +157,7 @@ export const francais3eme = [
           "Description objective → analyse (techniques, sens) → interprétation + liens culturels.",
         ressources: [
           { type: "méthodes", titre: "Analyse d'image", url: "https://www.reseau-canope.fr/" }
-        ],
-        quizId: "QUIZ_3_ANALYSE_IMAGE"
+        ]
       },
       {
         id: "3OR-EB-3",
@@ -180,8 +169,7 @@ export const francais3eme = [
           "Écoute bien, réponds précisément, assume tes choix, donne des exemples concrets.",
         ressources: [
           { type: "simulation", titre: "Entretien oral", url: "https://www.youtube.com/watch?v=oral123" }
-        ],
-        quizId: "QUIZ_3_ENTRETIEN"
+        ]
       }
     ]
   },
@@ -200,8 +188,7 @@ export const francais3eme = [
           "Romantisme = sentiment, individualité ; réalisme = observation, société.",
         ressources: [
           { type: "synthèses", titre: "XIXe littéraire", url: "https://www.assistancescolaire.com/" }
-        ],
-        quizId: "QUIZ_3_ROMANTISME_REALISME"
+        ]
       },
       {
         id: "3HL-SM-2",
@@ -213,8 +200,7 @@ export const francais3eme = [
           "XXe = expérimentation, remise en cause, multiplicité des esthétiques.",
         ressources: [
           { type: "panorama", titre: "Littérature XXe", url: "https://www.francaisfacile.com/" }
-        ],
-        quizId: "QUIZ_3_MODERNITE"
+        ]
       },
       {
         id: "3HL-SM-3",
@@ -226,8 +212,7 @@ export const francais3eme = [
           "Littérature = miroir et acteur du social, de l'intime au politique.",
         ressources: [
           { type: "dossiers", titre: "Littérature engagée", url: "https://www.reseau-canope.fr/" }
-        ],
-        quizId: "QUIZ_3_LITTERATURE_SOCIETE"
+        ]
       }
     ]
   },
@@ -246,8 +231,7 @@ export const francais3eme = [
           "Planifie tes révisions, entraîne-toi en temps limité, garde du temps pour relire.",
         ressources: [
           { type: "planning", titre: "Organisation révisions", url: "https://www.assistancescolaire.com/" }
-        ],
-        quizId: "QUIZ_3_GESTION_TEMPS"
+        ]
       },
       {
         id: "3PE-MA-2",
@@ -259,8 +243,7 @@ export const francais3eme = [
           "Méthode systématique : plusieurs lectures, prise de notes organisée, plan détaillé.",
         ressources: [
           { type: "grilles", titre: "Outils d'analyse", url: "https://www.francaisfacile.com/" }
-        ],
-        quizId: "QUIZ_3_TECHNIQUE_ANALYSE"
+        ]
       },
       {
         id: "3PE-MA-3",
@@ -272,8 +255,7 @@ export const francais3eme = [
           "Liens chronologiques, thématiques, esthétiques entre littérature et autres arts.",
         ressources: [
           { type: "synthèses", titre: "Arts et littérature", url: "https://www.reseau-canope.fr/" }
-        ],
-        quizId: "QUIZ_3_CULTURE_GENERALE"
+        ]
       }
     ]
   }

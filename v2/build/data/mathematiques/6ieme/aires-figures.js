@@ -1,12 +1,12 @@
-// Aires des figures - 6ème
-export const airesFigures6eme = {
+// Aires des figures - 6eme
+const data = {
   titre: "Aires des figures",
-  niveau: "6ème", 
+  niveau: "6eme", 
   description: "Calculer les aires des figures planes simples",
   
   phase1: {
-    titre: "🧠 Que sais-je déjà ?",
-    objectif: "Activer les connaissances préalables sur les aires",
+    titre: "🧠 Que sais-je deja ?",
+    objectif: "Activer les connaissances prealables sur les aires",
     exercices: [
       {
         type: "qcm",
@@ -18,7 +18,7 @@ export const airesFigures6eme = {
           "Sa hauteur"
         ],
         correct: 1,
-        explication: "L'aire est la mesure de la surface occupée par une figure"
+        explication: "L'aire est la mesure de la surface occupee par une figure"
       },
       {
         type: "estimation",
@@ -30,20 +30,20 @@ export const airesFigures6eme = {
   
   phase2: {
     titre: "📚 J'apprends",
-    objectif: "Découvrir les formules d'aires des figures usuelles",
+    objectif: "Decouvrir les formules d'aires des figures usuelles",
     cours: {
-      definition: "L'aire d'une figure est la mesure de sa surface. Elle s'exprime en unités d'aire : cm², m², km²...",
+      definition: "L'aire d'une figure est la mesure de sa surface. Elle s'exprime en unites d'aire : cm², m², km²...",
       unites: {
-        "mm²": "millimètre carré",
-        "cm²": "centimètre carré", 
-        "dm²": "décimètre carré",
-        "m²": "mètre carré",
-        "dam²": "décamètre carré (are)",
-        "hm²": "hectomètre carré (hectare)",
-        "km²": "kilomètre carré"
+        "mm²": "millimetre carre",
+        "cm²": "centimetre carre", 
+        "dm²": "decimetre carre",
+        "m²": "metre carre",
+        "dam²": "decametre carre (are)",
+        "hm²": "hectometre carre (hectare)",
+        "km²": "kilometre carre"
       },
       formules: {
-        "Carré": "Aire = côté × côté = c²",
+        "Carre": "Aire = cote × cote = c²",
         "Rectangle": "Aire = longueur × largeur = L × l",
         "Triangle": "Aire = (base × hauteur) ÷ 2 = (b × h) ÷ 2",
         "Disque": "Aire = π × rayon² = π × r²"
@@ -65,14 +65,14 @@ export const airesFigures6eme = {
   },
   
   phase3: {
-    titre: "✏️ Je m'entraîne",
-    objectif: "Pratiquer le calcul d'aires et les conversions d'unités",
+    titre: "✏️ Je m'entraine",
+    objectif: "Pratiquer le calcul d'aires et les conversions d'unites",
     exercices: [
       {
         type: "calcul",
-        question: "Un carré a un côté de 7 cm. Quelle est son aire ?",
+        question: "Un carre a un cote de 7 cm. Quelle est son aire ?",
         reponse: "49 cm²",
-        aide: "Aire du carré = côté² = 7² = 7 × 7"
+        aide: "Aire du carre = cote² = 7² = 7 × 7"
       },
       {
         type: "calcul",
@@ -94,37 +94,37 @@ export const airesFigures6eme = {
       },
       {
         type: "composition", 
-        question: "Une figure est composée d'un carré de 6 cm de côté et d'un triangle de base 6 cm et hauteur 4 cm. Quelle est son aire totale ?",
+        question: "Une figure est composee d'un carre de 6 cm de cote et d'un triangle de base 6 cm et hauteur 4 cm. Quelle est son aire totale ?",
         reponse: "48 cm²",
-        aide: "Aire carré + Aire triangle = 6² + (6×4)÷2 = 36 + 12"
+        aide: "Aire carre + Aire triangle = 6² + (6×4)÷2 = 36 + 12"
       }
     ]
   },
   
   phase4: {
-    titre: "🎯 Je réfléchis sur mes apprentissages",
-    objectif: "Développer une réflexion métacognitive sur le calcul d'aires",
+    titre: "🎯 Je reflechis sur mes apprentissages",
+    objectif: "Developper une reflexion metacognitive sur le calcul d'aires",
     questions: [
       "Comment choisis-tu la bonne formule selon la figure ?",
-      "Quelle stratégie utilises-tu pour les figures composées ?",
-      "Comment vérifies-tu que ton résultat est cohérent ?",
-      "Dans quelles situations réelles as-tu besoin de calculer des aires ?",
+      "Quelle strategie utilises-tu pour les figures composees ?",
+      "Comment verifies-tu que ton resultat est coherent ?",
+      "Dans quelles situations reelles as-tu besoin de calculer des aires ?",
       "Pourquoi est-il important de bien identifier la base et la hauteur d'un triangle ?"
     ],
     activites: [
       {
         type: "auto-evaluation",
         criteres: [
-          "Je sais calculer l'aire d'un carré et d'un rectangle",
+          "Je sais calculer l'aire d'un carre et d'un rectangle",
           "Je sais calculer l'aire d'un triangle",
-          "Je sais convertir les unités d'aire",
-          "Je sais décomposer une figure complexe en figures simples",
-          "Je sais résoudre des problèmes concrets impliquant des aires"
+          "Je sais convertir les unites d'aire",
+          "Je sais decomposer une figure complexe en figures simples",
+          "Je sais resoudre des problemes concrets impliquant des aires"
         ]
       }
     ]
   }
 };
 
-// Export par défaut  
-export default airesFigures6eme;
+// Assign to window for browser compatibility
+window.data = data;

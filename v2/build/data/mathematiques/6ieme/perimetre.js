@@ -1,37 +1,37 @@
-// Données spécifiques au périmètre pour la classe de 6ème
-export const perimetre6eme = {
-  niveau: "6ème",
+// Donnees specifiques au perimetre pour la classe de 6eme
+const data = {
+  niveau: "6eme",
   chapitre: "Grandeurs & Mesures",
-  sousChapitre: "Périmètre",
+  sousChapitre: "Perimetre",
   competences: [
     {
-      // COMPÉTENCE DÉTAILLÉE (première compétence)
+      // COMPETENCE DETAILLEE (premiere competence)
       id: "6GM-PE-1",
-      titre: "Périmètre des polygones",
-      objectif: "Savoir calculer le périmètre de polygones en additionnant les longueurs des côtés.",
+      titre: "Perimetre des polygones",
+      objectif: "Savoir calculer le perimetre de polygones en additionnant les longueurs des cotes.",
 
-      cours: "Le périmètre d'un polygone est la longueur de son contour. On l'obtient en additionnant les longueurs de tous ses côtés.",
+      cours: "Le perimetre d'un polygone est la longueur de son contour. On l'obtient en additionnant les longueurs de tous ses cotes.",
 
       etapes: [
         {
-          titre: "Identifier tous les côtés",
-          comment: "Repère tous les côtés de la figure et note leurs longueurs.",
-          exemple: "Pour un triangle ABC : côtés AB, BC et AC"
+          titre: "Identifier tous les cotes",
+          comment: "Repere tous les cotes de la figure et note leurs longueurs.",
+          exemple: "Pour un triangle ABC : cotes AB, BC et AC"
         },
         {
           titre: "Additionner les longueurs",
-          comment: "Fais la somme de toutes les longueurs des côtés.",
-          exemple: "Périmètre = AB + BC + AC"
+          comment: "Fais la somme de toutes les longueurs des cotes.",
+          exemple: "Perimetre = AB + BC + AC"
         },
         {
-          titre: "Utiliser les propriétés",
-          comment: "Dans un carré, tous les côtés sont égaux. Dans un rectangle, les côtés opposés sont égaux.",
-          exemple: "Carré de côté 5 cm : P = 4 × 5 = 20 cm"
+          titre: "Utiliser les proprietes",
+          comment: "Dans un carre, tous les cotes sont egaux. Dans un rectangle, les cotes opposes sont egaux.",
+          exemple: "Carre de cote 5 cm : P = 4 × 5 = 20 cm"
         },
         {
-          titre: "Vérifier l'unité",
-          comment: "Assure-toi que toutes les mesures sont dans la même unité avant de calculer.",
-          exemple: "Si un côté est en m et l'autre en cm, convertis tout en cm ou en m"
+          titre: "Verifier l'unite",
+          comment: "Assure-toi que toutes les mesures sont dans la meme unite avant de calculer.",
+          exemple: "Si un cote est en m et l'autre en cm, convertis tout en cm ou en m"
         }
       ],
 
@@ -39,108 +39,106 @@ export const perimetre6eme = {
 
       exercices: [
         { 
-          type: "débutant", 
-          question: "Calcule le périmètre d'un carré de côté 6 cm",
+          type: "debutant", 
+          question: "Calcule le perimetre d'un carre de cote 6 cm",
           reponse: "24 cm",
           points: 10
         },
         { 
-          type: "intermédiaire", 
-          question: "Calcule le périmètre d'un rectangle 7 cm × 4 cm",
+          type: "intermediaire", 
+          question: "Calcule le perimetre d'un rectangle 7 cm × 4 cm",
           reponse: "22 cm",
           points: 15
         },
         { 
-          type: "avancé", 
-          question: "Calcule le périmètre d'un triangle de côtés 5 cm, 7 cm et 9 cm",
+          type: "avance", 
+          question: "Calcule le perimetre d'un triangle de cotes 5 cm, 7 cm et 9 cm",
           reponse: "21 cm",
           points: 20
         }
       ],
 
-      astuce: "Pour un rectangle : P = 2 × (longueur + largeur), pour un carré : P = 4 × côté",
+      astuce: "Pour un rectangle : P = 2 × (longueur + largeur), pour un carre : P = 4 × cote",
       
-      utilite: "Calculer un périmètre sert à connaître la longueur de clôture nécessaire, de cadre pour un tableau, etc.",
+      utilite: "Calculer un perimetre sert a connaitre la longueur de cloture necessaire, de cadre pour un tableau, etc.",
 
-      // Phase 4 : Métacognition - Réflexion sur l'apprentissage
+      // Phase 4 : Metacognition - Reflexion sur l'apprentissage
       metacognition: {
         questions: [
           {
-            type: "compréhension",
-            question: "Qu'est-ce que le périmètre d'une figure ?",
+            type: "comprehension",
+            question: "Qu'est-ce que le perimetre d'une figure ?",
             options: [
-              "La somme de tous les côtés de la figure",
+              "La somme de tous les cotes de la figure",
               "L'aire de la figure",
-              "Le nombre de côtés de la figure",
+              "Le nombre de cotes de la figure",
               "La hauteur de la figure"
             ]
           },
           {
             type: "application",
-            question: "Dans quelle situation réelle calculez-vous un périmètre ?",
+            question: "Dans quelle situation reelle calculez-vous un perimetre ?",
             options: [
-              "Pour acheter une clôture pour son jardin",
+              "Pour acheter une cloture pour son jardin",
               "Pour encadrer un tableau",
               "Pour faire le tour d'un terrain de sport",
-              "Toutes ces réponses"
+              "Toutes ces reponses"
             ]
           },
           {
             type: "analyse",
-            question: "Quelle est la différence principale entre calculer le périmètre d'un carré et d'un rectangle ?",
+            question: "Quelle est la difference principale entre calculer le perimetre d'un carre et d'un rectangle ?",
             options: [
-              "Pour le carré, on multiplie un côté par 4, pour le rectangle on utilise longueur et largeur",
-              "Il n'y a pas de différence",
-              "Le rectangle est plus compliqué à mesurer",
-              "Le carré n'a pas de périmètre"
+              "Pour le carre, on multiplie un cote par 4, pour le rectangle on utilise longueur et largeur",
+              "Il n'y a pas de difference",
+              "Le rectangle est plus complique a mesurer",
+              "Le carre n'a pas de perimetre"
             ]
           },
           {
-            type: "synthèse",
-            question: "Comment vérifieriez-vous que votre calcul de périmètre est correct ?",
+            type: "synthese",
+            question: "Comment verifieriez-vous que votre calcul de perimetre est correct ?",
             options: [
-              "En vérifiant que j'ai bien additionné tous les côtés",
+              "En verifiant que j'ai bien additionne tous les cotes",
               "En refaisant le calcul une seconde fois",
-              "En vérifiant que l'unité est cohérente (cm, m, etc.)",
-              "Toutes ces méthodes"
+              "En verifiant que l'unite est coherente (cm, m, etc.)",
+              "Toutes ces methodes"
             ]
           }
         ]
       },
 
-      // Maintien de la compatibilité avec l'ancien format
-      description: "Calculer le périmètre de polygones en additionnant les longueurs de tous les côtés.",
+      // Maintien de la compatibilite avec l'ancien format
+      description: "Calculer le perimetre de polygones en additionnant les longueurs de tous les cotes.",
       ressources: [
-        { type: "vidéo", titre: "Calcul de périmètres", url: "https://www.youtube.com/watch?v=perimetre" },
-        { type: "exercice", titre: "Périmètres variés", url: "https://www.sesamath.net/" }
-      ],
-      quizId: "QUIZ_6_PERIMETRE_POLYGONES"
+        { type: "video", titre: "Calcul de perimetres", url: "https://www.youtube.com/watch?v=perimetre" },
+        { type: "exercice", titre: "Perimetres varies", url: "https://www.sesamath.net/" }
+      ]
     },
     {
-      // COMPÉTENCE SIMPLE
+      // COMPETENCE SIMPLE
       id: "6GM-PE-2",
-      titre: "Périmètre du cercle",
-      description: "Calculer le périmètre (circonférence) d'un cercle avec la formule P = π × diamètre.",
-      exemple: "Ex. : Cercle de rayon 3 cm, diamètre = 6 cm, P = π × 6 ≈ 3,14 × 6 = 18,84 cm",
-      astuce: "Retiens que π ≈ 3,14 et que diamètre = 2 × rayon",
+      titre: "Perimetre du cercle",
+      description: "Calculer le perimetre (circonference) d'un cercle avec la formule P = π × diametre.",
+      exemple: "Ex. : Cercle de rayon 3 cm, diametre = 6 cm, P = π × 6 ≈ 3,14 × 6 = 18,84 cm",
+      astuce: "Retiens que π ≈ 3,14 et que diametre = 2 × rayon",
       ressources: [
-        { type: "vidéo", titre: "Circonférence du cercle", url: "https://www.geogebra.org/" }
-      ],
-      quizId: "QUIZ_6_PERIMETRE_CERCLE"
+        { type: "video", titre: "Circonference du cercle", url: "https://www.geogebra.org/" }
+      ]
     },
     {
-      // COMPÉTENCE SIMPLE
+      // COMPETENCE SIMPLE
       id: "6GM-PE-3",
-      titre: "Problèmes de périmètre",
-      description: "Résoudre des problèmes concrets impliquant le calcul de périmètres.",
-      exemple: "Ex. : Combien de mètres de grillage pour entourer un jardin rectangulaire de 12 m × 8 m ?",
-      astuce: "Lis bien l'énoncé pour identifier la forme et les dimensions de la figure",
+      titre: "Problemes de perimetre",
+      description: "Resoudre des problemes concrets impliquant le calcul de perimetres.",
+      exemple: "Ex. : Combien de metres de grillage pour entourer un jardin rectangulaire de 12 m × 8 m ?",
+      astuce: "Lis bien l'enonce pour identifier la forme et les dimensions de la figure",
       ressources: [
-        { type: "exercice", titre: "Problèmes concrets", url: "https://www.maths-et-tiques.fr/" }
-      ],
-      quizId: "QUIZ_6_PROBLEMES_PERIMETRE"
+        { type: "exercice", titre: "Problemes concrets", url: "https://www.maths-et-tiques.fr/" }
+      ]
     }
   ]
 };
 
-export default perimetre6eme;
+// Assign to window for browser compatibility
+window.data = data;
