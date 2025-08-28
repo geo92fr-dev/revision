@@ -1,23 +1,23 @@
-﻿// Données spécifiques aux moyennes pour la classe de 6ème
+﻿// Donnees specifiques aux moyennes pour la classe de 6eme
 const moyenne6eme = {
-  niveau: "6ème",
-  chapitre: "Organisation et gestion de données",
+  niveau: "6eme",
+  chapitre: "Organisation et gestion de donnees",
   titre: "Les moyennes",
-  description: "Apprendre à calculer et interpréter des moyennes arithmétiques",
+  description: "Apprendre a calculer et interpreter des moyennes arithmetiques",
   competences: [
     {
-      titre: "Calculer et interpréter des moyennes",
-      description: "Comprendre le concept de moyenne et savoir la calculer dans différentes situations",
+      titre: "Calculer et interpreter des moyennes",
+      description: "Comprendre le concept de moyenne et savoir la calculer dans differentes situations",
       objectifs: [
-        "Calculer la moyenne d'une série de nombres",
-        "Interpréter le résultat dans un contexte",
+        "Calculer la moyenne d'une serie de nombres",
+        "Interpreter le resultat dans un contexte",
         "Utiliser la moyenne pour comparer des groupes"
       ],
       activites: [
         {
           type: "activation",
-          titre: "Découverte de la moyenne",
-          description: "Tom veut connaître sa moyenne en mathématiques ce trimestre.",
+          titre: "Decouverte de la moyenne",
+          description: "Tom veut connaitre sa moyenne en mathematiques ce trimestre.",
           contenu: "Tom a eu les notes suivantes : 12, 15, 8, 16, 14. Comment calculer sa moyenne ?"
         }
       ],
@@ -39,6 +39,5 @@ const moyenne6eme = {
   ]
 };
 
-export const moyennes6eme = moyenne6eme; // Alias pour compatibilité
-export { moyenne6eme }; // Export de la variable existante
-export default moyenne6eme;
+// Assign to window for browser compatibility
+window.data = moyenne6eme;

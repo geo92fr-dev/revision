@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Cours - Addition Soustraction</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 1200px; margin: 0 auto; padding: 20px; }
+        .tab-container { border: 1px solid #ddd; border-radius: 8px; overflow: hidden; }
+        .tab-header { display: flex; background: #f5f5f5; }
+        .tab-button { padding: 15px 25px; border: none; background: #f5f5f5; cursor: pointer; border-right: 1px solid #ddd; }
+        .tab-button.active { background: white; border-bottom: 2px solid #007bff; }
+        .tab-content { padding: 20px; min-height: 400px; }
+        .section-content { display: none; }
+        .section-content.active { display: block; }
+        .course-section { margin: 20px 0; }
+        .course-section h3 { color: #333; border-bottom: 2px solid #007bff; padding-bottom: 5px; }
+    </style>
+</head>
+<body>
+    <h1 id="pageTitle">Addition Soustraction - 6ème</h1>
+    
+    <div class="tab-container">
+        <div class="tab-header">
+            <button class="tab-button active" onclick="showTab('cours')">📚 Cours</button>
+            <button class="tab-button" onclick="showTab('exercices')">✏️ Exercices</button>
+            <button class="tab-button" onclick="showTab('quiz')">🎯 Quiz</button>
+            <button class="tab-button" onclick="showTab('reflexion')">🤔 Réflexion</button>
+            <button class="tab-button" onclick="showTab('ressources')">📖 Ressources</button>
+        </div>
+        
+        <div class="tab-content">
+            <div id="cours" class="section-content active">
+                <div id="coursContent">⏳ Chargement du contenu enrichi...</div>
+            </div>
+            <div id="exercices" class="section-content">
+                <div id="exercicesContent">⏳ Chargement des exercices...</div>
+            </div>
+            <div id="quiz" class="section-content">
+                <div id="quizContent">⏳ Chargement du quiz...</div>
+            </div>
+            <div id="reflexion" class="section-content">
+                <div id="reflexionContent">⏳ Chargement de la réflexion...</div>
+            </div>
+            <div id="ressources" class="section-content">
+                <div id="ressourcesContent">⏳ Chargement des ressources...</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        console.log('🔧 Page minimaliste démarrée');
+        
+        function showTab(tabName) {
+            // Masquer tous les contenus
+            document.querySelectorAll('.section-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab-button').forEach(el => el.classList.remove('active'));
+            
+            // Afficher le contenu sélectionné
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+        
+        // Chargement immédiat des données
+        console.log('📡 Chargement immédiat des données...');
+        
+        const script = document.createElement('script');
+        script.src = '/data/mathematiques/6ieme/addition-soustraction.js?v=' + Date.now();
+        
+        script.onload = function() {
+            console.log('✅ Données chargées !');
+            console.log('🔍 window.data:', !!window.data);
+            
+            if (window.data && window.data.competences && window.data.competences[0]) {
+                const competence = window.data.competences[0];
+                console.log('🎉 Affichage du contenu enrichi !');
+                
+                // Afficher le titre enrichi
+                document.getElementById('pageTitle').textContent = competence.titre;
+                
+                // Afficher le contenu du cours avec toutes les améliorations
+                document.getElementById('coursContent').innerHTML = `
+                    <div class="course-section">
+                        <h3>🎯 Objectif</h3>
+                        <p>${competence.objectif}</p>
+                    </div>
+                    <div class="course-section">
+                        <h3>📚 Contenu du Cours</h3>
+                        <div>${competence.cours}</div>
+                    </div>
+                `;
+                
+                // Afficher les exercices
+                if (competence.exercices && competence.exercices.length > 0) {
+                    let exercicesHtml = '<h3>✏️ Exercices</h3>';
+                    competence.exercices.forEach((exercice, index) => {
+                        exercicesHtml += `
+                            <div class="course-section">
+                                <h4>Exercice ${index + 1}: ${exercice.question}</h4>
+                                <p><strong>Réponse:</strong> ${exercice.reponse}</p>
+                            </div>
+                        `;
+                    });
+                    document.getElementById('exercicesContent').innerHTML = exercicesHtml;
+                }
+                
+                // Afficher les quiz
+                if (competence.quiz && competence.quiz.length > 0) {
+                    let quizHtml = '<h3>🎯 Quiz</h3>';
+                    competence.quiz.forEach((question, index) => {
+                        quizHtml += `
+                            <div class="course-section">
+                                <h4>Question ${index + 1}: ${question.question}</h4>
+                                <p><strong>Réponse:</strong> ${question.reponse}</p>
+                            </div>
+                        `;
+                    });
+                    document.getElementById('quizContent').innerHTML = quizHtml;
+                }
+                
+                // Afficher la métacognition
+                if (competence.metacognition && competence.metacognition.length > 0) {
+                    let metacognitionHtml = '<h3>🤔 Réflexion Métacognitive</h3>';
+                    competence.metacognition.forEach((question, index) => {
+                        metacognitionHtml += `
+                            <div class="course-section">
+                                <p><strong>${index + 1}.</strong> ${question}</p>
+                            </div>
+                        `;
+                    });
+                    document.getElementById('reflexionContent').innerHTML = metacognitionHtml;
+                }
+                
+                // Afficher les ressources
+                if (competence.ressources && competence.ressources.length > 0) {
+                    let ressourcesHtml = '<h3>📖 Ressources</h3><ul>';
+                    competence.ressources.forEach(ressource => {
+                        ressourcesHtml += `<li>${ressource}</li>`;
+                    });
+                    ressourcesHtml += '</ul>';
+                    document.getElementById('ressourcesContent').innerHTML = ressourcesHtml;
+                }
+                
+                console.log('✅ Tout le contenu enrichi a été affiché !');
+            } else {
+                console.log('❌ Données non trouvées');
+                document.getElementById('coursContent').innerHTML = '<p style="color: red;">❌ Impossible de charger les données enrichies</p>';
+            }
+        };
+        
+        script.onerror = function() {
+            console.log('❌ Erreur de chargement');
+            document.getElementById('coursContent').innerHTML = '<p style="color: red;">❌ Erreur de chargement des données</p>';
+        };
+        
+        document.head.appendChild(script);
+    </script>
+</body>
+</html>

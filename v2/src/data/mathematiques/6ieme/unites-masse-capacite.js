@@ -1,16 +1,16 @@
-// Les unités de masse et capacité - 6ème
-export const unitesMasseCapacite6eme = {
-  titre: "Les unités de masse et capacité",
-  niveau: "6ème",
-  description: "Connaître et utiliser les unités de masse et de capacité",
+// Les unites de masse et capacite - 6eme
+const unitesMasseCapacite6eme = {
+  titre: "Les unites de masse et capacite",
+  niveau: "6eme",
+  description: "Connaitre et utiliser les unites de masse et de capacite",
   
   phase1: {
-    titre: "🧠 Que sais-je déjà ?",
-    objectif: "Activer les connaissances préalables sur les mesures de masse et capacité",
+    titre: "🧠 Que sais-je deja ?",
+    objectif: "Activer les connaissances prealables sur les mesures de masse et capacite",
     exercices: [
       {
         type: "qcm",
-        question: "Quelle unité utilises-tu pour mesurer ton poids ?",
+        question: "Quelle unite utilises-tu pour mesurer ton poids ?",
         options: [
           "Le gramme",
           "Le kilogramme",
@@ -18,14 +18,14 @@ export const unitesMasseCapacite6eme = {
           "Le litre"
         ],
         correct: 1,
-        explication: "Le kilogramme est l'unité utilisée pour mesurer le poids des personnes"
+        explication: "Le kilogramme est l'unite utilisee pour mesurer le poids des personnes"
       },
       {
         type: "association",
-        question: "Associe chaque objet à sa masse approximative",
+        question: "Associe chaque objet a sa masse approximative",
         elements: {
           "Une pomme": "150 g",
-          "Un éléphant": "5 tonnes", 
+          "Un elephant": "5 tonnes", 
           "Un livre": "500 g",
           "Une voiture": "1 tonne"
         }
@@ -35,22 +35,22 @@ export const unitesMasseCapacite6eme = {
   
   phase2: {
     titre: "📚 J'apprends",
-    objectif: "Découvrir les unités de masse et de capacité",
+    objectif: "Decouvrir les unites de masse et de capacite",
     cours: {
       masse: {
-        unite_principale: "Le gramme (g) est l'unité principale de masse",
+        unite_principale: "Le gramme (g) est l'unite principale de masse",
         echelle: {
           "t": "tonne = 1 000 000 g",
           "q": "quintal = 100 000 g",
           "kg": "kilogramme = 1 000 g",
           "hg": "hectogramme = 100 g",
-          "dag": "décagramme = 10 g", 
+          "dag": "decagramme = 10 g", 
           "g": "gramme = 1 g",
-          "dg": "décigramme = 0,1 g",
+          "dg": "decigramme = 0,1 g",
           "cg": "centigramme = 0,01 g",
           "mg": "milligramme = 0,001 g"
         },
-        conversions: "Chaque unité vaut 10 fois l'unité suivante",
+        conversions: "Chaque unite vaut 10 fois l'unite suivante",
         exemples: [
           "1 kg = 1000 g",
           "1 t = 1000 kg",
@@ -58,13 +58,13 @@ export const unitesMasseCapacite6eme = {
         ]
       },
       capacite: {
-        unite_principale: "Le litre (L) est l'unité principale de capacité",
+        unite_principale: "Le litre (L) est l'unite principale de capacite",
         echelle: {
           "kL": "kilolitre = 1000 L",
           "hL": "hectolitre = 100 L",
-          "daL": "décalitre = 10 L",
+          "daL": "decalitre = 10 L",
           "L": "litre = 1 L",
-          "dL": "décilitre = 0,1 L",
+          "dL": "decilitre = 0,1 L",
           "cL": "centilitre = 0,01 L",
           "mL": "millilitre = 0,001 L"
         },
@@ -87,8 +87,8 @@ export const unitesMasseCapacite6eme = {
   },
   
   phase3: {
-    titre: "✏️ Je m'entraîne",
-    objectif: "Pratiquer les conversions de masse et capacité",
+    titre: "✏️ Je m'entraine",
+    objectif: "Pratiquer les conversions de masse et capacite",
     exercices: [
       {
         type: "conversion_masse",
@@ -116,50 +116,50 @@ export const unitesMasseCapacite6eme = {
       },
       {
         type: "probleme",
-        question: "Marie achète 500 g de pommes, 1,2 kg de poires et 800 g d'oranges. Quelle est la masse totale en kg ?",
+        question: "Marie achete 500 g de pommes, 1,2 kg de poires et 800 g d'oranges. Quelle est la masse totale en kg ?",
         reponse: "2,5 kg",
         aide: "500 g + 1200 g + 800 g = 2500 g = 2,5 kg"
       },
       {
         type: "probleme",
-        question: "Un réservoir contient 1,5 hL d'eau. On y ajoute 250 L. Quelle est la quantité totale en L ?",
+        question: "Un reservoir contient 1,5 hL d'eau. On y ajoute 250 L. Quelle est la quantite totale en L ?",
         reponse: "400 L",
         aide: "1,5 hL = 150 L, donc 150 + 250 = 400 L"
       },
       {
         type: "choix_unite",
-        question: "Quelle unité choisir pour : le poids d'un camion, la masse d'un médicament, la capacité d'une piscine ?",
+        question: "Quelle unite choisir pour : le poids d'un camion, la masse d'un medicament, la capacite d'une piscine ?",
         reponse: "tonnes, mg, kL ou m³",
-        aide: "Adapte l'unité à la grandeur de ce que tu mesures"
+        aide: "Adapte l'unite a la grandeur de ce que tu mesures"
       }
     ]
   },
   
   phase4: {
-    titre: "🎯 Je réfléchis sur mes apprentissages",
-    objectif: "Développer une réflexion métacognitive sur les unités de masse et capacité",
+    titre: "🎯 Je reflechis sur mes apprentissages",
+    objectif: "Developper une reflexion metacognitive sur les unites de masse et capacite",
     questions: [
-      "Comment différencies-tu la masse de la capacité ?",
-      "Quelle stratégie utilises-tu pour choisir l'unité appropriée ?",
-      "Comment évites-tu de confondre les conversions de masse et de capacité ?",
-      "Dans quelles situations réelles utilises-tu ces mesures ?",
-      "Pourquoi y a-t-il une relation entre le litre et le décimètre cube ?"
+      "Comment differencies-tu la masse de la capacite ?",
+      "Quelle strategie utilises-tu pour choisir l'unite appropriee ?",
+      "Comment evites-tu de confondre les conversions de masse et de capacite ?",
+      "Dans quelles situations reelles utilises-tu ces mesures ?",
+      "Pourquoi y a-t-il une relation entre le litre et le decimetre cube ?"
     ],
     activites: [
       {
         type: "auto-evaluation",
         criteres: [
-          "Je distingue masse et capacité",
-          "Je connais les principales unités de masse",
-          "Je connais les principales unités de capacité",
-          "Je sais convertir les unités de masse",
-          "Je sais convertir les unités de capacité",
-          "Je sais résoudre des problèmes concrets avec ces unités"
+          "Je distingue masse et capacite",
+          "Je connais les principales unites de masse",
+          "Je connais les principales unites de capacite",
+          "Je sais convertir les unites de masse",
+          "Je sais convertir les unites de capacite",
+          "Je sais resoudre des problemes concrets avec ces unites"
         ]
       }
     ]
   }
 };
 
-// Export par défaut
-export default unitesMasseCapacite6eme;
+// Assign to window for browser compatibility
+window.data = unitesMasseCapacite6eme;

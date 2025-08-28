@@ -1,16 +1,16 @@
-// Symétrie axiale - 6ème
-export const symetrieAxiale6eme = {
-  titre: "Symétrie axiale",
-  niveau: "6ème",
-  description: "Comprendre et construire des figures par symétrie axiale",
+// Symetrie axiale - 6eme
+const symetrieaxiale6eme = {
+  titre: "Symetrie axiale",
+  niveau: "6eme",
+  description: "Comprendre et construire des figures par symetrie axiale",
   
   phase1: {
-    titre: "🧠 Que sais-je déjà ?",
-    objectif: "Activer les connaissances préalables sur la symétrie",
+    titre: "🧠 Que sais-je deja ?",
+    objectif: "Activer les connaissances prealables sur la symetrie",
     exercices: [
       {
         type: "qcm",
-        question: "Qu'est-ce qu'un axe de symétrie ?",
+        question: "Qu'est-ce qu'un axe de symetrie ?",
         options: [
           "Une ligne qui partage une figure en deux parties identiques",
           "Une ligne courbe",
@@ -18,12 +18,12 @@ export const symetrieAxiale6eme = {
           "Le contour d'une figure"
         ],
         correct: 0,
-        explication: "Un axe de symétrie partage une figure en deux parties qui se superposent parfaitement par pliage"
+        explication: "Un axe de symetrie partage une figure en deux parties qui se superposent parfaitement par pliage"
       },
       {
         type: "reconnaissance",
-        question: "Parmi ces figures, lesquelles ont un axe de symétrie : carré, triangle quelconque, cercle, rectangle ?",
-        reponse: "carré, cercle, rectangle",
+        question: "Parmi ces figures, lesquelles ont un axe de symetrie : carre, triangle quelconque, cercle, rectangle ?",
+        reponse: "carre, cercle, rectangle",
         aide: "Imagine que tu plies la figure : les deux parties doivent se superposer exactement"
       }
     ]
@@ -31,87 +31,87 @@ export const symetrieAxiale6eme = {
   
   phase2: {
     titre: "📚 J'apprends",
-    objectif: "Découvrir les propriétés de la symétrie axiale",
+    objectif: "Decouvrir les proprietes de la symetrie axiale",
     cours: {
-      definition: "Deux figures sont symétriques par rapport à une droite (axe de symétrie) si elles se superposent parfaitement par pliage le long de cette droite.",
+      definition: "Deux figures sont symetriques par rapport a une droite (axe de symetrie) si elles se superposent parfaitement par pliage le long de cette droite.",
       proprietes: [
-        "La symétrie conserve les distances",
-        "La symétrie conserve les angles", 
-        "La symétrie transforme une droite en une droite",
-        "L'axe de symétrie est la médiatrice du segment qui joint un point à son symétrique"
+        "La symetrie conserve les distances",
+        "La symetrie conserve les angles", 
+        "La symetrie transforme une droite en une droite",
+        "L'axe de symetrie est la mediatrice du segment qui joint un point a son symetrique"
       ],
       construction: [
-        "Tracer la perpendiculaire à l'axe passant par le point",
-        "Reporter la distance du point à l'axe de l'autre côté",
-        "Le point symétrique est à égale distance de l'axe"
+        "Tracer la perpendiculaire a l'axe passant par le point",
+        "Reporter la distance du point a l'axe de l'autre cote",
+        "Le point symetrique est a egale distance de l'axe"
       ],
       exemples: [
-        "Lettres ayant un axe de symétrie : A, B, C, D, H, I, M, O, T, U, V, W, X, Y",
-        "Figures géométriques : carré (4 axes), rectangle (2 axes), cercle (infinité d'axes)"
+        "Lettres ayant un axe de symetrie : A, B, C, D, H, I, M, O, T, U, V, W, X, Y",
+        "Figures geometriques : carre (4 axes), rectangle (2 axes), cercle (infinite d'axes)"
       ]
     },
     exercices: [
       {
         type: "construction",
-        question: "Construis le symétrique du triangle ABC par rapport à la droite d",
-        aide: "Construis le symétrique de chaque sommet, puis relie les points"
+        question: "Construis le symetrique du triangle ABC par rapport a la droite d",
+        aide: "Construis le symetrique de chaque sommet, puis relie les points"
       }
     ]
   },
   
   phase3: {
-    titre: "✏️ Je m'entraîne", 
-    objectif: "Pratiquer la construction de symétriques et l'identification d'axes",
+    titre: "✏️ Je m'entraine", 
+    objectif: "Pratiquer la construction de symetriques et l'identification d'axes",
     exercices: [
       {
         type: "construction",
-        question: "Construis le symétrique du point M par rapport à la droite (d)",
+        question: "Construis le symetrique du point M par rapport a la droite (d)",
         etapes: [
-          "Trace la perpendiculaire à (d) passant par M",
-          "Mesure la distance de M à (d)",
-          "Reporte cette distance de l'autre côté de (d)",
+          "Trace la perpendiculaire a (d) passant par M",
+          "Mesure la distance de M a (d)",
+          "Reporte cette distance de l'autre cote de (d)",
           "Place le point M'"
         ]
       },
       {
         type: "reconnaissance",
-        question: "Trouve tous les axes de symétrie d'un hexagone régulier",
-        reponse: "6 axes de symétrie",
-        aide: "Un hexagone régulier a 6 axes : 3 passant par les sommets opposés et 3 passant par les milieux des côtés opposés"
+        question: "Trouve tous les axes de symetrie d'un hexagone regulier",
+        reponse: "6 axes de symetrie",
+        aide: "Un hexagone regulier a 6 axes : 3 passant par les sommets opposes et 3 passant par les milieux des cotes opposes"
       },
       {
         type: "verification",
-        question: "Les points A(2;3) et B(6;3) sont-ils symétriques par rapport à la droite d'équation x = 4 ?",
+        question: "Les points A(2;3) et B(6;3) sont-ils symetriques par rapport a la droite d'equation x = 4 ?",
         reponse: "Oui",
-        aide: "Vérifie que la droite x = 4 est bien la médiatrice du segment [AB]"
+        aide: "Verifie que la droite x = 4 est bien la mediatrice du segment [AB]"
       }
     ]
   },
   
   phase4: {
-    titre: "🎯 Je réfléchis sur mes apprentissages",
-    objectif: "Développer une réflexion métacognitive sur la symétrie axiale",
+    titre: "🎯 Je reflechis sur mes apprentissages",
+    objectif: "Developper une reflexion metacognitive sur la symetrie axiale",
     questions: [
-      "Quelle méthode utilises-tu pour vérifier qu'une construction est correcte ?",
-      "Comment expliques-tu à un camarade comment construire un symétrique ?",
-      "Dans quels objets du quotidien observes-tu des symétries ?",
-      "Pourquoi la symétrie est-elle importante en architecture et dans l'art ?",
-      "Comment reconnais-tu rapidement si une figure a un axe de symétrie ?"
+      "Quelle methode utilises-tu pour verifier qu'une construction est correcte ?",
+      "Comment expliques-tu a un camarade comment construire un symetrique ?",
+      "Dans quels objets du quotidien observes-tu des symetries ?",
+      "Pourquoi la symetrie est-elle importante en architecture et dans l'art ?",
+      "Comment reconnais-tu rapidement si une figure a un axe de symetrie ?"
     ],
     activites: [
       {
         type: "auto-evaluation",
         criteres: [
-          "Je sais reconnaître si une figure a un axe de symétrie",
-          "Je sais construire le symétrique d'un point par rapport à une droite",
-          "Je sais construire le symétrique d'une figure simple",
-          "Je comprends les propriétés de la symétrie axiale",
-          "Je sais utiliser les instruments de géométrie pour construire des symétriques"
+          "Je sais reconnaitre si une figure a un axe de symetrie",
+          "Je sais construire le symetrique d'un point par rapport a une droite",
+          "Je sais construire le symetrique d'une figure simple",
+          "Je comprends les proprietes de la symetrie axiale",
+          "Je sais utiliser les instruments de geometrie pour construire des symetriques"
         ]
       }
     ]
   }
 };
 
-// Export par défaut
-export default symetrieAxiale6eme;
+// Assign to window for browser compatibility
+window.data = symetrieaxiale6eme;

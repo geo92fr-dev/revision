@@ -1,12 +1,12 @@
-// Les durées - 6ème
-export const durees6eme = {
-  titre: "Les durées",
-  niveau: "6ème",
-  description: "Comprendre et calculer avec les unités de durée",
+// Les durees - 6eme
+const durees6eme = {
+  titre: "Les durees",
+  niveau: "6eme",
+  description: "Comprendre et calculer avec les unites de duree",
   
   phase1: {
-    titre: "🧠 Que sais-je déjà ?",
-    objectif: "Activer les connaissances préalables sur les durées",
+    titre: "🧠 Que sais-je deja ?",
+    objectif: "Activer les connaissances prealables sur les durees",
     exercices: [
       {
         type: "qcm",
@@ -23,7 +23,7 @@ export const durees6eme = {
       {
         type: "lecture_heure",
         question: "Quelle heure indique cette horloge ? [horloge montrant 14h30]",
-        reponse: "14h30 ou 2h30 de l'après-midi",
+        reponse: "14h30 ou 2h30 de l'apres-midi",
         aide: "Regarde d'abord la petite aiguille (heures) puis la grande (minutes)"
       }
     ]
@@ -31,34 +31,34 @@ export const durees6eme = {
   
   phase2: {
     titre: "📚 J'apprends",
-    objectif: "Découvrir les unités de durée et leurs conversions",
+    objectif: "Decouvrir les unites de duree et leurs conversions",
     cours: {
       unites: {
-        "seconde (s)": "Unité de base",
+        "seconde (s)": "Unite de base",
         "minute (min)": "1 min = 60 s",
         "heure (h)": "1 h = 60 min = 3600 s",
         "jour (j)": "1 j = 24 h",
         "semaine": "1 semaine = 7 j",
         "mois": "1 mois ≈ 30 j (variable)",
-        "année": "1 an = 365 j (366 pour bissextile)"
+        "annee": "1 an = 365 j (366 pour bissextile)"
       },
       conversions: {
-        "Particularité": "Les conversions ne se font pas par 10 comme pour les autres unités",
-        "Règles": [
-          "× 60 pour passer de min à s",
-          "× 60 pour passer de h à min", 
-          "× 24 pour passer de j à h",
+        "Particularite": "Les conversions ne se font pas par 10 comme pour les autres unites",
+        "Regles": [
+          "× 60 pour passer de min a s",
+          "× 60 pour passer de h a min", 
+          "× 24 pour passer de j a h",
           "÷ 60, ÷ 60, ÷ 24 pour les conversions inverses"
         ]
       },
       calculs: {
-        "Addition": "Additionner séparément heures, minutes, secondes puis convertir si nécessaire",
-        "Soustraction": "Soustraire séparément, emprunter si nécessaire",
+        "Addition": "Additionner separement heures, minutes, secondes puis convertir si necessaire",
+        "Soustraction": "Soustraire separement, emprunter si necessaire",
         "Exemple": "2h45min + 1h20min = 3h65min = 4h05min"
       },
       formats: {
-        "Format 12h": "avec AM/PM (matin/après-midi)",
-        "Format 24h": "de 00h00 à 23h59"
+        "Format 12h": "avec AM/PM (matin/apres-midi)",
+        "Format 24h": "de 00h00 a 23h59"
       }
     },
     exercices: [
@@ -72,8 +72,8 @@ export const durees6eme = {
   },
   
   phase3: {
-    titre: "✏️ Je m'entraîne",
-    objectif: "Pratiquer les calculs et conversions avec les durées",
+    titre: "✏️ Je m'entraine",
+    objectif: "Pratiquer les calculs et conversions avec les durees",
     exercices: [
       {
         type: "conversion",
@@ -101,19 +101,19 @@ export const durees6eme = {
       },
       {
         type: "probleme",
-        question: "Un film commence à 20h15 et dure 1h45min. À quelle heure se termine-t-il ?",
+        question: "Un film commence a 20h15 et dure 1h45min. A quelle heure se termine-t-il ?",
         reponse: "22h00",
         aide: "20h15 + 1h45 = 21h60 = 22h00"
       },
       {
         type: "probleme",
-        question: "Marie part de chez elle à 7h30 et arrive au collège à 8h05. Combien de temps a duré son trajet ?",
+        question: "Marie part de chez elle a 7h30 et arrive au college a 8h05. Combien de temps a dure son trajet ?",
         reponse: "35 min",
         aide: "8h05 - 7h30 = 35 min"
       },
       {
         type: "probleme",
-        question: "Un train part à 14h25 et arrive à 16h10. Quelle est la durée du voyage ?",
+        question: "Un train part a 14h25 et arrive a 16h10. Quelle est la duree du voyage ?",
         reponse: "1h45min",
         aide: "16h10 - 14h25 = 1h45min"
       }
@@ -121,24 +121,24 @@ export const durees6eme = {
   },
   
   phase4: {
-    titre: "🎯 Je réfléchis sur mes apprentissages", 
-    objectif: "Développer une réflexion métacognitive sur les calculs de durées",
+    titre: "🎯 Je reflechis sur mes apprentissages", 
+    objectif: "Developper une reflexion metacognitive sur les calculs de durees",
     questions: [
-      "Quelle méthode utilises-tu pour additionner des durées ?",
-      "Comment procèdes-tu quand tu dois 'emprunter' des heures ou des minutes ?",
-      "Dans quelles situations calcules-tu des durées au quotidien ?",
-      "Pourquoi les conversions de durées sont-elles différentes des autres unités ?",
-      "Comment vérifies-tu que tes calculs de durées sont corrects ?"
+      "Quelle methode utilises-tu pour additionner des durees ?",
+      "Comment procedes-tu quand tu dois 'emprunter' des heures ou des minutes ?",
+      "Dans quelles situations calcules-tu des durees au quotidien ?",
+      "Pourquoi les conversions de durees sont-elles differentes des autres unites ?",
+      "Comment verifies-tu que tes calculs de durees sont corrects ?"
     ],
     activites: [
       {
         type: "auto-evaluation",
         criteres: [
-          "Je connais les relations entre les unités de durée",
-          "Je sais convertir d'une unité de durée à l'autre",
-          "Je sais additionner et soustraire des durées",
-          "Je sais lire l'heure sur différents supports",
-          "Je sais résoudre des problèmes de durées",
+          "Je connais les relations entre les unites de duree",
+          "Je sais convertir d'une unite de duree a l'autre",
+          "Je sais additionner et soustraire des durees",
+          "Je sais lire l'heure sur differents supports",
+          "Je sais resoudre des problemes de durees",
           "Je sais utiliser les formats 12h et 24h"
         ]
       }
@@ -146,5 +146,5 @@ export const durees6eme = {
   }
 };
 
-// Export par défaut
-export default durees6eme;
+// Assign to window for browser compatibility
+window.data = durees6eme;

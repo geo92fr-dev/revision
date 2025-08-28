@@ -1,31 +1,31 @@
 {
-  "timestamp": "2025-08-27T09:37:08.157Z",
+  "timestamp": "2025-08-27T14:50:08.511Z",
   "type": "integration",
   "file": "cours.html",
-  "score": 6,
+  "score": 1,
   "total": 6,
-  "percentage": 100,
-  "status": "✅ SUCCÈS",
+  "percentage": 17,
+  "status": "❌ ÉCHEC",
   "results": [
     {
-      "message": "✅ Système de sections collapsibles fonctionne",
-      "passed": true
+      "message": "❌ Sections insuffisantes pour le test",
+      "passed": false
     },
     {
-      "message": "✅ Champs de saisie fonctionnels",
-      "passed": true
+      "message": "❌ Éléments de formulaire manquants",
+      "passed": false
     },
     {
-      "message": "✅ Navigation breadcrumb valide (3 liens)",
-      "passed": true
+      "message": "❌ Navigation breadcrumb invalide (1 liens)",
+      "passed": false
     },
     {
-      "message": "✅ Système de chargement de données complet",
-      "passed": true
+      "message": "❌ Système de chargement incomplet",
+      "passed": false
     },
     {
-      "message": "✅ Système de scoring présent",
-      "passed": true
+      "message": "❌ Système de scoring incomplet",
+      "passed": false
     },
     {
       "message": "✅ Design responsive détecté",

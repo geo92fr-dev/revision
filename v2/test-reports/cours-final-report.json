@@ -1,27 +1,27 @@
 {
-  "timestamp": "2025-08-27T09:37:08.162Z",
+  "timestamp": "2025-08-27T14:50:08.530Z",
   "file": "cours.html",
   "overall": {
-    "score": 39,
+    "score": 15,
     "total": 39,
-    "percentage": 100,
-    "status": "🏆 EXCELLENT",
-    "recommendation": "Le fichier cours.html est parfaitement validé et prêt pour la production."
+    "percentage": 38,
+    "status": "🚨 CRITIQUE",
+    "recommendation": "Le fichier cours.html nécessite une refonte majeure avant utilisation."
   },
   "validation": {
-    "timestamp": "2025-08-27T09:37:08.119Z",
+    "timestamp": "2025-08-27T14:50:08.432Z",
     "file": "cours.html",
-    "score": 33,
+    "score": 14,
     "total": 33,
-    "percentage": 100,
-    "status": "✅ SUCCÈS",
+    "percentage": 42,
+    "status": "❌ ÉCHEC",
     "results": [
       {
         "message": "✅ Fichier cours.html existe",
         "passed": true
       },
       {
-        "message": "✅ Taille fichier acceptable: 21KB",
+        "message": "✅ Taille fichier acceptable: 13KB",
         "passed": true
       },
       {
@@ -29,8 +29,8 @@
         "passed": true
       },
       {
-        "message": "✅ Titre principal présent",
-        "passed": true
+        "message": "❌ Titre principal manquant",
+        "passed": false
       },
       {
         "message": "✅ Breadcrumb présent",
@@ -41,8 +41,8 @@
         "passed": true
       },
       {
-        "message": "✅ Sections collapsibles présentes (6)",
-        "passed": true
+        "message": "❌ Sections insuffisantes (0/5)",
+        "passed": false
       },
       {
         "message": "✅ Navigation présente",
@@ -53,72 +53,72 @@
         "passed": true
       },
       {
-        "message": "✅ Lien matière breadcrumb OK",
-        "passed": true
+        "message": "❌ Lien matière breadcrumb manquant",
+        "passed": false
       },
       {
-        "message": "✅ Lien niveau breadcrumb OK",
-        "passed": true
+        "message": "❌ Lien niveau breadcrumb manquant",
+        "passed": false
       },
       {
-        "message": "✅ Section pre-evaluation présente",
-        "passed": true
+        "message": "❌ Section pre-evaluation manquante",
+        "passed": false
       },
       {
-        "message": "✅ Section cours présente",
-        "passed": true
+        "message": "❌ Section cours manquante",
+        "passed": false
       },
       {
-        "message": "✅ Section exercices présente",
-        "passed": true
+        "message": "❌ Section exercices manquante",
+        "passed": false
       },
       {
-        "message": "✅ Section quiz présente",
-        "passed": true
+        "message": "❌ Section quiz manquante",
+        "passed": false
       },
       {
-        "message": "✅ Section reflexion présente",
-        "passed": true
+        "message": "❌ Section reflexion manquante",
+        "passed": false
       },
       {
-        "message": "✅ Section ressources présente",
-        "passed": true
+        "message": "❌ Section ressources manquante",
+        "passed": false
       },
       {
-        "message": "✅ Fonction toggleSection présente",
-        "passed": true
+        "message": "❌ Fonction toggleSection manquante",
+        "passed": false
       },
       {
-        "message": "✅ Fonction loadCourse présente",
-        "passed": true
+        "message": "❌ Fonction loadCourse manquante",
+        "passed": false
       },
       {
-        "message": "✅ Fonction validatePreEvaluation présente",
-        "passed": true
+        "message": "❌ Fonction validatePreEvaluation manquante",
+        "passed": false
       },
       {
         "message": "✅ Fonction updateBreadcrumb présente",
         "passed": true
       },
       {
-        "message": "✅ Style .collapsible-section présent",
-        "passed": true
+        "message": "❌ Style .collapsible-section manquant",
+        "passed": false
       },
       {
-        "message": "✅ Style .exercise-item présent",
-        "passed": true
+        "message": "❌ Style .exercise-item manquant",
+        "passed": false
       },
       {
-        "message": "✅ Style .feedback présent",
-        "passed": true
+        "message": "❌ Style .feedback manquant",
+        "passed": false
       },
       {
-        "message": "✅ Champs de saisie présents (4)",
-        "passed": true
+        "message": "❌ Aucun champ de saisie trouvé",
+        "passed": false
       },
       {
-        "message": "✅ Boutons validation présents (4)",
-        "passed": true
+        "message": "❌ Aucun bouton validation trouvé",
+        "passed": false
       },
       {
         "message": "✅ Attribut lang présent",
@@ -145,39 +145,39 @@
         "passed": true
       },
       {
-        "message": "✅ Contenu de fallback présent",
-        "passed": true
+        "message": "❌ Contenu de fallback manquant",
+        "passed": false
       }
     ]
   },
   "integration": {
-    "timestamp": "2025-08-27T09:37:08.157Z",
+    "timestamp": "2025-08-27T14:50:08.511Z",
     "type": "integration",
     "file": "cours.html",
-    "score": 6,
+    "score": 1,
     "total": 6,
-    "percentage": 100,
-    "status": "✅ SUCCÈS",
+    "percentage": 17,
+    "status": "❌ ÉCHEC",
     "results": [
       {
-        "message": "✅ Système de sections collapsibles fonctionne",
-        "passed": true
+        "message": "❌ Sections insuffisantes pour le test",
+        "passed": false
       },
       {
-        "message": "✅ Champs de saisie fonctionnels",
-        "passed": true
+        "message": "❌ Éléments de formulaire manquants",
+        "passed": false
       },
       {
-        "message": "✅ Navigation breadcrumb valide (3 liens)",
-        "passed": true
+        "message": "❌ Navigation breadcrumb invalide (1 liens)",
+        "passed": false
       },
       {
-        "message": "✅ Système de chargement de données complet",
-        "passed": true
+        "message": "❌ Système de chargement incomplet",
+        "passed": false
       },
       {
-        "message": "✅ Système de scoring présent",
-        "passed": true
+        "message": "❌ Système de scoring incomplet",
+        "passed": false
       },
       {
         "message": "✅ Design responsive détecté",
@@ -185,22 +185,115 @@
       }
     ]
   },
-  "failures": [],
+  "failures": [
+    {
+      "message": "❌ Titre principal manquant",
+      "passed": false
+    },
+    {
+      "message": "❌ Sections insuffisantes (0/5)",
+      "passed": false
+    },
+    {
+      "message": "❌ Lien matière breadcrumb manquant",
+      "passed": false
+    },
+    {
+      "message": "❌ Lien niveau breadcrumb manquant",
+      "passed": false
+    },
+    {
+      "message": "❌ Section pre-evaluation manquante",
+      "passed": false
+    },
+    {
+      "message": "❌ Section cours manquante",
+      "passed": false
+    },
+    {
+      "message": "❌ Section exercices manquante",
+      "passed": false
+    },
+    {
+      "message": "❌ Section quiz manquante",
+      "passed": false
+    },
+    {
+      "message": "❌ Section reflexion manquante",
+      "passed": false
+    },
+    {
+      "message": "❌ Section ressources manquante",
+      "passed": false
+    },
+    {
+      "message": "❌ Fonction toggleSection manquante",
+      "passed": false
+    },
+    {
+      "message": "❌ Fonction loadCourse manquante",
+      "passed": false
+    },
+    {
+      "message": "❌ Fonction validatePreEvaluation manquante",
+      "passed": false
+    },
+    {
+      "message": "❌ Style .collapsible-section manquant",
+      "passed": false
+    },
+    {
+      "message": "❌ Style .exercise-item manquant",
+      "passed": false
+    },
+    {
+      "message": "❌ Style .feedback manquant",
+      "passed": false
+    },
+    {
+      "message": "❌ Aucun champ de saisie trouvé",
+      "passed": false
+    },
+    {
+      "message": "❌ Aucun bouton validation trouvé",
+      "passed": false
+    },
+    {
+      "message": "❌ Contenu de fallback manquant",
+      "passed": false
+    },
+    {
+      "message": "❌ Sections insuffisantes pour le test",
+      "passed": false
+    },
+    {
+      "message": "❌ Éléments de formulaire manquants",
+      "passed": false
+    },
+    {
+      "message": "❌ Navigation breadcrumb invalide (1 liens)",
+      "passed": false
+    },
+    {
+      "message": "❌ Système de chargement incomplet",
+      "passed": false
+    },
+    {
+      "message": "❌ Système de scoring incomplet",
+      "passed": false
+    }
+  ],
   "successes": [
     {
       "message": "✅ Fichier cours.html existe",
       "passed": true
     },
     {
-      "message": "✅ Taille fichier acceptable: 21KB",
+      "message": "✅ Taille fichier acceptable: 13KB",
       "passed": true
     },
     {
       "message": "✅ Structure HTML valide",
-      "passed": true
-    },
-    {
-      "message": "✅ Titre principal présent",
       "passed": true
     },
     {
@@ -212,10 +305,6 @@
       "passed": true
     },
     {
-      "message": "✅ Sections collapsibles présentes (6)",
-      "passed": true
-    },
-    {
       "message": "✅ Navigation présente",
       "passed": true
     },
@@ -224,71 +313,7 @@
       "passed": true
     },
     {
-      "message": "✅ Lien matière breadcrumb OK",
-      "passed": true
-    },
-    {
-      "message": "✅ Lien niveau breadcrumb OK",
-      "passed": true
-    },
-    {
-      "message": "✅ Section pre-evaluation présente",
-      "passed": true
-    },
-    {
-      "message": "✅ Section cours présente",
-      "passed": true
-    },
-    {
-      "message": "✅ Section exercices présente",
-      "passed": true
-    },
-    {
-      "message": "✅ Section quiz présente",
-      "passed": true
-    },
-    {
-      "message": "✅ Section reflexion présente",
-      "passed": true
-    },
-    {
-      "message": "✅ Section ressources présente",
-      "passed": true
-    },
-    {
-      "message": "✅ Fonction toggleSection présente",
-      "passed": true
-    },
-    {
-      "message": "✅ Fonction loadCourse présente",
-      "passed": true
-    },
-    {
-      "message": "✅ Fonction validatePreEvaluation présente",
-      "passed": true
-    },
-    {
       "message": "✅ Fonction updateBreadcrumb présente",
-      "passed": true
-    },
-    {
-      "message": "✅ Style .collapsible-section présent",
-      "passed": true
-    },
-    {
-      "message": "✅ Style .exercise-item présent",
-      "passed": true
-    },
-    {
-      "message": "✅ Style .feedback présent",
-      "passed": true
-    },
-    {
-      "message": "✅ Champs de saisie présents (4)",
-      "passed": true
-    },
-    {
-      "message": "✅ Boutons validation présents (4)",
       "passed": true
     },
     {
@@ -313,30 +338,6 @@
     },
     {
       "message": "✅ Système chargement données présent",
-      "passed": true
-    },
-    {
-      "message": "✅ Contenu de fallback présent",
-      "passed": true
-    },
-    {
-      "message": "✅ Système de sections collapsibles fonctionne",
-      "passed": true
-    },
-    {
-      "message": "✅ Champs de saisie fonctionnels",
-      "passed": true
-    },
-    {
-      "message": "✅ Navigation breadcrumb valide (3 liens)",
-      "passed": true
-    },
-    {
-      "message": "✅ Système de chargement de données complet",
-      "passed": true
-    },
-    {
-      "message": "✅ Système de scoring présent",
       "passed": true
     },
     {

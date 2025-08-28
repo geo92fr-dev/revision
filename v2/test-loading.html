@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Test de chargement des fichiers corrigés</title>
+</head>
+<body>
+    <h1>Test de chargement des fichiers JavaScript</h1>
+    <div id="results"></div>
+
+    <script>
+        const files = [
+            'data/mathematiques/6ieme/nombres-decimaux.js',
+            'data/mathematiques/6ieme/fractions-simples.js',
+            'data/mathematiques/6ieme/symetrie-axiale.js',
+            'data/mathematiques/6ieme/constructions-geometriques.js',
+            'data/mathematiques/6ieme/unites-masse-capacite.js',
+            'data/mathematiques/6ieme/unites-longueur.js',
+            'data/mathematiques/6ieme/durees.js',
+            'data/mathematiques/6ieme/lecture-tableaux.js',
+            'data/mathematiques/6ieme/graphiques.js'
+        ];
+
+        const results = document.getElementById('results');
+        let loadedCount = 0;
+        let totalCount = files.length;
+
+        files.forEach(file => {
+            const script = document.createElement('script');
+            script.src = file;
+            script.onload = () => {
+                loadedCount++;
+                results.innerHTML += `<p style="color: green;">✅ ${file} chargé avec succès</p>`;
+                if (loadedCount === totalCount) {
+                    results.innerHTML += `<h2 style="color: green;">🎉 Tous les fichiers chargés avec succès ! (${loadedCount}/${totalCount})</h2>`;
+                }
+            };
+            script.onerror = () => {
+                results.innerHTML += `<p style="color: red;">❌ Erreur lors du chargement de ${file}</p>`;
+            };
+            document.head.appendChild(script);
+        });
+    </script>
+</body>
+</html>

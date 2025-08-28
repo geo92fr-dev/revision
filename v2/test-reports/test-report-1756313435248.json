@@ -1,0 +1,112 @@
+{
+  "timestamp": "2025-08-27T16:50:35.246Z",
+  "duration": "54ms",
+  "summary": {
+    "jsValidation": {
+      "total": 22,
+      "passed": 22,
+      "failed": 0,
+      "successRate": 100
+    },
+    "dataIntegrity": {
+      "total": 22,
+      "passed": 10,
+      "failed": 12,
+      "successRate": 45
+    },
+    "coursCompatibility": {
+      "total": 22,
+      "passed": 22,
+      "failed": 0,
+      "successRate": 100
+    },
+    "loadingTests": {
+      "total": 22,
+      "passed": 21,
+      "failed": 1,
+      "successRate": 95
+    },
+    "overall": {
+      "total": 88,
+      "passed": 75,
+      "failed": 13,
+      "successRate": 85
+    }
+  },
+  "details": {
+    "jsValidation": {
+      "passed": 22,
+      "failed": 0,
+      "details": []
+    },
+    "dataIntegrity": {
+      "passed": 10,
+      "failed": 12,
+      "details": [
+        {
+          "fileName": "aires-figures",
+          "details": "Propriété \"chapitre\" manquante"
+        },
+        {
+          "fileName": "constructions-geometriques",
+          "details": "Propriété \"chapitre\" manquante"
+        },
+        {
+          "fileName": "durees",
+          "details": "Propriété \"chapitre\" manquante"
+        },
+        {
+          "fileName": "fractions-simples",
+          "details": "Propriété \"chapitre\" manquante"
+        },
+        {
+          "fileName": "geometrie-avancee",
+          "details": "Propriété \"chapitre\" manquante"
+        },
+        {
+          "fileName": "graphiques",
+          "details": "Propriété \"chapitre\" manquante"
+        },
+        {
+          "fileName": "lecture-tableaux",
+          "details": "Propriété \"chapitre\" manquante"
+        },
+        {
+          "fileName": "nombres-decimaux",
+          "details": "Propriété \"chapitre\" manquante"
+        },
+        {
+          "fileName": "nombres-entiers",
+          "details": "Propriété \"chapitre\" manquante"
+        },
+        {
+          "fileName": "symetrie-axiale",
+          "details": "Propriété \"chapitre\" manquante"
+        },
+        {
+          "fileName": "unites-longueur",
+          "details": "Propriété \"chapitre\" manquante"
+        },
+        {
+          "fileName": "unites-masse-capacite",
+          "details": "Propriété \"chapitre\" manquante"
+        }
+      ]
+    },
+    "coursCompatibility": {
+      "passed": 22,
+      "failed": 0,
+      "details": []
+    },
+    "loadingTests": {
+      "passed": 21,
+      "failed": 1,
+      "details": [
+        {
+          "fileName": "addition-soustraction",
+          "details": "Erreur de chargement: Unexpected token '}'"
+        }
+      ]
+    }
+  }
+}

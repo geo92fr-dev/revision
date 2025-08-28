@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Test Fractions.js</title>
+</head>
+<body>
+    <h1>Test de chargement fractions.js</h1>
+    <div id="result">Chargement...</div>
+    
+    <script>
+        console.log('🔧 Test de chargement fractions.js');
+        
+        // Charger le script fractions.js
+        const script = document.createElement('script');
+        script.src = 'data/mathematiques/6ieme/fractions.js?v=' + Date.now();
+        
+        script.onload = function() {
+            console.log('✅ Script chargé');
+            
+            // Vérifier window.data
+            if (window.data) {
+                console.log('✅ window.data disponible');
+                console.log('📊 Données:', window.data);
+                
+                const resultDiv = document.getElementById('result');
+                resultDiv.innerHTML = `
+                    <h2>✅ Succès !</h2>
+                    <p><strong>Niveau:</strong> ${window.data.niveau}</p>
+                    <p><strong>Chapitre:</strong> ${window.data.chapitre}</p>
+                    <p><strong>Sous-chapitre:</strong> ${window.data.sousChapitre}</p>
+                    <p><strong>Nombre de compétences:</strong> ${window.data.competences.length}</p>
+                    <p><strong>Première compétence:</strong> ${window.data.competences[0].titre}</p>
+                `;
+            } else {
+                console.log('❌ window.data introuvable');
+                document.getElementById('result').innerHTML = '<h2>❌ Erreur: window.data introuvable</h2>';
+            }
+        };
+        
+        script.onerror = function() {
+            console.log('❌ Erreur de chargement du script');
+            document.getElementById('result').innerHTML = '<h2>❌ Erreur de chargement du script</h2>';
+        };
+        
+        document.head.appendChild(script);
+    </script>
+</body>
+</html>

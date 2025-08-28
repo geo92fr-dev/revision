@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Final Cours</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .course-content { max-width: 800px; margin: 0 auto; }
+        .section { margin: 20px 0; padding: 20px; border: 1px solid #ddd; border-radius: 8px; }
+    </style>
+</head>
+<body>
+    <div class="course-content">
+        <h1 id="courseTitle">Chargement...</h1>
+        <div id="courseDescription">Chargement des données...</div>
+        <div class="section" id="coursSection">
+            <h2>📚 Cours</h2>
+            <div id="coursContent">Chargement du contenu...</div>
+        </div>
+    </div>
+
+    <script>
+        console.log('🔧 Script de test simplifié démarré');
+        
+        // Fonction pour charger les données
+        function loadCourseData() {
+            console.log('📡 Tentative de chargement des données...');
+            
+            const timestamp = new Date().getTime();
+            const script = document.createElement('script');
+            script.src = `/data/mathematiques/6ieme/addition-soustraction.js?v=${timestamp}`;
+            
+            script.onload = function() {
+                console.log('✅ Script chargé !');
+                
+                setTimeout(() => {
+                    console.log('🔍 Recherche des données...');
+                    console.log('window.data:', window.data);
+                    console.log('window.additionSoustraction6eme:', window.additionSoustraction6eme);
+                    
+                    if (window.data && window.data.competences && window.data.competences[0]) {
+                        const competence = window.data.competences[0];
+                        console.log('🎉 Données trouvées !', competence.titre);
+                        
+                        // Afficher les données
+                        document.getElementById('courseTitle').textContent = competence.titre;
+                        document.getElementById('courseDescription').innerHTML = `
+                            <p><strong>Objectif:</strong> ${competence.objectif}</p>
+                        `;
+                        document.getElementById('coursContent').innerHTML = competence.cours;
+                        
+                        console.log('✅ Contenu affiché avec succès !');
+                    } else {
+                        console.log('❌ Aucune donnée trouvée');
+                        document.getElementById('courseTitle').textContent = 'Erreur de chargement';
+                        document.getElementById('courseDescription').textContent = 'Impossible de charger les données';
+                    }
+                }, 100);
+            };
+            
+            script.onerror = function() {
+                console.log('❌ Erreur de chargement du script');
+                document.getElementById('courseTitle').textContent = 'Erreur de chargement du script';
+            };
+            
+            document.head.appendChild(script);
+        }
+        
+        // Démarrer le chargement
+        console.log('🚀 Démarrage du chargement...');
+        loadCourseData();
+    </script>
+</body>
+</html>

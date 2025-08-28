@@ -1,0 +1,22 @@
+<!-- Section Exercices -->
+<div class="collapsible-section">
+    <div class="section-header" onclick="toggleSection('exercices')">
+        <span>✏️ Exercices</span>
+        <span class="section-toggle">▼</span>
+    </div>
+    <div class="section-content" id="exercices">
+        <div class="section-inner">
+            <p>Pratiquez avec ces exercices interactifs :</p>
+            <div class="score-display" id="exercicesScore" style="display: none;">
+                <h4>📊 Score des exercices</h4>
+                <p id="exercicesScoreText"></p>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="exercicesProgress"></div>
+                </div>
+            </div>
+            <div id="exercicesContent">
+                <!-- Contenu dynamique chargé par JavaScript -->
+            </div>
+        </div>
+    </div>
+</div>
