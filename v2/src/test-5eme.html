@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test 5ème - Validation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .test-result {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+        pre {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>🧪 Test de validation - 5ème Mathématiques</h1>
+    
+    <div id="test-results">
+        <div class="info">Chargement des tests...</div>
+    </div>
+    
+    <h2>🔗 Liens de test</h2>
+    <ul>
+        <li><a href="./pages/mathematiques/index.html" target="_blank">📐 Page mathématiques (voir tuile 5ème)</a></li>
+        <li><a href="./pages/mathematiques/5ieme/index.html" target="_blank">📚 Page 5ème</a></li>
+        <li><a href="./pages/cours.html?niveau=5eme&matiere=mathematiques&chapitre=nombres-calculs-fractions" target="_blank">➗ Cours Fractions 5ème</a></li>
+    </ul>
+    
+    <h2>📊 Détails techniques</h2>
+    <pre id="technical-details">Chargement...</pre>
+
+    <script type="module">
+        const resultsDiv = document.getElementById('test-results');
+        const detailsDiv = document.getElementById('technical-details');
+        
+        async function runTests() {
+            resultsDiv.innerHTML = '<div class="info">🔄 Tests en cours...</div>';
+            
+            const results = [];
+            const details = [];
+            
+            try {
+                // Test 1: Accès à la page 5ème
+                details.push('Test 1: Accès à la page 5ème');
+                try {
+                    const response = await fetch('./pages/mathematiques/5ieme/index.html');
+                    if (response.ok) {
+                        results.push('<div class="success">✅ Page 5ème accessible</div>');
+                        details.push('  ✅ Page 5ème: OK (Status ' + response.status + ')');
+                    } else {
+                        results.push('<div class="error">❌ Page 5ème non accessible</div>');
+                        details.push('  ❌ Page 5ème: ERREUR (Status ' + response.status + ')');
+                    }
+                } catch (e) {
+                    results.push('<div class="error">❌ Erreur accès page 5ème: ' + e.message + '</div>');
+                    details.push('  ❌ Page 5ème: ERREUR - ' + e.message);
+                }
+                
+                // Test 2: Accès au fichier de données
+                details.push('\\nTest 2: Fichier de données 5ème');
+                try {
+                    const response = await fetch('./data/mathematiques/5ieme/5e_nombres_calculs_fractions.js');
+                    if (response.ok) {
+                        const content = await response.text();
+                        const hasStructure = content.includes('fractions5eme') && 
+                                           content.includes('competences') &&
+                                           content.includes('export default');
+                        
+                        if (hasStructure) {
+                            results.push('<div class="success">✅ Fichier de données bien structuré</div>');
+                            details.push('  ✅ Structure fractions5eme: OK');
+                        } else {
+                            results.push('<div class="error">❌ Structure du fichier incorrecte</div>');
+                            details.push('  ❌ Structure fractions5eme: MANQUANTE');
+                        }
+                    } else {
+                        results.push('<div class="error">❌ Fichier de données non accessible</div>');
+                        details.push('  ❌ Fichier données: INACCESSIBLE (Status ' + response.status + ')');
+                    }
+                } catch (e) {
+                    results.push('<div class="error">❌ Erreur accès données: ' + e.message + '</div>');
+                    details.push('  ❌ Données: ERREUR - ' + e.message);
+                }
+                
+                // Test 3: Index mathématiques
+                details.push('\\nTest 3: Index mathématiques');
+                try {
+                    const response = await fetch('./data/mathematiques/index.js');
+                    if (response.ok) {
+                        const content = await response.text();
+                        const has5eme = content.includes('5eme') && content.includes('mathematiques5eme');
+                        
+                        if (has5eme) {
+                            results.push('<div class="success">✅ 5ème intégrée dans l\'index</div>');
+                            details.push('  ✅ Index 5ème: OK');
+                        } else {
+                            results.push('<div class="error">❌ 5ème manquante dans l\'index</div>');
+                            details.push('  ❌ Index 5ème: MANQUANTE');
+                        }
+                    }
+                } catch (e) {
+                    results.push('<div class="error">❌ Erreur index: ' + e.message + '</div>');
+                    details.push('  ❌ Index: ERREUR - ' + e.message);
+                }
+                
+                // Résultat final
+                const successCount = results.filter(r => r.includes('success')).length;
+                const totalTests = results.length;
+                
+                if (successCount === totalTests) {
+                    results.unshift('<div class="success"><strong>🎯 SUCCÈS COMPLET: Tous les tests passent (' + successCount + '/' + totalTests + ')</strong></div>');
+                    details.push('\\n🎯 RÉSULTAT: SUCCÈS COMPLET - La 5ème est entièrement fonctionnelle!');
+                } else {
+                    results.unshift('<div class="error"><strong>⚠️ TESTS PARTIELS: ' + successCount + '/' + totalTests + ' tests réussis</strong></div>');
+                    details.push('\\n⚠️ RÉSULTAT: Tests partiels - Certains éléments nécessitent une correction');
+                }
+                
+                resultsDiv.innerHTML = results.join('');
+                detailsDiv.textContent = details.join('\\n');
+                
+            } catch (error) {
+                resultsDiv.innerHTML = '<div class="error">❌ Erreur générale: ' + error.message + '</div>';
+                detailsDiv.textContent = 'Erreur: ' + error.message;
+            }
+        }
+        
+        // Lancer les tests
+        runTests();
+    </script>
+</body>
+</html>

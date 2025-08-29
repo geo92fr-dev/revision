@@ -52,20 +52,18 @@ const fractions5eme = {
         }
       ],
 
-      preEvaluation: {
-        questions: [
-          {
-            question: "Le PPCM de 4 et 6 est...",
-            choix: ["8", "10", "12", "24"],
-            reponse: "12"
-          },
-          {
-            question: "3/4 + 5/6 = (forme irreductible)",
-            choix: ["13/12", "19/12", "23/24", "1 7/12"],
-            reponse: "19/12"
-          }
-        ]
-      },
+      preEvaluation: [
+        {
+          question: "Le PPCM de 4 et 6 est...",
+          choix: ["8", "10", "12", "24"],
+          reponse: "12"
+        },
+        {
+          question: "3/4 + 5/6 = (forme irreductible)",
+          choix: ["13/12", "19/12", "23/24", "1 7/12"],
+          reponse: "19/12"
+        }
+      ],
 
       astuce: "Pour verifier ton calcul avec les fractions, tu peux les convertir en decimaux quand c'est possible.",
 
@@ -140,4 +138,5 @@ if (typeof window !== "undefined") {
   });
 }
 
+// Export par défaut
 export default fractions5eme;

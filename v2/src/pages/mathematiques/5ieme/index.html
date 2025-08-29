@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📐 Mathématiques 5ème - FunRevis V2</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📐</text></svg>">
+    
+    <!-- Intégration des styles CSS -->
+    <link rel="stylesheet" href="../../../styles/base.css">
+    <link rel="stylesheet" href="../../../styles/educational.css">
+    <link rel="stylesheet" href="../../../styles/components.css">
+    <link rel="stylesheet" href="../../../styles/modern.css">
+    <link rel="stylesheet" href="../../../styles/v2-custom.css">
+</head>
+<body>
+    <button class="back-btn" onclick="window.history.back()">←</button>
+    
+    <div class="page-container">
+        <div class="page-header">
+            <div class="breadcrumb">
+                <a href="../../../index.html">🏠 Accueil</a> → 
+                <a href="../index.html">📐 Mathématiques</a> → 
+                <span>5ème</span>
+            </div>
+            <h1 class="page-title">📐 Mathématiques 5ème</h1>
+            <p class="page-subtitle">Programme de mathématiques pour la classe de cinquième</p>
+        </div>
+        
+        <div class="subjects-grid">
+            <a href="../../cours.html?niveau=5eme&matiere=mathematiques&chapitre=nombres-calculs-fractions" class="subject-card">
+                <div class="subject-icon">➗</div>
+                <div class="subject-title">Nombres & Calculs - Fractions</div>
+                <div class="subject-description">Maîtriser les opérations avec les fractions, simplifier et comparer</div>
+                <div class="subject-meta">
+                    <span class="difficulty-badge difficulty-intermediate">Intermédiaire</span>
+                    <span class="subject-chapters">1 compétence</span>
+                </div>
+            </a>
+            
+            <!-- Future chapters will be added here -->
+            <div class="subject-card placeholder-card">
+                <div class="subject-icon">📊</div>
+                <div class="subject-title">Géométrie</div>
+                <div class="subject-description">Prochainement disponible</div>
+                <div class="subject-meta">
+                    <span class="coming-soon-badge">Bientôt</span>
+                </div>
+            </div>
+            
+            <div class="subject-card placeholder-card">
+                <div class="subject-icon">📈</div>
+                <div class="subject-title">Proportionnalité</div>
+                <div class="subject-description">Prochainement disponible</div>
+                <div class="subject-meta">
+                    <span class="coming-soon-badge">Bientôt</span>
+                </div>
+            </div>
+            
+            <div class="subject-card placeholder-card">
+                <div class="subject-icon">🔢</div>
+                <div class="subject-title">Nombres relatifs</div>
+                <div class="subject-description">Prochainement disponible</div>
+                <div class="subject-meta">
+                    <span class="coming-soon-badge">Bientôt</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="info-section">
+            <h3>🎯 Objectifs du programme de 5ème</h3>
+            <ul class="objectives-list">
+                <li>Approfondir le calcul avec les fractions</li>
+                <li>Découvrir les nombres relatifs</li>
+                <li>Maîtriser la proportionnalité</li>
+                <li>Étudier les triangles et leur construction</li>
+                <li>Explorer les transformations géométriques</li>
+            </ul>
+        </div>
+    </div>
+
+    <style>
+        .placeholder-card {
+            opacity: 0.6;
+            pointer-events: none;
+        }
+        
+        .coming-soon-badge {
+            background: #ffa726;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            font-weight: 500;
+        }
+        
+        .objectives-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .objectives-list li {
+            padding: 8px 0;
+            padding-left: 24px;
+            position: relative;
+        }
+        
+        .objectives-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #4caf50;
+            font-weight: bold;
+        }
+        
+        .info-section {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-radius: 12px;
+            border-left: 4px solid #007bff;
+        }
+        
+        .info-section h3 {
+            margin-top: 0;
+            color: #333;
+        }
+    </style>
+</body>
+</html>

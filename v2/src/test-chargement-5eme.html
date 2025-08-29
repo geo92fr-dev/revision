@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Chargement 5ème</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+        .test-result { margin: 10px 0; padding: 10px; border-radius: 5px; }
+        .success { background: #d4edda; color: #155724; }
+        .error { background: #f8d7da; color: #721c24; }
+        .info { background: #d1ecf1; color: #0c5460; }
+        pre { background: #f8f9fa; padding: 15px; border-radius: 5px; overflow-x: auto; }
+    </style>
+</head>
+<body>
+    <h1>🧪 Test Chargement Données 5ème</h1>
+    
+    <div id="test-results">
+        <div class="info">Chargement des tests...</div>
+    </div>
+    
+    <h2>📊 Console de debug</h2>
+    <pre id="debug-console">Initialisation...</pre>
+
+    <script type="module">
+        const resultsDiv = document.getElementById('test-results');
+        const debugConsole = document.getElementById('debug-console');
+        
+        function log(message) {
+            debugConsole.textContent += '\\n' + message;
+        }
+        
+        async function testDataLoading() {
+            const results = [];
+            
+            try {
+                log('🔄 Test du chargement module 5ème...');
+                
+                // Test 1: Import du module 5ème
+                const module = await import('./data/mathematiques/5ieme/index.js');
+                log('✅ Module 5ème importé: ' + !!module);
+                
+                // Test 2: Structure des données
+                const data5eme = module.default || module.mathematiques5eme;
+                log('✅ Données 5ème: ' + !!data5eme);
+                log('📊 Clés disponibles: ' + Object.keys(data5eme || {}).join(', '));
+                
+                // Test 3: Chapitre fractions
+                const fractions = data5eme?.['nombres-calculs-fractions'];
+                log('✅ Chapitre fractions: ' + !!fractions);
+                
+                if (fractions) {
+                    log('📚 Compétences: ' + !!fractions.competences);
+                    log('📚 Nombre compétences: ' + (fractions.competences?.length || 0));
+                    
+                    const comp = fractions.competences?.[0];
+                    if (comp) {
+                        log('📝 Titre: ' + comp.titre);
+                        log('🧪 Pré-évaluation: ' + !!comp.preEvaluation);
+                        log('🧪 Questions pré-éval: ' + (comp.preEvaluation?.questions?.length || 0));
+                        log('✏️ Exercices: ' + (comp.exercices?.length || 0));
+                        log('🤔 Métacognition: ' + !!comp.metacognition);
+                    }
+                }
+                
+                // Test 4: Simulation du chargement comme dans cours.html
+                log('\\n🔄 Test simulation chargement cours.html...');
+                
+                const moduleKey = 'nombres-calculs-fractions';
+                const levelData = module.default || module.mathematiques5eme;
+                
+                if (levelData && levelData[moduleKey]) {
+                    const courseData = {
+                        competences: levelData[moduleKey].competences ? levelData[moduleKey].competences : [levelData[moduleKey]]
+                    };
+                    
+                    log('✅ Adaptation format réussie');
+                    log('📊 Structure courseData: ' + !!courseData.competences);
+                    log('📊 Première compétence: ' + !!courseData.competences[0]);
+                    
+                    const comp = courseData.competences[0];
+                    if (comp?.preEvaluation?.questions) {
+                        log('🎯 PRÉ-ÉVALUATION TROUVÉE: ' + comp.preEvaluation.questions.length + ' questions');
+                        comp.preEvaluation.questions.forEach((q, i) => {
+                            log('  Q' + (i+1) + ': ' + q.question);
+                            log('    Choix: ' + q.choix?.length || 0);
+                        });
+                    } else {
+                        log('❌ PAS DE PRÉ-ÉVALUATION TROUVÉE');
+                    }
+                    
+                    results.push('<div class="success">✅ Chargement 5ème réussi</div>');
+                    results.push('<div class="success">✅ Pré-évaluation: ' + (comp?.preEvaluation?.questions?.length || 0) + ' questions</div>');
+                } else {
+                    results.push('<div class="error">❌ Échec chargement données</div>');
+                }
+                
+            } catch (error) {
+                log('❌ ERREUR: ' + error.message);
+                results.push('<div class="error">❌ Erreur: ' + error.message + '</div>');
+            }
+            
+            resultsDiv.innerHTML = results.join('');
+        }
+        
+        testDataLoading();
+    </script>
+</body>
+</html>
